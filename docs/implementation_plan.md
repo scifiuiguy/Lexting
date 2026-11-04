@@ -16,7 +16,7 @@ This document is the **living roadmap** for reviving the Unity prototype, stabil
 |--------|---------|
 | **0.0.1** | Repository snapshot *as archived* (~2021 prototype + monolithic `Lexting_Unity/` tree). May not install or run on a Quest 2 without repair work. |
 | **0.1.0** | **Milestone 1** — **Unity 6** upgrade on the legacy `Lexting_Unity/` tree + Quest 2 build; typing behavior matches the last known-good prototype (“as I left it”). Enables **`com.unity.pipeline`** (Cursor Unity MCP) on the monolith. |
-| **0.2.0** | **Milestone 2** — Lexting ships as **one Unity package** (runtime, default dictionary, reference scenes, prefabs, tests). Monolithic `Lexting_Unity/` is deprecated or removed once parity is proven. Quest QA uses a **private local host project** (not in the open repo). |
+| **0.2.0** | **Milestone 2** — Lexting ships as **one Unity package** (runtime, embedded SimpleJSON/Surge/UniRx, default dictionary, reference scenes/prefabs). **One-way extract** from monolith; Quest QA uses a **greenfield host** (new project, not in open repo)—never reintegrate the package into `Lexting_Unity/`. Delete monolith when stable. |
 | **0.5.0** | **Milestone 3** — Refreshed XR UPM stack; **OpenXR-first** Quest path documented and implemented; legacy Oculus Integration retired or quarantined (engine already on **Unity 6** from M1). |
 | **1.0.0** | **Milestone 4** — Meta Start submission quality: stable demo, improved tutorial, 3-minute video ready, known limitations documented. |
 | **1.1.0** | **Milestone 5 — Lexting Setup Wizard** — Editor **Lexting** menu command that configures the active scene for third-party integrators (auto rig bind + Lexting bootstrap where possible; validation errors/warnings when not). **Final milestone** in this roadmap. |
@@ -29,9 +29,9 @@ Patch releases (`0.1.x`, `0.2.x`, `0.5.x`, `1.0.x`) are expected during each mil
 
 | Path | Role | In open repo |
 |------|------|----------------|
-| **`Lexting_Unity_Plugin/`** | Single UPM package: runtime + editor assemblies, `SpatialGestureText`, default dictionary Resources, vendored deps (SimpleJSON, Surge subset, etc.), reference **Scenes/** and **Prefabs/** (`main_01_twozone`, QWERTY sim, hand/XR tests). One install via Package Manager. | **Yes** |
-| **Local Quest host** *(e.g. private `Lexting_Unity_Sample/` on disk)* | Maintainer-only Unity app: **`ProjectSettings`**, Android keystore, OpenXR/Oculus loader pins, build scripts, Meta Start branding. References the package via `file:` or Git URL. **Never published** in the open repo. | **No** |
-| **`Lexting_Unity/`** | Monolithic prototype during Milestone 1. **Retire** after M2 exit criteria (tag/branch snapshot optional). | Remove from default branch when cut over |
+| **`Lexting_Unity_Plugin/`** | Single UPM package: runtime + editor assemblies, `SpatialGestureText`, default dictionary Resources, **embedded** third-party source (SimpleJSON, Surge subset, **UniRx 6.2.2**—not integrator UPM), reference **Scenes/** and **Prefabs/** (`main_01_twozone`, QWERTY sim, hand/XR tests). **`Releases/`** — Meta Start **`tutorial_demo.apk`** + release README (APK via GitHub Releases; gitignored). One install via Package Manager. | **Yes** |
+| **Greenfield Quest host** *(e.g. private `Lexting_Unity_Sample/` on disk)* | **New** Unity project created from scratch to simulate a **3rd party** installing only the plugin (+ documented platform UPM). **`ProjectSettings`**, Android keystore, OpenXR/Oculus loader pins, build scripts, Meta Start branding. References the package via `file:` or Git URL. **Never** wire the package back into `Lexting_Unity/`. **Not** published in the open repo. | **No** |
+| **`Lexting_Unity/`** | Monolithic donor during M1/M2 extract only. **One-way migration:** copy content out, validate in greenfield host, then **delete** from default branch—no reintegration, no dual-tree compile. Optional git tag `pre-plugin-monolith` before removal. | Remove after M2 exit criteria |
 
 **Package consumption:** add once in `Packages/manifest.json` or Package Manager UI, e.g. `"com.lexting.spatialgesturetext": "file:../Lexting_Unity_Plugin"` (final package id TBD). Reference scenes open from **Packages/** in the Project window.
 
@@ -39,10 +39,10 @@ Patch releases (`0.1.x`, `0.2.x`, `0.5.x`, `1.0.x`) are expected during each mil
 
 ## Cross-cutting assumptions
 
-- **Keep:** [SimpleJSON](https://github.com/Bunny83/SimpleJSON) (vendored in plugin) — dictionary/metadata; low maintenance surface.
-- **Keep (for now):** [Pixelplacement Surge](https://github.com/Pixelplacement/Surge) — tweens via `TweenUtils` and direct `Tween.*` calls; validate on **Unity 6** during **Milestone 1** reopen; replace if broken.
+- **Keep (embedded in plugin, pinned snapshots):** [SimpleJSON](https://github.com/Bunny83/SimpleJSON), [Pixelplacement Surge](https://github.com/Pixelplacement/Surge) (subset), [UniRx](https://github.com/neuecc/UniRx) **6.2.2** — **must ship inside `Lexting_Unity_Plugin/`** so integrators are not sent hunting UPM/Asset Store for matching versions. **`package.json` lists Unity/platform deps only** (Input System, XR Management, OpenXR, etc.), not UniRx/SimpleJSON/Surge. Integrator docs: **do not add a second UniRx** (or duplicate SimpleJSON/Surge) in the host project—embedded copies define the supported versions.
+- **Surge:** tweens via `TweenUtils` and direct `Tween.*` calls; validate on **Unity 6** during **Milestone 1** reopen; replace if broken (still embedded until replaced).
 - **Defer / remove:** Leap Motion (`Assets/Plugins/LeapMotion/`, `LEXTING_FOUND_LEAP_SDK`) — remove during Milestone 3 SDK cleanup.
-- **Engine baseline:** **Milestone 1** upgrades the monolith from archived **Unity 2022.3.19f1** to **Unity 6** LTS (exact 6.x patch recorded in [`ProjectVersion.txt`](../Lexting_Unity/ProjectSettings/ProjectVersion.txt) after upgrade). **Milestone 2** locks the same minimum Unity version in plugin `package.json`; device builds run from a **local host** project.
+- **Engine baseline:** **Milestone 1** upgrades the monolith from archived **Unity 2022.3.19f1** to **Unity 6** LTS (exact 6.x patch recorded in [`ProjectVersion.txt`](../Lexting_Unity/ProjectSettings/ProjectVersion.txt) after upgrade). **Milestone 2** locks the same minimum Unity version in plugin `package.json`; device builds run from the **greenfield host** project.
 - **Risk focus:** **Milestone 1** now includes the **editor upgrade** (highest one-shot risk); **Milestone 3** focuses on **UPM XR refresh** and **OpenXR conformity** on an already-Unity-6 tree. Prototype *behavior* stays locked across M1 device parity; **Milestone 2** changes packaging only (see [Platform targets in README](../README.md#platform-strategy)).
 - **Agent tooling:** After Unity 6 + `unity pipeline install`, pin Cursor MCP to `Lexting_Unity` (`unity mcp configure cursor --project-path …`) for live Editor inspection during M1 Quest debugging.
 - **Out of sprint scope unless time:** UniRx replacement, Surge → DOTween migration, deprecated letter-cube path, MLAPI/streaming revival.
@@ -79,8 +79,8 @@ Patch releases (`0.1.x`, `0.2.x`, `0.5.x`, `1.0.x`) are expected during each mil
 ### Skeletal workstreams
 
 1. **Unity 6 upgrade** — [x] Hub upgrade, package resolve, Android IL2CPP build green; Pipeline installed; Editor/`main_01_twozone` usable.
-2. **Toolchain** — [~] Android/Quest deploy path works (Unity-bundled `adb`, sideload); package id still legacy `com.octest.qwerty_sim_16`; Android min SDK **24+** on OpenXR path (see baseline log).
-3. **Build & deploy** — [x] Quest APK from Unity 6 (`build_quest.ps1` / `install_quest.ps1`); post-install QA capture (`bugs/tools/quest_install_qa.ps1`, `qa_close_session.ps1`); **`main_01_twozone`** enabled, **`QWERTY_Sim`** disabled in Build Settings.
+2. **Toolchain** — [~] Android/Quest deploy path works (Unity-bundled `adb`, sideload); Quest APK **`applicationIdentifier`** **`com.lexting.spatialgesturetext`** (greenfield sample; monolith scripts may still reference legacy `com.octest.qwerty_sim_16` until updated); Android min SDK **24+** on OpenXR path (see baseline log).
+3. **Build & deploy** — [x] Quest APK from Unity 6 (monolith: `Lexting_Unity/build_quest.ps1`; **M2 greenfield:** `tools/build_quest.ps1` → `Lexting_Unity_Sample`); install (`tools/install_quest.ps1`, package **`com.lexting.spatialgesturetext`**); post-install QA (`bugs/tools/quest_install_qa.ps1`, `qa_close_session.ps1`); **`main_01_twozone`** enabled in greenfield build settings.
 4. **Runtime parity — XR Hands on XRRig** — [x] App boots on device; hands + grab/typing exercised on Quest through build **028**:
    - [x] **Keep:** [`XRRig.prefab`](../Lexting_Unity/Assets/Lexting/Prefabs/XRRig.prefab) (`LeftHand` / `RightHand` anchors), runtime **`HandMarker`**, sample **`HandVisualizer`**, gesture stack in **`OculusHandInput`** (transform-based grab/rotation, not OVR pinch APIs).
    - [x] **Fix:** **`OculusHandInput.BindHandNodes`** — runtime fallback: if no **`OVRCustomSkeleton`** under anchors → bind joint transforms from **`HandVisualizer/*Hand(Clone)`** (waits for clones); fixes left **`XRHandTrackingEvents`**, left palm path, joint **`Find`** roots. **`LEXTING_FOUND_OCULUS_SDK`** no longer forces the OVR-only branch when the scene uses XRRig.
@@ -96,50 +96,97 @@ Patch releases (`0.1.x`, `0.2.x`, `0.5.x`, `1.0.x`) are expected during each mil
 ## Milestone 2 — Unity plugin packaging
 
 **Target version:** `0.2.0`  
-**Goal:** Reformat the codebase so **Lexting is one installable Unity package**, not an app buried inside a mega-project. Typing UI, default dictionary, input adapters, utilities, **scenes, and prefabs** all live under **`Lexting_Unity_Plugin/`**. Day-to-day Quest APK builds use a **private local host** project (not in the open repo) that references the package.
+**Goal:** Reformat the codebase so **Lexting is one installable Unity package**, not an app buried inside a mega-project. Typing UI, default dictionary, input adapters, utilities, **scenes, and prefabs** all live under **`Lexting_Unity_Plugin/`**. Day-to-day Quest APK builds move to a **greenfield host** project (not in the open repo) that references **only** the package—simulating a 3rd-party install.
 
 **Suggested window:** **2026-11-08 → 2026-11-12** (start only after Milestone 1 exit criterion is met; may slip Meta Start calendar if split takes longer—prefer a **minimal** plugin cut that preserves behavior over a perfect asmdef graph).
 
 **Prerequisite:** Milestone 1 Quest checklist passes on the **legacy** tree (so regressions from the move are attributable to packaging, not unknown drift).
 
-### What moves into the plugin vs the private local host
+### Migration strategy (one-way only)
 
-| **Plugin (`Lexting_Unity_Plugin/`, in git)** | **Private local host (not in open repo)** |
-|---------------------------------------------|-------------------------------------------|
+This milestone is **extract → validate → delete**, not “turn the monolith into a package consumer.”
+
+1. **Extract** — Copy (or move in git) Lexting content from **`Lexting_Unity/`** into **`Lexting_Unity_Plugin/`** UPM layout (`package.json`, Runtime/Editor asmdefs, Scenes/Prefabs/Resources). The monolith is a **donor** during extract; do **not** add a `file:` package reference to **`Lexting_Unity/Packages/manifest.json`** or attempt to run both trees in one project (duplicate types / double refs).
+2. **Greenfield host** — Create a **new** Unity project from scratch (maintainer-local, e.g. `Lexting_Unity_Sample/`). Install **only** the plugin plus documented platform packages (XR, Input System, Meta/OpenXR as in integrator README). Use this host for compile fixes and **Quest smoke**—it stands in for “someone cloned the repo and added the package.”
+3. **Retire monolith** — When the greenfield host is **100% stable** (M1 device checklist on Quest 2), **remove `Lexting_Unity/`** from the default branch. Optional tag **`pre-plugin-monolith`** before deletion for forensic archive. **No** merge-back of the package into the old project at any point.
+
+### What moves into the plugin vs the greenfield host
+
+| **Plugin (`Lexting_Unity_Plugin/`, in git)** | **Greenfield host (not in open repo)** |
+|---------------------------------------------|----------------------------------------|
 | `SpatialGestureText` runtime + editor scripts | **`ProjectSettings`**, Android keystore, company/product IDs |
 | English dictionary Resources, conjugation data | XR Management / OpenXR loader **project** configuration |
-| Vendored compile-time deps (SimpleJSON, Surge, UniRx if retained) | Optional maintainer scripts (`build_quest`, `install_quest`) |
+| **Embedded third-party source** (see below)—SimpleJSON, Surge subset, UniRx **6.2.2** | Optional maintainer scripts (`build_quest`, `install_quest`) |
 | **Reference content:** `main_01_twozone`, QWERTY_Sim, hand/XR test scenes, prefabs (XRRig reference, UI prefabs) | Meta Start one-off branding / capture settings |
-| `package.json`, asmdefs, integrator README | `manifest.json` `file:` → plugin |
+| `package.json`, asmdefs, integrator README, **`ThirdPartyNotices.md`** | `manifest.json` `file:` → plugin (or Git URL) |
 
-**Explicitly not in the plugin:** bulk **`Assets/Oculus/`** Integration (host pulls Meta/XR via UPM); MECH and unrelated monolith noise. Host project declares platform packages; plugin declares **API-level** XR/Input dependencies integrators need.
+**Monolith paths that must land in the plugin (not only `Assets/Lexting/`):**
+
+| Monolith source | Plugin destination (typical) |
+|-----------------|------------------------------|
+| `Assets/Lexting/` (scripts, scenes, prefabs, Resources, Surge, SimpleJSON) | `Runtime/`, `Editor/`, `Scenes/`, `Prefabs/`, `Runtime/ThirdParty/…` |
+| `Assets/Plugins/UniRx/` (Scripts + asmdef; **exclude** Examples and `Assets/UniRxTests/`) | `Runtime/ThirdParty/UniRx/` |
+| **`Assets/Wispy Sky/`** (see **Wispy Skybox** below)—materials + textures referenced by reference scenes | `Runtime/ThirdParty/WispySky/` or `Content/Sky/` (subset only if embed approved) |
+
+**Explicitly not in the plugin:** bulk **`Assets/Oculus/`** Integration (host pulls Meta/XR via UPM); MECH and unrelated monolith noise; **`Wispy Sky/Extras/`** (206MB PSD/EXR source art) unless explicitly needed. Host project declares platform packages; plugin declares **API-level** XR/Input dependencies integrators need.
+
+### Embedded third-party dependencies & licenses
+
+Integrators **must not** be required to resolve UniRx, SimpleJSON, or Surge from UPM or the Asset Store. Those libraries ship **inside the package** as pinned source snapshots so behavior and compile surface stay under Lexting control (avoid “latest UniRx” integration hell).
+
+| Library | Pin / location today | License | Ship in plugin |
+|---------|----------------------|---------|----------------|
+| SimpleJSON | `Assets/Lexting/Scripts/ThirdParty/` | MIT ([Bunny83/SimpleJSON](https://github.com/Bunny83/SimpleJSON)) | Source + upstream **LICENSE** file |
+| Surge (subset) | `Assets/Lexting/Scripts/ThirdParty/Pixelplacement/Surge/` | MIT (`License.txt` already in tree) | Subset used by Lexting + **License.txt** |
+| UniRx | `Assets/Plugins/UniRx/` — **6.2.2** per `ReadMe.txt` | MIT ([neuecc/UniRx](https://github.com/neuecc/UniRx)); portions from Rx.NET/mono | Runtime scripts + asmdef; **LICENSE** text; no Examples/tests in shipping tree |
+
+#### Wispy Skybox (reference-scene look — **license gate**, not MIT)
+
+**Product need:** `main_01_twozone` (and some other reference scenes) use **`WispySkyboxMat`** from [`Assets/Wispy Sky/`](Lexting_Unity/Assets/Wispy%20Sky/) (`guid` on `WispySkyboxMat.mat`). Integrators should open those scenes with the same sky look without hunting Asset Store dependencies—**if** redistribution is permitted.
+
+**What is in the repo today:** [`ReadMe.txt`](Lexting_Unity/Assets/Wispy%20Sky/ReadMe.txt) only (publisher link). **No** standalone LICENSE/EULA file ships with the folder; rights come from the [Unity Asset Store listing](https://assetstore.unity.com/packages/2d/textures-materials/sky/wispy-skybox-21737) (**Mundus**, free, **Standard Unity Asset Store EULA**, store label **Extension Asset**).
+
+**Redistribution vs code libraries:** This is **not** like SimpleJSON/Surge/UniRx. The [standard EULA](https://unity.com/legal/as-terms) allows use when the asset is **incorporated into a Licensed Product** (a game/app with substantial original content) and **not** when end users can **extract or download the raw asset** separately ([Asset Store EULA FAQ](https://assetstore.unity.com/browse/eula-faq)). Publishing skybox `.tif`/materials inside an **open UPM package on GitHub** is **not clearly allowed** without publisher/Unity written permission—it is closer to sublicensing art than embedding in a shipped APK.
+
+| Outcome | Action |
+|---------|--------|
+| **Embed in plugin (preferred UX)** | Obtain **written redistribution OK** from **Mundus** (or Unity Asset Store support) for including a **minimal subset** in `Lexting_Unity_Plugin/` (e.g. `WispySkyboxMat` + cubemap/mobile mats + `Textures/` actually referenced; **no** `Demo/`, **no** `Extras/` PSD). Record permission + EULA pointer in **`ThirdPartyNotices.md`**. |
+| **Embed not granted (default integrator path)** | **Do not** commit Wispy files to the open repo. Integrators install **[Wispy Skybox](https://assetstore.unity.com/packages/2d/textures-materials/sky/wispy-skybox-21737)** via **Package Manager → My Assets** (documented in README Getting Started). Alternatives: CC0/self-authored sky in scenes, or maintainer-only local copy for builds. |
+| **Quest APK / store build** | Using Wispy **inside a built player** you ship is the normal “Licensed Product” path **for licensees who obtained the asset**—distinct from **repackaging source art in the SDK**. |
+
+**M2 checklist item:** resolve Wispy **before** treating reference scenes as done; do not assume embed until legal gate passes.
+
+**Attribution:** Add **`ThirdPartyNotices.md`** (or `LICENSE-THIRD-PARTY`) at plugin root: name, pinned version, license, source URL, and “included as vendored snapshot / subset” where applicable. Plugin README links to it; store/submission packaging (M3) reuses the same file.
 
 ### Definition of done
 
-- [ ] **`Lexting_Unity_Plugin/package.json`** exists with valid name, version `0.2.0`, Unity minimum, dependencies declared (Input System, XR Management, OpenXR, etc.—exact list documented in plugin README).
-- [ ] Plugin compiles in isolation (no missing scripts under `Assets/Lexting/` paths in the monolith).
-- [ ] Reference **scenes and prefabs** ship inside the package (visible under **Packages/** after install); includes **`main_01_twozone`** and other test scenes.
-- [ ] Maintainer **local host** (gitignored path, e.g. `Lexting_Unity_Sample/`) documented privately or in `docs/local_quest_host.md` — **not** shipped in the open repo; host + imported samples pass the **Milestone 1 device checklist** on Quest 2.
-- [ ] Documented **migration note**: which monolith paths map to which package folders; decision on whether **`Lexting_Unity/`** is deleted on main or kept read-only until `0.5.0`.
-- [ ] Root [`README.md`](../README.md) reflects single-package install (done in spirit; refresh at cutover).
+- [x] **`Lexting_Unity_Plugin/package.json`** exists with valid name, version `0.2.0`, Unity minimum; **dependencies = Unity/platform packages only** (Input System, XR Management, OpenXR, etc.—exact list in plugin README). **No** UniRx/SimpleJSON/Surge entries in `dependencies`.
+- [ ] Plugin compiles in the **greenfield host** with **no** `Assets/Lexting/` or monolith-only paths referenced.
+- [x] Reference **scenes and prefabs** ship inside the package (visible under **Packages/** after install); **`main_01_twozone`** only (legacy test scenes stay in monolith until retired).
+- [ ] **Greenfield host** documented in `docs/local_quest_host.md` (or private maintainer notes): Unity version, manifest snippet, platform UPM list, Quest build flow — **not** shipped in the open repo; host passes the **Milestone 1 device checklist** on Quest 2.
+- [x] **`ThirdPartyNotices.md`** complete; integrator README warns against adding duplicate UniRx/SimpleJSON/Surge.
+- [ ] **Wispy Skybox** — legal gate closed: either **embedded subset** with documented Asset Store EULA + permission (if obtained), or **documented substitute / integrator install step** so `main_01_twozone` is valid in the greenfield host.
+- [x] Documented **migration map**: [`docs/plugin_migration_map.md`](plugin_migration_map.md) (Wispy **not** embedded—My Assets).
+- [ ] **`Lexting_Unity/`** monolith retired **when maintainer chooses** (optional tag `pre-plugin-monolith` before local delete). Not required for **`0.2.0`** exit if the plugin + greenfield host build Quest.
+- [ ] Root [`README.md`](../README.md) reflects single-package install (refresh at cutover).
 
 ### Skeletal workstreams
 
-1. **Inventory** — list every assembly under old `Assets/Lexting/`; mark plugin vs reference scenes/prefabs vs delete (deprecated letter cube, streaming, etc.).
-2. **Package skeleton** — `package.json`, asmdef boundaries (Runtime / Editor), folder layout for Scenes/Prefabs/Resources.
-3. **Move & fix references** — update namespaces/paths, Resources load paths; scene/prefab GUIDs live in the plugin tree.
-4. **Local host bootstrap** — maintainer-only project with ProjectSettings/XR/keystore; import package samples for Quest builds.
-5. **Cutover** — workflow = edit plugin in repo, test via imported samples in local host; stop editing monolith `Lexting_Unity/` once parity green.
-6. **Retire monolith** — remove or archive `Lexting_Unity/` on default branch after sign-off (optional: git tag `pre-plugin-monolith`).
+1. **Inventory** — list every assembly under `Assets/Lexting/` **and** `Assets/Plugins/UniRx/`; trace **scene skybox refs** to `Assets/Wispy Sky/`; mark plugin vs reference scenes/prefabs vs delete (deprecated letter cube, streaming, UniRx tests, Wispy Demo/Extras, etc.).
+2. **Package skeleton** — `package.json`, asmdef boundaries (Runtime / Editor / embedded UniRx), folder layout for Scenes/Prefabs/Resources/ThirdParty.
+3. **Extract & fix references** — one-way copy into plugin; update Resources load paths; scene/prefab GUIDs live in the plugin tree; wire Runtime asmdefs to embedded UniRx only.
+4. **Greenfield host bootstrap** — **new** Unity project (not the monolith): ProjectSettings/XR/keystore, `manifest.json` → plugin; Quest APK smoke.
+5. **Stabilize** — all feature work happens in **`Lexting_Unity_Plugin/`**; monolith receives **no** further edits after extract starts (except emergency M1 hotfix until host parity).
+6. **Retire monolith** — delete **`Lexting_Unity/`** on default branch when greenfield host is stable; tag archive if desired.
 
-**Exit criterion:** Open repo contains **only** the one package; a maintainer local host references it and produces a Quest APK; **zero** typing logic remains only in the old monolith tree.
+**Exit criterion:** Open repo contains a complete **`Lexting_Unity_Plugin/`**; greenfield host references **only** the package and produces a Quest APK; **new feature work** lands in the plugin, not the monolith. Monolith may remain on branch until maintainer deletes it locally.
 
 ---
 
 ## Milestone 3 — XR refresh & OpenXR conformity
 
 **Target version:** `0.5.0`  
-**Goal:** Modernize **XR SDKs** on the **Unity 6** baseline from Milestone 1, then converge on a **single OpenXR-first path** on Quest 2—without changing Lexting typing semantics. Work happens in **`Lexting_Unity_Plugin`** and the **private local host** after Milestone 2; the old monolith is not the primary target.
+**Goal:** Modernize **XR SDKs** on the **Unity 6** baseline from Milestone 1, then converge on a **single OpenXR-first path** on Quest 2—without changing Lexting typing semantics. Work happens in **`Lexting_Unity_Plugin`** and the **greenfield host** after Milestone 2; the monolith is gone after M2 exit.
 
 **Suggested window:** **2026-11-10 → 2026-11-14** (overlap with late Milestone 2 is OK for *research*; land OpenXR cutover only after the plugin host compiles and Milestone 1 parity is green on the sample).
 
@@ -222,7 +269,7 @@ Refresh and document versions together (plugin `package.json` **dependencies** +
 - [ ] **Demo script** — timed flow (~3 min) covering: problem → dual-volume typing → word finalize/conjugate → one hotkey → output destination; rehearsed on Quest 2.
 - [ ] **Capture** — 3-minute video recorded (resolution/aspect per Meta Start rules); B-roll and fallback clips if live hand tracking fails.
 - [ ] **Tutorial** — `TutorialManager` flow improved for first-time judges/users (copy, pacing, skip/restart, failure recovery); aligned with demo script beats.
-- [ ] **Build label** — `1.0.0` Quest APK (local host + imported samples) matches video; changelog blurb for submission.
+- [ ] **Build label** — `1.0.0` Quest APK as **`Lexting_Unity_Plugin/Releases/tutorial_demo.apk`** (greenfield host + package); matches video; **`Releases/README.md`** updated; GitHub Release attachment; changelog blurb for submission.
 - [ ] **Known issues** — one-page list (environment lighting, dictionary size, PC keyboard mode out of scope, etc.).
 
 ### Skeletal workstreams (priority order)
@@ -253,7 +300,51 @@ Refresh and document versions together (plugin `package.json` **dependencies** +
 | **Menu: Lexting → Setup Scene…** | Operates on the **active scene** (saved or dirty). Idempotent where possible: re-run updates wiring instead of duplicating `[INPUTS]` / duplicate rigs. |
 | **Menu: Lexting → Validate Scene** *(optional split)* | Read-only pass; same rules as setup validation without mutating hierarchy. |
 | **Auto setup (best effort)** | **Prerequisite:** integrator scene already has an **XR player rig** (documented in README). Discover or create: **`[INPUTS]`** + **`LextingInputModuleManager`** (blessed **`InputMode.OPEN_XR`** when XR stack supports it); bind **head / left hand / right hand** **Transform** references from **`XROrigin`** / XRI rig (**error** if no rig). **Do not** parent the dual-volume widget into the saved scene—widget comes from package prefabs at **runtime** (bootstrap wired by wizard via serialized config on **`[INPUTS]`** / manager; details in **`setup_wizard.md`**, not README Getting Started). Integrators never author the widget in **`Assets/`**. |
-| **Manual integrator hooks (unchanged)** | **`ZoneFieldOutputReceiver`** on each **`InputField`** (or future attribute-driven auto-add with **opt-in** warning)—document that text output still requires explicit subscription unless wizard adds receivers user confirms. |
+| **Manual integrator hooks (unchanged)** | **`ZoneFieldOutputReceiver`** / **`ZoneTextOutputReceiver`** on each output target—integrator **enables/disables the receiver component** (or GameObject) to choose which field or label is live; see **Widget & output lifecycle** below. No automatic **`InputField`** focus wiring ( **`Text`** has no focus callbacks). |
+
+### Widget & output lifecycle (integrator UX — ship in M5)
+
+**Problem (prototype today):** Reference scenes keep the dual-volume widget in-scene and “summon” via gesture (`ControllerActivated`); there is **no** hide-at-idle or **InputField**-driven show flow. **`LextingOutputManager`** **broadcasts** the same string to every enabled receiver—integrators need a documented, supported pattern for real apps.
+
+**Widget bootstrap (serialized on `LextingInputModuleManager`, wizard sets default):**
+
+| Option | Behavior |
+|--------|----------|
+| **At scene load** | Runtime bootstrap **`Instantiate`**s the package widget prefab(s) **disabled / hidden** (no typing interaction, cursors off) until the integrator or Lexting API shows it. |
+| **On first output receiver `OnEnable`** | Defer **`Instantiate`** until the **first** **`ZoneFieldOutputReceiver`** or **`ZoneTextOutputReceiver`** enables—still starts **hidden/disabled** until show rules fire. |
+
+Integrator picks one mode via **`LextingInputModuleManager`** (enum or bool pair—exact API TBD in **`setup_wizard.md`**). Wizard + reference sample should demonstrate **at scene load (hidden)** as the default for new projects.
+
+**Show / hide / dismiss:** Replace reliance on index-finger summon alone for 3rd-party apps—expose a small runtime API (and/or events) to **show**, **hide**, and **dismiss** the widget, wired to **`ControllerActivated`**, calibration, and cursor/volume visibility. Reference demo may keep gesture summon; integrator docs treat **explicit show** as primary.
+
+**Output targeting (manual per object — intentional):**
+
+- **Do not** auto-enable/disable receivers from **`InputField`** select/deselect callbacks in the SDK—**`Text`** labels will not get parallel focus events.
+- **Do** document that devs **toggle each receiver’s enabled state** (or GameObject active) when the user focuses a field—only **one** enabled **`InputField`** receiver at a time unless they intentionally mirror text to multiple targets.
+- Optional **Getting Started** snippet: pseudo-code “on field A focused → enable receiver A, disable B/C” (maintainer updates README **in M5 only** when this ships—not during M2).
+
+### Quest passthrough → PC text (Netcode for GameObjects)
+
+**Context:** Legacy **`QUEST_*_PASSTHROUGH`** modes were wired in **`main_01_twozone`** via **`LextingNetworkManager`** (MLAPI **`NetworkManager`** + **`LextingMLAPIManager`** + **`LextingServerStatus`**). MLAPI predates **Unity Netcode for GameObjects (NGO)**; the old stack is **commented out** in source and the scene object is **optional / often disabled** for local Quest work. **`LextingStream_Quest.unity`** is a separate UDP gesture lab—not the two-zone passthrough product path.
+
+**Monolith retention (until Netcode ships):** Keep **`Lexting_Unity/`** in the repo as reference for the old MLAPI implementation (`Assets/Lexting/Scripts/Streaming/MLAPI/`, **`MLAPI_*`** test scenes, serialized **`LextingNetworkManager`** on **`main_01_twozone`**) until NGO replacements are implemented and validated. Do **not** delete the monolith solely for MLAPI cleanup before that milestone completes.
+
+**Target behavior (unchanged product intent):** Quest passthrough app renders the dual-volume widget locally; finalized text (and hotkeys where applicable) is delivered to a **Windows host** on the LAN—today’s commented **`LextingStreamClient` `ServerRpc`s** + **`windowsKeySim`** on the host. Reconcile with README **UDP Streaming Service** direction (Alpha) so integrators get one supported PC path, not two competing stacks.
+
+**PC host side:** The working prototype included a **separate PC server** (maintainer has an **archive** to restore when M5 networking starts—not in this repo today). M5 must **migrate that server** into the delivery (repo layout TBD: standalone Windows build, plugin sample, or companion project) and wire it to the same protocol as the Quest NGO client.
+
+**M5 tasks (networking delivery):**
+
+- [ ] Add **`com.unity.netcode.gameobjects`** (and transport, e.g. Unity Transport) to the **plugin** package dependencies; define minimum Unity / NGO versions in **`package.json`**.
+- [ ] **Restore archived PC server** from maintainer archive; **migrate** host/receiver logic to NGO (or unified transport chosen above); document build/run, IP/port, and pairing with Quest client.
+- [ ] Implement NGO replacements for the MLAPI roles: **network manager / host–client lifecycle**, **stream client** (Quest → host keystrokes), **server/host status** (IP, ready/off)—names TBD; avoid resurrecting MLAPI APIs.
+- [ ] Port commented send sites in **`LextingOutputManager`** and **`CubeWordAssemblyController`** (`isDesktop` / passthrough final word) to the new client API (RPC or approved message pattern).
+- [ ] Ship a **reference scene hook** (e.g. on **`[GameModule]`** or dedicated root): NGO **`NetworkManager`** + Lexting stream components; **wizard optional wiring** for passthrough mode when **`QUEST_HANDS_PASSTHROUGH`** is selected (baseline: documented manual setup).
+- [ ] Document **PC host vs Quest client** build targets, firewall/port, and enable/disable of networking (replacing “toggle **`LextingNetworkManager`** active”).
+- [ ] Manual QA: passthrough mode + two-zone widget + text appearing on Windows host; regression on **`QUEST_HANDS`** with networking **off**.
+- [ ] After NGO path passes QA: remove MLAPI scene leftovers from **plugin** reference scene; archive or trim monolith MLAPI folder only when reference is no longer needed.
+
+**Safe to remove now (pre-NGO):** Deleting the **`LextingNetworkManager`** GameObject from **`main_01_twozone`** causes **no runtime null refs** in the plugin or monolith—nothing in active C# resolves that object or **`LextingMLAPIManager.Singleton`**; MLAPI calls exist only in **comments**. **`LextingServerStatus`** is an empty stub and was only on that object.
 
 ### Validation (errors vs warnings)
 
@@ -281,16 +372,22 @@ Validation output should name **GameObject paths**, **component types**, and **f
 - [ ] **Setup Scene** command implements discovery + bind + runtime widget bootstrap wiring per ADR from Milestone 3; **no** requirement to open **`main_01_twozone`** for basic integration.
 - [ ] **Validate Scene** (combined or separate) lists all errors/warnings; CI-friendly optional **exit code** or log format documented for future automation.
 - [ ] **Unit / Edit Mode tests** where feasible (transform discovery, idempotent second run); manual QA checklist on blank XRI template + reference sample scene.
-- [ ] **[`README.md`](../README.md) Getting Started** updated: primary path = install package → open your scene → **Lexting → Setup Scene** → add output receivers → build.
+- [ ] **[`README.md`](../README.md) Getting Started** updated: primary path = install package → open your scene → **Lexting → Setup Scene** → add output receivers → build; **plus** widget bootstrap mode, **manual receiver enable/disable on focus**, and show/hide widget API (no **`InputField`** auto-focus magic in the SDK).
 - [ ] **Decision log** entry + short **`docs/setup_wizard.md`** (integrator-facing): what the wizard does, what it cannot do, troubleshooting table.
+- [ ] **`LextingInputModuleManager`** exposes **widget bootstrap timing** (scene load vs first receiver **`OnEnable`**) and default **hidden/disabled** instantiate; wizard persists choice on **`[INPUTS]`**.
+- [ ] **Runtime widget bootstrap** creates widget **hidden/disabled** per manager setting; **show / hide / dismiss** API documented (replace gesture-only summon for integrators).
+- [ ] **`setup_wizard.md` + Getting Started:** integrators **enable one `ZoneFieldOutputReceiver` / `ZoneTextOutputReceiver` at a time** via component **`enabled`** (or GameObject active)—manual focus routing; explain broadcast behavior when multiple receivers stay enabled.
+- [ ] **Passthrough / PC typing (NGO):** Netcode stack replaces MLAPI **`LextingNetworkManager`**; passthrough send path wired from output manager / word assembly; monolith retained until port validated (see **Quest passthrough → PC text** above).
 
 ### Skeletal workstreams
 
 1. **Scene inventory & rules engine** — classify objects (XR rig, existing Lexting roots, UI fields); ordered mutation plan.
 2. **Rig discovery & binding** — XRI / XROrigin heuristics on **integrator-owned** rig; populate **`LextingInputModuleManager`** slots for active mode; fail validation if ambiguous or missing.
-3. **Runtime widget bootstrap** — **`Instantiate`** package prefab(s) (`TwoZoneCube`, output manager, hotkeys, etc.) when the app runs; head-relative spawn from existing controller offsets; wizard only ensures the serialized hook on **`[INPUTS]`** is present and valid.
-4. **Validation UI** — Console + modal or **`EditorWindow`** report; copy-to-clipboard for support.
-5. **Docs & README** — replace “wire your XR rig” maintainer flow with wizard-first narrative.
+3. **Runtime widget bootstrap** — **`Instantiate`** package prefab(s) (`TwoZoneCube`, output manager, hotkeys, etc.) **hidden/disabled** per **`LextingInputModuleManager`** (scene load vs first receiver **`OnEnable`**); head-relative spawn from existing controller offsets; **show/hide/dismiss** API; wizard ensures serialized hook on **`[INPUTS]`** is valid.
+4. **Output & focus contract** — document **manual receiver toggle** per focused **`InputField`** / active **`Text`**; no SDK **`InputField`** focus auto-wiring (integrators control **`enabled`** per receiver; simultaneous multi-target output is intentional broadcast behavior if they enable multiple receivers).
+5. **Validation UI** — Console + modal or **`EditorWindow`** report; copy-to-clipboard for support.
+6. **Docs & README** — wizard-first narrative + widget lifecycle + receiver enable/disable pattern (**Getting Started** update **only when M5 ships**).
+7. **Passthrough networking (NGO)** — Netcode host/client + keystroke relay for **`QUEST_*_PASSTHROUGH`**; reference scene wiring; align with or supersede README UDP Streaming Service alpha.
 
 ### Stretch goal (same milestone, not required for `1.1.0` exit)
 
@@ -316,7 +413,7 @@ Assuming **OpenXR** as the runtime, it should be feasible for Lexting to **poll 
 - [ ] **`OPEN_XR`** pose-only mode passes Milestone 1 gesture checklist on Quest 2 without **`LextingInputModuleManager`** head/hand **Transform** assignments.
 - [ ] Setup wizard **Setup Scene** succeeds on XRI template with **no** rig binding step when stretch mode is enabled.
 
-**Exit criterion:** A developer with a stock **Unity 6 + OpenXR + XRI** template project, package installed, runs **Lexting → Setup Scene** once, adds **`ZoneFieldOutputReceiver`** to their **`InputField`**, and reaches typable volumes in Play Mode on device or in editor play (per supported mode)—without assigning nine transform fields by hand.
+**Exit criterion:** A developer with a stock **Unity 6 + OpenXR + XRI** template project, package installed, runs **Lexting → Setup Scene** once, adds **`ZoneFieldOutputReceiver`** to their **`InputField`**, **enables that receiver when the field is focused** (others disabled), **shows the widget** via documented API when typing should begin, and reaches typable volumes in Play Mode on device or in editor play (per supported mode)—without assigning nine transform fields by hand and without leaving the widget visible at scene load unless they chose otherwise.
 
 ---
 
@@ -363,6 +460,8 @@ Assuming **OpenXR** as the runtime, it should be feasible for Lexting to **poll 
 | 2026-11-01 | M5 stretch: OpenXR poses | **Optional:** poll head/hand from **OpenXR session** (XR Hands / extensions) so integrators need **no** Lexting **Transform** wiring on their player controller; baseline M5 still rig-bind via wizard; README unchanged until stretch ships. |
 | 2026-11-02 | Quest QA workflow | `bugs/QA/QA-<build>-*.md` naming, per-bug Description/Status blocks, carry-forward + `qa_close_session.ps1`; install script warns if QA Enter skipped. |
 | 2026-11-02 | Device fixes (M1) | Hover label tint (`LetterSwitcher`); center hover stuck (`HandCursor` threshold exit); compile fixes for player build (`OculusHandInput` / serialization). Verified through **`lexting_028.apk`**. |
+| 2026-11-03 | M5 widget & output lifecycle | Hidden/disabled widget bootstrap (scene load vs first receiver **`OnEnable`**) toggle on **`LextingInputModuleManager`**; show/hide API; integrators **manually enable/disable** output receivers per focus—no **`InputField`** auto-focus in SDK. README Getting Started updated when M5 ships. |
+| 2026-11-03 | M5 passthrough / Netcode | Replace MLAPI **`LextingNetworkManager`** stack with **Unity Netcode for GameObjects** for **`QUEST_*_PASSTHROUGH`** PC typing; **migrate archived PC server** into delivery; keep **`Lexting_Unity`** monolith until NGO port references old **`Streaming/MLAPI/`**; removing scene **`LextingNetworkManager`** is safe (no active code refs). |
 | | | |
 
 ---

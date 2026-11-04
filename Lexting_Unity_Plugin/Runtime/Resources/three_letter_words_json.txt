@@ -1,0 +1,4449 @@
+{"three_letter_words":[
+{
+	"word":"act",
+	"wordClass":0,
+	"plural":"acts",
+	"past":"acted",
+	"progressive":"acting",
+	"other":null
+},
+{
+	"word":"add",
+	"wordClass":0,
+	"plural":"adds",
+	"past":"added",
+	"progressive":"adding",
+	"other":null
+},
+{
+	"word":"age",
+	"wordClass":0,
+	"plural":"ages",
+	"past":"aged",
+	"progressive":"aging",
+	"other":null
+},
+{
+	"word":"ago",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"aid",
+	"wordClass":0,
+	"plural":"aids",
+	"past":"aided",
+	"progressive":"aiding",
+	"other":null
+},
+{
+	"word":"air",
+	"wordClass":0,
+	"plural":"airs",
+	"past":"aired",
+	"progressive":"airing",
+	"other":null
+},
+{
+	"word":"all",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"alt",
+	"wordClass":2,
+	"plural": "alts",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"and",
+	"wordClass":2,
+	"plural":"any",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"any",
+	"wordClass":1,
+	"plural": "anyone",
+	"past": "anything",
+	"progressive": "anywhere",
+	"other":null
+},
+{
+	"word":"app",
+	"wordClass":1,
+	"plural":"apps",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"are",
+	"wordClass":0,
+	"plural":null,
+	"past": "aren't",
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"arm",
+	"wordClass":0,
+	"plural":"arms",
+	"past":"armed",
+	"progressive":"arming",
+	"other":null
+},
+{
+	"word":"art",
+	"wordClass":1,
+	"plural": "arts",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"artful",
+	"wordClass":1,
+	"plural": "artfully",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ask",
+	"wordClass":0,
+	"plural":"asks",
+	"past":"asked",
+	"progressive":"asking",
+	"other":null
+},
+{
+	"word":"asp",
+	"wordClass":1,
+	"plural":"asps",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ATT",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Ava",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"aim",
+	"wordClass":0,
+	"plural":"aims",
+	"past":"aimed",
+	"progressive":"aiming",
+	"other":null
+},
+{
+	"word":"amp",
+	"wordClass":0,
+	"plural":"amps",
+	"past":"amped",
+	"progressive":"amping",
+	"other":null
+},
+{
+	"word":"ass",
+	"wordClass":1,
+	"plural":"asses",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ate",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ace",
+	"wordClass":0,
+	"plural":"aces",
+	"past":"aced",
+	"progressive":"acing",
+	"other":null
+},
+{
+	"word":"acing",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"arc",
+	"wordClass":1,
+	"plural":"arcs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ash",
+	"wordClass":0,
+	"plural":"ashes",
+	"past":"ashed",
+	"progressive":"ashing",
+	"other":null
+},
+{
+	"word":"awe",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"axe",
+	"wordClass":0,
+	"plural":"axes",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"aah",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"aft",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"aha",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ail",
+	"wordClass":1,
+	"plural":"ails",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ale",
+	"wordClass":1,
+	"plural":"ales",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ant",
+	"wordClass":1,
+	"plural":"ants",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ape",
+	"wordClass":1,
+	"plural":"apes",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"apt",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ark",
+	"wordClass":0,
+	"plural":"arks",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"aye",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bad",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":["badly"]
+},
+{
+	"word":"bag",
+	"wordClass":1,
+	"plural":"bags",
+	"past":"bagged",
+	"progressive":"bagging",
+	"other":null
+},
+{
+	"word":"bam",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bar",
+	"wordClass":0,
+	"plural":"bars",
+	"past":"barred",
+	"progressive":"barring",
+	"other":null
+},
+{
+	"word":"bat",
+	"wordClass":0,
+	"plural":"bats",
+	"past":"batted",
+	"progressive":"batting",
+	"other":null
+},
+{
+	"word":"bay",
+	"wordClass":1,
+	"plural":"bays",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bed",
+	"wordClass":0,
+	"plural":"beds",
+	"past":"bedded",
+	"progressive":"bedding",
+	"other":null
+},
+{
+	"word":"Ben",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"big",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bin",
+	"wordClass":1,
+	"plural":"bins",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bit",
+	"wordClass":1,
+	"plural":"bits",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"box",
+	"wordClass":0,
+	"plural":"boxes",
+	"past":"boxed",
+	"progressive":"boxing",
+	"other":null
+},
+{
+	"word":"boy",
+	"wordClass":1,
+	"plural":"boys",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bus",
+	"wordClass":0,
+	"plural":"busses",
+	"past":"bussed",
+	"progressive":"bussing",
+	"other":null
+},
+{
+	"word":"but",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"buy",
+	"wordClass":0,
+	"plural":"buys",
+	"past":"bought",
+	"progressive":"buying",
+	"other":null
+},
+{
+	"word":"bought",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ban",
+	"wordClass":0,
+	"plural":"bans",
+	"past":"banned",
+	"progressive":"banning",
+	"other":null
+},
+{
+	"word":"bet",
+	"wordClass":0,
+	"plural":"bets",
+	"past":"bet",
+	"progressive":"betting",
+	"other":null
+},
+{
+	"word":"bid",
+	"wordClass":0,
+	"plural":"bids",
+	"past":"bid",
+	"progressive":"bidding",
+	"other":null
+},
+{
+	"word":"bug",
+	"wordClass":0,
+	"plural":"bugs",
+	"past":"bugged",
+	"progressive":"bugging",
+	"other":null
+},
+{
+	"word":"beg",
+	"wordClass":0,
+	"plural":"begs",
+	"past":"begged",
+	"progressive":"begging",
+	"other":null
+},
+{
+	"word":"bib",
+	"wordClass":1,
+	"plural":"bibs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bio",
+	"wordClass":0,
+	"plural":"bios",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"boa",
+	"wordClass":1,
+	"plural":"boas",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Bob",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bog",
+	"wordClass":1,
+	"plural":"bogs",
+	"past":"bogged",
+	"progressive":"bogging",
+	"other":null
+},
+{
+	"word":"boo",
+	"wordClass":0,
+	"plural":"boos",
+	"past":"booed",
+	"progressive":"booing",
+	"other":null
+},
+{
+	"word":"bop",
+	"wordClass":0,
+	"plural":"bops",
+	"past":"bopped",
+	"progressive":"bopping",
+	"other":null
+},
+{
+	"word":"bot",
+	"wordClass":1,
+	"plural":"bots",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bro",
+	"wordClass":1,
+	"plural":"bros",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bub",
+	"wordClass":1,
+	"plural":"bubs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bud",
+	"wordClass":1,
+	"plural":"buds",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bum",
+	"wordClass":1,
+	"plural":"bums",
+	"past":"bummed",
+	"progressive":"bumming",
+	"other":null
+},
+{
+	"word":"bun",
+	"wordClass":1,
+	"plural":"buns",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bye",
+	"wordClass":1,
+	"plural":"byes",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bat",
+	"wordClass":0,
+	"plural":"bats",
+	"past":"batted",
+	"progressive":"batting",
+	"other":null
+},
+{
+	"word":"bee",
+	"wordClass":0,
+	"plural":"bees",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"bow",
+	"wordClass":0,
+	"plural":"bows",
+	"past":"bowed",
+	"progressive":"bowing",
+	"other":null
+},
+{
+	"word":"bra",
+	"wordClass":1,
+	"plural":"bras",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"can",
+	"wordClass":0,
+	"plural":"cans",
+	"past":"can't",
+	"progressive":"canning",
+	"other": ["canned"]
+},
+{
+	"word":"canned",
+	"wordClass":0,
+	"plural": null,
+	"past":null,
+	"progressive":null,
+	"other": null
+},
+{
+	"word":"cap",
+	"wordClass":0,
+	"plural":"caps",
+	"past":"capped",
+	"progressive":"capping",
+	"other":null
+},
+{
+	"word":"car",
+	"wordClass":1,
+	"plural":"cars",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"cat",
+	"wordClass":1,
+	"plural":"cats",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"cup",
+	"wordClass":0,
+	"plural":"cups",
+	"past":"cupped",
+	"progressive":"cupping",
+	"other":null
+},
+{
+	"word":"cut",
+	"wordClass":0,
+	"plural":"cuts",
+	"past":"cutted",
+	"progressive":"cutting",
+	"other":null
+},
+{
+	"word":"chi",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"cob",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"cod",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"cog",
+	"wordClass":1,
+	"plural":"cogs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"coo",
+	"wordClass":0,
+	"plural":"coos",
+	"past":"cooed",
+	"progressive":"cooing",
+	"other":null
+},
+{
+	"word":"cot",
+	"wordClass":1,
+	"plural":"cots",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"coy",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"cub",
+	"wordClass":1,
+	"plural":"cubs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"cud",
+	"wordClass":1,
+	"plural":"cuds",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"cur",
+	"wordClass":1,
+	"plural":"curs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"cab",
+	"wordClass":0,
+	"plural":"cabs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"con",
+	"wordClass":1,
+	"plural":"cons",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"cop",
+	"wordClass":1,
+	"plural":"cops",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"cow",
+	"wordClass":1,
+	"plural":"cows",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"cry",
+	"wordClass":0,
+	"plural":"cries",
+	"past":"cried",
+	"progressive":"crying",
+	"other":null
+},
+{
+	"word":"cries",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"cried",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"cue",
+	"wordClass":0,
+	"plural":"cues",
+	"past":"cued",
+	"progressive":"cuing",
+	"other":null
+},
+{
+	"word":"cuing",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"dad",
+	"wordClass":0,
+	"plural":"dads",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"day",
+	"wordClass":1,
+	"plural":"days",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"did",
+	"wordClass":0,
+	"plural":null,
+	"past": "didn't",
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"die",
+	"wordClass":0,
+	"plural":"dies",
+	"past":"died",
+	"progressive":"dying",
+	"other":null
+},
+{
+	"word":"dying",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"dog",
+	"wordClass":0,
+	"plural":"dogs",
+	"past":"dogged",
+	"progressive":"dogging",
+	"other":null
+},
+{
+	"word":"dry",
+	"wordClass":0,
+	"plural":"dries",
+	"past":"dried",
+	"progressive":"drying",
+	"other":null
+},
+{
+	"word":"dries",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"dried",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"due",
+	"wordClass":1,
+	"plural":"dues",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"dig",
+	"wordClass":0,
+	"plural":"digs",
+	"past":"dug",
+	"progressive":"digging",
+	"other":null
+},
+{
+	"word":"dug",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"dot",
+	"wordClass":1,
+	"plural":"dots",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Dan",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Dee",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"dev",
+	"wordClass":0,
+	"plural":"devs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"doh",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Dom",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"duh",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"DUI",
+	"wordClass":1,
+	"plural":"DUIs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"dab",
+	"wordClass":0,
+	"plural":"dabs",
+	"past":"dabbed",
+	"progressive":"dabbing",
+	"other":null
+},
+{
+	"word":"Deb",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"dew",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"dim",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"din",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"dub",
+	"wordClass":1,
+	"plural":"dubs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"dud",
+	"wordClass":0,
+	"plural":"duds",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"dam",
+	"wordClass":1,
+	"plural":"dams",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"den",
+	"wordClass":0,
+	"plural":"dens",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"did",
+	"wordClass":0,
+	"plural":"didn't",
+	"past":"didn't",
+	"progressive":"dipping",
+	"other":null
+},
+{
+	"word":"dip",
+	"wordClass":0,
+	"plural":"dips",
+	"past":"dipped",
+	"progressive":"dipping",
+	"other":null
+},
+{
+	"word":"doc",
+	"wordClass":1,
+	"plural":"docs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"doe",
+	"wordClass":1,
+	"plural": "does",
+	"past": "doesn't",
+	"progressive": null,
+	"other":null
+},
+{
+	"word":"don",
+	"wordClass":1,
+	"plural": "dons",
+	"past": "donned",
+	"progressive": "donning",
+	"other":null
+},
+{
+	"word":"duo",
+	"wordClass":1,
+	"plural":"duos",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"dye",
+	"wordClass":1,
+	"plural":"dyes",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"eat",
+	"wordClass":1,
+	"plural":"eats",
+	"past":"ate",
+	"progressive":"eating",
+	"other":null
+},
+{
+	"word":"ate",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"egg",
+	"wordClass":1,
+	"plural":"eggs",
+	"past":"egged",
+	"progressive":"egging",
+	"other":null
+},
+{
+	"word":"end",
+	"wordClass":1,
+	"plural":"ends",
+	"past":"ended",
+	"progressive":"ending",
+	"other":null
+},
+{
+	"word":"era",
+	"wordClass":1,
+	"plural":"eras",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"eye",
+	"wordClass":0,
+	"plural":"eyes",
+	"past":"eyed",
+	"progressive":"eyeing",
+	"other":null
+},
+{
+	"word":"ear",
+	"wordClass":1,
+	"plural":"ears",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"eco",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"eek",
+	"wordClass":0,
+	"plural":"eeks",
+	"past":"eeked",
+	"progressive":"eeking",
+	"other":null
+},
+{
+	"word":"ebb",
+	"wordClass":0,
+	"plural":"ebbs",
+	"past":"ebbed",
+	"progressive":"ebbing",
+	"other":null
+},
+{
+	"word":"eel",
+	"wordClass":1,
+	"plural":"eels",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"elf",
+	"wordClass":1,
+	"plural":"elves",
+	"past":null,
+	"progressive":null,
+	"other":["elven"]
+},
+{
+	"word":"elves",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"elven",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"elk",
+	"wordClass":1,
+	"plural":"elks",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"elm",
+	"wordClass":1,
+	"plural":"elms",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"emo",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"emu",
+	"wordClass":1,
+	"plural":"emus",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"eon",
+	"wordClass":1,
+	"plural":"eons",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"err",
+	"wordClass":0,
+	"plural":"errs",
+	"past":"erred",
+	"progressive":"erring",
+	"other":null
+},
+{
+	"word":"ewe",
+	"wordClass":1,
+	"plural":"ewes",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ego",
+	"wordClass":0,
+	"plural":"egos",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"eve",
+	"wordClass":0,
+	"plural":"eves",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"fan",
+	"wordClass":1,
+	"plural":"fans",
+	"past":"fanned",
+	"progressive":"fanning",
+	"other":null
+},
+{
+	"word":"far",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"fat",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"fee",
+	"wordClass":1,
+	"plural":"fees",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"few",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"fit",
+	"wordClass":0,
+	"plural":"fits",
+	"past":"fit",
+	"progressive":"fitting",
+	"other":null
+},
+{
+	"word":"fix",
+	"wordClass":0,
+	"plural":"fixes",
+	"past":"fixed",
+	"progressive":"fixing",
+	"other":null
+},
+{
+	"word":"fly",
+	"wordClass":0,
+	"plural":"flies",
+	"past":"flew",
+	"progressive":"flying",
+	"other":["flown"]
+},
+{
+	"word":"flies",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"flew",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"flown",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"for",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"fun",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"fet",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"fad",
+	"wordClass":1,
+	"plural":"fads",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"fib",
+	"wordClass":0,
+	"plural":"fibs",
+	"past":"fibbed",
+	"progressive":"fibbing",
+	"other":null
+},
+{
+	"word":"fig",
+	"wordClass":0,
+	"plural":"figs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"fir",
+	"wordClass":1,
+	"plural":"firs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"foe",
+	"wordClass":1,
+	"plural":"foes",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"fro",
+	"wordClass":1,
+	"plural": "from",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"fry",
+	"wordClass":0,
+	"plural":"fries",
+	"past":"fried",
+	"progressive":"frying",
+	"other":null
+},
+{
+	"word":"fries",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"fried",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"fax",
+	"wordClass":0,
+	"plural":"faxes",
+	"past":"faxed",
+	"progressive":"faxing",
+	"other":null
+},
+{
+	"word":"flu",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"fog",
+	"wordClass":0,
+	"plural":"fogs",
+	"past":"fogged",
+	"progressive":"fogging",
+	"other":null
+},
+{
+	"word":"fox",
+	"wordClass":0,
+	"plural":"foxes",
+	"past":"foxed",
+	"progressive":"foxing",
+	"other":null
+},
+{
+	"word":"fur",
+	"wordClass":1,
+	"plural":"furs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"gap",
+	"wordClass":1,
+	"plural":"gaps",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"gas",
+	"wordClass":0,
+	"plural":"gasses",
+	"past":"gassed",
+	"progressive":"gassing",
+	"other":null
+},
+{
+	"word":"get",
+	"wordClass":0,
+	"plural":"gets",
+	"past":"got",
+	"progressive":"getting",
+	"other":null
+},
+{
+	"word":"got",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"god",
+	"wordClass":1,
+	"plural":"gods",
+	"past":null,
+	"progressive":null,
+	"other":["godly"]
+},
+{
+	"word":"gun",
+	"wordClass":0,
+	"plural":"guns",
+	"past":"gunned",
+	"progressive":"gunning",
+	"other":null
+},
+{
+	"word":"guy",
+	"wordClass":1,
+	"plural":"guys",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"gym",
+	"wordClass":1,
+	"plural":"gyms",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"gay",
+	"wordClass":,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"gab",
+	"wordClass":0,
+	"plural":"gabs",
+	"past":"gabbed",
+	"progressive":"gabbing",
+	"other":null
+},
+{
+	"word":"gag",
+	"wordClass":0,
+	"plural":"gags",
+	"past":"gagged",
+	"progressive":"gagging",
+	"other":null
+},
+{
+	"word":"gob",
+	"wordClass":1,
+	"plural":"gobs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"goo",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"gal",
+	"wordClass":0,
+	"plural":"gals",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"gel",
+	"wordClass":1,
+	"plural":"gels",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"gem",
+	"wordClass":1,
+	"plural":"gems",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"gig",
+	"wordClass":0,
+	"plural":"gigs",
+	"past":"gigged",
+	"progressive":"gigging",
+	"other":null
+},
+{
+	"word":"git",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"gum",
+	"wordClass":0,
+	"plural":"gums",
+	"past":null,
+	"progressive":null,
+	"other":["gummy","gummies"]
+},
+{
+	"word":"gut",
+	"wordClass":0,
+	"plural":"guts",
+	"past":"gutted",
+	"progressive":"gutting",
+	"other":null
+},
+{
+	"word":"has",
+	"wordClass":1,
+	"plural": "hash",
+	"past": "hasn't",
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"hat",
+	"wordClass":1,
+	"plural":"hats",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"her",
+	"wordClass":1,
+	"plural": "hers",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"hey",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"him",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"his",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"hip",
+	"wordClass":1,
+	"plural":"hips",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"hit",
+	"wordClass":0,
+	"plural":"hits",
+	"past":"hit",
+	"progressive":"hitting",
+	"other":null
+},
+{
+	"word":"hot",
+	"wordClass":2,
+	"plural": "hotter",
+	"past": "hottest",
+	"progressive":null,
+	"other": null
+},
+{
+	"word":"how",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"hag",
+	"wordClass":1,
+	"plural":"hags",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"hen",
+	"wordClass":,
+	"plural":"hens",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"hew",
+	"wordClass":0,
+	"plural":"hews",
+	"past":"hewed",
+	"progressive":"hewing",
+	"other":["hewn"]
+},
+{
+	"word":"hoe",
+	"wordClass":1,
+	"plural":"hoes",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"hog",
+	"wordClass":0,
+	"plural":"hogs",
+	"past":"hogged",
+	"progressive":"hogging",
+	"other":null
+},
+{
+	"word":"hug",
+	"wordClass":0,
+	"plural":"hugs",
+	"past":"hugged",
+	"progressive":"hugging",
+	"other":null
+},
+{
+	"word":"hut",
+	"wordClass":1,
+	"plural":"huts",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ham",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"hay",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"hop",
+	"wordClass":0,
+	"plural":"hops",
+	"past":"hopped",
+	"progressive":"hopping",
+	"other":null
+},
+{
+	"word":"hub",
+	"wordClass":1,
+	"plural":"hubs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"hue",
+	"wordClass":,
+	"plural":"hues",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ice",
+	"wordClass":1,
+	"plural":"ices",
+	"past":"iced",
+	"progressive":"icing",
+	"other":["icy"]
+},
+{
+	"word":"icy",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"its",
+	"wordClass":1,
+	"plural": "it's",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ilk",
+	"wordClass":1,
+	"plural":null,
+	"past": "I'll",
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ill",
+	"wordClass":2,
+	"plural": "ills",
+	"past": null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"imp",
+	"wordClass":1,
+	"plural":"imps",
+	"past":"I'm",
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ion",
+	"wordClass":1,
+	"plural":"ions",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ire",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"irk",
+	"wordClass":0,
+	"plural":"irks",
+	"past":"irked",
+	"progressive":"irking",
+	"other":null
+},
+{
+	"word":"ivy",
+	"wordClass":1,
+	"plural": null,
+	"past": "I've",
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ink",
+	"wordClass":0,
+	"plural":"inks",
+	"past":"inked",
+	"progressive":"inking",
+	"other":null
+},
+{
+	"word":"inn",
+	"wordClass":1,
+	"plural":"inns",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"job",
+	"wordClass":0,
+	"plural":"jobs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"joy",
+	"wordClass":1,
+	"plural":"joys",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Joe",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"jab",
+	"wordClass":0,
+	"plural":"jabs",
+	"past":"jabbed",
+	"progressive":"jabbing",
+	"other":null
+},
+{
+	"word":"Jay",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"jib",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"jig",
+	"wordClass":1,
+	"plural":"jigs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"jog",
+	"wordClass":0,
+	"plural":"jogs",
+	"past":"jogged",
+	"progressive":"jogging",
+	"other":null
+},
+{
+	"word":"jot",
+	"wordClass":0,
+	"plural":"jots",
+	"past":"jotted",
+	"progressive":"jotting",
+	"other":null
+},
+{
+	"word":"jug",
+	"wordClass":1,
+	"plural":"jugs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"jam",
+	"wordClass":0,
+	"plural":"jams",
+	"past":"jammed",
+	"progressive":"jamming",
+	"other":null
+},
+{
+	"word":"jaw",
+	"wordClass":0,
+	"plural":"jaws",
+	"past":"jawed",
+	"progressive":"jawing",
+	"other":null
+},
+{
+	"word":"jar",
+	"wordClass":0,
+	"plural":"jars",
+	"past":"jarred",
+	"progressive":"jarring",
+	"other":null
+},
+{
+	"word":"jet",
+	"wordClass":0,
+	"plural":"jets",
+	"past":"jetted",
+	"progressive":"jetting",
+	"other":null
+},
+{
+	"word":"key",
+	"wordClass":0,
+	"plural":"keys",
+	"past":"keyed",
+	"progressive":"keying",
+	"other":null
+},
+{
+	"word":"kid",
+	"wordClass":0,
+	"plural":"kids",
+	"past":"kidded",
+	"progressive":"kidding",
+	"other":null
+},
+{
+	"word":"kit",
+	"wordClass":1,
+	"plural":"kits",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Kat",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Ken",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"keg",
+	"wordClass":1,
+	"plural":"kegs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"kin",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"lab",
+	"wordClass":1,
+	"plural":"labs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"law",
+	"wordClass":1,
+	"plural":"laws",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"lay",
+	"wordClass":0,
+	"plural":"lays",
+	"past":"laid",
+	"progressive":"laying",
+	"other":null
+},
+{
+	"word":"laid",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"leg",
+	"wordClass":0,
+	"plural":"legs",
+	"past":"legged",
+	"progressive":"legging",
+	"other":null
+},
+{
+	"word":"let",
+	"wordClass":0,
+	"plural":"let's",
+	"past":"let",
+	"progressive":"letting",
+	"other":null
+},
+{
+	"word":"log",
+	"wordClass":0,
+	"plural":"logs",
+	"past":"logged",
+	"progressive":"logging",
+	"other":null
+},
+{
+	"word":"lot",
+	"wordClass":1,
+	"plural":"lots",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"low",
+	"wordClass":2,
+	"plural": "lower",
+	"past": "lowest",
+	"progressive": "lowly",
+	"other": null
+},
+{
+	"word":"Lee",
+	"wordClass":4,
+	"plural": "Lee's",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Lex",
+	"wordClass":4,
+	"plural": "Lex's",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"lad",
+	"wordClass":1,
+	"plural":"lads",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"lax",
+	"wordClass":2,
+	"plural": "laxly",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"lib",
+	"wordClass":1,
+	"plural":"libs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"lob",
+	"wordClass":0,
+	"plural":"lobs",
+	"past":"lobbed",
+	"progressive":"lobbing",
+	"other":null
+},
+{
+	"word":"loo",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"lop",
+	"wordClass":0,
+	"plural":"lops",
+	"past":"lopped",
+	"progressive":"lopping",
+	"other":null
+},
+{
+	"word":"lox",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"lug",
+	"wordClass":0,
+	"plural":"lugs",
+	"past":"lugged",
+	"progressive":"lugging",
+	"other":null
+},
+{
+	"word":"lux",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"lag",
+	"wordClass":0,
+	"plural":"lags",
+	"past":"lagged",
+	"progressive":"lagging",
+	"other":null
+},
+{
+	"word":"lap",
+	"wordClass":0,
+	"plural":"laps",
+	"past":"lapped",
+	"progressive":"lapping",
+	"other":null
+},
+{
+	"word":"lid",
+	"wordClass":1,
+	"plural":"lids",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"lie",
+	"wordClass":0,
+	"plural":"lies",
+	"past":"lied",
+	"progressive":"lying",
+	"other":null
+},
+{
+	"word":"lying",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"lip",
+	"wordClass":1,
+	"plural":"lips",
+	"past":"lipped",
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"man",
+	"wordClass":1,
+	"plural":"men",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"men",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"map",
+	"wordClass":0,
+	"plural":"maps",
+	"past":"mapped",
+	"progressive":"mapping",
+	"other":null
+},
+{
+	"word":"may",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"mix",
+	"wordClass":0,
+	"plural":"mixes",
+	"past":"mixed",
+	"progressive":"mixing",
+	"other":null
+},
+{
+	"word":"mom",
+	"wordClass":1,
+	"plural":"moms",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"mar",
+	"wordClass":0,
+	"plural":"mars",
+	"past":"marred",
+	"progressive":"marring",
+	"other":null
+},
+{
+	"word":"maw",
+	"wordClass":1,
+	"plural":"maws",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"mew",
+	"wordClass":0,
+	"plural":"mews",
+	"past":"mewed",
+	"progressive":"mewing",
+	"other":null
+},
+{
+	"word":"moo",
+	"wordClass":0,
+	"plural":"moos",
+	"past":"mooed",
+	"progressive":"mooing",
+	"other":null
+},
+{
+	"word":"mop",
+	"wordClass":0,
+	"plural":"mops",
+	"past":"mopped",
+	"progressive":"mopping",
+	"other":null
+},
+{
+	"word":"mow",
+	"wordClass":0,
+	"plural":"mows",
+	"past":"mowed",
+	"progressive":"mowing",
+	"other":null
+},
+{
+	"word":"med",
+	"wordClass":1,
+	"plural":"meds",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Meg",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Mel",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"mat",
+	"wordClass":0,
+	"plural":"mats",
+	"past":"matted",
+	"progressive":"matting",
+	"other":null
+},
+{
+	"word":"mob",
+	"wordClass":0,
+	"plural":"mobs",
+	"past":"mobbed",
+	"progressive":"mobbing",
+	"other":null
+},
+{
+	"word":"mud",
+	"wordClass":1,
+	"plural": "muddy",
+	"past":null,
+	"progressive":null,
+	"other": null
+},
+{
+	"word":"mug",
+	"wordClass":0,
+	"plural":"mugs",
+	"past":"mugged",
+	"progressive":"mugging",
+	"other":null
+},
+{
+	"word":"mac",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"mad",
+	"wordClass":2,
+	"plural": "madder",
+	"past": "maddest",
+	"progressive": "madly",
+	"other": null
+},
+{
+	"word":"Max",
+	"wordClass":4,
+	"plural": "Max's",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"mid",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"mod",
+	"wordClass":1,
+	"plural":"mods",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"net",
+	"wordClass":0,
+	"plural":"nets",
+	"past":"netted",
+	"progressive":"netting",
+	"other":null
+},
+{
+	"word":"new",
+	"wordClass":2,
+	"plural": "news",
+	"past": "newer",
+	"progressive": "newest",
+	"other":null
+},
+{
+	"word":"new",
+	"wordClass":2,
+	"plural": "newer",
+	"past": "newest",
+	"progressive": "newly",
+	"other":null
+},
+{
+	"word":"non",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"not",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"now",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"nag",
+	"wordClass":0,
+	"plural":"nags",
+	"past":"nagged",
+	"progressive":"nagging",
+	"other":null
+},
+{
+	"word":"nap",
+	"wordClass":0,
+	"plural":"naps",
+	"past":"napped",
+	"progressive":"napping",
+	"other":null
+},
+{
+	"word":"nod",
+	"wordClass":0,
+	"plural":"nods",
+	"past":"nodded",
+	"progressive":"nodding",
+	"other":null
+},
+{
+	"word":"nog",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"nun",
+	"wordClass":0,
+	"plural":"nuns",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"nut",
+	"wordClass":0,
+	"plural":"nuts",
+	"past":"nutted",
+	"progressive":"nutting",
+	"other":null
+},
+{
+	"word":"off",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"oil",
+	"wordClass":0,
+	"plural":"oils",
+	"past":"oiled",
+	"progressive":"oiling",
+	"other":null
+},
+{
+	"word":"old",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"one",
+	"wordClass":1,
+	"plural":"ones",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"our",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"out",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"own",
+	"wordClass":0,
+	"plural":"owns",
+	"past":"owned",
+	"progressive":"owning",
+	"other":null
+},
+{
+	"word":"orc",
+	"wordClass":1,
+	"plural":"orcs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"oaf",
+	"wordClass":1,
+	"plural":"oafs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"oar",
+	"wordClass":1,
+	"plural":"oars",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"oat",
+	"wordClass":1,
+	"plural":"oats",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ode",
+	"wordClass":1,
+	"plural":odes,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"oof",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"orb",
+	"wordClass":1,
+	"plural":"orbs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ore",
+	"wordClass":1,
+	"plural":"ores",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"owe",
+	"wordClass":0,
+	"plural":"owes",
+	"past":"owed",
+	"progressive":"owing",
+	"other":null
+},
+{
+	"word":"owl",
+	"wordClass":1,
+	"plural":"owls",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"oak",
+	"wordClass":1,
+	"plural":"oaks",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"odd",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":["oddly","oddity"]
+},
+{
+	"word":"opt",
+	"wordClass":0,
+	"plural":"opts",
+	"past":"opted",
+	"progressive":"opting",
+	"other":null
+},
+{
+	"word":"pay",
+	"wordClass":0,
+	"plural":"pays",
+	"past":"paid",
+	"progressive":"paying",
+	"other":null
+},
+{
+	"word":"per",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pet",
+	"wordClass":0,
+	"plural":"pets",
+	"past":"pet",
+	"progressive":"petting",
+	"other":null
+},
+{
+	"word":"pin",
+	"wordClass":0,
+	"plural":"pins",
+	"past":"pinned",
+	"progressive":"pinning",
+	"other":null
+},
+{
+	"word":"pot",
+	"wordClass":0,
+	"plural":"pots",
+	"past":"potted",
+	"progressive":"potting",
+	"other":["potter","potters"]
+},
+{
+	"word":"pro",
+	"wordClass":1,
+	"plural":"pros",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"put",
+	"wordClass":0,
+	"plural":"puts",
+	"past":"put",
+	"progressive":"putting",
+	"other":null
+},
+{
+	"word":"Pam",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pho",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pip",
+	"wordClass":1,
+	"plural":"pips",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pat",
+	"wordClass":0,
+	"plural":"pats",
+	"past":"patted",
+	"progressive":"patting",
+	"other":null
+},
+{
+	"word":"paw",
+	"wordClass":0,
+	"plural":"paws",
+	"past":"pawed",
+	"progressive":"pawing",
+	"other":null
+},
+{
+	"word":"pea",
+	"wordClass":1,
+	"plural":"peas",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pee",
+	"wordClass":1,
+	"plural":"pees",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Peg",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pep",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pew",
+	"wordClass":1,
+	"plural":"pews",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ply",
+	"wordClass":0,
+	"plural":"plies",
+	"past":"plied",
+	"progressive":"plying",
+	"other":null
+},
+{
+	"word":"plies",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"plied",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"poi",
+	"wordClass":,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"poo",
+	"wordClass":0,
+	"plural":"poos",
+	"past":"pooed",
+	"progressive":"pooing",
+	"other":null
+},
+{
+	"word":"pow",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pox",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pry",
+	"wordClass":,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pug",
+	"wordClass":1,
+	"plural":"pugs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pun",
+	"wordClass":1,
+	"plural":"puns",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pup",
+	"wordClass":1,
+	"plural":"pups",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pus",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pal",
+	"wordClass":1,
+	"plural": "pals",
+	"past": "palled",
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pic",
+	"wordClass":1,
+	"plural":"pics",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pig",
+	"wordClass":1,
+	"plural":"pigs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pod",
+	"wordClass":1,
+	"plural":"pods",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pad",
+	"wordClass":0,
+	"plural":"pads",
+	"past":"padded",
+	"progressive":"padding",
+	"other":null
+},
+{
+	"word":"pan",
+	"wordClass":0,
+	"plural":"pans",
+	"past":"panned",
+	"progressive":"panning",
+	"other":null
+},
+{
+	"word":"par",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pen",
+	"wordClass":0,
+	"plural":"pens",
+	"past":"penned",
+	"progressive":"penning",
+	"other":null
+},
+{
+	"word":"pie",
+	"wordClass":1,
+	"plural":"pies",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"pit",
+	"wordClass":0,
+	"plural":"pits",
+	"past":"pitted",
+	"progressive":"pitting",
+	"other":null
+},{
+	"word":"pop",
+	"wordClass":0,
+	"plural":"pops",
+	"past":"popped",
+	"progressive":"popping",
+	"other":null
+},
+{
+	"word":"run",
+	"wordClass":0,
+	"plural":"runs",
+	"past":"ran",
+	"progressive":running,
+	"other":null
+},
+{
+	"word":"ran",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"raw",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"red",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"rid",
+	"wordClass":0,
+	"plural":"rids",
+	"past":"rid",
+	"progressive":"ridding",
+	"other":null
+},
+{
+	"word":"row",
+	"wordClass":0,
+	"plural":"rows",
+	"past":"rowed",
+	"progressive":"rowing",
+	"other":null
+},
+{
+	"word":"Rex",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Ryu",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"rad",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"rag",
+	"wordClass":0,
+	"plural":"rags",
+	"past":"ragged",
+	"progressive":"ragging",
+	"other":null
+},
+{
+	"word":"ray",
+	"wordClass":1,
+	"plural":"rays",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"rib",
+	"wordClass":0,
+	"plural":"ribs",
+	"past":"ribbed",
+	"progressive":"ribbing",
+	"other":null
+},
+{
+	"word":"Rob",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"rot",
+	"wordClass":0,
+	"plural":"rots",
+	"past":"rotted",
+	"progressive":"rotting",
+	"other":null
+},
+{
+	"word":"rue",
+	"wordClass":0,
+	"plural":"rues",
+	"past":"rued",
+	"progressive":"ruing",
+	"other":null
+},
+{
+	"word":"rut",
+	"wordClass":1,
+	"plural":"ruts",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"rye",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"rap",
+	"wordClass":0,
+	"plural":"raps",
+	"past":"rapped",
+	"progressive":"rapping",
+	"other":null
+},
+{
+	"word":"rat",
+	"wordClass":1,
+	"plural":"rats",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"rep",
+	"wordClass":1,
+	"plural":"reps",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"rig",
+	"wordClass":0,
+	"plural":"rigs",
+	"past":"rigged",
+	"progressive":rigging,
+	"other":null
+},
+{
+	"word":"rim",
+	"wordClass":0,
+	"plural":"rims",
+	"past":"rimmed",
+	"progressive":"rimming",
+	"other":null
+},
+{
+	"word":"rip",
+	"wordClass":0,
+	"plural":"rips",
+	"past":"ripped",
+	"progressive":"ripping",
+	"other":null
+},
+{
+	"word":"rub",
+	"wordClass":0,
+	"plural":"rubs",
+	"past":"rubbed",
+	"progressive":"rubbing",
+	"other":null
+},
+{
+	"word":"rug",
+	"wordClass":1,
+	"plural":"rugs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"rum",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ram",
+	"wordClass":0,
+	"plural":"rams",
+	"past":"rammed",
+	"progressive":"ramming",
+	"other":null
+},
+{
+	"word":"rod",
+	"wordClass":1,
+	"plural":"rods",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"sad",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":["sadly","sadder","saddest"]
+},
+{
+	"word":"sit",
+	"wordClass":0,
+	"plural":"sits",
+	"past":"sat",
+	"progressive":"sitting",
+	"other":null
+},
+{
+	"word":"sat",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"see",
+	"wordClass":0,
+	"plural":"sees",
+	"past":"saw",
+	"progressive":"seeing",
+	"other":null
+},
+{
+	"word":"saw",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"say",
+	"wordClass":0,
+	"plural":"says",
+	"past":"said",
+	"progressive":"saying",
+	"other":null
+},
+{
+	"word":"said",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"sea",
+	"wordClass":1,
+	"plural":"seas",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"set",
+	"wordClass":0,
+	"plural":"sets",
+	"past":"set",
+	"progressive":"setting",
+	"other":null
+},
+{
+	"word":"sex",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":["sexy"]
+},
+{
+	"word":"she",
+	"wordClass":1,
+	"plural": "she's",
+	"past": "she'd",
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"six",
+	"wordClass":1,
+	"plural": "sixes",
+	"past": "sixth",
+	"progressive": null,
+	"other": null
+},
+{
+	"word":"sixteen",
+	"wordClass":1,
+	"plural": "sixteens",
+	"past": "sixteenth",
+	"progressive": null,
+	"other": null
+},
+{
+	"word":"sixty",
+	"wordClass":1,
+	"plural": "sixties",
+	"past": "sixtieth",
+	"progressive": null,
+	"other": null
+},
+{
+	"word":"sky",
+	"wordClass":1,
+	"plural":"skies",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"skies",
+	"wordClass"1:,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"son",
+	"wordClass":1,
+	"plural":"sons",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"sun",
+	"wordClass":1,
+	"plural":"suns",
+	"past":"sunned",
+	"progressive":"sunning",
+	"other":null
+},
+{
+	"word":"sim",
+	"wordClass":0,
+	"plural":"sims",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Sri",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"sag",
+	"wordClass":0,
+	"plural":"sags",
+	"past":"sagged",
+	"progressive":"sagging",
+	"other":null
+},
+{
+	"word":"sax",
+	"wordClass":1,
+	"plural":"saxes",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ska",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"sly",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":["slyly"]
+},
+{
+	"word":"sob",
+	"wordClass":0,
+	"plural":"sobs",
+	"past":"sobbed",
+	"progressive":"sobbing",
+	"other":null
+},
+{
+	"word":"sod",
+	"wordClass":0,
+	"plural":"sods",
+	"past":"sodded",
+	"progressive":"sodding",
+	"other":null
+},
+{
+	"word":"sop",
+	"wordClass":0,
+	"plural":"sops",
+	"past":"sopped",
+	"progressive":"sopping",
+	"other":null
+},
+{
+	"word":"Sue",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"sap",
+	"wordClass":0,
+	"plural":"saps",
+	"past":"sapped",
+	"progressive":"sapping",
+	"other":null
+},
+{
+	"word":"sew",
+	"wordClass":0,
+	"plural":"sews",
+	"past":"sewed",
+	"progressive":"sewing",
+	"other":null
+},
+{
+	"word":"shy",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":["shyly"]
+},
+{
+	"word":"sip",
+	"wordClass":0,
+	"plural":"sips",
+	"past":"sipped",
+	"progressive":"sipping",
+	"other":null
+},
+{
+	"word":"soy",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"spy",
+	"wordClass":0,
+	"plural":"spies",
+	"past":"spied",
+	"progressive":"spying",
+	"other":null
+},
+{
+	"word":"spies",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"spied",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"sub",
+	"wordClass":0,
+	"plural":"subs",
+	"past":"subbed",
+	"progressive":"subbing",
+	"other":null
+},
+{
+	"word":"sin",
+	"wordClass":0,
+	"plural":"sins",
+	"past":"sinned",
+	"progressive":"sinning",
+	"other":null
+},
+{
+	"word":"ski",
+	"wordClass":0,
+	"plural":"skis",
+	"past":"skied",
+	"progressive":"skiing",
+	"other":null
+},
+{
+	"word":"sir",
+	"wordClass":1,
+	"plural":"sirs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"spa",
+	"wordClass":1,
+	"plural":"spas",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"sum",
+	"wordClass":0,
+	"plural":"sums",
+	"past":"summed",
+	"progressive":"summing",
+	"other":null
+},
+{
+	"word":"tab",
+	"wordClass":0,
+	"plural":"tabs",
+	"past":"tabbed",
+	"progressive":"tabbing",
+	"other":null
+},
+{
+	"word":"tag",
+	"wordClass":0,
+	"plural":"tags",
+	"past":"tagged",
+	"progressive":"tagging",
+	"other":null
+},
+{
+	"word":"tax",
+	"wordClass":0,
+	"plural":"taxes",
+	"past":"taxed",
+	"progressive":"taxing",
+	"other":null
+},
+{
+	"word":"tea",
+	"wordClass":1,
+	"plural":"teas",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ten",
+	"wordClass":1,
+	"plural":"tens",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"the",
+	"wordClass":5,
+	"plural": null,
+	"past": "they'd",
+	"progressive": "they've",
+	"other":null
+},
+{
+	"word":"tip",
+	"wordClass":0,
+	"plural":"tips",
+	"past":"tipped",
+	"progressive":"tipping",
+	"other":null
+},
+{
+	"word":"too",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"top",
+	"wordClass":0,
+	"plural":"tops",
+	"past":"topped",
+	"progressive":"topping",
+	"other":null
+},
+{
+	"word":"try",
+	"wordClass":0,
+	"plural":"tries",
+	"past":"tried",
+	"progressive":"trying",
+	"other":null
+},
+{
+	"word":"tries",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"tried",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"two",
+	"wordClass":0,
+	"plural":"twos",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Taj",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Ted",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Tel Aviv",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Tom",
+	"wordClass":4,
+	"plural": "Tom's",
+	"past": "Tom Cruise",
+	"progressive": "Tom Cruise's",
+	"other":null
+},
+{
+	"word":"ton",
+	"wordClass":1,
+	"plural":"tons",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"tar",
+	"wordClass":0,
+	"plural":"tars",
+	"past":"tarred",
+	"progressive":"tarring",
+	"other":null
+},
+{
+	"word":"tit",
+	"wordClass":1,
+	"plural":"tits",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"tot",
+	"wordClass":1,
+	"plural":"tots",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"tug",
+	"wordClass":0,
+	"plural":"tugs",
+	"past":"tugged",
+	"progressive":"tugging",
+	"other":null
+},
+{
+	"word":"Tut",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"tux",
+	"wordClass":0,
+	"plural":"tuxes",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"tad",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"tan",
+	"wordClass":0,
+	"plural":"tans",
+	"past":"tanned",
+	"progressive":"tanning",
+	"other":null
+},
+{
+	"word":"tee",
+	"wordClass":1,
+	"plural":tees,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"tin",
+	"wordClass":0,
+	"plural":"tins",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"toe",
+	"wordClass":1,
+	"plural":"toes",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"tow",
+	"wordClass":0,
+	"plural":"tows",
+	"past":"towed",
+	"progressive":"towing",
+	"other":null
+},
+{
+	"word":"tub",
+	"wordClass":1,
+	"plural":"tubs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"tap",
+	"wordClass":0,
+	"plural":"taps",
+	"past":"tapped",
+	"progressive":"tapping",
+	"other":null
+},
+{
+	"word":"tie",
+	"wordClass":0,
+	"plural":"ties",
+	"past":"tied",
+	"progressive":"tying",
+	"other":null
+},
+{
+	"word":"tying",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"toy",
+	"wordClass":0,
+	"plural":"toys",
+	"past":"toyed",
+	"progressive":"toying",
+	"other":null
+},
+{
+	"word":"use",
+	"wordClass":0,
+	"plural":"uses",
+	"past":"used",
+	"progressive":"using",
+	"other":null
+},
+{
+	"word":"useful",
+	"wordClass":2,
+	"plural":"usefully",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"using",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"urd",
+	"wordClass":1,
+	"plural":"urds",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ugh",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"uke",
+	"wordClass":1,
+	"plural":"ukes",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ump",
+	"wordClass":1,
+	"plural":"umps",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"urn",
+	"wordClass":1,
+	"plural":"urns",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"via",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"vig",
+	"wordClass":1,
+	"plural":"vigs",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"VIN",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"veg",
+	"wordClass":0,
+	"plural":"vegges",
+	"past":"vegged",
+	"progressive":"vegging",
+	"other":null
+},
+{
+	"word":"vex",
+	"wordClass":0,
+	"plural":"vexes",
+	"past":"vexed",
+	"progressive":"vexing",
+	"other":null
+},
+{
+	"word":"vid",
+	"wordClass":1,
+	"plural":"vids",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"vie",
+	"wordClass":0,
+	"plural":"vies",
+	"past":"vied",
+	"progressive":"vying",
+	"other":null
+},
+{
+	"word":"vying",
+	"wordClass":,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"vim",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"vow",
+	"wordClass":0,
+	"plural":"vows",
+	"past":"vowed",
+	"progressive":"vowing",
+	"other":null
+},
+{
+	"word":"van",
+	"wordClass":1,
+	"plural":"vans",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"vat",
+	"wordClass":0,
+	"plural":"vats",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"vet",
+	"wordClass":0,
+	"plural":vets,
+	"past":"vetted",
+	"progressive":"vetting",
+	"other":null
+},
+{
+	"word":"war",
+	"wordClass":0,
+	"plural":"wars",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"was",
+	"wordClass":0,
+	"plural":null,
+	"past": "wasn't",
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"way",
+	"wordClass":1,
+	"plural":"ways",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"web",
+	"wordClass":0,
+	"plural":"webs",
+	"past":"webbed",
+	"progressive":"webbing",
+	"other":null
+},
+{
+	"word":"wet",
+	"wordClass":0,
+	"plural":"wets",
+	"past":"wetted",
+	"progressive":"wetting",
+	"other":null
+},
+{
+	"word":"who",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"why",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"win",
+	"wordClass":0,
+	"plural":"wins",
+	"past":"won",
+	"progressive":"winning",
+	"other":null
+},
+{
+	"word":"won",
+	"wordClass":0,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"wow",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"wad",
+	"wordClass":1,
+	"plural":"wads",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"wag",
+	"wordClass":0,
+	"plural":"wags",
+	"past":"wagged",
+	"progressive":"wagging",
+	"other":null
+},
+{
+	"word":"wig",
+	"wordClass":0,
+	"plural":"wigs",
+	"past":"wigged",
+	"progressive":"wigging",
+	"other":null
+},
+{
+	"word":"woe",
+	"wordClass":1,
+	"plural":"woes",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"woeful",
+	"wordClass": 2,
+	"plural": "woefully",
+	"past": "woefulness",
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"wok",
+	"wordClass":1,
+	"plural":"woks",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"woo",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"wry",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":["wryly"]
+},
+{
+	"word":"wan",
+	"wordClass":2,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":["wanly"]
+},
+{
+	"word":"wax",
+	"wordClass":0,
+	"plural":"waxes",
+	"past":"waxed",
+	"progressive":"waxing",
+	"other":["waxy"]
+},
+{
+	"word":"wit",
+	"wordClass":0,
+	"plural":"wits",
+	"past":"witted",
+	"progressive":"witting",
+	"other":null
+},
+{
+	"word":"wed",
+	"wordClass":0,
+	"plural":"weds",
+	"past":"wedded",
+	"progressive":"wedding",
+	"other":null
+},
+{
+	"word":"yes",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"yet",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word": "you",
+	"wordClass": 1,
+	"plural": "you're",
+	"past": "you'd",
+	"progressive": "you've",
+	"other":null
+},
+{
+	"word":"yay",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"yak",
+	"wordClass":0,
+	"plural":"yaks",
+	"past":"yakked",
+	"progressive":"yakking",
+	"other":null
+},
+{
+	"word":"yam",
+	"wordClass":1,
+	"plural":"yams",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"yap",
+	"wordClass":0,
+	"plural":"yaps",
+	"past":"yapped",
+	"progressive":"yapping",
+	"other":null
+},
+{
+	"word":"yew",
+	"wordClass":0,
+	"plural":"yews",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"yin",
+	"wordClass":1,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"yip",
+	"wordClass":0,
+	"plural":"yips",
+	"past":"yipped",
+	"progressive":"yipping",
+	"other":null
+},
+{
+	"word":"yum",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Zen",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"Zin",
+	"wordClass":4,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"zag",
+	"wordClass":0,
+	"plural":"zags",
+	"past":"zagged",
+	"progressive":"zagging",
+	"other":null
+},
+{
+	"word":"zap",
+	"wordClass":0,
+	"plural":"zaps",
+	"past":"zapped",
+	"progressive":"zapping",
+	"other":null
+},
+{
+	"word":"zig",
+	"wordClass":0,
+	"plural":"zigs",
+	"past":"zigged",
+	"progressive":"zigging",
+	"other":null
+},
+{
+	"word":"zit",
+	"wordClass":1,
+	"plural":"zits",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"zip",
+	"wordClass":0,
+	"plural":"zips",
+	"past":"zipped",
+	"progressive":"zipping",
+	"other":null
+},
+{
+	"word":"zoo",
+	"wordClass":1,
+	"plural":"zoos",
+	"past":null,
+	"progressive":null,
+	"other":null
+}
+]}

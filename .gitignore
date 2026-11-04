@@ -57,6 +57,12 @@ Desktop.ini
 # Local bug tracker (QA reports, logs, scratch — not versioned)
 bugs/
 
+# Migration working docs (maintainer-local; not versioned)
+docs/migration_plan.md
+TEMP_migration_plan_notes.md
+Lexting_Unity_Sample/
+Lexting_Unity_Sample_*/
+
 # Repo-root placeholder (empty); real QA scripts live under bugs/tools/ (local) or Lexting_Unity bootstrap
 /tools/
 

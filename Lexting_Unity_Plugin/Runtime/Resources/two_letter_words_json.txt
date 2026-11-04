@@ -1,0 +1,331 @@
+{"two_letter_words":[
+{
+	"word":"ad",
+	"wordClass":1,
+	"plural":"ads",
+	"past": "add",
+	"progressive": "adapt",
+	"other":null
+},
+{
+	"word":"ah",
+	"wordClass":5,
+	"plural": "aha",
+	"past": "ahoy",
+	"progressive": "ahead",
+	"other":null
+},
+{
+	"word":"am",
+	"wordClass":5,
+	"plural": "amid",
+	"past": "among",
+	"progressive": "amount",
+	"other":null
+},
+{
+	"word":"an",
+	"wordClass":5,
+	"plural": "and",
+	"past": "ant",
+	"progressive": "any",
+	"other":null
+},
+{
+	"word":"as",
+	"wordClass":5,
+	"plural": "ask",
+	"past": "asp",
+	"progressive": "ass",
+	"other":null
+},
+{
+	"word":"at",
+	"wordClass":5,
+	"plural": "ate",
+	"past": "atom",
+	"progressive": "attach",
+	"other":null
+},
+{
+	"word":"aw",
+	"wordClass":5,
+	"plural": "awe",
+	"past": "away",
+	"progressive": "awry",
+	"other":null
+},
+{
+	"word":"ax",
+	"wordClass":0,
+	"plural":"axes",
+	"past":"axed",
+	"progressive":"axing",
+	"other":null
+},
+{
+	"word":"be",
+	"wordClass":0,
+	"plural": "bed",
+	"past":"been",
+	"progressive":"being",
+	"other":null
+},
+{
+	"word":"bi",
+	"wordClass":2,
+	"plural": "bid",
+	"past": "big",
+	"progressive": "bin",
+	"other":null
+},
+{
+	"word":"by",
+	"wordClass":5,
+	"plural": "bye",
+	"past": "byte",
+	"progressive": "bytes",
+	"other":null
+},
+{
+	"word":"do",
+	"wordClass":0,
+	"plural":"does",
+	"past":"don't",
+	"progressive":"doing",
+	"other": null
+},
+{
+	"word":"eh",
+	"wordClass":5,
+	"plural":null,
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"ex",
+	"wordClass":1,
+	"plural": "exam",
+	"past": "exec",
+	"progressive": "exit",
+	"other":null
+},
+{
+	"word":"go",
+	"wordClass":0,
+	"plural":"goes",
+	"past":"went",
+	"progressive":"going",
+	"other":"gone"
+},
+{
+	"word":"ha",
+	"wordClass":5,
+	"plural": "ham",
+	"past": "hag",
+	"progressive": "hat",
+	"other":null
+},
+{
+	"word":"he",
+	"wordClass":1,
+	"plural": "he's",
+	"past": "he'd",
+	"progressive": "he'll",
+	"other":null
+},
+{
+	"word":"hi",
+	"wordClass":5,
+	"plural": "his",
+	"past": "him",
+	"progressive": "hip",
+	"other":null
+},
+{
+	"word":"ho",
+	"wordClass":0,
+	"plural":"hoes",
+	"past":"hoed",
+	"progressive":"hoing",
+	"other":null
+},
+{
+	"word":"id",
+	"wordClass":1,
+	"plural":"ids",
+	"past": "I'd",
+	"progressive": "idea",
+	"other":null
+},
+{
+	"word":"if",
+	"wordClass":5,
+	"plural": "iffy",
+	"past":null,
+	"progressive":null,
+	"other":null
+},
+{
+	"word":"in",
+	"wordClass":1,
+	"plural":"ins",
+	"past": "indie",
+	"progressive":"inning",
+	"other":null
+},
+{
+	"word":"is",
+	"wordClass":0,
+	"plural": "issue",
+	"past": "isn't",
+	"progressive":null,
+	"other": null
+},
+{
+	"word":"it",
+	"wordClass":0,
+	"plural":"its",
+	"past":"it'd",
+	"progressive": "it'll",
+	"other": null
+},
+{
+	"word":"ma",
+	"wordClass":1,
+	"plural":"ma's",
+	"past": "mas",
+	"progressive": "man",
+	"other":null
+},
+{
+	"word":"me",
+	"wordClass":1,
+	"plural":"men",
+	"past": "med",
+	"progressive": "mean",
+	"other":null
+},
+{
+	"word":"my",
+	"wordClass":2,
+	"plural": "myself",
+	"past": "myth",
+	"progressive": "mystery",
+	"other":null
+},
+{
+	"word":"no",
+	"wordClass":1,
+	"plural":"nos",
+	"past": "not",
+	"progressive": "nod",
+	"other":null
+},
+{
+	"word":"na",
+	"wordClass":5,
+	"plural": "nasty",
+	"past": "nature",
+	"progressive": "nag",
+	"other":null
+},
+{
+	"word":"of",
+	"wordClass":5,
+	"plural": "offense",
+	"past": "off",
+	"progressive": "offer",
+	"other":null
+},
+{
+	"word":"oh",
+	"wordClass":5,
+	"plural": "Ohio",
+	"past": "ohm",
+	"progressive": "ohms",
+	"other":null
+},
+{
+	"word":"on",
+	"wordClass":5,
+	"plural": "one",
+	"past": "onto",
+	"progressive": "only",
+	"other":null
+},
+{
+	"word":"or",
+	"wordClass":0,
+	"plural": "oral",
+	"past": "order",
+	"progressive": "organize",
+	"other":null
+},
+{
+	"word":"ow",
+	"wordClass":5,
+	"plural": "owl",
+	"past": "own",
+	"progressive": "owe",
+	"other":null
+},
+{
+	"word":"ox",
+	"wordClass":1,
+	"plural":"oxen",
+	"past": "Oxford",
+	"progressive": "Oxford's",
+	"other":null
+},
+{
+	"word":"so",
+	"wordClass":5,
+	"plural": "son",
+	"past": "sod",
+	"progressive": "sob",
+	"other":null
+},
+{
+	"word": "to",
+	"wordClass":5,
+	"plural": "too",
+	"past": "top",
+	"progressive": "ton",
+	"other":null
+},
+{
+	"word":"up",
+	"wordClass":2,
+	"plural":"ups",
+	"past":"upped",
+	"progressive":"upping",
+	"other":["upper","uppers"]
+},
+{
+	"word":"us",
+	"wordClass":1,
+	"plural": "use",
+	"past": "useful",
+	"progressive": "usual",
+	"other":null
+},
+{
+	"word":"we",
+	"wordClass":1,
+	"plural": "we're",
+	"past": "we'd",
+	"progressive":"we've",
+	"other": null
+},
+{
+	"word":"yo",
+	"wordClass":5,
+	"plural": "you",
+	"past": "you'll",
+	"progressive": "your",
+	"other":null
+}
+]}
+

@@ -5,7 +5,7 @@
 [![Unity](https://img.shields.io/badge/Unity-6000.0.60f1-black.svg)](Lexting_Unity/ProjectSettings/ProjectVersion.txt)
 [![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](docs/implementation_plan.md)
 
-**Current milestone:** [`0.2.0`](docs/implementation_plan.md) — Unity plugin packaging (Milestone 2). Quest 2 typing parity for the dual-volume widget is signed off on **`0.1.0`** / build **028**; this repo still ships the **`Lexting_Unity/`** monolith while **`Lexting_Unity_Plugin/`** is extracted.
+**Current milestone:** [`0.2.0`](docs/implementation_plan.md) — Unity plugin packaging (Milestone 2). Quest 2 typing parity is signed off on **`0.1.0`** / build **028**. **`Lexting_Unity_Plugin/`** is the installable SDK; **`Lexting_Unity/`** remains as a legacy maintainer host until you retire it locally.
 
 ![Lexting matrix palm control — dual-hand typing volumes](images/header.png)
 
@@ -292,7 +292,7 @@ Lexting is much like QWERTY in that you can peck a few letters out at a time rig
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Core dual-volume typing UI</span></summary>
 
-Main scene: [`Lexting_Unity/Assets/Lexting/_Scenes/main_01_twozone.unity`](Lexting_Unity/Assets/Lexting/_Scenes/main_01_twozone.unity). In-editor documentation for architecture and input setup is stored on **`Descriptor`** components in that scene (large `description` text areas—summarized under [Repository Layout](#repository-layout) and [Architecture](#architecture)).
+Main scene: [`Lexting_Unity_Plugin/Scenes/main_01_twozone.unity`](Lexting_Unity_Plugin/Scenes/main_01_twozone.unity) (same content as the legacy monolith scene). In-editor documentation for architecture and input setup is stored on **`Descriptor`** components in that scene (large `description` text areas—summarized under [Repository Layout](#repository-layout) and [Architecture](#architecture)).
 
 </details>
 
@@ -356,7 +356,7 @@ Lexting is built for **near-field, two-hand** input—the form factor where spat
 
 The long-term product shape is the **Lexting OpenXR SDK**: hand-tracked typing logic, gesture semantics, dictionary/word pipeline, and output events implemented **once**, on top of **OpenXR** session and hand/controller APIs. **Engine projects are front-end integrations** of that SDK—not separate platform forks.
 
-* **Today (`0.2.0`):** playable **Unity 6** prototype in [`Lexting_Unity/`](Lexting_Unity/) — open the project, build Quest APKs with [`build_quest.ps1`](Lexting_Unity/build_quest.ps1), reference scene **`main_01_twozone`**. Package layout **`Lexting_Unity_Plugin/`** is the M2 deliverable (in progress; Getting Started below describes the target install).
+* **Today (`0.2.0`):** **`Lexting_Unity_Plugin/`** UPM package (reference scene **`main_01_twozone`** under **Packages → Lexting**). Legacy monolith [`Lexting_Unity/`](Lexting_Unity/) may still be used for Quest builds until the greenfield host replaces it.
 * **Goal:** a matching **Unreal Engine** reference prototype that uses the **same SDK**, so teams can evaluate Lexting in either editor without reimplementing typing behavior.
 * **Beyond engines:** any **app or ecosystem that already supports OpenXR** should be able to host the SDK with comparatively thin glue (native, custom engines, enterprise shells, etc.)—the SDK is the portable core; Unity and Unreal are the first-class **sample hosts**.
 
@@ -685,16 +685,12 @@ Touching the **opposite hand’s middle finger** to the base of the wrist activa
 
 | Path | Contents |
 |------|----------|
-| [`Lexting_Unity/`](Lexting_Unity/) | Unity **6** monolith (Quest host + all Lexting sources until plugin cutover) |
-| [`docs/`](docs/) | Implementation plan, Quest baseline log, conjugation notes, bugs workflow |
+| [`Lexting_Unity_Plugin/`](Lexting_Unity_Plugin/) | **Unity 6 UPM package** — runtime, editor, embedded UniRx/SimpleJSON/Surge/WindowsInput, reference scene **`Scenes/main_01_twozone`**, Quest demo APK path **`Releases/`** |
+| [`Lexting_Unity/`](Lexting_Unity/) | Legacy Unity **6** monolith (maintainer Quest host; optional until retired locally) |
+| [`docs/`](docs/) | Implementation plan, conjugation notes, bugs workflow |
 | [`images/`](images/) | README diagrams and assets |
-| [`Lexting_Unity/Assets/Lexting/Scripts/`](Lexting_Unity/Assets/Lexting/Scripts/) | All Lexting C# (input, two-volume UI, dictionary, hotkeys, streaming) |
-| [`Lexting_Unity/Assets/Lexting/_Scenes/`](Lexting_Unity/Assets/Lexting/_Scenes/) | Primary and test scenes |
-| [`Lexting_Unity/Assets/Lexting/Resources/`](Lexting_Unity/Assets/Lexting/Resources/) | Runtime resources, prefabs, conjugation notes, macros JSON |
-| [`Lexting_Unity/Assets/Lexting/Scripts/EnglishDictionaries/Resources/`](Lexting_Unity/Assets/Lexting/Scripts/EnglishDictionaries/Resources/) | Word JSON consumed by `LextingDictionary` |
-| [`Lexting_Unity/Assets/Lexting/Scripts/Descriptors/`](Lexting_Unity/Assets/Lexting/Scripts/Descriptors/) | Inspector `Descriptor` base (`TextArea` documentation fields) |
 
-**Not Lexting core:** vendor packages under `Assets/Oculus/`, XR sample packages, etc.
+Package sources live under **`Lexting_Unity_Plugin/Runtime/`** (scripts, resources, prefabs). Host projects add **`com.unity.xr.*`** / OpenXR via their own `manifest.json` — not vendored inside the plugin.
 
 ---
 
@@ -759,13 +755,9 @@ flowchart LR
 
 | Scene | Notes |
 |-------|--------|
-| `main_01_twozone.unity` | **Primary** two-volume Lexting UI + in-scene Descriptor docs |
-| `hands_free_text_main_01.unity` | Alternate hands-free layout |
-| `LextingStream_Quest.unity` | Streaming / Quest client experiments |
-| `QWERTY_Sim.unity` | QWERTY comparison / visualization demo |
-| `Oculus_Hand_Test_01.unity` | Oculus hand tracking tests |
-| `MLAPI_Test_01.unity`, `MLAPI_Server_Test_01.unity` | Networking tests |
-| `Capture_01.unity`, `openCV_test_01.unity`, `XRRig Test.unity` | Utilities / rigs |
+| `main_01_twozone.unity` | **Primary** reference scene (package: **`Lexting_Unity_Plugin/Scenes/`**) — dual-volume UI + in-scene Descriptor docs |
+
+Legacy test scenes remain only under **`Lexting_Unity/Assets/Lexting/_Scenes/`** in the monolith until that tree is retired.
 
 </details>
 </blockquote>
@@ -779,41 +771,26 @@ flowchart LR
 <summary><b>🚀 Getting Started</b></summary>
 <hr style="border: 1px solid gray;">
 
-**Maintainers (now — `0.2.0` monolith):** clone this repo, open **`Lexting_Unity/`** in **Unity 6** (`6000.0.60f1`), use **`main_01_twozone`**, then **`Lexting_Unity/build_quest.ps1`** and **`install_quest.ps1`** for Quest 2 sideload + QA capture. Workflow and device notes live under local **`bugs/`** (gitignored): `bugs/bugs_workflow.md`, `bugs/quest2_baseline_log.md`.
-
-**Integrators (target — after M2 plugin lands):** one UPM package **`Lexting_Unity_Plugin/`** with **`SpatialGestureText`**, dictionary, reference scenes, and prefabs — install via Package Manager (`"com.lexting.spatialgesturetext": "file:../Lexting_Unity_Plugin"`). **Lexting → Setup Scene** wizard (**Milestone 5**) is not shipped yet; until then, study **`main_01_twozone`** wiring in the monolith.
+Sideload the provided `tutorial_demo.apk` on Meta Quest to try Lexting directly. Find it in `Lexting_Unity_Plugin/Releases/tutorial_demo.apk`.
 
 <details>
-<summary><b>Monolith quick start (Quest 2)</b></summary>
+<summary><b>Install the Unity Package and Build Through Unity</b></summary>
 
-1. Install **Unity 6** LTS and open **`Lexting_Unity/`**.
-2. Open **`Assets/Lexting/_Scenes/main_01_twozone.unity`**.
-3. **File → Build Settings → Android** (scene enabled); build from Editor or run **`.\build_quest.ps1`** with Unity open (Pipeline CLI).
-4. **`.\install_quest.ps1`** — sideload latest **`Builds/lexting_NNN.apk`**; complete the QA prompt to write **`bugs/QA/QA-<build>-*.md`** (local only).
-
-</details>
-
-<details>
-<summary><b>Future: package + wizard (M2 / M5)</b></summary>
-
-1. Add **`Lexting_Unity_Plugin`** to **`Packages/manifest.json`**.
-2. Open **your** scene with an **XR player rig** (OpenXR + XRI).
-3. **Lexting → Setup Scene** — **`[INPUTS]`** + **`LextingInputModuleManager`** (documented in Milestone 5; wizard doc TBD).
-4. **`ZoneFieldOutputReceiver`** on each subscribed **`InputField`**.
-
-</details>
-
-<details>
-<summary><b>Sandbox scene</b></summary>
-
-**`main_01_twozone`** is the fully wired reference in the monolith today. After the plugin split, the same scene will ship under **Packages → Lexting → Scenes**.
+1. Install **Unity 6** LTS or higher and open **`Lexting_Unity/`**.
+3. Add **`Lexting_Unity_Plugin`** to **`Packages/manifest.json`** or use the file menu option `Window -> Package Manager -> + Dropdown -> Install package from git URL -> paste "git@github.com:scifiuiguy/Lexting.git"`.
+4. **`main_01_twozone`** is the fully wired reference scene displayed in tutorial_demo.apk. It can be found in **Packages → Lexting → Scenes**.
+5. Open your own scene with an **XR-ready player rig** (OpenXR + XRI). Create a player rig if you don't have one (see Unity OpenXR documentation).
+6. Choose the file menu option **Lexting → Setup Scene** — The Lexting Wizard will configure components (especially the `LextingInputModuleManager`) in your open scene, as long as you have an OpenXR-compliant rig in that scene. If you don't, the wizard will throw warnings of incomplete setup. Compare your configuration to the main_01_twozone scene if in doubt. Lexting components have detailed descriptors to help you along.
+7. Add a **`ZoneFieldOutputReceiver`** on each **`InputField`** you wish to type into at runtime.
+8. Configure Player, Project, and Build Settings per the target platform's documentation (e.g. use Meta's OpenXR documentation for Quest).
+9. **File → Build Settings → Android** (main_01_twozone enabled); build, and sideload or Build And Run if you have a live link to Unity.
 
 </details>
 
 <details>
 <summary><b>Subscribe to Lexting output in code (optional)</b></summary>
 
-Call **`this.GetLextingOutput`** or **`this.Subscribe`** once in **`Awake`** on any `MonoBehaviour` to hook all third-party integration events. Call Lexting output subscriptions in **`Awake`**, not `OnEnable`, not in `Start`, and definitely not in `Update`. You do not need to unsubscribe. Lexting event objects self-sub and self-unsub during OnEnable and OnDisable in the background.
+Call **`this.GetLextingOutput`** (all events) or **`this.Subscribe`** (one event) in **`Awake`** on any `MonoBehaviour` to receive text output from Lexting. Call these Lexting output subscriptions in **`Awake`**, not in `OnEnable`, not in `Start`, and definitely not in `Update`. You do not need to unsubscribe to these. Lexting event objects self-sub and self-unsub during OnEnable and OnDisable in the background. Call once in Awake to activate the entire Sub/Unsub workflow.
 
 If you call `GetLextingOutput` directly, you must declare **every required callback as below**. Pass no-op lambdas (`() => { }`) for events you don't intend to implement immediately. Use this kitchen-sink call only if you intend to implement most/all of the callbacks:
 

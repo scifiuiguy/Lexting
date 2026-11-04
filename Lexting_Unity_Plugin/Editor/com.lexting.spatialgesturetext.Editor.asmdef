@@ -1,0 +1,20 @@
+{
+    "name": "com.lexting.spatialgesturetext.Editor",
+    "rootNamespace": "SpatialGestureText",
+    "references": [
+        "com.lexting.spatialgesturetext.Runtime",
+        "com.lexting.thirdparty.unirx",
+        "Unity.XR.Hands.Samples.VisualizerSample"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

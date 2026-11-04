@@ -1,0 +1,8 @@
+<linker>
+  <!-- Quest hand init uses reflection into Meta OVRSkeleton private Initialize (Android only). -->
+  <type fullname="OVRSkeleton" preserve="all" />
+  <type fullname="OVRCustomSkeleton" preserve="all" />
+  <type fullname="SpatialGestureText.Input.QuestHandRuntimeProbe" preserve="all" />
+  <type fullname="SpatialGestureText.Input.QuestHandRotationDebugVisualizer" preserve="all" />
+  <type fullname="SpatialGestureText.Input.QuestHandLog" preserve="all" />
+</linker>

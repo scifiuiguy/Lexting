@@ -1,0 +1,25 @@
+{
+  "name": "com.lexting.spatialgesturetext",
+  "version": "0.2.0",
+  "displayName": "Lexting Spatial Gesture Text",
+  "description": "Dual-volume spatial text entry for XR (OpenXR / Quest). Reference scene: main_01_twozone.",
+  "unity": "6000.0",
+  "unityRelease": "60f1",
+  "documentationUrl": "https://github.com/scifiuiguy/Lexting",
+  "changelogUrl": "https://github.com/scifiuiguy/Lexting/blob/main/docs/implementation_plan.md",
+  "licensesUrl": "https://github.com/scifiuiguy/Lexting/blob/main/Lexting_Unity_Plugin/ThirdPartyNotices.md",
+  "author": {
+    "name": "AJ Campbell",
+    "url": "https://github.com/scifiuiguy"
+  },
+  "dependencies": {
+    "com.unity.inputsystem": "1.14.2",
+    "com.unity.ugui": "2.0.0",
+    "com.unity.xr.hands": "1.5.0",
+    "com.unity.xr.interaction.toolkit": "3.0.8",
+    "com.unity.xr.management": "4.5.1",
+    "com.unity.xr.openxr": "1.15.1",
+    "com.unity.xr.oculus": "4.5.6"
+  },
+  "samples": []
+}

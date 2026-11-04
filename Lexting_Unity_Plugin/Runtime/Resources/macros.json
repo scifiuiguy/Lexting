@@ -1,0 +1,456 @@
+{
+  "macros": [
+
+    /* Subject Pronouns */
+    {
+      "default": "ii",
+      "verbSingular": "I",
+      "verbPlural": "I'm",
+      "verbParticiple": "I'd",
+      "verbPast": "I",
+      "nounSingular": "I",
+      "nounPlural": "I'm",
+      "adj": "I'd",
+      "adv": "I"
+    },
+
+    {
+      "default": "ss",
+      "verbSingular": "I",
+      "verbPlural": "he",
+      "verbParticiple": "she",
+      "verbPast": "they",
+      "nounSingular": "he",
+      "nounPlural": "it",
+      "adj": "I",
+      "adv": "they"
+    },
+    /* ^^^ Subject Pronouns */
+
+    /* Modal Verbs */
+
+	/* im */
+    {
+      "default": "im",
+      "verbSingular": "I'm", 
+      "verbPlural": "I might",
+      "verbParticiple": "I must",
+      "verbPast": "I may",
+      "nounSingular": "I may be",
+      "nounPlural": "I may do"
+      "adj":  "I'm going",
+      "adv": "I'm going to",
+    },
+    {
+      "default": "imv",
+      "verbSingular": "I'm",
+      "verbPlural": "I might've",
+      "verbParticiple": "I must've",
+      "verbPast": "I may have",
+      "nounSingular": "I may have been",
+      "nounPlural": "I may have done"
+      "adj": "I may have gone",
+      "adv": "I may have gone to",
+    },
+    {
+      "default": "imn",
+      "verbSingular": "I'm not",
+      "verbPlural": "I might not",
+      "verbParticiple": "I must not",
+      "verbPast": "I may not",
+      "nounSingular": "I may not be",
+      "nounPlural": "I may not do"
+      "adj": "I may not go",
+      "adv": "I may not go to",
+    },
+    {
+      "default": "imvn",
+      "verbSingular": "I'm not",
+      "verbPlural": "I might not have",
+      "verbParticiple": "I must not have",
+      "verbPast": "I may not have",
+      "nounSingular": "I may not have been",
+      "nounPlural": "I may not have done"
+      "adj": "I may not have gone",
+      "adv": "I may not have gone to",
+    },
+    {
+      "default": "img",
+      "verbSingular": "I'm going", 
+      "verbPlural": "I'm going to",
+      "verbParticiple": "I am going",
+      "verbPast": "I am going to",
+      "nounSingular": "I'm gonna",
+      "nounPlural": "I'm gonna"
+      "adj":  "I am gonna",
+      "adv": "I am gonna",
+    },
+    {
+      "default": "imng",
+      "verbSingular": "I'm not going", 
+      "verbPlural": "I'm not going to",
+      "verbParticiple": "I am not going",
+      "verbPast": "I am not going to",
+      "nounSingular": "I'm not gonna",
+      "nounPlural": "I'm not gonna"
+      "adj":  "I am not gonna",
+      "adv": "I am not gonna",
+    },
+	/* ^^^ im */
+
+	/* id */
+    {
+      "default": "id",
+      "verbSingular": "I'd",
+      "verbPlural": "I do",
+      "verbParticiple": "I do want",
+      "verbPast": "I do want to",
+      "nounSingular": "I do have",
+      "nounPlural": "I do have to"
+      "adj":  "I do go",
+      "adv": "I do go to",
+    },
+    {
+      "default": "idd",
+      "verbSingular": "I did",
+      "verbPlural": "I did the",
+      "verbParticiple": "I did want",
+      "verbPast": "I did want to",
+      "nounSingular": "I did have",
+      "nounPlural": "I did have to"
+      "adj":  "I did go",
+      "adv": "I did go to",
+    },
+	/* ^^^ id */
+
+	/* ih */
+    {
+      "default": "ih",
+      "verbSingular": "I have",
+      "verbPlural": "I have to",
+      "verbParticiple": "I have always",
+      "verbPast": "I have never",
+      "nounSingular": "I have been",
+      "nounPlural": "I have done"
+      "adj":  "I have gone",
+      "adv": "I have gone to",
+    },
+    {
+      "default": "ihd",
+      "verbSingular": "I had",
+      "verbPlural": "I had to",
+      "verbParticiple": "I had always",
+      "verbPast": "I had never",
+      "nounSingular": "I had been",
+      "nounPlural": "I had done"
+      "adj":  "I have gone",
+      "adv": "I have gone to",
+    },
+    {
+      "default": "ihn",
+      "verbSingular": "I haven't",
+      "verbPlural": "I haven't had to",
+      "verbParticiple": "I haven't always",
+      "verbPast": "I haven't ever",
+      "nounSingular": "I haven't been",
+      "nounPlural": "I haven't done"
+      "adj":  "I haven't gone",
+      "adv": "I haven't gone to",
+    },
+    {
+      "default": "ihdn",
+      "verbSingular": "I hadn't",
+      "verbPlural": "I hadn't had to",
+      "verbParticiple": "I hadn't always",
+      "verbPast": "I hadn't ever",
+      "nounSingular": "I hadn't been",
+      "nounPlural": "I hadn't done"
+      "adj":  "I hadn't gone",
+      "adv": "I hadn't gone to",
+    },
+	/* ^^^ ih */
+
+	/* is */
+    {
+      "default": "is",
+      "verbSingular": "is",
+      "verbPlural": "is",
+      "verbParticiple": "I should",
+      "verbPast": "I shall",
+      "nounSingular": "is",
+      "nounPlural": "is",
+      "adj": "I should",
+      "adv": "I shall"
+    },
+
+    {
+      "default": "isee",
+      "indicativePresent": "I see",
+      "indicativePreterite": "I saw",
+      "indicativeFuture": "I'll see",
+      "continuousPresent": "I'm seeing",
+      "continuousPast": "I was seeing",
+      "continuousFuture: "I'll be seeing"
+      "perfectPresent": "I've seen"
+      "perfectPast": "I'd seen",
+      "perfectFuture": "I'll have seen",
+      
+    },
+
+	/* ^^^ is */
+
+	/* ic */
+    {
+      "default": "ic",
+      "verbSingular": "I can",
+      "verbPlural": "I could",
+      "verbParticiple": "I would",
+      "verbPast": "I should",
+      "nounSingular": "I can be",
+      "nounPlural": "I can do"
+      "adj": "I can go",
+      "adv": "I can go to",
+    },
+    {
+      "default": "icv",
+      "verbSingular": "I can have",
+      "verbPlural": "I could've",
+      "verbParticiple": "I would've",
+      "verbPast": "I should've",
+      "nounSingular": "I can be",
+      "nounPlural": "I can do"
+      "adj": "I can go",
+      "adv": "I can go to",
+    },
+    {
+      "default": "icn",
+      "verbSingular": "I can't",
+      "verbPlural": "I could'nt",
+      "verbParticiple": "I would'nt",
+      "verbPast": "I shouldn't",
+      "nounSingular": "I can't be",
+      "nounPlural": "I can't do",
+      "adj": "I can't go",
+      "adv": "I can't go to"
+    },
+    {
+      "default": "icnv",
+      "verbSingular": "I could'nt have",
+      "verbPlural": "I should'nt have",
+      "verbParticiple": "I would'nt have",
+      "verbPast": "I don't want to",
+      "nounSingular": "I can't have",
+      "nounPlural": "I won't have",
+      "adj": "I don't have to",
+      "adv": "I didn't have to"
+    },
+	/* ^^^ ic */
+
+	/* iw */
+    {
+      "default": "iw",
+      "verbSingular": "I will",
+      "verbPlural": "I would",
+      "verbParticiple": "I want",
+      "verbPast": "I want to",
+      "nounSingular": "I will be",
+      "nounPlural": "I will do"
+      "adj": "I will go",
+      "adv": "I will go to",
+    },
+    {
+      "default": "iwn",
+      "verbSingular": "I won't",
+      "verbPlural": "I wouldn't",
+      "verbParticiple": "I don't want",
+      "verbPast": "I don't want to",
+      "nounSingular": "I won't be",
+      "nounPlural": "I won't do"
+      "adj": "I won't go",
+      "adv": "I won't go to",
+    },
+    {
+      "default": "iwdn",
+      "verbSingular": "I wouldn't",
+      "verbPlural": "I wouldn't",
+      "verbParticiple": "I wouldn't want",
+      "verbPast": "I wouldn't want to",
+      "nounSingular": "I wouldn't be",
+      "nounPlural": "I wouldn't do"
+      "adj": "I wouldn't go",
+      "adv": "I wouldn't go to",
+    },
+	/* ^^^ iw */
+
+
+
+	/* hm */
+    {
+      "default": "hm",
+      "verbSingular": "he's",
+      "verbPlural": "I must",
+      "verbParticiple": "I might",
+      "verbPast": "I shall",
+      "nounSingular": "I can",
+      "nounPlural": "I ought to",
+      "adj": "I do",
+      "adv": "I did"
+    },
+    {
+      "default": "imv",
+      "verbSingular": "I'm going to",
+      "verbPlural": "I must've",
+      "verbParticiple": "I might've",
+      "verbPast": "I shall have",
+      "nounSingular": "I can have",
+      "nounPlural": "I ought to have",
+      "adj": "I do have to",
+      "adv": "I did have to"
+    },
+    {
+      "default": "imn",
+      "verbSingular": "I'm not",
+      "verbPlural": "I mustn't",
+      "verbParticiple": "I might not",
+      "verbPast": "I shan't",
+      "nounSingular": "I cannot",
+      "nounPlural": "I ought not to",
+      "adj": "I don't",
+      "adv": "I didn't"
+    },
+    {
+      "default": "imvn",
+      "verbSingular": "I'm not going to",
+      "verbPlural": "I must not have",
+      "verbParticiple": "I might not have",
+      "verbPast": "I shan't have",
+      "nounSingular": "I can't have",
+      "nounPlural": "I ought not to have",
+      "adj": "I don't have to",
+      "adv": "I didn't have to"
+    },
+	/* ^^^ hm */
+
+	/* hc */
+    {
+      "default": "hc",
+      "verbSingular": "he could",
+      "verbPlural": "he should",
+      "verbParticiple": "he would",
+      "verbPast": "he wants",
+      "nounSingular": "he can",
+      "nounPlural": "he will",
+      "adj": "he does",
+      "adv": "he did"
+    },
+    {
+      "default": "hcv",
+      "verbSingular": "he could've",
+      "verbPlural": "he should've",
+      "verbParticiple": "he would've",
+      "verbPast": "he wants to",
+      "nounSingular": "he can have",
+      "nounPlural": "he will have",
+      "adj": "he does have to",
+      "adv": "he did have to"
+    },
+    {
+      "default": "hcn",
+      "verbSingular": "he could'nt",
+      "verbPlural": "he should'nt",
+      "verbParticiple": "he would'nt",
+      "verbPast": "he doesn't want",
+      "nounSingular": "he can't",
+      "nounPlural": "he won't",
+      "adj": "he doesn't",
+      "adv": "he didn't"
+    },
+    {
+      "default": "hcnv",
+      "verbSingular": "he could'nt have",
+      "verbPlural": "he should'nt have",
+      "verbParticiple": "he would'nt have",
+      "verbPast": "he doesn't want to",
+      "nounSingular": "he can't have",
+      "nounPlural": "he won't have",
+      "adj": "he doesn't have to",
+      "adv": "he didn't have to"
+    },
+	/* ^^^ hc */
+
+
+    /* ^^^ Modal Verbs */
+
+
+
+    /* Possessive Pronouns */
+    {
+      "default": "pp",
+      "verbSingular": "my",
+      "verbPlural": "his",
+      "verbParticiple": "her",
+      "verbPast": "their",
+      "nounSingular": "my",
+      "nounPlural": "his",
+      "adj": "my",
+      "adv": "their"
+    },
+    {
+      "default": "her",
+      "verbSingular": "my",
+      "verbPlural": "his",
+      "verbParticiple": "her",
+      "verbPast": "their",
+      "nounSingular": "my",
+      "nounPlural": "his",
+      "adj": "my",
+      "adv": "their"
+    },
+    {
+      "default": "his",
+      "verbSingular": "my",
+      "verbPlural": "his",
+      "verbParticiple": "her",
+      "verbPast": "their",
+      "nounSingular": "my",
+      "nounPlural": "his",
+      "adj": "my",
+      "adv": "their"
+    },
+    {
+      "default": "its",
+      "verbSingular": "my",
+      "verbPlural": "his",
+      "verbParticiple": "her",
+      "verbPast": "their",
+      "nounSingular": "my",
+      "nounPlural": "his",
+      "adj": "my",
+      "adv": "their"
+    },
+    {
+      "default": "my",
+      "verbSingular": "my",
+      "verbPlural": "his",
+      "verbParticiple": "her",
+      "verbPast": "their",
+      "nounSingular": "my",
+      "nounPlural": "his",
+      "adj": "my",
+      "adv": "their"
+    },
+    {
+      "default": "their",
+      "verbSingular": "my",
+      "verbPlural": "his",
+      "verbParticiple": "her",
+      "verbPast": "their",
+      "nounSingular": "my",
+      "nounPlural": "his",
+      "adj": "my",
+      "adv": "their"
+    },
+    /* ^^^ Possessive Pronouns ^^^ */
+
+  ]
+}
