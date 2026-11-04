@@ -42,25 +42,31 @@ namespace SpatialGestureText.TwoZoneCube
         private Color _neutralColor = Color.white;
         private Color _highlightedColor = Color.black;
         private bool _isHighlighted;
+        private Material _highlightTextMaterial;
+        private CanvasRenderer _canvasRenderer;
+        private const int HoverTextRenderQueue = 4000;
 
         /// <summary>
         /// rotation state for this letter's hand
         /// </summary>
         private CubeRotationState _currentRotationState => (controller.IsRight) ? Lexting.rhRotState : Lexting.lhRotState;
-
-        private Vector3 _startingPosition;
         #endregion private vars
         #endregion vars
 
         #region init
         private void Awake()
 		{
-            _startingPosition = transform.position;
             _letterDisplay = GetComponent<Text>();
+            _canvasRenderer = GetComponent<CanvasRenderer>();
             _letterDisplay.text = letters[0];
             _neutralColor = _letterDisplay.color;
             if (neutralMat != null)
-                _letterDisplay.material = neutralMat;
+                ApplyLetterMaterial(neutralMat);
+            if (highlightedMat != null)
+            {
+                _highlightTextMaterial = Instantiate(highlightedMat);
+                _highlightTextMaterial.renderQueue = HoverTextRenderQueue;
+            }
             this.Wait(()=>controller.Ready(), ()=>RegisterAllEventsAndActions());
 		}
         #endregion init
@@ -110,16 +116,17 @@ namespace SpatialGestureText.TwoZoneCube
             if (_isHighlighted == on) return;
             _isHighlighted = on;
             _letterDisplay.color = on ? _highlightedColor : _neutralColor;
+            if (on && _highlightTextMaterial != null)
+                ApplyLetterMaterial(_highlightTextMaterial);
+            else if (neutralMat != null)
+                ApplyLetterMaterial(neutralMat);
         }
 
-        private void BounceToFront()
+        private void ApplyLetterMaterial(Material mat)
         {
-            transform.position = _startingPosition + transform.forward * 0.1f;
-        }
-
-        public void BounceBack()
-        {
-            transform.position = _startingPosition;
+            _letterDisplay.material = mat;
+            if (_canvasRenderer != null)
+                _canvasRenderer.SetMaterial(mat, 0);
         }
 		#endregion helper methods
 		

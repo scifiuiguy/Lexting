@@ -1,6 +1,6 @@
 {
   "name": "com.lexting.spatialgesturetext",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "displayName": "Lexting Spatial Gesture Text",
   "description": "Dual-volume spatial text entry for XR (OpenXR / Quest). Reference scene: main_01_twozone.",
   "unity": "6000.0",

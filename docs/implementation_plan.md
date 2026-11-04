@@ -1,4 +1,4 @@
-# Lexting implementation plan (0.0.1 → 1.0.0)
+# Lexting implementation plan (0.0.1 → 0.5.0 beta roadmap)
 
 This document is the **living roadmap** for reviving the Unity prototype, stabilizing XR integration, and shipping a **Meta Start** competition entry. It intentionally stays **out of** [`README.md`](../README.md); update this file as milestones firm up.
 
@@ -17,11 +17,11 @@ This document is the **living roadmap** for reviving the Unity prototype, stabil
 | **0.0.1** | Repository snapshot *as archived* (~2021 prototype + monolithic `Lexting_Unity/` tree). May not install or run on a Quest 2 without repair work. |
 | **0.1.0** | **Milestone 1** — **Unity 6** upgrade on the legacy `Lexting_Unity/` tree + Quest 2 build; typing behavior matches the last known-good prototype (“as I left it”). Enables **`com.unity.pipeline`** (Cursor Unity MCP) on the monolith. |
 | **0.2.0** | **Milestone 2** — Lexting ships as **one Unity package** (runtime, embedded SimpleJSON/Surge/UniRx, default dictionary, reference scenes/prefabs). **One-way extract** from monolith; Quest QA uses a **greenfield host** (new project, not in open repo)—never reintegrate the package into `Lexting_Unity/`. Delete monolith when stable. |
-| **0.5.0** | **Milestone 3** — Refreshed XR UPM stack; **OpenXR-first** Quest path documented and implemented; legacy Oculus Integration retired or quarantined (engine already on **Unity 6** from M1). |
-| **1.0.0** | **Milestone 4** — Meta Start submission quality: stable demo, improved tutorial, 3-minute video ready, known limitations documented. |
-| **1.1.0** | **Milestone 5 — Lexting Setup Wizard** — Editor **Lexting** menu command that configures the active scene for third-party integrators (auto rig bind + Lexting bootstrap where possible; validation errors/warnings when not). **Final milestone** in this roadmap. |
+| **0.3.0** | **Milestone 3** — Refreshed XR UPM stack; **OpenXR-first** Quest path documented and implemented; legacy Oculus Integration retired or quarantined (engine already on **Unity 6** from M1). |
+| **0.4.0** | **Milestone 4** — Meta Start submission quality (**beta**): stable demo, improved tutorial, 3-minute video ready, known limitations documented. |
+| **0.5.0** | **Milestone 5 — Lexting Setup Wizard** — Editor **Lexting** menu command that configures the active scene for third-party integrators (auto rig bind + Lexting bootstrap where possible; validation errors/warnings when not). **Final milestone** in this roadmap. |
 
-Patch releases (`0.1.x`, `0.2.x`, `0.5.x`, `1.0.x`) are expected during each milestone for Quest-side iteration.
+**Version policy:** Each milestone bumps **`Lexting_Unity_Plugin/package.json`** to its target **0.x** line. **`1.0.0` is not a milestone target**—Meta Start and this roadmap stay **beta** until a later **stable / GA** release (post-roadmap). Patch releases (`0.1.x` … `0.5.x`) are expected during each milestone for Quest-side iteration.
 
 ---
 
@@ -41,7 +41,7 @@ Patch releases (`0.1.x`, `0.2.x`, `0.5.x`, `1.0.x`) are expected during each mil
 
 - **Keep (embedded in plugin, pinned snapshots):** [SimpleJSON](https://github.com/Bunny83/SimpleJSON), [Pixelplacement Surge](https://github.com/Pixelplacement/Surge) (subset), [UniRx](https://github.com/neuecc/UniRx) **6.2.2** — **must ship inside `Lexting_Unity_Plugin/`** so integrators are not sent hunting UPM/Asset Store for matching versions. **`package.json` lists Unity/platform deps only** (Input System, XR Management, OpenXR, etc.), not UniRx/SimpleJSON/Surge. Integrator docs: **do not add a second UniRx** (or duplicate SimpleJSON/Surge) in the host project—embedded copies define the supported versions.
 - **Surge:** tweens via `TweenUtils` and direct `Tween.*` calls; validate on **Unity 6** during **Milestone 1** reopen; replace if broken (still embedded until replaced).
-- **Defer / remove:** Leap Motion (`Assets/Plugins/LeapMotion/`, `LEXTING_FOUND_LEAP_SDK`) — remove during Milestone 3 SDK cleanup.
+- **Leap (reference only):** Monolith **`Assets/Plugins/LeapMotion/`** stays out of the package; vendored **`Runtime/Scripts/Input/Leap/`** + **`LEXTING_FOUND_LEAP_SDK`** paths are **deprecated in M3 but not deleted**—kept as a **template** for future non-OpenXR hand SDKs (see M3 workstream 6).
 - **Engine baseline:** **Milestone 1** upgrades the monolith from archived **Unity 2022.3.19f1** to **Unity 6** LTS (exact 6.x patch recorded in [`ProjectVersion.txt`](../Lexting_Unity/ProjectSettings/ProjectVersion.txt) after upgrade). **Milestone 2** locks the same minimum Unity version in plugin `package.json`; device builds run from the **greenfield host** project.
 - **Risk focus:** **Milestone 1** now includes the **editor upgrade** (highest one-shot risk); **Milestone 3** focuses on **UPM XR refresh** and **OpenXR conformity** on an already-Unity-6 tree. Prototype *behavior* stays locked across M1 device parity; **Milestone 2** changes packaging only (see [Platform targets in README](../README.md#platform-strategy)).
 - **Agent tooling:** After Unity 6 + `unity pipeline install`, pin Cursor MCP to `Lexting_Unity` (`unity mcp configure cursor --project-path …`) for live Editor inspection during M1 Quest debugging.
@@ -74,7 +74,7 @@ Patch releases (`0.1.x`, `0.2.x`, `0.5.x`, `1.0.x`) are expected during each mil
   - [x] Text reaches subscribed UI (`LextingOutputManager` / `InputField`) — grab/typing works; label lag vs output noted in baseline log
 - [x] **Regression log:** local [`bugs/quest2_baseline_log.md`](../bugs/quest2_baseline_log.md) + per-build **`bugs/QA/QA-<build>-*.md`** ([`bugs/bugs_workflow.md`](../bugs/bugs_workflow.md); gitignored).
 
-**M1 exit met** (Quest 2 smoke checklist passed, build **028** era). **Active milestone: M2 (`0.2.0`)** — plugin packaging. Optional M1 gap: **workstream 5** screen recording.
+**M1 exit met** (Quest 2 smoke checklist passed, build **028** era). **M2 (`0.2.0`)** and **M3 (`0.3.0`)** exited (OpenXR-first plugin + greenfield smoke build **005**). **Active milestone: M4 (`0.4.0`)** — Meta Start delivery. Optional M1 gap: **workstream 5** screen recording.
 
 ### Skeletal workstreams
 
@@ -185,10 +185,26 @@ Integrators **must not** be required to resolve UniRx, SimpleJSON, or Surge from
 
 ## Milestone 3 — XR refresh & OpenXR conformity
 
-**Target version:** `0.5.0`  
+**Target version:** `0.3.0`  
 **Goal:** Modernize **XR SDKs** on the **Unity 6** baseline from Milestone 1, then converge on a **single OpenXR-first path** on Quest 2—without changing Lexting typing semantics. Work happens in **`Lexting_Unity_Plugin`** and the **greenfield host** after Milestone 2; the monolith is gone after M2 exit.
 
 **Suggested window:** **2026-11-10 → 2026-11-14** (overlap with late Milestone 2 is OK for *research*; land OpenXR cutover only after the plugin host compiles and Milestone 1 parity is green on the sample).
+
+### M3 go-ahead decisions (2026-11-04)
+
+| # | Decision |
+|---|----------|
+| 1 | Reference scene + shipping path use **`InputMode.OPEN_XR`** once the adapter is wired. **`OPEN_XR`** is the mode for **any OpenXR-conformant rig** (Meta Quest, PC VR, etc.)—including third-party **Meta/Oculus-style XRRig** prefabs when the host uses the **OpenXR** loader, not a separate Quest-only enum. **M5** wizard defaults to **`OPEN_XR`** and **drops `QUEST_*` from the mode picker**; docs tell devs to choose **`OPEN_XR`** for Meta and other OpenXR runtimes. |
+| 2 | Keep **`QUEST_*`** enum values **until M5** (obsolete, not removed in M3); **collapse/remove `QUEST_*` in M5** with wizard + enum cleanup. |
+| 3 | **Migrate** **`LextingInputModuleManager`** to a **single** head / left / right **Transform** trio (scene + prefab save). |
+| 4 | Rename adapter **`OculusHandInput`** → **`OpenXRHandInput`** (move out of `OculusIntegration/`). |
+| 5 | **OVR skeleton** fallback: **deprecate, do not delete** (same policy as Leap reference)—not required for greenfield Quest APKs. |
+| 6 | **M3 exit:** adapter wired + **maintainer greenfield smoke** on Quest; **full M1 / build 028 checklist not required** to close M3. |
+| 7 | Ship **`v0.3.0`** GitHub Release + bump **`package.json`** after smoke passes. |
+| 8 | **Docs:** update **`README.md` version badge only** (no milestone/platform section refresh in M3). Known gaps live in **`docs/`** / ADR. |
+| 9 | **Scope:** **`Lexting_Unity_Plugin`** + local greenfield host only; monolith not kept green for M3. |
+| 10 | **Setup wizard:** **M5** only (confirmed). |
+| 11 | **Leap (and reference adapters) off Quest APK:** ensure **no Leap IL** in Android player—**`LEXTING_FOUND_LEAP_SDK` off** on Android; wrap files in **`#if`**, and **comment out entire classes/files** if anything still pulls Leap into the build. Verify with a greenfield APK build (optional: inspect player assembly / logcat). |
 
 ### Baseline → target
 
@@ -211,15 +227,15 @@ Refresh and document versions together (plugin `package.json` **dependencies** +
 - **`com.unity.xr.oculus`** (and/or **Meta XR** all-in-one package if adopted) — **host-only** support packages, not a second parallel typing stack.
 - **`com.unity.inputsystem`** — align with Unity 6; QWERTY demo / any new Input System usage.
 - **Embedded `Assets/Oculus/` Integration** — inventory → **remove or quarantine** from sample once OpenXR path covers hand tracking; no new features on OVR-only code.
-- **Leap** — delete plugin folder and `LEXTING_FOUND_LEAP_SDK` paths.
+- **Leap (in package)** — **deprecate, do not delete:** keep **`LeapHandInput`**, **`LextingLeap*Marker`**, and **`LEAP_*`** `InputMode` values behind **`#if LEXTING_FOUND_LEAP_SDK`**; document in ADR as the **reference adapter pattern** (bind SDK → **`LextingHand`** → events → **`SpatialGestureInput`**). Not required for Quest/OpenXR shipping; may never ship for Leap again.
 - **Third-party in plugin** — UniRx, Surge: re-verify on Unity 6 if M1 left gaps; log blockers in ADR if they force a deferral.
 
 ### OpenXR conformity (product + code)
 
-- **`InputMode.OPEN_XR`** (or successor enum) is the **blessed** path for Milestone 4 builds and Meta Start demo; legacy `QUEST_*` modes removed or `#if`’d off for release configuration.
+- **`InputMode.OPEN_XR`** is the **blessed** path for reference scene, M3 exit, and Milestone 4 Meta Start demo; **`QUEST_*`** stays in enum until **M5** collapse (obsolete in M3).
 - **`SpatialGestureInput`** remains the **only** front door for typing logic; OpenXR/session/hand updates flow through **one adapter** (new or refactored class—name captured in ADR).
 - **Gesture parity checklist** on Quest 2: pinch/grab, dual-hand word mode, wrist conjugation poses, hand cursor stability—same as Milestone 1, new stack underneath.
-- **Honest README delta:** what is truly “OpenXR-first SDK” vs “OpenXR loader + legacy C# still migrating” at `0.5.0`.
+- **Honest README delta:** what is truly “OpenXR-first SDK” vs “OpenXR loader + legacy C# still migrating” at `0.3.0`.
 
 ### Questions this milestone must answer
 
@@ -231,32 +247,35 @@ Refresh and document versions together (plugin `package.json` **dependencies** +
 
 ### Definition of done
 
-- [ ] **Sample + plugin compile on Unity 6** (inherited from M1/M2); XR-related package pins documented in plugin `package.json` + sample manifest.
-- [ ] **UPM refresh complete** — manifest(s) updated; no stale 2022-only XR package pins unless documented with reason.
-- [ ] **Quest 2 Android build** from **local host** (imported package samples) using **OpenXR** loader; hand tracking enabled; app reaches `main_01_twozone`.
-- [ ] **Architecture decision record** ([`docs/xr_integration_adr.md`](xr_integration_adr.md) or appendix here): primary Quest path, packages + versions, adapter class diagram, fallback/disabled legacy modes.
-- [ ] Input module enum + scene wiring **documented** (table: mode → classes → packages → defines).
-- [ ] **Leap** and unused **Oculus Integration** cruft removed or isolated so they are not required for the OpenXR Quest build.
-- [ ] Quest 2 **re-test** of full Milestone 1 checklist on **OpenXR** configuration; unintentional behavior changes filed in local [`bugs/`](../bugs/) (gitignored; see [`bugs/bugs_workflow.md`](../bugs/bugs_workflow.md)).
-- [ ] **Known gaps** vs long-term **Lexting OpenXR SDK** listed for judges/integrators.
+- [x] **Sample + plugin compile on Unity 6** (inherited from M1/M2); XR-related package pins documented in plugin [`package.json`](../Lexting_Unity_Plugin/package.json) (Input System, XR Management, OpenXR, XR Hands, XRI, Oculus UPM). Maintainer host `Packages/manifest.json` mirrors the same XR pins (host gitignored; see [`docs/plugin_migration_map.md`](plugin_migration_map.md)).
+- [x] **UPM refresh complete** — plugin + host on Unity **6000.0.60f1** pins (e.g. OpenXR **1.15.1**, XR Management **4.5.1**, XR Hands **1.5.0**, XRI **3.0.8**); no stale 2022-only XR package pins on the shipping plugin path.
+- [x] **Quest 2 Android build** from **local host** (package-only import) using **OpenXR** loader (+ Meta Quest Support / hand tracking on host); **`main_01_twozone`** in build settings; first greenfield APK **`tutorial_demo.apk`** (build **001**, release **v0.2.0**). Full M1 gesture checklist on this stack not yet signed off (see below).
+- [x] **Architecture decision record** ([`docs/xr_integration_adr.md`](xr_integration_adr.md)): primary Quest path, packages + versions, adapter diagram, **`InputMode`** wiring table, legacy/disabled modes, validation status (**`OPEN_XR`** mode gaps explicitly open for M3).
+- [x] Input module enum + scene wiring **documented** — ADR **`InputMode` → wiring** table; reference scene **`OPEN_XR`** + **`head_OXR`** trio.
+- [x] **Leap reference adapter — deprecated, retained** — **`[Obsolete]`** on **`LeapHandInput`**; Android strips **`LEXTING_FOUND_LEAP_SDK`**; sources remain **`#if`**-gated.
+- [x] **Oculus Integration cruft — isolated for OpenXR Quest** — **`OpenXRHandInput`**; OVR skeleton + **`SimpleOculusHandInput`** deprecated, **`#if LEXTING_FOUND_OCULUS_SDK`**; **`QUEST_*`** enum retained until M5.
+- [x] Quest 2 **greenfield smoke** on **`OPEN_XR`** + **`OpenXRHandInput`** (typing, hands, load scene)—file issues in local [`bugs/`](../bugs/) as needed. Full M1 / build **028** parity checklist is **follow-up**, not a gate for M3 exit.
+- [x] **Known gaps** — [`docs/known_gaps.md`](known_gaps.md). **README:** version badge **`0.3.0`** only.
 
 ### Skeletal workstreams
 
 1. **UPM / SDK inventory** — diff M1 manifest vs OpenXR-first target; upgrade in controlled commits; note Meta Quest setup doc links.
 2. **OpenXR spike** — Quest 2 device session: loader, hand tracking, compare joint/wrist data to archived OVR baseline recordings from Milestone 1.
-3. **Adapter & input manager** — implement or finish OpenXR path into **`SpatialGestureInput`**; simplify **`LextingInputModuleManager`**; default sample scene to OpenXR.
-4. **Legacy retirement** — quarantine embedded **`Assets/Oculus/`** and remove **`LEXTING_FOUND_OCULUS_SDK`** auto-define for shipping Quest builds; **retain** **`OculusHandInput`** (rename optional) as the shared **XR Hands** gesture adapter — drop the **OVR skeleton** branch once no reference scene uses OVRCameraRig.
+3. **Adapter & input manager** — **rename** to **`OpenXRHandInput`**; wire **`OPEN_XR`** (attach adapter, **`InitHandEventBindings`** / generalize subscriptions); **migrate** manager to **one** head/hand Transform trio; set **`main_01_twozone`** to **`OPEN_XR`**.
+4. **Legacy deprecate (not delete)** — **OVR skeleton** + **`SimpleOculusHandInput`**: mark deprecated like Leap; keep **`#if LEXTING_FOUND_OCULUS_SDK`** for Standalone/monolith reference only. No embedded **`Assets/Oculus/`** in package. **`QUEST_*`** enum retained until M5.
 5. **Validation & docs** — Milestone 1 checklist on device; ADR + optional README platform section update.
+6. **Leap → template** — **`[Obsolete]`** + ensure Quest APK excludes Leap (**`#if`**, **comment out whole classes** if needed); ADR template section (done).
+7. [x] **Release** — plugin **`0.3.0`**, greenfield APK build **005** → **`Releases/tutorial_demo.apk`**, **`gh release v0.3.0`** after smoke.
 
-**Exit criterion:** Quest 2 demo runs on **OpenXR**, refreshed UPM XR packages, single **package** in git, with a written map from runtime → adapter → **`SpatialGestureInput`** → typing UI.
+**Exit criterion:** Greenfield Quest smoke on **`OPEN_XR`** + **`OpenXRHandInput`**; map in ADR; **`0.3.0`** published. Full **028** parity and **`QUEST_*` removal** deferred to post-smoke QA and **M5**.
 
-**Schedule note:** If full OpenXR cutover cannot finish before **11/15**, Milestone 4 may ship on a **documented interim** stack (e.g. Unity 6 + temporary OVR adapter)—only with explicit ADR approval; default goal is OpenXR-primary for `0.5.0`.
+**Schedule note:** If full OpenXR cutover cannot finish before **11/15**, Milestone 4 may ship on a **documented interim** stack (e.g. Unity 6 + temporary OVR adapter)—only with explicit ADR approval; default goal is OpenXR-primary for `0.3.0`.
 
 ---
 
 ## Milestone 4 — Meta Start delivery (polish mode)
 
-**Target version:** `1.0.0`  
+**Target version:** `0.4.0` (**beta** — Meta Start submission; not `1.0.0`)  
 **Goal:** Competition-ready experience: **stable demo**, **clear onboarding**, **3-minute video**, optional **training/gamification** if schedule allows.
 
 **Polish mode starts:** **2026-11-15**  
@@ -269,7 +288,7 @@ Refresh and document versions together (plugin `package.json` **dependencies** +
 - [ ] **Demo script** — timed flow (~3 min) covering: problem → dual-volume typing → word finalize/conjugate → one hotkey → output destination; rehearsed on Quest 2.
 - [ ] **Capture** — 3-minute video recorded (resolution/aspect per Meta Start rules); B-roll and fallback clips if live hand tracking fails.
 - [ ] **Tutorial** — `TutorialManager` flow improved for first-time judges/users (copy, pacing, skip/restart, failure recovery); aligned with demo script beats.
-- [ ] **Build label** — `1.0.0` Quest APK as **`Lexting_Unity_Plugin/Releases/tutorial_demo.apk`** (greenfield host + package); matches video; **`Releases/README.md`** updated; GitHub Release attachment; changelog blurb for submission.
+- [ ] **Build label** — **`0.4.0`** Quest APK (beta) as **`Lexting_Unity_Plugin/Releases/tutorial_demo.apk`** (greenfield host + package); matches video; **`Releases/README.md`** updated; GitHub Release attachment; changelog blurb for submission (label as beta in store/metadata as required).
 - [ ] **Known issues** — one-page list (environment lighting, dictionary size, PC keyboard mode out of scope, etc.).
 
 ### Skeletal workstreams (priority order)
@@ -286,12 +305,14 @@ Refresh and document versions together (plugin `package.json` **dependencies** +
 
 ## Milestone 5 — Lexting Setup Wizard (integrator DX)
 
-**Target version:** `1.1.0`  
+**Target version:** `0.5.0`  
 **Goal:** Third-party devs open **their** scene, run one **Lexting** menu command, and get a working Lexting stack without hand-wiring XR anchors or hunting prefabs. When automation cannot succeed, the tool reports **actionable validation errors and warnings** (Console + optional dialog / report window)—not silent failure.
 
 **Suggested window:** **After Milestone 4** (post–Meta Start); not on the **11/19** critical path unless schedule allows a thin MVP.
 
-**Prerequisite:** Milestone 2 plugin layout (Runtime + **Editor** asmdef), Milestone 3 OpenXR path preferred for default setup logic (legacy `QUEST_*` may remain as detected/fallback with warnings).
+**Prerequisite:** Milestone 2 plugin layout (Runtime + **Editor** asmdef), Milestone 3 **`OpenXRHandInput`** + **`OPEN_XR`** reference scene.
+
+**Input mode (M5):** Setup wizard **only offers `OPEN_XR`** for XR hand tracking (Meta Quest, Steam Frame, etc.—any OpenXR-conformant host). **`QUEST_*` modes removed from wizard UI** and **collapsed/removed from `InputMode` enum** in M5; until then M3/M4 use **`OPEN_XR`** in reference scene while obsolete **`QUEST_*`** values remain for serialized compatibility.
 
 ### Product shape
 
@@ -299,7 +320,7 @@ Refresh and document versions together (plugin `package.json` **dependencies** +
 |---------|----------|
 | **Menu: Lexting → Setup Scene…** | Operates on the **active scene** (saved or dirty). Idempotent where possible: re-run updates wiring instead of duplicating `[INPUTS]` / duplicate rigs. |
 | **Menu: Lexting → Validate Scene** *(optional split)* | Read-only pass; same rules as setup validation without mutating hierarchy. |
-| **Auto setup (best effort)** | **Prerequisite:** integrator scene already has an **XR player rig** (documented in README). Discover or create: **`[INPUTS]`** + **`LextingInputModuleManager`** (blessed **`InputMode.OPEN_XR`** when XR stack supports it); bind **head / left hand / right hand** **Transform** references from **`XROrigin`** / XRI rig (**error** if no rig). **Do not** parent the dual-volume widget into the saved scene—widget comes from package prefabs at **runtime** (bootstrap wired by wizard via serialized config on **`[INPUTS]`** / manager; details in **`setup_wizard.md`**, not README Getting Started). Integrators never author the widget in **`Assets/`**. |
+| **Auto setup (best effort)** | **Prerequisite:** integrator scene already has an **XR player rig** (OpenXR loader configured). Discover or create: **`[INPUTS]`** + **`LextingInputModuleManager`** with **`InputMode.OPEN_XR`** (including Meta/Oculus-branded XRRig prefabs—OpenXR session, not **`QUEST_*`**). Bind **head / left / right hand** from **`XROrigin`** / XRI (**error** if no rig). **Do not** parent the dual-volume widget into the saved scene—runtime bootstrap only. **No `QUEST_*` in wizard mode list (M5).** |
 | **Manual integrator hooks (unchanged)** | **`ZoneFieldOutputReceiver`** / **`ZoneTextOutputReceiver`** on each output target—integrator **enables/disables the receiver component** (or GameObject) to choose which field or label is live; see **Widget & output lifecycle** below. No automatic **`InputField`** focus wiring ( **`Text`** has no focus callbacks). |
 
 ### Widget & output lifecycle (integrator UX — ship in M5)
@@ -358,7 +379,7 @@ Integrator picks one mode via **`LextingInputModuleManager`** (enum or bool pair
 
 **Warnings (scene may run; fix recommended):**
 
-- Legacy **`QUEST_*`** mode or embedded Oculus Integration detected while OpenXR-first is recommended.
+- Legacy **`QUEST_*`** mode still set on **`[INPUTS]`** (wizard should set **`OPEN_XR`**); embedded **`Assets/Oculus/`** Integration detected.
 - **`InputField`** / UI text targets present without **`ZoneFieldOutputReceiver`**.
 - Multiple XR rigs in scene; wizard bound the first match—user should confirm.
 - Tutorial / demo-only objects in a production integrator scene.
@@ -389,7 +410,7 @@ Validation output should name **GameObject paths**, **component types**, and **f
 6. **Docs & README** — wizard-first narrative + widget lifecycle + receiver enable/disable pattern (**Getting Started** update **only when M5 ships**).
 7. **Passthrough networking (NGO)** — Netcode host/client + keystroke relay for **`QUEST_*_PASSTHROUGH`**; reference scene wiring; align with or supersede README UDP Streaming Service alpha.
 
-### Stretch goal (same milestone, not required for `1.1.0` exit)
+### Stretch goal (same milestone, not required for `0.5.0` exit)
 
 **OpenXR-direct poses — no rig Transform wiring on the integrator’s player controller.**
 
@@ -425,14 +446,16 @@ Assuming **OpenXR** as the runtime, it should be feasible for Lexting to **poll 
 | **11/08 – 11/12** | Milestone 2 — single Unity package; retire monolith |
 | **11/10 – 11/14** | Milestone 3 — UPM XR refresh, OpenXR Quest path (plugin + local host) |
 | **11/12 – 11/14** | Milestone 4 prep — demo outline, tutorial notes, capture dry runs |
-| **11/15 – 11/19** | **Polish mode** — video, tutorial lock, submission build `1.0.0` |
-| **Post–11/19** | **Milestone 5** — Lexting Setup Wizard (`1.1.0`); integrator menu + validation |
+| **11/15 – 11/19** | **Polish mode** — video, tutorial lock, submission build **`0.4.0` beta** |
+| **Post–11/19** | **Milestone 5** — Lexting Setup Wizard (`0.5.0`); integrator menu + validation |
 
 *Calendar is aggressive:* if Milestone 2 slips, compress XR work (Milestone 3) to what is required for the demo path only, or ship Meta Start from a **thin** sample while finishing plugin extraction on a branch. **Milestone 5 is explicitly last** and does not block Meta Start submission.
 
 ---
 
-## Post–1.0.0 (after Milestone 5)
+## After roadmap milestones (future stable `1.0.0`)
+
+Work below is **out of scope** for Milestones 1–5 (`0.1.0`–`0.5.0` beta). **`1.0.0`** means a later **stable / GA** SDK—not Meta Start submission.
 
 - Publish plugin to a registry (OpenUPM / Git URL) instead of `file:` only.
 - Harden **Lexting OpenXR SDK** boundary inside the plugin (input adapter surface).
@@ -440,7 +463,7 @@ Assuming **OpenXR** as the runtime, it should be feasible for Lexting to **poll 
 - Evaluate **Surge** replacement (DOTween, Unity animations, or minimal custom tweens).
 - Unreal reference host, additional OEM runtimes from [README platform table](../README.md#platform-strategy).
 
-*(Integrator scene setup is **in scope** as **Milestone 5**, not an open-ended post-1.0 item.)*
+*(Integrator scene setup is **in scope** as **Milestone 5**, not an open-ended post-roadmap item.)*
 
 ---
 
@@ -460,6 +483,9 @@ Assuming **OpenXR** as the runtime, it should be feasible for Lexting to **poll 
 | 2026-11-01 | M5 stretch: OpenXR poses | **Optional:** poll head/hand from **OpenXR session** (XR Hands / extensions) so integrators need **no** Lexting **Transform** wiring on their player controller; baseline M5 still rig-bind via wizard; README unchanged until stretch ships. |
 | 2026-11-02 | Quest QA workflow | `bugs/QA/QA-<build>-*.md` naming, per-bug Description/Status blocks, carry-forward + `qa_close_session.ps1`; install script warns if QA Enter skipped. |
 | 2026-11-02 | Device fixes (M1) | Hover label tint (`LetterSwitcher`); center hover stuck (`HandCursor` threshold exit); compile fixes for player build (`OculusHandInput` / serialization). Verified through **`lexting_028.apk`**. |
+| 2026-11-04 | Milestone version map | **Sequential 0.x beta:** M3 **`0.3.0`**, M4 Meta Start **`0.4.0`**, M5 wizard **`0.5.0`**. **`1.0.0`** reserved for post-roadmap stable/GA—not Meta Start. (Earlier plan used M3=`0.5.0`, M4=`1.0.0` to mirror “launch” semver.) |
+| 2026-11-04 | M3 Leap scope | **Deprecate, do not delete** in-package Leap adapter/marker code; keep as **reference template** for future hand-tracking SDKs; Quest shipping excludes Leap via defines. |
+| 2026-11-04 | M3 go-ahead | **`OPEN_XR`** + **`OpenXRHandInput`**; single Transform trio; **`QUEST_*` until M5**; smoke exit + **`v0.3.0`** release; README badge only; Leap/OVR **deprecated not deleted**; Leap off APK via **`#if`** + comment-out classes if needed. |
 | 2026-11-03 | M5 widget & output lifecycle | Hidden/disabled widget bootstrap (scene load vs first receiver **`OnEnable`**) toggle on **`LextingInputModuleManager`**; show/hide API; integrators **manually enable/disable** output receivers per focus—no **`InputField`** auto-focus in SDK. README Getting Started updated when M5 ships. |
 | 2026-11-03 | M5 passthrough / Netcode | Replace MLAPI **`LextingNetworkManager`** stack with **Unity Netcode for GameObjects** for **`QUEST_*_PASSTHROUGH`** PC typing; **migrate archived PC server** into delivery; keep **`Lexting_Unity`** monolith until NGO port references old **`Streaming/MLAPI/`**; removing scene **`LextingNetworkManager`** is safe (no active code refs). |
 | | | |

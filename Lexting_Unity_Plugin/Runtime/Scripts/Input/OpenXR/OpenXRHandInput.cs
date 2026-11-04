@@ -30,7 +30,8 @@ using UnityEngine.XR.Hands;
 
 namespace SpatialGestureText.Input
 {
-    public class OculusHandInput : Singleton<OculusHandInput>
+    /// <summary>OpenXR / Unity XR Hands adapter for tracked-hand gesture input (Quest, PC VR, etc.).</summary>
+    public class OpenXRHandInput : Singleton<OpenXRHandInput>
     {
 
 
@@ -364,7 +365,7 @@ namespace SpatialGestureText.Input
         private void Awake()
         {
             BindHandNodes(() => {
-                Lexting.input.InitOculusEventBindings();
+                Lexting.input.InitXrHandEventBindings();
                 InitGestureRecognizers();
                 InitTrackingStatusChecker();
                 inputActive = true;
@@ -391,19 +392,19 @@ namespace SpatialGestureText.Input
         {
 #if LEXTING_FOUND_OCULUS_SDK
 #if UNITY_ANDROID
-            QuestHandLog.Info("[OculusHandInput] Android bind: OpenXR XR Hands first, OVR fallback second.");
+            QuestHandLog.Info("[OpenXRHandInput] Android bind: OpenXR XR Hands first, OVR fallback second.");
             this.Wait(() => UnityXRHandSkeletonsReady(), () =>
             {
                 if (!BindUnityXRHandNodes())
                 {
-                    QuestHandLog.Warn("[OculusHandInput] XR Hands bind failed after visualizer ready.");
+                    QuestHandLog.Warn("[OpenXRHandInput] XR Hands bind failed after visualizer ready.");
                     return;
                 }
 
                 _handNodeBindingMode = HandNodeBindingMode.UnityXRHands;
                 QuestHandBindingState.SetUnityXRHands();
                 QuestHandLog.Info(
-                    $"[OculusHandInput] XR Hands bound palm={QuestHandPalmNormal.DefaultSource}");
+                    $"[OpenXRHandInput] XR Hands bound palm={QuestHandPalmNormal.DefaultSource}");
                 SyncXrHandInputActiveFromSubsystem();
                 callback?.I();
             });
@@ -412,14 +413,14 @@ namespace SpatialGestureText.Input
                 if (_handNodeBindingMode != HandNodeBindingMode.Unbound)
                     return;
 
-                QuestHandLog.Warn("[OculusHandInput] Trying OVR skeleton fallback after XR Hands timeout.");
+                QuestHandLog.Warn("[OpenXRHandInput] Trying OVR skeleton fallback after XR Hands timeout.");
                 QuestOvrHandRigSpawner.EnsureUnderAnchors(Lexting.input.leftHand.wrist, Lexting.input.rightHand.wrist);
             });
             this.Wait(() => _handNodeBindingMode == HandNodeBindingMode.Unbound && TryBindOvrHandNodes(), () =>
             {
                 _handNodeBindingMode = HandNodeBindingMode.OvrLegacy;
                 QuestHandBindingState.SetOvrLegacy();
-                QuestHandLog.Info("[OculusHandInput] Hand nodes bound via OVR skeleton fallback.");
+                QuestHandLog.Info("[OpenXRHandInput] Hand nodes bound via OVR skeleton fallback.");
                 callback?.I();
             });
             return;
@@ -428,7 +429,7 @@ namespace SpatialGestureText.Input
             {
                 _handNodeBindingMode = HandNodeBindingMode.OvrLegacy;
                 QuestHandBindingState.SetOvrLegacy();
-                Debug.Log("[OculusHandInput] Hand nodes bound via OVR skeleton under hand anchors.");
+                Debug.Log("[OpenXRHandInput] Hand nodes bound via OVR skeleton under hand anchors.");
                 callback?.I();
                 return;
             }
@@ -437,13 +438,13 @@ namespace SpatialGestureText.Input
             {
                 if (!BindUnityXRHandNodes())
                 {
-                    Debug.LogError("[OculusHandInput] Could not bind hand nodes. Use OVRSkeleton under hand anchors, or XRRig with HandVisualizer + XR Hand subsystem.");
+                    Debug.LogError("[OpenXRHandInput] Could not bind hand nodes. Use OVRSkeleton under hand anchors, or XRRig with HandVisualizer + XR Hand subsystem.");
                     return;
                 }
 
                 _handNodeBindingMode = HandNodeBindingMode.UnityXRHands;
                 QuestHandBindingState.SetUnityXRHands();
-                Debug.Log("[OculusHandInput] Hand nodes bound via Unity XR Hands (XRRig + HandVisualizer).");
+                Debug.Log("[OpenXRHandInput] Hand nodes bound via Unity XR Hands (XRRig + HandVisualizer).");
                 callback?.I();
             });
         }
@@ -1323,7 +1324,7 @@ namespace SpatialGestureText.Input
         //                if (currentRightHandGestureState != previousRightState)
         //                {
         //                    RightStateChanged.I(currentRightHandGestureState, previousRightState);
-        //                    Debug.Log("OculusHandInput: RightStateChange invoked - newState: " + newState + " previousState: " + previousRightState);
+        //                    Debug.Log("OpenXRHandInput: RightStateChange invoked - newState: " + newState + " previousState: " + previousRightState);
         //                }    
         //            }
         //            else {
@@ -1331,7 +1332,7 @@ namespace SpatialGestureText.Input
         //                if (currentLeftHandGestureState != previousLeftState)
         //                {
         //                    LeftStateChanged.I(currentLeftHandGestureState, previousLeftState);
-        //                    Debug.Log("OculusHandInput: LeftStateChange invoked - newState: " + newState + " previousState: " + previousLeftState);
+        //                    Debug.Log("OpenXRHandInput: LeftStateChange invoked - newState: " + newState + " previousState: " + previousLeftState);
         //                }
 
         //            }

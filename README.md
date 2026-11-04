@@ -3,9 +3,7 @@
 
 [![OpenXR](https://img.shields.io/badge/OpenXR-00897B.svg)](https://www.khronos.org/openxr/)
 [![Unity](https://img.shields.io/badge/Unity-6000.0.60f1-black.svg)](Lexting_Unity/ProjectSettings/ProjectVersion.txt)
-[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](docs/implementation_plan.md)
-
-**Current milestone:** [`0.2.0`](docs/implementation_plan.md) — Unity plugin packaging (Milestone 2). Quest 2 typing parity is signed off on **`0.1.0`** / build **028**. **`Lexting_Unity_Plugin/`** is the installable SDK; **`Lexting_Unity/`** remains as a legacy maintainer host until you retire it locally.
+[![Version](https://img.shields.io/badge/version-0.3.0-blue.svg)](docs/implementation_plan.md)
 
 ![Lexting matrix palm control — dual-hand typing volumes](images/header.png)
 
@@ -35,7 +33,7 @@ Lexting is a rapid volumetric isotropic **hands-first XR text entry** system wit
 5. Release one hold of two to begin Finalization. **Finalize** the root word in the left hand volume, **conjugate** with dual-hand wrist orientations, and **punctuate** from the right-hand **volume**.
 6. **Emit** text to subscribed `InputField` / `Text` components, or synthesize **Windows keyboard** input when running in PC passthrough / keyboard-replacement modes.
 
-The primary reference implementation is the **dual-volume typing widget** (`TwoZoneCubeController`). Several layouts of various node counts, matrix types, and letter positions were tried and then deprecated in favor of this 2x2x2 matrix for each hand.
+The finalized reference implementation is the **dual-volume 2x2x2 typing widget** (`TwoZoneCubeController`). Several layouts of various node counts, matrix types, and letter positions were tried and then deprecated in favor of this 2x2x2 matrix for each hand.
 
 </details>
 </blockquote>
@@ -50,56 +48,58 @@ The primary reference implementation is the **dual-volume typing widget** (`TwoZ
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">The Point of Inception</span></summary>
 
-Lexting was invented in January 2020 by AJ Campbell (scifiuiguy on GitHub). It was originally born out of his attempt to build a 3D visual programming language called Atomic. In the first week of developing Atomic, it became very clear that an iconographic node-based 3D programming language (a 3D VPL) was going to need lots of text entry capability despite wanting to turn all text-based code into 3D clusters of simple geometry. 3D VPLs are a primary use case for XR 2.0. They will feature complex floating clusters of synapse-like content in 3D space that require a user to engage while standing up in an open space without a desktop in the way. This use case exposed the pitfalls of slow QWERTY XR text entry like no other.
+Lexting was invented in January 2020 by AJ Campbell (scifiuiguy on GitHub). It was originally born out of his attempt to build a 3D visual programming language called Atomic. In the first week of developing Atomic, it became very clear that an iconographic node-based 3D programming language (a 3D VPL) was going to need a lot of text entry capability despite trying to turn all text-based code into 3D clusters of simple geometry, especially regarding value assingment for string variables. Like many other structures that form complex clusters in 3D, the Atomic project exposed the need a new kind of XR interface. 3D VPLs will feature synapse-like content throughout the field, requiring a user to engage with complex groups of 3D objects all at once while standing up in an open roomscale space without a desktop in the way. This use case laid bare the weakness of floating QWERTY, and of the entire raycast+WIMP paradigm.
 
 </details>
 
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Floating QWERTY, A Familiar Problem</span></summary>
 
-Having worked at Magic Leap, AJ was very familiar with how poorly floating QWERTY keyboards perform in spatial computing in general. He struggled with the jank of floating QWERTY for years, building multiple QWERTY alternatives along the way. No previous prototypes felt competitive with physical QWERTY, but AJ knew SOMETHING was out there, some overlooked idea that would unlock competitive typing speed. In the years since he brainstormed Lexting, he has come to understand through a habit of binge-reading ancient XR HCI research papers that the overlooked idea is clear in retrospect: **volumetric isotropic interface design**. AJ believes isotropic interfaces will largely replace today's "modern" XR interfaces (all based on **raycast perspective projection**). Isotropic interfaces hold all the keys that explain why Lexting is awesome, and MUCH faster than floating QWERTY.
+Having worked at Magic Leap, AJ was familiar with how poorly floating QWERTY keyboards perform in spatial computing. He struggled with floating QWERTY jank for years, building multiple typing alternatives along the way. No previous prototypes felt competitive with physical QWERTY, but AJ knew **SOMETHING** was out there in the ether, some overlooked idea that would unlock competitive typing speed via 6DOF hand tracking. When he had the spark of the idea for Lexting, he had no idea it would change his entire view on XR interface design, but that change in mindset is crucial for everyone to prepare for the faster throughput XR needs to compete with desktop computers across the board.
 
 </details>
 
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">XR 1.0 Interfaces</span></summary>
 
-AJ finds **raycasting** useful solely as a backwards compatibility tool for 2D legacy app support in XR. Most of his modern interface design work features **volumetric isotropic elements** instead of raycast cursors on flat planes. AJ believes **raycast cursors on flat-surface-based WIMP metaphors** are the key design choices that will make XR 1.0 interfaces look incredibly dated in a few years as they are largely replaced by **rapid-speed volumetric isotropic interfaces in XR 2.0**.
+AJ finds **raycasting** useful solely as a backwards compatibility tool for 2D legacy app support in XR. Most of his modern interface design work is inspired by the Lexting project to now feature **volumetric isotropic elements** instead of raycast cursors on flat planes. AJ believes **raycast cursors on flat-surface-based WIMP metaphors** are the key poor design choice that will make XR 1.0 interfaces look incredibly dated in a few years as they are replaced by **rapid-throughput volumetric isotropic interfaces in XR 2.0**.
 
 </details>
 
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Lexting was the First 3D Isotropic Text Entry Solution</span></summary>
 
-Lexting was the first fully volumetric isotropic interface AJ ever designed. The idea is not new, but it **IS** a forgotten art. Volumetric isotropic techniques were quite popular in 1990s XR HCI research, but Academia moved away from them under certain false assumptions that constraining control to X and Y were better/faster/easier, and industry took their lead and built raycast+WIMP into the core of every OS. The enitre XR community (both Academia and Industry) went **down the raycast+WIMP rabbit hole**, and Lexting is the prime example as to why **it was the wrong rabbit hole**.
+Lexting was the first fully volumetric isotropic interface AJ ever designed. The idea is not new, but it **IS** a forgotten art. Volumetric isotropic techniques were popular in 1990s XR HCI research, but they fell out of fashion before XR achieved consumer-friendliness and were forgotten by the industry. Certain false assumptions led to every HMD OEM constraining control to X and Y with raycast+WIMP in every OS interface, and then application developers took their lead. We all built raycast+WIMP into the core of almost all XR interfaces. The enitre community (Academia and Industry) went **down the raycast+WIMP rabbit hole**. Lexting is a prime example to show why **it was the wrong rabbit hole**.
 
 </details>
 
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Highest-Throughput Need = 1st Domino to Fall</span></summary>
 
-Text entry is THE quintessential use case for which throughput is most needed. The XR industry as a whole used raycast+WIMP to put up the floating QWERTY UI as the champion interface. By happenstance, AJ stumbled upon forgotten volumetric isotropic techniques and used them to put up Lexting, which absolutely destroys floating QWERTY on throughout. This is just one early example of how EVERY raycast+WIMP UI will eventually be destroyed by volumetric isotropic equivalents in apples-to-apples throughput competition, hence the inevitable transition from XR 1.0 to XR 2.0.
+Text entry is the quintessential use case for which throughput is most needed. The XR industry put floating QWERTY UIs up as the champion interface. AJ stumbled upon long-forgotten isotropic techniques from 90s Academia without realizing it when he created Lexting. The isotropic nature of the UI is the ingredient that absolutely destroys raycast+WIMP UIs on throughout. Floating QWERTY vs. Lexting is just one early example of how EVERY raycast+WIMP UI will eventually be trounced by isotropic equivalents in apples-to-apples throughput competition, hence the inevitable transition to XR 2.0 interfaces.
 
 </details>
 
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">We Can't Do The Greatest Things in XR Without Higher Throughput</span></summary>
 
-With 3D VPLs and other complex data visualization tools on the horizon, there was no way to put up with slow interfaces anymore, especially slow text entry. Floating QWERTY would ruin the purpose of any fast-paced node-based 3D VPL, and the same is true of any 3D situation in which large clusters of individual pieces of content or data must be arranged and controlled rapidly. XR 2.0 will have a lot more data cluster management capability because newer interfaces will enable that higher level of 3D throughput for the first time. But the cart can't come before the horse. That's why AJ sidelined the entire Atomic project to solve the QWERTY problem instead. Little did AJ know COVID was about to hit the world like a bomb, leaving an opening for Lexting to take over his every waking thought for the following two years.
+3D VPLs and other complex data visualization tools require a better interface than raycast+WIMP. Floating QWERTY and any raycast-based UI will ruin the flow of any fast-paced enterprise system that contains dozens-to-thousands of interactable items per field. XR 2.0 will bring **data cluster management capability** because newer interfaces will enable the prerequisite higher level of throughput. 
+
+But the cart can't come before the horse. That's why AJ sidelined the Atomic project years ago to solve the QWERTY problem instead. Little did AJ know COVID was about to hit the world like a bomb, leaving an opening for Lexting to take over his every waking thought for two years.
 
 </details>
 
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">All For Nothing?</span></summary>
 
-Unfortunately, after two years of changing the layout over and over until it felt perfect, COVID had sent the entire XR industry running for the hills. It felt as though very few people were interested in trying the private beta once it was finally approaching a stable state. The disinterest was a wild contrast to the fervor of the 20-teens, but AJ assumed the XR market would roar back one day, as it always has in past cycles. He decided to shelve Lexting until that day felt closer.
+Unfortunately, after two years of changing the layout over and over until it felt perfect, COVID had sent the entire XR industry running for the hills. It felt as though very few people were interested in trying the private beta once it was finally approaching a stable state. The disinterest was a wild contrast to the fervor of the 20-teens, but AJ assumed the XR market would roar to life back one day, as it always has in past cycles. He decided to shelve Lexting until that day felt closer.
 
 </details>
 
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Are We There Yet?</span></summary>
 
-The next XR hype cycle feels closer now in 2026. We have world-meshing HMDs that are **ALMOST sunglasses form factor** now, whispers of **XR app multitasking** on the horizon (an absolute necessity for XR adoption in offices), and **containerization** has taken the cloud by storm, unlocking edge compute bottlenecks. The ingredients are in place for XR 2.0. Now we just need a wicked-fast 3D text entry solution. A wicked-fast OS UI couldn't hurt either (see 3OS). AJ told a few people he'd open-source Lexting eventually, since there were dozens who expressed interest without any marketing. Q4 2026 is finally the time to get back on it. Let's do this!
+The next XR hype cycle feels closer now in 2026. We have world-meshing HMDs that are **almost sunglasses form factor** now, whispers of **XR app multitasking** on the horizon (an absolute necessity for XR adoption in offices), and **containerization** has taken the cloud by storm, unlocking edge compute bottlenecks. The technical ingredients are lining up for XR 2.0. Now we just need wicked-fast throughput in all of our UIs. AJ told a few people he'd open-source Lexting one day, since there were dozens who expressed interest without any marketing. In Q4 2026, it's finally time. Let's do this!
 
 </details>
 
@@ -116,21 +116,21 @@ The next XR hype cycle feels closer now in 2026. We have world-meshing HMDs that
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Warm Up: Breathe In The Nature of Your Arm's Flexing Capabilities</span></summary>
 
-The elbows should always be near the ribs, but not tucked or pressed into the body. Just like the hundreds of drum students AJ taught when he was in college, he encourages anyone using Lexting to start by rolling those shoulders out and shaking those elbows loose so you can feel them flopping lifelessly. That looseness is how they should stay. Hold on to that relaxation as you put your hands into starting position. It's scientifically proven that we all flex a whole bunch of our muscles for no reason whenever we try something new, so it's best to start each Lexting session with a quick reminder to shake all of that tension out before you begin. Every shoulder muscle should be ready for bed through the whole session. Only a tiny flex of the biceps is needed to bring hands up into starting pose.
+The elbows should always be near the ribs, but not tucked or pressed into the body. Just like the hundreds of drum students AJ taught when he was in college, he encourages anyone using Lexting to start by rolling those shoulders out and shaking those elbows loose so you can feel them flopping lifelessly. That looseness is how the elbows should stay. Hold on to that relaxation as you put your hands into starting position. It's scientifically proven that we all flex a whole bunch of our muscles for no reason whenever we try something new, so it's best to start each Lexting session with a quick reminder to shake all of that tension out before you begin. Every shoulder muscle should be ready for bed through the entire session. Just remember: floppy elbows are good. Only a tiny flex of the biceps is needed to bring hands up into starting pose.
 
 </details>
 
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Starting Pose</span></summary>
 
-The starting pose is elbows completely neutral, and the elbows are never meant to move more than three inches forward or three inches back during Lexting use, for a total z-depth range of 6". Neutral elbow should put cursors directly into the center core of each hande node in the UI. If not, then the UI or the body needs to adjust. Elbow never moves laterlaly away from the ribs, only forward and backward. Lateral elbow motion flexes the deltoid (shoulder cap) for absolutely no reason.
+The starting pose is elbows completely neutral, and the elbows are never meant to move more than three inches forward or three inches back during Lexting use, for a total z-depth range of 6". Neutral elbow should put cursors directly into the center core of each hande node in the UI. If not, then the UI or the body needs to adjust. The default body-relative position of the UI will be customizable to suit each user's preferences in a future version of Lexting, but for now the body offset is globally set per-application. The elbow never moves laterally away from the ribs, only forward and backward. Lateral elbow motion flexes the deltoid (shoulder cap) for absolutely no reason.
 
 </details>
 
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Starting Hands</span></summary>
 
-From neutral elbows, you point both wrists and all fingers out straight ahead, palms facing each other. This palms-sideways position is the absolute most relaxed/unflexed position for your ulnar wrist muscles, which is important for Lexting, since you twist the wrists for activating modes.
+From neutral elbows, you point both wrists and all fingers out straight ahead, palms facing each other. This palms-sideways position is the absolute most relaxed/unflexed position for your ulnar wrist muscles, which is important for Lexting, since you twist the wrists to activate modes.
 
 </details>
 
@@ -235,7 +235,11 @@ Conjugation and punctuation are **first-class gestures** (wrist pose + right-han
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Lexting Knows Its Niche</span></summary>
 
-Lexting is **not** claiming QWERTY is useless in XR. The author assumes QWERTY will remain king as long as there is a flat desktop available on which to place the physical hardware. The author of Lexting also finds projected virtual QWERTY to be an interesting solution, although it seems like a vast majority of its use cases are better served by a physical QWERTY since both require a desktop. The author of Lexting imagines a future for most offices where rolling standing desks enable everyone to bring a physical QWERTY keyboard anywhere in the room while engaging with volumetric content. However, sometimes even a small rolling desk will feel "in-the-way." There must be a way to continue typing rapidly in mid-air. Lexting is the way. If it gains only 20 million power users by 2080, it will have grown faster than QWERTY did. By then, who knows if we have ANY 2D screens? Will QWERTY still be around? If not, how text without Lexting?
+Lexting does **not** claim physical QWERTY is useless in XR. AJ assumes physical QWERTY will remain king as long as there is a flat desktop available on which to place the physical keyboard. That said, since Lexting Word Mode requires (at most) one small wrist rotation plus one finger gesture per word with no physical backstops causing impact micro-traumas, Lexting is theoretically much ergonomically safer than physical QWERTY despite having competitive speed. That doesn't mean everyone will switch overnight, but it MIGHT mean that it would be healthier for their bodies to do so.
+
+AJ also finds projected virtual QWERTY (tabletop QWERTY without the physical keys) to be an interesting solution as well, although it seems like a vast majority of its use cases are better served by physical QWERTY since both require a desktop. The author of Lexting imagines a future for most offices where rolling standing desks enable everyone to bring a physical QWERTY keyboard anywhere in the room while engaging with volumetric content.
+
+Sometimes, even a small rolling desk will feel "in-the-way." There must be a way to continue typing rapidly in mid-air. AJ considers Floating QWERTY to be a poor interface that Lexting should replace entirely, and then it can be an optional alternative to the other QWERTY forms. If Lexting gains only 20 million power users by 2080, it will have grown faster than QWERTY did. By then, who knows if we'll still have 2D screens at all, let alone QWERTY keyboards? If everything has become 100% spatial by then, how text at all? Floating QWERTY only? Yikes. We need something better to replace floating QWERTY.
 
 </details>
 
@@ -627,8 +631,10 @@ For PC-side reception, install the Streaming Service on a PC on the same network
 <summary><b>🎮 Control Basics</b></summary>
 <hr style="border: 1px solid gray;">
 
+<blockquote>
 <details>
-<summary><b>Wrist Rotation States</b></summary>
+<summary><b>🖐️ Wrist Rotation States</b></summary>
+<hr style="border: 1px solid gray;">
 
 * **`relax`** — palm sideways
 * **`pronate`** — palm down
@@ -643,9 +649,14 @@ Rotation changes swap which character or command appears on each **node**. The r
 ![Lexting matrix palm control — dual-hand typing volumes](images/wrist_functions.png)
 
 </details>
+</blockquote>
 
+---
+
+<blockquote>
 <details>
-<summary><b>Hand Gesture States</b></summary>
+<summary><b>✊ Hand Gesture States</b></summary>
+<hr style="border: 1px solid gray;">
 
 | State | Description |
 |-------|-----------------------------------------------|
@@ -654,24 +665,67 @@ Rotation changes swap which character or command appears on each **node**. The r
 | `Drag` | Grab / Hold / Move from one node to another |
 
 </details>
+</blockquote>
 
+---
+
+<blockquote>
 <details>
-<summary><b>Hand Cursors</b></summary>
+<summary><b>🎯 Hand Cursors</b></summary>
+<hr style="border: 1px solid gray;">
 
-`HandCursor` tracks an offset point in front of each hand.
+`HandCursor` tracks an offset point in front of each hand. Lexting Hand Cursors are 100% isotropic, not perspective-projection-based, meaning they move 1-to-1 on X, Y, and Z in identical mapping rather than casting out of the hand like a laser pointer.
 
 ![Lexting Cursor Offset Diagram](images/Cursor_Offset_Diagram.png)
 
 </details>
+</blockquote>
 
+---
+
+<blockquote>
 <details>
-<summary><b>The Back-Word Gesture</b></summary>
+<summary><b>↩️ Back-word Gesture</b></summary>
+<hr style="border: 1px solid gray;">
 
 Touching the **opposite hand’s middle finger** to the base of the wrist activates **back-word**  A.K.A. it deletes all the way back to the previous space.
 
 ![Lexting Cursor Offset Diagram](images/backword_function_infographic.png)
 
 </details>
+</blockquote>
+
+---
+
+<blockquote>
+<details>
+<summary><b>↩️ Caret Control Gesture (TBD)</b></summary>
+<hr style="border: 1px solid gray;">
+
+The following is not implementated but planned for a future version of Lexting. Better Caret Control will allow Lexting to become not just a text entry system, but a rapid word processing system as well.
+
+Just as the Back-Word function is a Hotkey that also has a default hand gesture mapping for quicker access, the **Caret Control** will also have a **rapid-access hand gesture interface** in a future version of Lexting. Rather than use the Hotkey menu to toggle Caret Control on, you'll be able to take instant caret control using **Secondary-Pinch-Hold (middle finger to thumb) + Drag** in either hand. 
+
+The mapping will allow the caret to move to each position across an entire line of text with X hand motion where one line of 50-100 characters can be swept across ~8" of hand motion by default. Y hand motion will jump to newlines of text in a multiline block.
+
+By default, a **left-hand Secondary-Pinch-Tap-Quick-Release** will act identically to the **Back Arrow Key**, retreating the caret by one position. Likewise, the same from the right hand will advance the caret by one position like the **Right Arrow Key**. 
+
+**Supination (palm-up) + Secondary-Tap** will act as **Up Arrow Key**, jumping to the newline above. **Pronation (palm-down) + Secondary-Tap** will act as **Down Arrow Key**, jumping to the newline below. 
+
+**Secondary-Pinch-Hold-Drag** with either hand to the left or right will highlight the entire word immediately to the left or right of the caret, and futher drag will jump the highlight to the entire next word progressively. During this drag, pronation will change from full-word highlight to caret-placed-at-the-end-of-the-word. Supination will change from full-word to caret-placed-at-the-front-of-the-word.
+
+To highlight an entire passage, **Secondary-Pinch-Hold** in both hands at once, and drag either the left hand or the right hand. The left hand marks the beginning of the highlighted section and the right hand marks the end, so dragging with left allows highlight of entire text blocks before the caret and dragging with the right allows highlight of entire text blocks after the caret.
+
+To highlight every character on the current line before the caret all the way up to the position directly above the caret, **Secondary-Pinch-Hold** in one hand, and **Supinate + Secondary-Tap** in the other. To do the same for the characters ahead of the caret all the way to the newline position below, **Secondary-Pinch-Hold** in one hand, and **Pronate + Secondary-Tap** in the other.
+
+If you drag the caret to the middle of a word and then activate **Word Mode**, Lexting will jump the caret to the end of that word to insert a new word after it. This is true whether the caret has no highlight. If the caret is highlighting multiple characters when Word Mode activates, Lexting will delete the highlighted portion and prefix a space before the new word.
+
+By default, the **Back-Word gesture** deletes the entire word the caret currently marks no matter which character position it holds in that word, including deletion of the space following that word if there is one. To backspace-remove a single character instead, **Secondary-Pinch-Hold** with left and then 
+
+None of the gestures in this Caret Control section are mapped in the current version of Lexting. All are pending for the future.
+
+</details>
+</blockquote>
 
 </details>
 
@@ -683,20 +737,47 @@ Touching the **opposite hand’s middle finger** to the base of the wrist activa
 <summary><b>📁 Repository Layout</b></summary>
 <hr style="border: 1px solid gray;">
 
-| Path | Contents |
-|------|----------|
-| [`Lexting_Unity_Plugin/`](Lexting_Unity_Plugin/) | **Unity 6 UPM package** — runtime, editor, embedded UniRx/SimpleJSON/Surge/WindowsInput, reference scene **`Scenes/main_01_twozone`**, Quest demo APK path **`Releases/`** |
-| [`Lexting_Unity/`](Lexting_Unity/) | Legacy Unity **6** monolith (maintainer Quest host; optional until retired locally) |
-| [`docs/`](docs/) | Implementation plan, conjugation notes, bugs workflow |
-| [`images/`](images/) | README diagrams and assets |
+<blockquote>
+<details>
+<summary><b>📂 Package Folder Tree</b></summary>
 
-Package sources live under **`Lexting_Unity_Plugin/Runtime/`** (scripts, resources, prefabs). Host projects add **`com.unity.xr.*`** / OpenXR via their own `manifest.json` — not vendored inside the plugin.
+The Unity package in [`Lexting_Unity_Plugin/`](Lexting_Unity_Plugin/) is what you add to a host project. In the Editor it appears under **Packages → Lexting Spatial Gesture Text** (folder name follows the package id).
+
+```text
+Lexting_Unity_Plugin/
+├── package.json              UPM manifest (version, Unity minimum, XR/Input dependencies)
+├── README.md                 Short install notes for manifest.json
+├── ThirdPartyNotices.md      Licenses for embedded third-party source
+├── Runtime/                  Player assemblies and assets
+│   ├── Scripts/              Lexting C# (typing UI, dictionary, hotkeys, streaming hooks)
+│   │   ├── TwoZoneCube/      Dual-volume controllers, nodes, hand cursors
+│   │   ├── LetterCube/       Output manager, word assembly, UI receivers
+│   │   ├── Input/            Hand/XR adapters, LextingInputModuleManager
+│   │   ├── Hotkeys/          Dual-hand hotkey matrix
+│   │   ├── EnglishDictionaries/   Word JSON + LextingDictionary
+│   │   ├── Tutorial/         In-scene tutorial helpers
+│   │   ├── Streaming/        Windows UDP client (desktop passthrough experiments)
+│   │   └── ThirdParty/       SimpleJSON, Surge (Pixelplacement subset)
+│   ├── Prefabs/              XRRig, letter cubes, output canvases, widgets
+│   ├── Resources/            Runtime-loaded assets (macros, conjugation notes, etc.)
+│   ├── ThirdParty/           UniRx, WindowsInput, vendored XR Hands HandVisualizer (XRRig)
+│   └── (materials, shaders, fonts, audio, models, …)
+├── Editor/                   Inspector editors, Surge editor scripts, define-symbol postprocessor
+├── Scenes/
+│   └── main_01_twozone.unity Reference scene (+ baked lighting data alongside)
+└── Releases/                 Quest demo APK notes; download `tutorial_demo.apk` from GitHub Releases
+```
+
+Host projects install **OpenXR / Meta Quest / Input System** (and related XR packages) via **their** `Packages/manifest.json`. Those platform packages are declared as dependencies in the plugin’s `package.json` but are not copied into this tree.
+
+</details>
+</blockquote>
 
 ---
 
 <blockquote>
 <details>
-<summary><b>Core components (from scene Descriptor documentation)</b></summary>
+<summary><b>🧩 Core Components</b></summary>
 
 | Shortcut | Class | Role |
 |----------|--------|------|
@@ -726,7 +807,7 @@ Package sources live under **`Lexting_Unity_Plugin/Runtime/`** (scripts, resourc
 
 <blockquote>
 <details>
-<summary><b>Data flow (high level)</b></summary>
+<summary><b>🔀 Data Flow</b></summary>
 
 ```mermaid
 flowchart LR
@@ -750,14 +831,14 @@ flowchart LR
 <blockquote>
 <a id="scenes"></a>
 <details>
-<summary><b>🎬 Scenes</b></summary>
+<summary><b>🎬 Sample Scenes</b></summary>
 <hr style="border: 1px solid gray;">
+
+Lexting is designed to be integrated into your scenes via the Setup Wizard (file menu `Lexting->Setup`), but the following scene allows quick testing and comparison because Lexting is already preconfigured here.
 
 | Scene | Notes |
 |-------|--------|
 | `main_01_twozone.unity` | **Primary** reference scene (package: **`Lexting_Unity_Plugin/Scenes/`**) — dual-volume UI + in-scene Descriptor docs |
-
-Legacy test scenes remain only under **`Lexting_Unity/Assets/Lexting/_Scenes/`** in the monolith until that tree is retired.
 
 </details>
 </blockquote>
@@ -771,10 +852,22 @@ Legacy test scenes remain only under **`Lexting_Unity/Assets/Lexting/_Scenes/`**
 <summary><b>🚀 Getting Started</b></summary>
 <hr style="border: 1px solid gray;">
 
-Sideload the provided `tutorial_demo.apk` on Meta Quest to try Lexting directly. Find it in `Lexting_Unity_Plugin/Releases/tutorial_demo.apk`.
-
+<blockquote>
 <details>
-<summary><b>Install the Unity Package and Build Through Unity</b></summary>
+<summary><b>📲 Sideload Tutorial Demo</b></summary>
+<hr style="border: 1px solid gray;">
+
+Sideload the provided `tutorial_demo.apk` on Meta Quest to try Lexting directly. Find it in `Lexting_Unity_Plugin/Releases/tutorial_demo.apk` or on the repo’s [GitHub Releases](https://github.com/scifiuiguy/Lexting/releases) page.
+
+</details>
+</blockquote>
+
+---
+
+<blockquote>
+<details>
+<summary><b>📦 Install the Unity Package and Build</b></summary>
+<hr style="border: 1px solid gray;">
 
 1. Install **Unity 6** LTS or higher and open **`Lexting_Unity/`**.
 3. Add **`Lexting_Unity_Plugin`** to **`Packages/manifest.json`** or use the file menu option `Window -> Package Manager -> + Dropdown -> Install package from git URL -> paste "git@github.com:scifiuiguy/Lexting.git"`.
@@ -786,9 +879,14 @@ Sideload the provided `tutorial_demo.apk` on Meta Quest to try Lexting directly.
 9. **File → Build Settings → Android** (main_01_twozone enabled); build, and sideload or Build And Run if you have a live link to Unity.
 
 </details>
+</blockquote>
 
+---
+
+<blockquote>
 <details>
-<summary><b>Subscribe to Lexting output in code (optional)</b></summary>
+<summary><b>🔌 Subscribe to Lexting output in code (optional)</b></summary>
+<hr style="border: 1px solid gray;">
 
 Call **`this.GetLextingOutput`** (all events) or **`this.Subscribe`** (one event) in **`Awake`** on any `MonoBehaviour` to receive text output from Lexting. Call these Lexting output subscriptions in **`Awake`**, not in `OnEnable`, not in `Start`, and definitely not in `Update`. You do not need to unsubscribe to these. Lexting event objects self-sub and self-unsub during OnEnable and OnDisable in the background. Call once in Awake to activate the entire Sub/Unsub workflow.
 
@@ -830,6 +928,7 @@ void Awake()
 ```
 
 </details>
+</blockquote>
 
 </details>
 

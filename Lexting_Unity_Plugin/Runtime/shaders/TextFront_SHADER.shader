@@ -7,10 +7,11 @@
 	}
 	SubShader
 	{
-		Tags { "RenderType" = "Transparent" }
+		Tags { "Queue" = "Overlay" "RenderType" = "Transparent" "IgnoreProjector" = "True" }
 		Blend SrcAlpha OneMinusSrcAlpha
+		ZWrite Off
 		ZTest Always
-        
+		Cull Off
 
 		Pass
 		{
@@ -47,8 +48,8 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv) * _Color;
+                clip(col.a - 0.001);
                 return col;
             }
             ENDCG

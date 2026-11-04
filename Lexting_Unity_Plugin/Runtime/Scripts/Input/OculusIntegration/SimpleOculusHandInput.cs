@@ -8,9 +8,9 @@ using static OVRPlugin;
 namespace SpatialGestureText.Input.OculusIntegration
 {
 	/// <summary>
-	/// A version of Oculus Hand Input which does not attempt to route through the Lexting Input System
-	/// This class is for prototyping and debugging Oculus interactions.
+	/// Legacy OVR skeleton debug helper. Deprecated; greenfield Quest builds omit <c>LEXTING_FOUND_OCULUS_SDK</c>.
 	/// </summary>
+	[System.Obsolete("OVR skeleton debug path; use OpenXRHandInput + Unity XR Hands.")]
 	public class SimpleOculusHandInput : Singleton<SimpleOculusHandInput>
 	{
 		#region vars

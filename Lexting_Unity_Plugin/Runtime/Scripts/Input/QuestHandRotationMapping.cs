@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SpatialGestureText.Input
 {
     /// <summary>
-    /// Shared palm-normal vs cube-axis tests used by <see cref="OculusHandInput"/> rotation detection
+    /// Shared palm-normal vs cube-axis tests used by <see cref="OpenXRHandInput"/> rotation detection
     /// and Quest rotation debug tooling (must stay in sync with legacy thresholds).
     /// </summary>
     public static class QuestHandRotationMapping
@@ -90,7 +90,7 @@ namespace SpatialGestureText.Input
         }
 
         /// <summary>
-        /// Same priority order as <see cref="OculusHandInput"/> rotation loop.
+        /// Same priority order as <see cref="OpenXRHandInput"/> rotation loop.
         /// </summary>
         public static bool TryClassify(
             Vector3 palmNormal,

@@ -1119,10 +1119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e491d3c8e5eac541a8032e350b4c118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
-  head_QH: {fileID: 234791120}
-  rightHand_QH: {fileID: 1087363095}
-  leftHand_QH: {fileID: 330369268}
+  mode: 4
+  head_QH: {fileID: 0}
+  rightHand_QH: {fileID: 0}
+  leftHand_QH: {fileID: 0}
   head_QHP: {fileID: 0}
   rightHand_QHP: {fileID: 0}
   leftHand_QHP: {fileID: 0}
@@ -1132,9 +1132,9 @@ MonoBehaviour:
   head_QTP: {fileID: 0}
   rightHand_QTP: {fileID: 0}
   leftHand_QTP: {fileID: 0}
-  head_OXR: {fileID: 0}
-  rightHand_OXR: {fileID: 0}
-  leftHand_OXR: {fileID: 0}
+  head_OXR: {fileID: 234791120}
+  rightHand_OXR: {fileID: 1087363095}
+  leftHand_OXR: {fileID: 330369268}
   rightHand_L: {fileID: 0}
   leftHand_L: {fileID: 0}
   rightHand_LK: {fileID: 0}

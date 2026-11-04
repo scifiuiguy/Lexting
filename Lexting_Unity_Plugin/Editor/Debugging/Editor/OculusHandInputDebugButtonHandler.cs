@@ -16,15 +16,15 @@ namespace SpatialGestureText
     // 4) Replace the stuff in CAPS. You can add more buttons if you like. Just copy/paste the "buttons.Add(..." line multiple times.
     // 5) Disable/Hide any button by switching true to false.
 
-    [CustomEditor(typeof(OculusHandInput))]
-    public class OculusHandInputDebugButtonHandler : UnityEditor.Editor
+    [CustomEditor(typeof(OpenXRHandInput))]
+    public class OpenXRHandInputDebugButtonHandler : UnityEditor.Editor
     {
         private List<DebugButton> buttons;
 
         private void OnEnable()
         {
             buttons = new List<DebugButton>();
-            OculusHandInput component = (OculusHandInput)target;
+            OpenXRHandInput component = (OpenXRHandInput)target;
             buttons.Add(new DebugButton("Test Reposition UI", true, () =>  component.UnitTest_Reposition()));
             buttons.Add(new DebugButton("Test Right State Change", true, () => component.UnitTest_RightStateChanged()));
 

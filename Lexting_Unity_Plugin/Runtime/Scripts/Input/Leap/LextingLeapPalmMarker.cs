@@ -13,6 +13,7 @@ using SpatialGestureText.Interfaces;
 
 namespace SpatialGestureText.Input.Leap
 {
+	[System.Obsolete("Leap reference template only; not a shipping path.")]
 	public class LextingLeapPalmMarker : MonoBehaviour, IHandPointNode
 	{
 		#region vars

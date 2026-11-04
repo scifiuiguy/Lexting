@@ -17,8 +17,9 @@ using SpatialGestureText.Interfaces;
 namespace SpatialGestureText.Input
 {
 	/// <summary>
-	/// The input module used to convert Leap hand motion to input triggers in the Lexting interface
+	/// Deprecated Leap adapter — retained as a reference template for future hand SDKs.
 	/// </summary>
+	[System.Obsolete("Leap is not a shipping path; see docs/xr_integration_adr.md.")]
 	public class LeapHandInput : Singleton<LeapHandInput>
 	{
 		#region vars

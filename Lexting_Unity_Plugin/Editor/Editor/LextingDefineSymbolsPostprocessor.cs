@@ -29,7 +29,8 @@ class LextingDefineSymbolsPostprocessor : AssetPostprocessor
         // Quest device builds use Unity XR Hands + com.unity.xr.oculus — not embedded OVRSkeleton APIs.
         CheckAndUpdate(ref _oculusFound, _oculusSearchTarget, _oculusSymbol, BuildTargetGroup.Standalone);
         StripSymbolFromGroup(_oculusSymbol, BuildTargetGroup.Android);
-        CheckAndUpdate(ref _leapFound, _leapSearchTarget, _leapSymbol, BuildTargetGroup.Android);
+        CheckAndUpdate(ref _leapFound, _leapSearchTarget, _leapSymbol, BuildTargetGroup.Standalone);
+        StripSymbolFromGroup(_leapSymbol, BuildTargetGroup.Android);
     }
 
     private static void ResetVars()

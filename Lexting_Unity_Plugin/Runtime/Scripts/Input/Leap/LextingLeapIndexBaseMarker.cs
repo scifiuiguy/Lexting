@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace SpatialGestureText.Input.Leap
 {
+	[System.Obsolete("Leap reference template only; not a shipping path.")]
 	public class LextingLeapIndexBaseMarker : MonoBehaviour, IHandPointNode
 	{
 		public bool right { get; set; }

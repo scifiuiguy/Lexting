@@ -35,15 +35,8 @@ namespace SpatialGestureText.Input
         #region vars
         #region public vars
 
-        public InputMode mode = InputMode.QUEST_HANDS_PASSTHROUGH;
+        public InputMode mode = InputMode.OPEN_XR;
 
-        /// <summary>
-        /// This is every tracking node Lexting needs to track all variations of hands & controllers.
-        /// There must be separate refs for each platform even though there's overlap because you may
-        /// have two different controller instances and you don't want assignment of one to overwrite 
-        /// assignment of the other, e.g. even if the various controllers have identical hand transforms, they
-        /// each have unique instances of their own that each may need to be connected here.
-        /// </summary>
         public Transform head_QH;
         public Transform rightHand_QH;
         public Transform leftHand_QH;
@@ -60,6 +53,7 @@ namespace SpatialGestureText.Input
         public Transform rightHand_QTP;
         public Transform leftHand_QTP;
 
+        /// <summary>Canonical head / hand anchors for <see cref="InputMode.OPEN_XR"/> (Meta XRRig, PC VR, etc.).</summary>
         public Transform head_OXR;
         public Transform rightHand_OXR;
         public Transform leftHand_OXR;
@@ -119,6 +113,10 @@ namespace SpatialGestureText.Input
         public bool isAnyQuestMode => mode == InputMode.QUEST_HANDS || mode == InputMode.QUEST_HANDS_PASSTHROUGH || mode == InputMode.QUEST_TOUCH
         || mode == InputMode.QUEST_TOUCH_PASSTHROUGH;
 
+        /// <summary>OpenXR hand adapter (also attached for obsolete <c>QUEST_*</c> hand modes until M5).</summary>
+        [HideInInspector]
+        public bool usesOpenXrHandAdapter => mode == InputMode.OPEN_XR || isAnyQuestMode;
+
         [HideInInspector]
         public bool isDesktop => mode == InputMode.QUEST_HANDS_PASSTHROUGH || mode == InputMode.QUEST_TOUCH_PASSTHROUGH ||
             isAnyLeapMode;
@@ -157,7 +155,7 @@ namespace SpatialGestureText.Input
 
         private bool _hasFullHand(bool right) => hand(right) != null && _input(right).wrist != null
             && _input(right).indexBase != null && _input(right).indexTip != null && _input(right).middleTip != null
-            && _input(right).thumbTip != null && (isAnyQuestMode || isAnyLeapMode);
+            && _input(right).thumbTip != null && (usesOpenXrHandAdapter || isAnyLeapMode);
         
 #endregion private vars
         #endregion vars
@@ -208,12 +206,12 @@ namespace SpatialGestureText.Input
             else Debug.LogError("Lexting Input Module Manager needs a reference to the left hand transform of the current controller." +
                 "Assign it in the appropriate module's Inspector (see the desired child object of this component).");
 
-            if (isAnyQuestMode)
+            if (usesOpenXrHandAdapter)
             {
                 if (head(mode) != null)
-                    head(mode).gameObject.AddComponent<OculusHandInput>();
-                else Debug.LogError("Lexting Input Module Manager was unable to initialize Oculus Hand Input. Has the head" +
-                "transform been assigned in the active Lexting input module?");
+                    head(mode).gameObject.AddComponent<OpenXRHandInput>();
+                else Debug.LogError("Lexting Input Module Manager was unable to initialize OpenXR hand input. Has the head" +
+                " transform been assigned in the active Lexting input module?");
             }
 
 #if LEXTING_FOUND_LEAP_SDK

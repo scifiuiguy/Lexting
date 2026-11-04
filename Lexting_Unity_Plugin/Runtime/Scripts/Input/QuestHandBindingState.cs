@@ -1,7 +1,7 @@
 namespace SpatialGestureText.Input
 {
     /// <summary>
-    /// Which Quest hand skeleton path is active after <see cref="OculusHandInput"/> bind (mapping layer).
+    /// Which Quest hand skeleton path is active after <see cref="OpenXRHandInput"/> bind (mapping layer).
     /// </summary>
     public static class QuestHandBindingState
     {

@@ -8,15 +8,20 @@ Download **`tutorial_demo.apk`** from this folder or from the repo’s **GitHub 
 
 | Version | Date | Notes |
 |---------|------|--------|
-| **0.2.0** | 2026-11-03 | Greenfield build **001** — first package-only Quest APK (see below). |
-| *(planned)* | — | **1.0.0** — Meta Start submission build (tutorial video parity). |
+| **0.3.0** | 2026-11-04 | Greenfield build **005** — OpenXR-first path, **`OpenXRHandInput`** (current **`tutorial_demo.apk`**). |
+| **0.2.0** | 2026-11-03 | Greenfield build **001** — first package-only Quest APK. |
+| *(planned)* | — | **0.4.0** — Meta Start submission build (**beta**; tutorial video parity). |
+
+## 0.3.0 (build 005)
+
+- **Unity:** 6000.0.60f1 (IL2CPP, Android).
+- **Package id:** `com.lexting.spatialgesturetext` (Player / UPM **`0.3.0`**).
+- **Content:** UPM `com.lexting.spatialgesturetext` — reference scene **`main_01_twozone`** with **`InputMode.OPEN_XR`**, Meta Quest OpenXR + hand tracking, **`OpenXRHandInput`** adapter.
+- **Origin:** Copied from greenfield `lexting_005.apk` after M3 Quest smoke (typing, hands, hover/z-sort fixes builds **002–005**).
+- **Scope:** M3 shipping demo; full M1 / monolith build **028** parity checklist remains follow-up QA.
 
 ## 0.2.0 (build 001)
 
-- **Unity:** 6000.0.60f1 (IL2CPP, Android).
-- **Package id:** `com.lexting.spatialgesturetext` (Player Settings / bundle **0.2.0**).
-- **Content:** UPM package `com.lexting.spatialgesturetext` only — reference scene **`main_01_twozone`**, OpenXR + Meta Quest Support + hand tracking (same stack as maintainer greenfield host).
-- **Origin:** Copied from greenfield `lexting_001.apk` (not monolith `Lexting_Unity/`).
-- **Scope:** Milestone 2 demo binary; device QA ongoing. Full M1 checklist re-run on greenfield is tracked separately from monolith build **028**.
+- First greenfield package-only APK; superseded by **0.3.0** for device testing.
 
 Sideload: `adb install -r -d tutorial_demo.apk` (developer mode + USB debugging).

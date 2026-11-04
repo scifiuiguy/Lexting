@@ -134,38 +134,35 @@ namespace SpatialGestureText.Input
             });
         }
 
-        public void InitOculusEventBindings()
+        public void InitXrHandEventBindings()
         {
-            if (Lexting.inputManager.isAnyQuestMode)
+            if (!Lexting.inputManager.usesOpenXrHandAdapter)
+                return;
+
+            this.Subscribe(
+                OpenXRHandInput.Instance.RightStateChanged, RightStateChangedFromHandInput,
+                OpenXRHandInput.Instance.LeftStateChanged, LeftStateChangedFromHandInput);
+            this.Subscribe(OpenXRHandInput.Instance.RightRotationStateChanged, RightRotationStateChangedFromHandInput);
+            this.Subscribe(OpenXRHandInput.Instance.LeftRotationStateChanged, LeftRotationStateChangedFromHandInput);
+            this.Subscribe(OpenXRHandInput.Instance.HoldAction, HoldAction);
+            this.Subscribe(OpenXRHandInput.Instance.OnHandTrackingToggled, (on) =>
             {
-                this.Subscribe(
-                    OculusHandInput.Instance.RightStateChanged, RightStateChangedFromHandInput,
-                    OculusHandInput.Instance.LeftStateChanged, LeftStateChangedFromHandInput);
-                this.Subscribe(OculusHandInput.Instance.RightRotationStateChanged, RightRotationStateChangedFromHandInput);
-                this.Subscribe(OculusHandInput.Instance.LeftRotationStateChanged, LeftRotationStateChangedFromHandInput);
-                this.Subscribe(OculusHandInput.Instance.HoldAction, HoldAction);
-                //this.Subscribe(OculusHandInput.Instance.SinglePopGunActive, SinglePopGunActive);
-                //this.Subscribe(OculusHandInput.Instance.DualPopGunThumbsInAchieved, DualPopGunsActive);
-                this.Subscribe(OculusHandInput.Instance.OnHandTrackingToggled, (on) =>
-                {
-                    inputActive = on;
-                    OnHandTrackingToggled?.I(on);
-                });
-                this.Subscribe(OculusHandInput.Instance.OnHandConfidenceToggled, (on) =>
-                {
-                    handsConfident = true;
-                    OnHandConfidenceToggled?.I(on);
-                });
-                this.Subscribe(OculusHandInput.Instance.OppositeMiddleToPalmTouch, (right) => OnOppositeMiddleToPalmTouch?.I(right));
-                this.Subscribe(OculusHandInput.Instance.IndexPointing, (right) => OnIndexPointing?.I(right));
-                this.Subscribe(OculusHandInput.Instance.IndexFingersAtEachOther, () =>
-                {
-                    OnIndexFingersAtEachOther?.I();
-                    //LogOutputReceiver.Instance.Log("SpatialGestureInput executed OnIndexFingersAtEachother.");
-                });
-                OculusHandInput.Instance.ObserveEveryValueChanged(x => x.inputActive).Subscribe(x => inputActive = x);
-            }
+                inputActive = on;
+                OnHandTrackingToggled?.I(on);
+            });
+            this.Subscribe(OpenXRHandInput.Instance.OnHandConfidenceToggled, (on) =>
+            {
+                handsConfident = true;
+                OnHandConfidenceToggled?.I(on);
+            });
+            this.Subscribe(OpenXRHandInput.Instance.OppositeMiddleToPalmTouch, (right) => OnOppositeMiddleToPalmTouch?.I(right));
+            this.Subscribe(OpenXRHandInput.Instance.IndexPointing, (right) => OnIndexPointing?.I(right));
+            this.Subscribe(OpenXRHandInput.Instance.IndexFingersAtEachOther, () => OnIndexFingersAtEachOther?.I());
+            OpenXRHandInput.Instance.ObserveEveryValueChanged(x => x.inputActive).Subscribe(x => inputActive = x);
         }
+
+        [System.Obsolete("Use InitXrHandEventBindings")]
+        public void InitOculusEventBindings() => InitXrHandEventBindings();
 
         string _logOutput = "";
         private void PrintHandStatus(float repeatInterval)

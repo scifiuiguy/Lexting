@@ -18,6 +18,7 @@ namespace SpatialGestureText.Input.Leap
     /// but we're keeping this class in place in case we need to create more thumb-based
     /// gesture recognizers in the future
 	/// </summary>
+	[System.Obsolete("Leap reference template only; not a shipping path.")]
 	public class LextingLeapThumbMarker : MonoBehaviour, IHandPointNode
 	{
         #region vars
