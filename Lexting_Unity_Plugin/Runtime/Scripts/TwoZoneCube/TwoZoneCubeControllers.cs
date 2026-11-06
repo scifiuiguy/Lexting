@@ -170,13 +170,21 @@ namespace SpatialGestureText.TwoZoneCube
 
         public void ResetAllTriggers()
         {
+            if (!isActiveAndEnabled || controllers == null)
+                return;
             foreach (var controller in controllers)
-                controller.ResetAllTriggers();
+            {
+                if (controller != null)
+                    controller.ResetAllTriggers();
+            }
         }
 
         public void ResetAllTriggers(bool right)
         {
-            controllers[(right)?0:1].ResetAllTriggers();
+            if (!isActiveAndEnabled || controllers == null || controllers.Length < 2)
+                return;
+            var controller = controllers[right ? 0 : 1];
+            controller?.ResetAllTriggers();
         }
 
         public void FlashCubeHighlight(bool correct)

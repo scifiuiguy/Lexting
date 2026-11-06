@@ -3,6 +3,7 @@ using SpatialGestureText.Hotkeys;
 using SpatialGestureText.Input;
 using SpatialGestureText.Interfaces;
 using SpatialGestureText.LetterCube;
+using SpatialGestureText.Tutorial;
 using SpatialGestureText.Utilities;
 using System;
 using System.Collections;
@@ -332,8 +333,16 @@ namespace SpatialGestureText.TwoZoneCube
 
         public void ResetTrigger()
         {
-            if (_right && LextingController.Instance.currentRightTrigger.Index == index) return;
-            if (!_right && LextingController.Instance.currentLeftTrigger.Index == index) return;
+            var controllers = LextingController.Instance as TwoZoneCubeControllers;
+            if (controllers == null || !controllers.isActiveAndEnabled)
+            {
+                ResetProperties();
+                return;
+            }
+
+            var activeTrigger = _right ? controllers.currentRightTrigger : controllers.currentLeftTrigger;
+            if (activeTrigger != null && activeTrigger.Index == index)
+                return;
             ResetProperties();
         }
 
@@ -344,8 +353,8 @@ namespace SpatialGestureText.TwoZoneCube
 
         private void ResetProperties()
         {
-            _highlight.Toggle(false);
-            _letterSwitcher.ToggleMaterial(false);
+            _highlight?.Toggle(false);
+            _letterSwitcher?.ToggleMaterial(false);
             isHighlightedByRight = false;
             isHighlightedByLeft = false;
         }
@@ -357,6 +366,10 @@ namespace SpatialGestureText.TwoZoneCube
         /// </summary>
         public void UpdateWordAssembler()
         {
+            var tm = TutorialManager.Instance;
+            if (tm != null && tm.IsSingleLetterTutorialTypingStep)
+                return;
+
             if (_dragLine.isLineTracingActive && _currentHighlightedLetter.Length == 1)
             {
                 if (TwoZoneGrabState.firstReady(_right)) // Is this not the first letter to be submitted for this hand?

@@ -1,8 +1,8 @@
-﻿using SpatialGestureText.Debugging;
-using SpatialGestureText.Hotkeys;
+﻿using SpatialGestureText.Hotkeys;
 using SpatialGestureText.Input;
 using SpatialGestureText.Interfaces;
 using SpatialGestureText.LetterCube;
+using SpatialGestureText.Tutorial;
 using SpatialGestureText.Utilities;
 using System;
 using System.Collections;
@@ -85,6 +85,11 @@ namespace SpatialGestureText.TwoZoneCube
         /// </summary>
         private IDisposable _insertionDelay;
 
+        /// <summary>Guards duplicate OnStateChanged listeners (Quest logcat showed 3× insert per grab).</summary>
+        private static int _insertDedupeFrame = -1;
+        private static bool _insertDedupeRight;
+        private static string _insertDedupeLetter;
+
         private bool _isMatrixState => _currentHighlightedLetter.Equals("->Alpha") || _currentHighlightedLetter.Equals("->Numbers") || _currentHighlightedLetter.Equals("->Special");
         #endregion private vars
 
@@ -142,9 +147,14 @@ namespace SpatialGestureText.TwoZoneCube
 
                     if (right != _right /*|| !inBounds*/) return;
 
-                    Debug.Log($"TwoZoneCubeController got new input - right? {right} current? {current} previous? {previous}");
+                    if (Lexting.controllers == null || !Lexting.controllers.gameObject.activeInHierarchy)
+                        return;
 
-                    if (LextingPositionController.Instance.hasHover || !Lexting.input.inputActive || _pcMouseActive) return;
+                    var positionController = LextingPositionController.Instance;
+                    if (positionController == null)
+                        return;
+
+                    if (positionController.hasHover || !Lexting.input.inputActive || _pcMouseActive) return;
                     TwoZoneCubeControllers.Instance.currentTrigger =  (right) ? TwoZoneCubeController.currentRightTrigger : TwoZoneCubeController.currentLeftTrigger;
                     _currentHighlightedLetter = (right) ? TwoZoneTrigger.currentRightHighlightedLetter : TwoZoneTrigger.currentLeftHighlightedLetter;
                     _currentDragLineVisualizer = (right) ? Lexting.rhLine : Lexting.lhLine;
@@ -168,7 +178,7 @@ namespace SpatialGestureText.TwoZoneCube
                     }
                     
                     if (Lexting.controllers.currentTrigger != null && current == HandGestureState.Insert)
-                        InsertNewLetter(right);
+                        InsertNewLetter(right, current, previous);
                     else if (CheckTwoCharacterSubmission(right, current, previous))
                         HandleTwoCharacterSubmission();
                 },
@@ -290,9 +300,23 @@ namespace SpatialGestureText.TwoZoneCube
         /// <param name="currentHighlightedLetter">the letter to be inserted</param>
         /// <param name="currentRotationState">the rotation state of the hand inserting the letter</param>
         /// <param name="currentDragHandler">the drag handler of the hand that's inserting the letter</param>
-        private void InsertNewLetter(bool right)
+        private void InsertNewLetter(bool right, HandGestureState current, HandGestureState previous)
         {
             if (Lexting.finalizer.isSpatialListActive) return;
+
+            var tutorial = TutorialManager.Instance;
+            if (tutorial != null && !tutorial.TryConsumeTutorialTypingInsert())
+                return;
+
+            var letter = _currentHighlightedLetter ?? "";
+            if (Time.frameCount == _insertDedupeFrame
+                && _insertDedupeRight == right
+                && _insertDedupeLetter == letter)
+                return;
+            _insertDedupeFrame = Time.frameCount;
+            _insertDedupeRight = right;
+            _insertDedupeLetter = letter;
+
             Lexting.audio.Play("SelectionClick");
             if (_currentHighlightedLetter.Equals("Caps_1st"))
                 Lexting.printer.CapitalizeNextLetter();
@@ -307,8 +331,11 @@ namespace SpatialGestureText.TwoZoneCube
                 //Debug.Log($"TwoZoneCubeController - InsertNewLetter {_currentHighlightedLetter} " +
                 //    $"L rot state: {Lexting.lhRotState} R rot state: {Lexting.rhRotState}");
                 if (Lexting.printer.isActive)
+                {
                     Lexting.printer.AppendOutputs(
                         _currentHighlightedLetter, !_otherDragLineVisualizer.isLineTracingActive);
+                    tutorial?.ConfirmTutorialTypingInsertCommitted();
+                }
                 Lexting.controllers.OutputBegan?.I(right, _currentHighlightedLetter);
                 _currentDragLineVisualizer.currentTwoZoneIndex =
                     (Lexting.controllers.currentTrigger as TwoZoneTrigger).index;

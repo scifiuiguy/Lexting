@@ -209,7 +209,11 @@ namespace SpatialGestureText.Input
             if (usesOpenXrHandAdapter)
             {
                 if (head(mode) != null)
-                    head(mode).gameObject.AddComponent<OpenXRHandInput>();
+                {
+                    // Lexting_OVRCameraRig prefab may already include OpenXRHandInput; a second AddComponent duplicates XR bind + gesture wiring.
+                    if (head(mode).GetComponent<OpenXRHandInput>() == null)
+                        head(mode).gameObject.AddComponent<OpenXRHandInput>();
+                }
                 else Debug.LogError("Lexting Input Module Manager was unable to initialize OpenXR hand input. Has the head" +
                 " transform been assigned in the active Lexting input module?");
             }

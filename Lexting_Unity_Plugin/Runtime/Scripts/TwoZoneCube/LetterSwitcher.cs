@@ -43,7 +43,6 @@ namespace SpatialGestureText.TwoZoneCube
         private Color _highlightedColor = Color.black;
         private bool _isHighlighted;
         private Material _highlightTextMaterial;
-        private CanvasRenderer _canvasRenderer;
         private const int HoverTextRenderQueue = 4000;
 
         /// <summary>
@@ -57,7 +56,6 @@ namespace SpatialGestureText.TwoZoneCube
         private void Awake()
 		{
             _letterDisplay = GetComponent<Text>();
-            _canvasRenderer = GetComponent<CanvasRenderer>();
             _letterDisplay.text = letters[0];
             _neutralColor = _letterDisplay.color;
             if (neutralMat != null)
@@ -124,9 +122,9 @@ namespace SpatialGestureText.TwoZoneCube
 
         private void ApplyLetterMaterial(Material mat)
         {
+            if (_letterDisplay == null || mat == null)
+                return;
             _letterDisplay.material = mat;
-            if (_canvasRenderer != null)
-                _canvasRenderer.SetMaterial(mat, 0);
         }
 		#endregion helper methods
 		

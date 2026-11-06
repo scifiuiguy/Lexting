@@ -217,8 +217,6 @@ namespace SpatialGestureText.TwoZoneCube
         /// </summary>
         public void ShowList(bool on)
         {
-
-
             if ((!on && !isSpatialListActive) || (on && isSpatialListActive)) return;
             else if ((!on && isSpatialListActive) || (on && !isSpatialListActive))
             {
@@ -231,8 +229,9 @@ namespace SpatialGestureText.TwoZoneCube
                     currentWordObject = wordList[0];
                     currentWord = currentWordObject.label;
                     currentPunctuation = " ";
+                    var defaultWord = GetDefaultFirstWord();
                     Lexting.printer.SubtractWord(false);
-                    Lexting.printer.AppendOutputs(GetDefaultFirstWord(), true);
+                    Lexting.printer.AppendOutputs(defaultWord, true);
                     OnRefreshWord?.I(_fullyRefreshedWord);
                 }
             }

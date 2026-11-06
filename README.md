@@ -10,7 +10,7 @@
 <img src="images/youtube-icon.webp" alt="Alt text" width="50" style="vertical-align: middle;"> 3-Minute Tutorial Coming Soon
 
 
-**Lexting** is an **OpenXR** spatial text-entry interface controlled with either hand or both hands. Each hand gets a **2×2×2 typing volume** (eight letter **nodes** each) floating in front of the wrist. To type faster than any other mid-air XR text entry method, you **grab**, **drag**, and **turn your wrists** in a single group gesture that maps to a whole word in English in under 0.5 seconds, yielding theoretical average speed limit above 120WPM for power users. Each gesture includes instant conjugation and punctuation capability. Hotkeys, numbers, special characters, and other ASCII features are avilable, and streamed keystrokes are currently able to provide remote input to Windows PCs in addition to game engine integration via SDKs. The **Unity SDK** is avaialble in 1.0. **Unreal SDK** and **OpenXR Direct SDK** will be avaialble in 2.0.
+**Lexting** is an **OpenXR** spatial text-entry interface controlled with either hand or both hands. Each hand gets a **2×2×2 typing volume** (eight letter **nodes** each) floating in front of the wrist. To type faster than any other mid-air XR text entry method, you **grab**, **drag**, and **turn your wrists** in a single group gesture that maps to a whole word in English in under 0.5 seconds, yielding theoretical average speed limit above 120WPM for power users. Each gesture includes instant conjugation and punctuation capability. Hotkeys, numbers, special characters, and other ASCII features are available, and streamed keystrokes are currently able to provide remote input to Windows PCs in addition to game engine integration via SDKs. The **Unity SDK** is avaialble in 1.0. **Unreal SDK** and **OpenXR Direct SDK** will be avaialble in 2.0.
 
 <hr style="border: 1px solid gray;">
 
@@ -48,7 +48,7 @@ The finalized reference implementation is the **dual-volume 2x2x2 typing widget*
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">The Point of Inception</span></summary>
 
-Lexting was invented in January 2020 by AJ Campbell (scifiuiguy on GitHub). It was originally born out of his attempt to build a 3D visual programming language called Atomic. In the first week of developing Atomic, it became very clear that an iconographic node-based 3D programming language (a 3D VPL) was going to need a lot of text entry capability despite trying to turn all text-based code into 3D clusters of simple geometry, especially regarding value assingment for string variables. Like many other structures that form complex clusters in 3D, the Atomic project exposed the need a new kind of XR interface. 3D VPLs will feature synapse-like content throughout the field, requiring a user to engage with complex groups of 3D objects all at once while standing up in an open roomscale space without a desktop in the way. This use case laid bare the weakness of floating QWERTY, and of the entire raycast+WIMP paradigm.
+Lexting was invented in January 2020 by AJ Campbell (scifiuiguy on GitHub). It was originally born out of his attempt to build a 3D visual programming language called Atomic. In the first week of developing Atomic, it became very clear that an iconographic node-based 3D programming language (a 3D VPL) was going to need a lot of text entry capability despite trying to turn all text-based code into 3D clusters of simple geometry, especially regarding value assingment for string variables. Like many other structures that form complex clusters in 3D, the Atomic project exposed the need for a new kind of XR interface. 3D VPLs will feature synapse-like content throughout the field, requiring a user to engage with complex groups of 3D objects all at once while standing up in an open roomscale space without a desktop in the way. This use case laid bare the weakness of floating QWERTY, and of the entire raycast+WIMP paradigm.
 
 </details>
 
@@ -69,7 +69,9 @@ AJ finds **raycasting** useful solely as a backwards compatibility tool for 2D l
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Lexting was the First 3D Isotropic Text Entry Solution</span></summary>
 
-Lexting was the first fully volumetric isotropic interface AJ ever designed. The idea is not new, but it **IS** a forgotten art. Volumetric isotropic techniques were popular in 1990s XR HCI research, but they fell out of fashion before XR achieved consumer-friendliness and were forgotten by the industry. Certain false assumptions led to every HMD OEM constraining control to X and Y with raycast+WIMP in every OS interface, and then application developers took their lead. We all built raycast+WIMP into the core of almost all XR interfaces. The enitre community (Academia and Industry) went **down the raycast+WIMP rabbit hole**. Lexting is a prime example to show why **it was the wrong rabbit hole**.
+![Lexting matrix palm control — 24 letters in 3 palm positions](images/vomp.png)
+
+Lexting was the first fully volumetric isotropic (VOMP) interface AJ ever designed. The idea is not new, but it **IS** a forgotten art. Volumetric isotropic techniques were popular in 1990s XR HCI research, but they fell out of fashion before XR achieved consumer-friendliness and were forgotten by the industry. Certain false assumptions led to every HMD OEM constraining control to X and Y with raycast+WIMP in every OS interface, and then application developers took their lead. We all built raycast+WIMP into the core of almost all XR interfaces. The enitre community (Academia and Industry) went **down the raycast+WIMP rabbit hole**. Lexting is a prime example to show why **it was the wrong rabbit hole**.
 
 </details>
 
@@ -92,7 +94,7 @@ But the cart can't come before the horse. That's why AJ sidelined the Atomic pro
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">All For Nothing?</span></summary>
 
-Unfortunately, after two years of changing the layout over and over until it felt perfect, COVID had sent the entire XR industry running for the hills. It felt as though very few people were interested in trying the private beta once it was finally approaching a stable state. The disinterest was a wild contrast to the fervor of the 20-teens, but AJ assumed the XR market would roar to life back one day, as it always has in past cycles. He decided to shelve Lexting until that day felt closer.
+Unfortunately, after two years of changing the layout over and over until it felt perfect, COVID had sent the entire XR industry running for the hills. It felt as though very few people were interested in trying the private beta once it was finally approaching a stable state. The disinterest was a wild contrast to the fervor of the 20-teens, but AJ assumed the XR market would roar back to life one day, as it always has in past cycles. He decided to shelve Lexting until that day felt closer.
 
 </details>
 
@@ -142,6 +144,13 @@ Before trying to type, release all finger tension. The fingers will curl slightl
 </details>
 
 <details>
+<summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Grab - Like Catching Butterflies</span></summary>
+
+The grab gesture may seem like more work that an index-to-thumb pinch, but actually grab is the first gesture we learn in the womb. Babies grab the umbillical cord long before developing single-finger dexterity, which is why, even now, if you try your hardest to move just one of your inline fingers, the other fingerss want to move also. Moving just one finger requires muscle memory training, whereas grab is the absolute root gesture in your motor cortex. Take it from a former drum teacher... you can repeat a good grab all day long rapidly with no fatigue if you do it correctly. You just need to remember it's like catching a butterfly. Close the four inline fingers against your palm as fast as you can, but don't crush the butterfly. You may hear the cushions of each finger slap against the palm. Do the gesture over and over quickly. Try to make it fast yet silent. The only way to achieve speed and silence is to do it so softly that a buttefly would be safe inside that grip.
+
+</details>
+
+<details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">The UI</span></summary>
 
 Each hand alone has an 8-cell 2x2x2 cube to itself, which displays eight letters at once, one in each cell. Pronate to change to a different set of 8 letters. Supinate to change to yet a different set. These three wrist positions give you 24 letters. The final two letters in the English alphabet are the least common in the dictionary (X and Z) so we place them in the UI's overflow area, which you can access by turning the palm slightly forward with fingers pointings slightly upward. X and Z become avaialble in the overflow area (the bottom rear two cells).
@@ -151,23 +160,23 @@ Each hand alone has an 8-cell 2x2x2 cube to itself, which displays eight letters
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Basic Activation</span></summary>
 
-To activate a node, you can set Lexting in either **Pinch Mode (index-to-thumb)** or **Grab Mode (close all four fingers against the palm)**. AJ prefers Grab Mode because it enables all four inline fingers to work together, which requires less coordination. You can tell it's easier because moving any one inline finger alone is actually quite challenging, even the index finger. All four inline fingers WANT to move together, and you have to train muscle memory to coordinate them apart. It's why baby's can whole-hand-grab things even before they're out of the womb but a single finger pinch is hard for an infant. Our most fundamental motor cortex synapses trained the whole-hand-grab first. It might seem like it requires more muscle, but take it from a drum teacher... you can move all four fingers rapidly in tandem all day long without fatigue as long as you don't flex too hard.  In Pinch Mode, a pinch types a single letter. In Grab Mode, a grab types a single letter. The README from here on will only mention grab for activation. That said, if you prefer Pinch Mode over Grab Mode, it is a toggleable option.
+To activate a node, you can set Lexting in either **Pinch Mode (index-to-thumb)** or **Grab Mode (close all four fingers against the palm)**. AJ prefers Grab Mode because it enables all four inline fingers to work together, which requires less coordination. All four inline fingers WANT to move together, and you have to train muscle memory to coordinate them apart. In Pinch Mode, a pinch types a single letter. In Grab Mode, a grab types a single letter. This document from here on will only mention grab for activation. That said, if you prefer Pinch Mode over Grab Mode, it is a toggleable option. * Pinch mode not available in 1.0 - coming soon
 
 </details>
 
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Word Mode</span></summary>
 
-Lexting is built around two phases: **word mode** (assemble a letter prefix) and **finalization mode** (pick the dictionary word type, grammar, and punctuation).
+Lexting is built around two phases: **word mode** (assemble a root word by grabbing the first four letters) and **finalization mode** (choose the word type, grammar, and punctuation). Word mode and finalization mode happen sequentially in a single gesture to complete one word per gesture.
 
-Start with a **grab** in both hands when you're hovering over the first to letters of your word. Tentative output appears above the **volumes**. You can add a **third and fourth** letter by moving either hand. The dictionary filters to the top result in real time.
+Start with a **Grab-Hold** in both hands when you're hovering over the first two letters of your word. Initial output appears above the **volumes** in the UI widget. You can add a **third and fourth** letter by dragging either hand. The dictionary filters to the top result in real time. Releasing the left grab while holding the right to exit Word Mode and enter Finalization Mode.
 
 </details>
 
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Finalization Mode</span></summary>
 
-When eight or fewer roots match, matching words fill the **left volume** as **nodes**. Hover a root, set **conjugation** with **two-hand wrist orientation** (`LextingConjugationState`), and pick **punctuation** from **nodes** on the **right volume**. **Soft-tap** (open-hand tap) cycles alternate forms in the same conjugation group. Release the remaining grab to **commit** the word.
+When eight or fewer roots match, matching words fill the **left volume** as **nodes**. Hover a root word with left hand, set **conjugation** with **dual wrist orientation**, and choose **punctuation** from **nodes** with the **right hand**. Release the remaining grab to **submit** the word.
 
 </details>
 
@@ -186,7 +195,8 @@ The real sole competitor is not physical QWERTY nor projected virtual QWERTY nor
 
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">QWERTY versus Stenography</span></summary>
-Flat floating **QWERTY in XR** is a pain even for the occasional one-off keyword search, but it is an absolute deal-breaker for enterprise productivity typing, whereas **Stenography** is to go-to professional tool that requires years of training for best-in-class throughput, yet most office workers can't cross its huge learning curve or deal with its expensive closed-source hardware. Lexting aims to borrow techniques from both QWERTY and steno to create a best-of-both-worlds on speed versus ease to learn. Lexting uses steno-style chording techniques to destroy floating QWERTY. It probably competes neck-and-neck with physical QWERTY, yet it's easier to learn than QWERTY, let alone MUCH easier than Stenography. 
+
+Flat **floating QWERTY** in XR is a royal pain even for the occasional one-off keyword search, but it is an absolute deal-breaker for enterprise productivity typing, whereas **Stenography** is to go-to professional tool that requires years of training for best-in-class throughput, yet most office workers can't cross its huge learning curve or deal with its expensive closed-source hardware. Lexting aims to borrow techniques from both QWERTY and steno to create a **best-of-both-worlds on speed versus ease to learn**. Lexting uses steno-style chording techniques to destroy floating QWERTY on throughput. It possibly competes neck-and-neck with physical QWERTY, though the proof won't be in the pudding until Lexting has hundreds of power users. Lexting is easier to learn than QWERTY because it requires manual input of no more than four letters per word, let alone **MUCH** easier than Stenography which requires years of rote memorization.
 
 </details>
 
@@ -207,14 +217,14 @@ Poking individual keys with tracked fingers means your hand covers the very targ
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Isotropic 3D Layout</span></summary>
 
-Unlike QWERTY, an inherently 2D layout, Lexting letters live on a **cubic 3D lattice** around each wrist, not on a 2D row copied from a typewriter. That matches wrist rotation and grab-and-drag motion instead of forcing every symbol onto a flat plane. This maximizes adjacency, leading to smallest possible hand travel distance, which yields top throughput and ergo comfort.
+Unlike QWERTY, Lexting letters live on a **cubic 3D lattice** surrounding starting position in all 3D directions. Isotropic layout maximizes adjacency, leading to smallest possible hand travel distance, which yields top throughput and ergo comfort.
 
 </details>
 
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">The Layout is Designed For Error Prevention</span></summary>
 
-The eight-cell multi-choice widget with a neutral core was chosen after many iterations of various layouts, many of which performed at high speed but killed their own total throughput by being too error-prone. The eight-cell system is that perfect Goldilocks arrangement for 3D hand motion. It eliminates all overshoot and undershoot errors because, for each node-to-node motion, there are essentially no intermediate stopping point options, which means it's nearly impossible to overshoot your target even without looking. Beginners can move their hands in big, exaggerated actions and still not miss. Power users can practice shrinking the total travel distance over time to pick up speed. In contrast, there is no way to type with floating XR QWERTY without looking.
+The eight-cell multi-choice widget with a neutral core was chosen after many iterations of various layouts, many of which performed at high speed but killed their own total throughput by being too error-prone. The eight-cell system is the perfect Goldilocks arrangement for 3D hand motion. It eliminates all overshoot and undershoot errors because, for each node-to-node motion, there are no intermediate stopping point options, which means it's nearly impossible to overshoot your target even without looking. Beginners can move their hands in big, exaggerated actions and still not miss. Power users can practice shrinking the total travel distance over time to pick up speed. In stark contrast, there is no way to use floating XR QWERTY without looking at the keyboard. Eight-cell radial isotropic layout unlocks the ability to leave gaze on output. Though the UI presents cubic mesh geometry in the widget, under the hood the system is driven by high-performance radial collision detection with an ideal number of sphere subdivisions.
 
 </details>
 
@@ -272,14 +282,14 @@ Each hand’s **2×2×2** grid prevents overshoot, which is common in almost any
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Chordal speed without memorization tax</span></summary>
 
-Stenography pays off with extreme speed, but it demands **years of chord memorization** before it feels natural. With Lexting, you only memorize the letter positions, just like QWERTY, but then Lexting let's you chord like steno right away. Instead of requiring you to know thousands of chords beforehand, you just need to know the first four letters, and your word appears. If you've never typed it before, you can glance down to see where it is among the eight node positions. It will always be in that spot, so your hand will automatically go there after you've typed that word a few times. Lexting takes chordal patterns from a stenography book and bakes them into your spatial muscle memory as you practice typing, rather than making you study a stenography book for years like learning a whole new language.
+Stenography pays off with extreme speed, but it demands **years of chord memorization** before it feels natural. With Lexting, you only memorize the letter positions, just like QWERTY, but then Lexting let's you chord like steno right away. Instead of requiring you to know thousands of chords beforehand, you just need to know the first four letters, and your word appears. If you've never typed it before, you can glance down to see where it is among the eight node positions. It will always be in that spot, so your hand will automatically go there after you've typed that word a few times. After a while, you'll learn to simply fish your hand around the eight nodes of the UI when typing a word you've never typed before so your hand learns to discover the correct word position without your eyes leaving the output. Lexting takes chordal patterns from a stenography book and bakes them into your spatial muscle memory as you practice typing, rather than making you study a stenography book for years, like learning a whole new language.
 
 </details>
 
 <details>
-<summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Honest expectations</span></summary>
+<summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Honest Expectations</span></summary>
 
-Lexting is much like QWERTY in that you can peck a few letters out at a time right away, but unlocking rapid speed takes practice. It will feel slow at first, then **step-change faster** once word mode, finalization, and peripheral hover feedback start to click as fluid gestures, then gesture sequences. Lexting is geared toward early adopters of enterprise XR who love the idea of working with the whole room as their canvas, on their feet, rather than trapped in a cubicle staring at a 2D screen.
+Lexting is much like QWERTY in that you can peck a few letters out at a time right away, but unlocking rapid speed takes practice. It will feel slow at first, then **step-change faster** once word mode, finalization, and peripheral hover feedback start to enable fluid gestures, then gesture sequences. Lexting is geared toward early adopters of enterprise XR who love the idea of working with the whole room as their canvas, on their feet, rather than trapped in a cubicle staring at a 2D screen.
 
 </details>
 
@@ -337,6 +347,8 @@ Lexting is in Beta. A few primary features have yet to be implemented:
 **2D Cursor/Caret Control** Control of the 2D caret in a future version of Lexting will turn Lexting into a full-blown word-processing tool rather than just a rapid text input tool. The Caret Control is accessed via Hotkey, and while some of the other Hotkeys e.g. COPY are quite easy to implement, they will not be very useful without a Caret Control to highlight text to copy first. Therefore, most of the Hotkey systems are considered Pending in Beta as they await Caret Control.
 
 **PC Streaming** There is an operational PC streaming service in the Beta, but the Streaming Service itself is brand new in Alpha. It will be throughly tested before Lexting comes out of Beta. 
+
+**Dictionary Mods** The intent is to eventually provide users of Lexting the abilty to modify the dynamic dictionary, since it currently consists of only the 10K most popular English words on the internet. There are millions of English words, but frankly, most of them are esoteric jargon that would gum up the functionality of Lexting. However, some professionals in certain fields may find that lots of specific key terms in their field are missing from the default dictionary. The JSON format of the dictionary is open-source and anyone can modify it manually, but the goal is to include an interface that facilitates easy bulk dictionary mods when Lexting comes out of Beta.
 
 </details>
 </blockquote>
@@ -885,7 +897,7 @@ Sideload the provided `tutorial_demo.apk` on Meta Quest to try Lexting directly.
 
 <blockquote>
 <details>
-<summary><b>🔌 Subscribe to Lexting output in code (optional)</b></summary>
+<summary><b>🔌 Subscribe to Lexting output in code</b></summary>
 <hr style="border: 1px solid gray;">
 
 Call **`this.GetLextingOutput`** (all events) or **`this.Subscribe`** (one event) in **`Awake`** on any `MonoBehaviour` to receive text output from Lexting. Call these Lexting output subscriptions in **`Awake`**, not in `OnEnable`, not in `Start`, and definitely not in `Update`. You do not need to unsubscribe to these. Lexting event objects self-sub and self-unsub during OnEnable and OnDisable in the background. Call once in Awake to activate the entire Sub/Unsub workflow.

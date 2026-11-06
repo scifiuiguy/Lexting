@@ -61,17 +61,17 @@ namespace SpatialGestureText.TwoZoneCube
 		public static bool compSingleReadySolo(bool right) => compSingleReady(right) && !compSingleReady(!right);
 		public static bool compReady => !string.IsNullOrEmpty(comp);
 
-		public static bool returned(bool right) => second(right).Equals(first(right));
+		public static bool returned(bool right) => string.Equals(second(right), first(right));
 
-		public static bool returned(bool right, string newSecond) => newSecond.Equals(first(right));
+		public static bool returned(bool right, string newSecond) => string.Equals(newSecond, first(right));
 
 		/// <summary>
 		/// if true, the assembler just called the ReturnSecond method earlier this frame
 		/// </summary>
 		public static bool returnedThisFrame;
 
-		public static string first(bool right) => right ? grabData.firstRight : grabData.firstLeft;
-		public static string second(bool right) => right ? grabData.secondRight : grabData.secondLeft;
+		public static string first(bool right) => right ? grabData.firstRight ?? "" : grabData.firstLeft ?? "";
+		public static string second(bool right) => right ? grabData.secondRight ?? "" : grabData.secondLeft ?? "";
 		public static bool firstReady(bool right) => !string.IsNullOrEmpty(first(right));
 		public static bool secondReady(bool right) => !string.IsNullOrEmpty(second(right));
 

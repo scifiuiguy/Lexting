@@ -110,17 +110,6 @@
       "adv": "bit"
     },
     {
-      "default":  null,
-      "verbSingular":  null,
-      "verbPlural":  null,
-      "verbParticiple":  null,
-      "verbPast":  null,
-      "nounSingular":  null,
-      "nounPlural":  null,
-      "adj": null,
-      "adv": null
-    },
-    {
       "default":  "by",
       "verbSingular":  "bye",
       "verbPlural":  "bye bye",
@@ -129,7 +118,7 @@
       "nounSingular":  "byproduct",
       "nounPlural":  "bygone",
       "adj": "bylaw",
-      "adv": "Byzantine",
+      "adv": "Byzantine"
     },
     {
       "default":  "do",
@@ -467,7 +456,7 @@
       "verbPlural":  "ups",
       "verbParticiple":  "upping",
       "verbPast":  "upped",
-      "nounSingular":  [ "up", "upper" ]
+      "nounSingular":  [ "up", "upper" ],
       "nounPlural":  [ "ups", "uppers" ],
       "adj": [ "upper", "uppity" ],
       "adv": "uptown"
@@ -505,4 +494,4 @@
       "adj": "yourself",
       "adv": "youth"
     }
-]
+]}

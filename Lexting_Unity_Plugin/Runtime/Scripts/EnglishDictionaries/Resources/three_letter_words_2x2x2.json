@@ -448,7 +448,7 @@
       "verbPast":  null,
       "nounSingular":  "badness",
       "nounPlural":  null,
-      "adj":  "bad", "baddess"
+      "adj": "badness",
       "adv":  "badly"
     },
     {
@@ -2986,7 +2986,7 @@
       "default":  "key",
       "verbSingular":  "key",
       "verbPlural":  "keys",
-      "verbParticiple":  "keying,
+      "verbParticiple":  "keying",
       "verbPast":  "keyed",
       "nounSingular":  "key",
       "nounPlural":  "keys",
@@ -3628,7 +3628,7 @@
       "verbPast":  null,
       "nounSingular":  null,
       "nounPlural":  null,
-      "adj":  "non", "non-"
+      "adj": "non",
       "adv":  null
     },
     {
@@ -4337,9 +4337,9 @@
     },
     {
       "default":  "pad",
-      "verbSingular":  "pad"
+      "verbSingular":  "pad",
       "verbPlural": "pads",
-      "verbParticiple":  "padding"
+      "verbParticiple":  "padding",
       "verbPast":  "padded",
       "nounSingular":  "pad",
       "nounPlural":  "pads",
@@ -4413,7 +4413,7 @@
       "adv":  null
     },
     {
-      "default":  rid",
+      "default": "rid",
       "verbSingular":  "rid",
       "verbPlural":  "rids",
       "verbParticiple":  "ridding",
@@ -5111,7 +5111,7 @@
       "verbPlural":  "taxes",
       "verbParticiple":  "taxing",
       "verbPast":  "taxed",
-      "nounSingular":  tax,
+      "nounSingular":  "tax",
       "nounPlural":  "taxes",
       "adj":  null,
       "adv":  null
@@ -5773,7 +5773,7 @@
       "verbPast":  "won",
       "nounSingular":  "win",
       "nounPlural":  "wins",
-      "adj":  nulls,
+      "adj":  null,
       "adv":  null
     },
     {
@@ -5784,7 +5784,7 @@
       "verbPast":  "won",
       "nounSingular":  "win",
       "nounPlural":  "wins",
-      "adj":  nulls,
+      "adj":  null,
       "adv":  null
     },
     {
@@ -6013,8 +6013,8 @@
       "verbPlural":  "yips",
       "verbParticiple":  "yipping",
       "verbPast":  "yipped",
-      "nounSingular":  "yip", "yippee"
-      "nounPlural":  "yips", "yippees"
+      "nounSingular": "yip",
+      "nounPlural": "yips",
       "adj":  null,
       "adv":  null
     },
@@ -6116,6 +6116,6 @@
       "nounPlural":  "zoos",
       "adj":  null,
       "adv":  null
-    },
+    }
   ]
 }

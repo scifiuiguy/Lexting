@@ -14,6 +14,9 @@ namespace SpatialGestureText.TwoZoneCube
         #region vars
         #region public vars
         public bool hasHover => false;
+
+        /// <summary>Fired after <see cref="Calibrate"/> applies widget world position and rotation (head-ready).</summary>
+        public SpatialGestureEvent OnWidgetRepositioned { get; } = new SpatialGestureEvent();
         #endregion public vars
         #region private vars
         private TwoZoneCubeControllers _controllers;
@@ -97,7 +100,7 @@ namespace SpatialGestureText.TwoZoneCube
                 transform.position = _interfaceOrigin.transform.position;
                 transform.rotation = Quaternion.LookRotation(Lexting.head.flatLookDirection);
                 Lexting.finalizer.UpdateTransform();
-                //LogOutputReceiver.Instance.Log("UI repositioned.");
+                OnWidgetRepositioned?.I();
             });
         }
 		#endregion helper methods

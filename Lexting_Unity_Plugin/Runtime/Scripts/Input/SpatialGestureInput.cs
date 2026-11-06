@@ -13,7 +13,6 @@ using UniRx;
 using UniRx.Triggers;
 using static EventUtils;
 using SpatialGestureText.Utilities;
-using SpatialGestureText.Debugging;
 
 namespace SpatialGestureText.Input
 {
@@ -71,6 +70,7 @@ namespace SpatialGestureText.Input
         public bool singleRightPopGunActivated, singleLeftPopGunActivated;
 
         private bool tutorialComplete;
+        private bool _xrHandEventBindingsInitialized;
 
         [SerializeField] private bool _isInputStream;
         #endregion vars
@@ -126,18 +126,16 @@ namespace SpatialGestureText.Input
             //        });
             //});
             
-            this.WaitS(1, () => {
-                if (_isInputStream) return;
-                this.SC(UnitTest_Trigger_Right_PopGun(true));
-                this.SC(UnitTest_Trigger_Left_PopGun(true));
-                this.WaitS(1, () => this.SC(UnitTest_Trigger_DualPopGun(true)));
-            });
+            // Fake pop-guns on start disabled for Quest tutorial trigger testing (was WaitS + UnitTest_Trigger_*).
         }
 
         public void InitXrHandEventBindings()
         {
             if (!Lexting.inputManager.usesOpenXrHandAdapter)
                 return;
+            if (_xrHandEventBindingsInitialized)
+                return;
+            _xrHandEventBindingsInitialized = true;
 
             this.Subscribe(
                 OpenXRHandInput.Instance.RightStateChanged, RightStateChangedFromHandInput,
@@ -158,6 +156,8 @@ namespace SpatialGestureText.Input
             this.Subscribe(OpenXRHandInput.Instance.OppositeMiddleToPalmTouch, (right) => OnOppositeMiddleToPalmTouch?.I(right));
             this.Subscribe(OpenXRHandInput.Instance.IndexPointing, (right) => OnIndexPointing?.I(right));
             this.Subscribe(OpenXRHandInput.Instance.IndexFingersAtEachOther, () => OnIndexFingersAtEachOther?.I());
+            this.Subscribe(OpenXRHandInput.Instance.SinglePopGunActive, SinglePopGunActive);
+            this.Subscribe(OpenXRHandInput.Instance.DualPopGunActive, DualPopGunsActive);
             OpenXRHandInput.Instance.ObserveEveryValueChanged(x => x.inputActive).Subscribe(x => inputActive = x);
         }
 

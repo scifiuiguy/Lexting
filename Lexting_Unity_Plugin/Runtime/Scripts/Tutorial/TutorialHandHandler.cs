@@ -1,41 +1,137 @@
 ﻿using Pixelplacement;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SpatialGestureText.Tutorial
 {
     /// <summary>
-    /// Handles the visibility of the hand pose displays used during the tutorial
+    /// Visibility and procedural open/closed poses for non-tracked tutorial hands.
     /// </summary>
     public class TutorialHandHandler : MonoBehaviour
     {
-        #region vars
-        private SkinnedMeshRenderer skinnedMeshRenderer;
-        private Color colorOn = new Color(1,1,1,0.6f), colorOff = new Color(1,1,1,0);
+        private SkinnedMeshRenderer[] _skinnedMeshRenderers;
+        private readonly Color colorOn = new Color(1, 1, 1, 0.6f);
+        private readonly Color colorOff = new Color(1, 1, 1, 0);
+        private TutorialProceduralHandPose proceduralPose;
         private Animator thumbController;
-        #endregion vars
 
-        #region init
+        public bool IsRightHand { get; private set; }
+
         private void Awake()
         {
-            skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-            skinnedMeshRenderer.material.color = colorOff;
+            proceduralPose = GetComponent<TutorialProceduralHandPose>();
+            CacheRenderers();
+            SetRenderersAlpha(colorOff.a);
             thumbController = GetComponentInChildren<Animator>();
+            CacheHandSideFromName();
         }
-        #endregion init
 
-        #region helper methods
+        /// <summary>Safe before Awake (e.g. tutorial chrome resolve on inactive hierarchy).</summary>
+        public void CacheHandSideFromName()
+        {
+            IsRightHand = TutorialHandSide.IsRightSideName(name);
+        }
+
+        private void CacheRenderers()
+        {
+            Transform root = proceduralPose != null ? proceduralPose.PoseRoot : transform;
+            _skinnedMeshRenderers = root.GetComponentsInChildren<SkinnedMeshRenderer>(true);
+        }
+
         public void Fade(bool on)
         {
-            Tween.Color(skinnedMeshRenderer.material, (on) ? colorOn : colorOff, 0.5f, 0);
-            //Tween.ShaderColor(skinnedMeshRenderer.material, "_MainColor", (on) ? colorOn : colorOff, 0.5f, 0);
+            if (_skinnedMeshRenderers == null || _skinnedMeshRenderers.Length == 0)
+                CacheRenderers();
+            if (_skinnedMeshRenderers == null || _skinnedMeshRenderers.Length == 0)
+                return;
+
+            foreach (var renderer in _skinnedMeshRenderers)
+            {
+                if (renderer == null)
+                    continue;
+                var color = on ? colorOn : colorOff;
+                Tween.Color(renderer.material, color, 0.5f, 0);
+            }
         }
 
-        public void MoveThumb()
+        private void SetRenderersAlpha(float alpha)
         {
-            thumbController.SetTrigger("MoveThumb");
+            if (_skinnedMeshRenderers == null)
+                return;
+            foreach (var renderer in _skinnedMeshRenderers)
+            {
+                if (renderer == null)
+                    continue;
+                var c = renderer.material.color;
+                c.a = alpha;
+                renderer.material.color = c;
+            }
         }
-        #endregion helper methods
+
+        public void AnimateToOpen(float duration = -1f)
+        {
+            if (thumbController != null)
+                thumbController.enabled = false;
+            proceduralPose?.AnimateToOpen(duration);
+        }
+
+        public void AnimateToClosed(float duration = -1f)
+        {
+            if (thumbController != null)
+                thumbController.enabled = false;
+            proceduralPose?.AnimateToClosed(duration);
+        }
+
+        public void SetOpenImmediate()
+        {
+            if (thumbController != null)
+                thumbController.enabled = false;
+            proceduralPose?.SetClosedAmountImmediate(0f);
+        }
+    }
+
+    internal static class TutorialHandSide
+    {
+        public static bool IsPoseReferenceName(string objectName)
+        {
+            return objectName.IndexOf("_Open", System.StringComparison.OrdinalIgnoreCase) >= 0
+                   || objectName.IndexOf("_Closed", System.StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        public static bool IsLeftSideName(string objectName)
+        {
+            return objectName.IndexOf("Left", System.StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        public static bool IsRightSideName(string objectName)
+        {
+            return objectName.IndexOf("Right", System.StringComparison.OrdinalIgnoreCase) >= 0
+                   && !IsLeftSideName(objectName);
+        }
+
+        /// <summary>-1 left, 1 right, 0 unknown.</summary>
+        public static int SideFromTransform(Transform t)
+        {
+            for (var p = t; p != null; p = p.parent)
+            {
+                if (IsRightSideName(p.name))
+                    return 1;
+                if (IsLeftSideName(p.name))
+                    return -1;
+            }
+
+            return 0;
+        }
+
+        /// <summary>Open/closed duplicate rigs used only for pose sampling — not the faded-in tutorial hand.</summary>
+        public static bool IsUnderPoseReferenceHierarchy(Transform t)
+        {
+            for (var p = t; p != null; p = p.parent)
+            {
+                if (IsPoseReferenceName(p.name))
+                    return true;
+            }
+
+            return false;
+        }
     }
 }

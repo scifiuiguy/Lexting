@@ -1,10 +1,10 @@
 ﻿using SimpleJSON;
 using SpatialGestureText.Data;
-using SpatialGestureText.Debugging;
 using SpatialGestureText.EnglishDictionaries;
 using SpatialGestureText.Hotkeys;
 using SpatialGestureText.Input;
 using SpatialGestureText.Interfaces;
+using SpatialGestureText.Tutorial;
 using SpatialGestureText.TwoZoneCube;
 using SpatialGestureText.Utilities;
 using System;
@@ -118,7 +118,7 @@ namespace SpatialGestureText.LetterCube
             if (on)
             {
                 LextingController.Instance.currentRightTrigger.SetStartingIndex(true);
-                if (_leftDragHandler.isLineTracingActive && !isWordAssemblyActive /*&& !Lexting.hotkeys.isHotkeyAvailable*/)
+                if (_leftDragHandler.isLineTracingActive && !isWordAssemblyActive && !IsSingleLetterTutorialTyping())
                     isWordAssemblyActive = true;
             }
         }
@@ -134,7 +134,7 @@ namespace SpatialGestureText.LetterCube
             if (on)
             {
                 LextingController.Instance.currentRightTrigger.SetStartingIndex(false);
-                if (_rightDragHandler.isLineTracingActive && !isWordAssemblyActive)
+                if (_rightDragHandler.isLineTracingActive && !isWordAssemblyActive && !IsSingleLetterTutorialTyping())
                     isWordAssemblyActive = true;
             }
         }
@@ -148,6 +148,8 @@ namespace SpatialGestureText.LetterCube
         {
 
             if (!Lexting.input.inputActive) return;
+            if (IsSingleLetterTutorialTyping())
+                return;
             _initWordAssembly = () => {
                 _previousComp = TwoZoneGrabState.comp;
 
@@ -202,8 +204,9 @@ namespace SpatialGestureText.LetterCube
                     || string.IsNullOrEmpty(Lexting.finalizer.currentWord.text)
                     || DidReleaseBothSimultaneously()) && Lexting.finalizer.wordList.Count > 0)
             {
+                var word = TwoZoneWordListController.Instance.GetDefaultFirstWord();
                 Lexting.printer.SubtractWord(false);
-                Lexting.printer.AppendOutputs(TwoZoneWordListController.Instance.GetDefaultFirstWord(), true);
+                Lexting.printer.AppendOutputs(word, true);
             }
         }
 
@@ -369,6 +372,16 @@ namespace SpatialGestureText.LetterCube
             return tempWordList.Count > 0;
         }
 
+        /// <summary>Rebuild finalizer choices from current grab comp (tutorial / stale-list recovery).</summary>
+        public void RebuildWordListFromGrabComp()
+        {
+            var comp = TwoZoneGrabState.comp ?? "";
+            if (comp.Length < 2)
+                return;
+            if (!RefreshWordList(comp))
+                return;
+            Lexting.finalizer.UpdateWordList(tempWordList);
+        }
 
         /// <summary>
         /// While word assembly is active, this method updates the latter two of the
@@ -405,7 +418,6 @@ namespace SpatialGestureText.LetterCube
         
         public void SubtractLetter(bool right)
         {
-            //LogOutputReceiver.Instance.Log($"Assembler about to subtract a letter in {((right)?"right":"left")} hand.");
             _previousComp = TwoZoneGrabState.comp;
             if (!string.IsNullOrEmpty(TwoZoneGrabState.second(right)))
                 TwoZoneGrabState.ReturnSecond(right);
@@ -418,8 +430,6 @@ namespace SpatialGestureText.LetterCube
         /// </summary>
         private void RefreshInProgressWordOutput(bool right)
         {
-            //LogOutputReceiver.Instance.Log($"Assembler RefreshInProgressWordOuput about to process {((right) ? "right" : "left")} hand " +
-            //    $"for current comp {TwoZoneGrabState.first(right) + TwoZoneGrabState.second(right)}");
             ConstructWordList();
             // 3 use cases: 1) a 2-hand unique comp is ready, or 2) a hand returned to its start, or 3) a 1-hand comp is ready,  
             if (TwoZoneGrabState.compReady && !TwoZoneGrabState.comp.Equals(_previousComp) && !isWordScrollActive)
@@ -430,7 +440,8 @@ namespace SpatialGestureText.LetterCube
             {
                 if (TwoZoneGrabState.currentReloaded)
                     RefreshSingleHandReplacesSecondLetter(right);   // use case 3a
-                else RefreshSingleHandAddsSecondLetter(right);      // use case 3b
+                else
+                    RefreshSingleHandAddsSecondLetter(right);      // use case 3b
             }
         }
 
@@ -471,6 +482,12 @@ namespace SpatialGestureText.LetterCube
             //LogOutputReceiver.Instance.Log($"Assembler RefreshTwoHandComp about to change " +
             //        $"{_previousComp} to {TwoZoneGrabState.comp}");
             Lexting.printer.ReplaceOutput(_previousComp.Length, TwoZoneGrabState.comp, _previousComp);
+        }
+
+        private static bool IsSingleLetterTutorialTyping()
+        {
+            var tm = TutorialManager.Instance;
+            return tm != null && tm.IsSingleLetterTutorialTypingStep;
         }
         #endregion helper methods
 

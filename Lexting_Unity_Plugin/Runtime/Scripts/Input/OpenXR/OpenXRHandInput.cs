@@ -24,7 +24,6 @@ using SpatialGestureText.TwoZoneCube;
 using SpatialGestureText.Interfaces;
 using SpatialGestureText.Utilities;
 using System.Threading;
-using SpatialGestureText.Debugging;
 using UnityEngine.XR.Hands.Samples.VisualizerSample;
 using UnityEngine.XR.Hands;
 
@@ -99,6 +98,9 @@ namespace SpatialGestureText.Input
 
 
         [HideInInspector] public SpatialGestureEvent IndexFingersAtEachOther = new SpatialGestureEvent();
+
+        [HideInInspector] public SpatialGestureEvent<bool, bool> SinglePopGunActive = new SpatialGestureEvent<bool, bool>();
+        [HideInInspector] public SpatialGestureEvent<bool> DualPopGunActive = new SpatialGestureEvent<bool>();
 
         //        public bool[] rightHeldLong, leftHeldLong;
         //        public bool modeActive;
@@ -282,6 +284,23 @@ namespace SpatialGestureText.Input
         private bool _isLoadingReposition;
         #endregion repositioning vars
 
+        #region Tutorial pop-gun vars
+        private const float MiddlePopGunCloseThreshold = 0.11f;
+        private const float RingPopGunCloseThreshold = 0.08f;
+        private const float PopGunPointerConfidenceThreshold = 0.7f;
+        private const float PopGunThumbConfidenceThreshold = 0.7f;
+        private const float DualPopGunThumbsDotThreshold = 0.3f;
+
+        private Transform _rightRingTip;
+        private Transform _leftRingTip;
+        private Transform _rightThumbProximal;
+        private Transform _leftThumbProximal;
+
+        private bool _rightPopGunLatched;
+        private bool _leftPopGunLatched;
+        private bool _dualPopGunLatched;
+        #endregion Tutorial pop-gun vars
+
         /// These determine whether the user in changing state by reorienting the direction of the palm
         #region rotation state vars
         private Vector3 _palmNormal(bool right)
@@ -362,10 +381,32 @@ namespace SpatialGestureText.Input
         #endregion private vars
 
         #region init
+        private static bool _xrGestureBindingsRequested;
+        private static bool _gestureRecognizersInitialized;
+
         private void Awake()
         {
+            var onSameObject = GetComponents<OpenXRHandInput>();
+            if (onSameObject.Length > 1)
+            {
+                for (var i = 1; i < onSameObject.Length; i++)
+                {
+                    Debug.LogWarning(
+                        $"{nameof(OpenXRHandInput)}: removing duplicate on '{gameObject.name}' (prefab + runtime AddComponent).",
+                        onSameObject[i]);
+                    Destroy(onSameObject[i]);
+                }
+
+                if (onSameObject[0] != this)
+                    return;
+            }
+
             BindHandNodes(() => {
-                Lexting.input.InitXrHandEventBindings();
+                if (!_xrGestureBindingsRequested)
+                {
+                    _xrGestureBindingsRequested = true;
+                    Lexting.input.InitXrHandEventBindings();
+                }
                 InitGestureRecognizers();
                 InitTrackingStatusChecker();
                 inputActive = true;
@@ -498,6 +539,10 @@ namespace SpatialGestureText.Input
             Lexting.input.leftHand.indexTip = BoneTransform(_leftSkeleton, BoneId.Hand_IndexTip);
             Lexting.input.rightHand.indexBase = BoneTransform(_rightSkeleton, BoneId.Hand_Index1);
             Lexting.input.leftHand.indexBase = BoneTransform(_leftSkeleton, BoneId.Hand_Index1);
+            _rightThumbProximal = BoneTransform(_rightSkeleton, BoneId.Hand_Thumb0);
+            _leftThumbProximal = BoneTransform(_leftSkeleton, BoneId.Hand_Thumb0);
+            _rightRingTip = BoneTransform(_rightSkeleton, BoneId.Hand_RingTip);
+            _leftRingTip = BoneTransform(_leftSkeleton, BoneId.Hand_RingTip);
 
             return Lexting.input.rightHand.indexTip.Ready() && Lexting.input.leftHand.indexTip.Ready();
         }
@@ -575,6 +620,12 @@ namespace SpatialGestureText.Input
             Lexting.input.leftHand.indexTip = XrHandVisualizerUtility.TryGetJoint(_leftXRHandSkeleton, XRHandJointID.IndexTip);
             Lexting.input.rightHand.indexBase = XrHandVisualizerUtility.TryGetJoint(_rightXRHandSkeleton, XRHandJointID.IndexProximal);
             Lexting.input.leftHand.indexBase = XrHandVisualizerUtility.TryGetJoint(_leftXRHandSkeleton, XRHandJointID.IndexProximal);
+            _rightThumbProximal = XrHandVisualizerUtility.TryGetJoint(_rightXRHandSkeleton, XRHandJointID.ThumbProximal)
+                ?? XrHandVisualizerUtility.TryGetJoint(_rightXRHandSkeleton, XRHandJointID.ThumbMetacarpal);
+            _leftThumbProximal = XrHandVisualizerUtility.TryGetJoint(_leftXRHandSkeleton, XRHandJointID.ThumbProximal)
+                ?? XrHandVisualizerUtility.TryGetJoint(_leftXRHandSkeleton, XRHandJointID.ThumbMetacarpal);
+            _rightRingTip = XrHandVisualizerUtility.TryGetJoint(_rightXRHandSkeleton, XRHandJointID.RingTip);
+            _leftRingTip = XrHandVisualizerUtility.TryGetJoint(_leftXRHandSkeleton, XRHandJointID.RingTip);
 
             return Lexting.input.rightHand.palm.Ready() && Lexting.input.leftHand.palm.Ready()
                 && Lexting.input.rightHand.indexTip.Ready() && Lexting.input.leftHand.indexTip.Ready()
@@ -611,12 +662,144 @@ namespace SpatialGestureText.Input
 
         private void InitGestureRecognizers()
         {
+            if (_gestureRecognizersInitialized)
+                return;
+
+            _gestureRecognizersInitialized = true;
             InitGrabCheck();
             InitPointCheck();
             InitBackWordCheck();
             InitRepositioner();
             InitRotationChecker();
+            InitTutorialPopGunCheck();
         }
+
+#if !UNITY_STANDALONE
+        private void InitTutorialPopGunCheck()
+        {
+            this.Wait(
+                () => PopGunNodesReady(true) && PopGunNodesReady(false),
+                () => this.UpdateAsObservable().Subscribe(_ => RunTutorialPopGunFrame()).AddTo(this));
+        }
+
+        private Transform RingTip(bool right) => right ? _rightRingTip : _leftRingTip;
+
+        private Transform ThumbProximal(bool right) => right ? _rightThumbProximal : _leftThumbProximal;
+
+        private bool PopGunNodesReady(bool right)
+        {
+            var hand = Lexting.input.hand(right);
+            return hand.indexTip.Ready() && hand.indexBase.Ready() && hand.middleTip.Ready()
+                && hand.thumbTip.Ready() && ThumbProximal(right).Ready() && RingTip(right).Ready()
+                && WristTransform(right).Ready();
+        }
+
+        private Transform WristTransform(bool right)
+        {
+            var hand = Lexting.input.hand(right);
+            return hand.trackingWrist != null && hand.trackingWrist.Ready() ? hand.trackingWrist : hand.wrist;
+        }
+
+        private void RunTutorialPopGunFrame()
+        {
+            if (!inputActive)
+                return;
+            if (LextingController.Instance != null && LextingController.Instance.isInputStreamReceiver)
+                return;
+
+            var tutorial = TutorialManager.Instance;
+            if (tutorial == null || !tutorial.tutorialCompleted)
+                return;
+
+            if (!_rightPopGunLatched || !_leftPopGunLatched)
+            {
+                if (!_rightPopGunLatched && HandHasPopGunGesture(true))
+                    LatchSinglePopGun(true);
+                if (!_leftPopGunLatched && HandHasPopGunGesture(false))
+                    LatchSinglePopGun(false);
+            }
+            else if (!_dualPopGunLatched && HasDualPopGunThumbsIn())
+            {
+                _dualPopGunLatched = true;
+                DualPopGunActive.I(true);
+            }
+        }
+
+        private void LatchSinglePopGun(bool right)
+        {
+            if (right)
+                _rightPopGunLatched = true;
+            else
+                _leftPopGunLatched = true;
+            SinglePopGunActive.I(true, right);
+        }
+
+        /// <summary>Clears pop-gun latch state so tutorial steps can accept the same gestures again.</summary>
+        public void ResetTutorialPopGunLatches()
+        {
+            _rightPopGunLatched = false;
+            _leftPopGunLatched = false;
+            _dualPopGunLatched = false;
+        }
+
+        private Vector3 AimDirectionTowardTutorial()
+        {
+            if (Lexting.head == null || TutorialManager.Instance == null)
+                return Vector3.zero;
+            return (TutorialManager.Instance.transform.position - Lexting.head.transform.position).normalized;
+        }
+
+        private float PopGunPointerConfidence(bool right)
+        {
+            var aim = AimDirectionTowardTutorial();
+            if (aim.sqrMagnitude < 1e-6f)
+                return 0f;
+            var indexDir = (_iTip(right).position - _iBase(right).position).normalized;
+            return Vector3.Dot(indexDir, aim);
+        }
+
+        private bool PopGunFingersClosed(bool right)
+        {
+            var wrist = WristTransform(right).position;
+            bool middleClosed = (_mTip(right).position - wrist).magnitude < MiddlePopGunCloseThreshold;
+            bool ringClosed = (RingTip(right).position - wrist).magnitude < RingPopGunCloseThreshold;
+            return middleClosed && ringClosed;
+        }
+
+        private float PopGunThumbConfidence(bool right)
+        {
+            var hand = Lexting.input.hand(right);
+            var thumbProx = ThumbProximal(right);
+            if (!hand.thumbTip.Ready() || !thumbProx.Ready())
+                return 0f;
+            var thumbDir = (hand.thumbTip.position - thumbProx.position).normalized;
+            return Vector3.Dot(thumbDir, Vector3.up);
+        }
+
+        private bool HandHasPopGunGesture(bool right)
+        {
+            return PopGunPointerConfidence(right) > PopGunPointerConfidenceThreshold
+                && PopGunThumbConfidence(right) > PopGunThumbConfidenceThreshold
+                && PopGunFingersClosed(right);
+        }
+
+        private bool HasDualPopGunThumbsIn()
+        {
+            if (!PopGunFingersClosed(true) || !PopGunFingersClosed(false))
+                return false;
+            if (PopGunPointerConfidence(true) <= PopGunPointerConfidenceThreshold
+                || PopGunPointerConfidence(false) <= PopGunPointerConfidenceThreshold)
+                return false;
+
+            var rightHand = Lexting.input.rightHand;
+            var leftHand = Lexting.input.leftHand;
+            var rightThumb = (rightHand.thumbTip.position - _rightThumbProximal.position).normalized;
+            var leftThumb = (leftHand.thumbTip.position - _leftThumbProximal.position).normalized;
+            return Vector3.Dot(rightThumb, leftThumb) < DualPopGunThumbsDotThreshold;
+        }
+#else
+        private void InitTutorialPopGunCheck() { }
+#endif
 
         IDisposable grabLogLoopRight;
 
@@ -1608,23 +1791,6 @@ namespace SpatialGestureText.Input
         #endregion helper methods
 
         #region debugging
-        Vector3 test = new Vector3();
-        Vector3 test2 = new Vector3();
-        private void Update()
-        {
-            this.WaitF(5, () => {
-                if (_iTip(true) != null)
-                    test = _iTip(true).position;
-                if (_iBase(true) != null)
-                    test2 = _iBase(true).position;
-
-                Debug.Log((test - test2).normalized);
-                //Debug.Log((_iTip(false).position - _iBase(false).position).normalized);
-
-                //Debug.Log("Dot product of index finger vectors: " + Vector3.Dot(_indexDirection(true), _indexDirection(false)));
-            });
-            
-        }
 
     public void UnitTest_RightStateChanged()
         {

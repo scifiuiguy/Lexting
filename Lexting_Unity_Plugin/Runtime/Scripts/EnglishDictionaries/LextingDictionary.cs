@@ -65,7 +65,7 @@ namespace SpatialGestureText.EnglishDictionaries
         {
             _twoLetterWords = InitWordArray("two_letter_words", /*"two_letter_words_json"*/ "two_letter_words_2x2x2");
             foreach (JSONNode wordNode in _twoLetterWords)
-                DrillDownAdd(wordNode, twoLetterDictionary);
+                SafeDrillDownAdd(wordNode, twoLetterDictionary);
             //filter.IncludeForAnalysis(_twoLetterWords);
         }
 
@@ -92,12 +92,92 @@ namespace SpatialGestureText.EnglishDictionaries
         {
             wordArray = InitWordArray(arrayName, sourceFileName);
             foreach (JSONNode wordNode in wordArray)
-                DrillDownAdd(wordNode, dictionary);
+                SafeDrillDownAdd(wordNode, dictionary);
             //filter.IncludeForAnalysis(wordArray);
             wordArray = null;
         }
 
         #region dictionary setters
+        /// <summary>
+        /// Returns the lemma in <c>default</c> when it is a non-empty string; logs and returns false for bad records.
+        /// </summary>
+        private static bool TryGetDefaultLemma(JSONNode wordNode, out string lemma)
+        {
+            lemma = null;
+            if (wordNode == null)
+            {
+                Debug.LogWarning("DrillDownAdd skipped: word node is null.");
+                return false;
+            }
+
+            JSONNode defNode = wordNode["default"];
+            if (defNode == null || defNode.IsNull)
+            {
+                Debug.LogWarning($"DrillDownAdd skipped: missing or null 'default' ({wordNode}).");
+                return false;
+            }
+
+            if (defNode.IsArray)
+            {
+                if (defNode.Count == 0 || !defNode[0].IsString || string.IsNullOrEmpty(defNode[0].Value))
+                {
+                    Debug.LogWarning($"DrillDownAdd skipped: invalid 'default' array ({wordNode}).");
+                    return false;
+                }
+
+                lemma = defNode[0].Value;
+                Debug.LogWarning($"DrillDownAdd: 'default' was an array; using first element \"{lemma}\".");
+                return true;
+            }
+
+            if (!defNode.IsString)
+            {
+                Debug.LogWarning($"DrillDownAdd skipped: non-string 'default' ({wordNode}).");
+                return false;
+            }
+
+            lemma = defNode.Value;
+            if (string.IsNullOrEmpty(lemma))
+            {
+                Debug.LogWarning($"DrillDownAdd skipped: empty 'default' string ({wordNode}).");
+                return false;
+            }
+
+            return true;
+        }
+
+        private static void SafeDrillDownAdd(
+            JSONNode wordNode,
+            Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, JSONNode>>>>> dictionary)
+        {
+            if (!TryGetDefaultLemma(wordNode, out _))
+                return;
+
+            try
+            {
+                DrillDownAdd(wordNode, dictionary);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                Debug.LogWarning($"DrillDownAdd ArgumentOutOfRangeException on word: {wordNode["default"]?.Value ?? wordNode.ToString()}");
+            }
+        }
+
+        private static void SafeDrillDownAdd(JSONNode wordNode, Dictionary<string, JSONNode> dictionary)
+        {
+            if (!TryGetDefaultLemma(wordNode, out _))
+                return;
+
+            try
+            {
+                DrillDownAdd(wordNode, dictionary);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                Debug.LogWarning($"DrillDownAdd ArgumentOutOfRangeException on word: {wordNode["default"]?.Value ?? wordNode.ToString()}");
+            }
+        }
+
         /// <summary>
         /// We needed a data structure for rapid English word access (i.e. drill down each letter as it is received).
         /// Originally implemented recursively with nested hash tables, 
@@ -110,20 +190,14 @@ namespace SpatialGestureText.EnglishDictionaries
         /// </summary>
         private static void DrillDownAdd(JSONNode wordNode, Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, JSONNode>>>>> dictionary)
         {
-            try {
-                if (dictionary.ContainsKey(wordNode["default"].Value.Substring(0, 1).ToLower()))
-                    DrillDownAdd(wordNode, dictionary[wordNode["default"].Value.Substring(0, 1).ToLower()]);
-                else
-                {
-                    Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, JSONNode>>>> newDictionary =
-                        new Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, JSONNode>>>>();
-                    dictionary.Add(wordNode["default"].Value.Substring(0, 1).ToLower(), newDictionary);
-                    DrillDownAdd(wordNode, newDictionary);
-                }
-            }
-            catch (ArgumentOutOfRangeException e)
+            if (dictionary.ContainsKey(wordNode["default"].Value.Substring(0, 1).ToLower()))
+                DrillDownAdd(wordNode, dictionary[wordNode["default"].Value.Substring(0, 1).ToLower()]);
+            else
             {
-                Debug.Log($"DrillDownAdd ArgumentOutOfRange Exception on word: {wordNode["default"].Value}");
+                Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, JSONNode>>>> newDictionary =
+                    new Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, JSONNode>>>>();
+                dictionary.Add(wordNode["default"].Value.Substring(0, 1).ToLower(), newDictionary);
+                DrillDownAdd(wordNode, newDictionary);
             }
         }
 

@@ -284,7 +284,7 @@
       "verbPast": "accompanied",
       "nounSingular": "acompaniment",
       "nounPlural": "acompaniments",
-      "adj": null
+      "adj": null,
       "adv": null
     },
     {
@@ -340,7 +340,7 @@
       "nounSingular": "accumulation",
       "nounPlural": "accumulations",
       "adj": "cumulative",
-      "adv": "cumulatively",
+      "adv": "cumulatively"
     },
     {
       "default": "accurate",
@@ -515,7 +515,7 @@
       "verbPast": "activated",
       "nounSingular": [ "action", "activation", "activity", "activist", "activism" ],
       "nounPlural": [ "actions", "activations", "activities", "activists", "activism"],
-      "adj": [ "active", "actionable" ]
+      "adj": [ "active", "actionable" ],
       "adv": [ "actively", "actionably" ]
     },
     {
@@ -912,7 +912,7 @@
       "nounSingular": "affordance",
       "nounPlural": "affordances",
       "adj": "affordable",
-      "adv": "affordably",
+      "adv": "affordably"
     },
     {
       "default": "Afghanistan",
@@ -953,7 +953,7 @@
       "verbPlural": "after",
       "verbParticiple": "after",
       "verbPast": "after",
-      "nounSingular": "afterward"
+      "nounSingular": "afterward",
       "nounPlural": "afterwards",
       "adj": "after",
       "adv": "after"
@@ -1033,7 +1033,7 @@
       "nounSingular": "agreement",
       "nounPlural": "agreements",
       "adj": "agreeable",
-      "adv": "agreeably",
+      "adv": "agreeably"
     },
     {
       "default": "agriculture",
@@ -1044,7 +1044,7 @@
       "nounSingular": "agriculture",
       "nounPlural": "agricultures",
       "adj": "agricultural",
-      "adv": "agriculturally",
+      "adv": "agriculturally"
     },
     {
       "default": "ahead",
@@ -1386,7 +1386,7 @@
       "nounSingular": "algebra",
       "nounPlural": null,
       "adj": "algebraic",
-      "adv": "algebraically",
+      "adv": "algebraically"
     },
     {
       "default": "Algeria",
@@ -1408,7 +1408,7 @@
       "nounSingular": "algorithm",
       "nounPlural": "algorithms",
       "adj": "algorithmic",
-      "adv": "algorithmically",
+      "adv": "algorithmically"
     },
     {
       "default": "alias",
@@ -1440,7 +1440,7 @@
       "verbPast": "alienated",
       "nounSingular": "alienation", 
       "nounPlural": "alienations", 
-      "adj": "alienable" 
+      "adj": "alienable",
       "adv": null
     },
     {
@@ -1559,8 +1559,8 @@
       "verbPlural": "allies",
       "verbParticiple": "allied",
       "verbPast": "allying",
-      "nounSingular": [ "ally", "alliance" ]
-      "nounPlural": [ "allies", "alliances" ]
+      "nounSingular": [ "ally", "alliance" ],
+      "nounPlural": [ "allies", "alliances" ],
       "adj": null,
       "adv": null
     },
@@ -1570,8 +1570,8 @@
       "verbPlural": "allies",
       "verbParticiple": "allied",
       "verbPast": "allying",
-      "nounSingular": [ "ally", "alliance" ]
-      "nounPlural": [ "allies", "alliances" ]
+      "nounSingular": [ "ally", "alliance" ],
+      "nounPlural": [ "allies", "alliances" ],
       "adj": null,
       "adv": null
     },
@@ -1820,7 +1820,7 @@
     {
       "default": "Ambien",
       "verbSingular": null,
-      "verbPlural": null
+      "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
       "nounSingular": "Ambien",
@@ -1865,7 +1865,7 @@
       "default": "America",
       "verbSingular": "American",
       "verbPlural": "Americans",
-      "verbParticiple": "Americana"
+      "verbParticiple": "Americana",
       "verbPast": null,
       "nounSingular": "America",
       "nounPlural": "Americas",
@@ -2099,7 +2099,7 @@
       "verbParticiple": null,
       "verbPast": null,
       "nounSingular": "Andrew",
-      "nounPlural": "Andrews" 
+      "nounPlural": "Andrews",
       "adj": null,
       "adv": null
     },
@@ -2145,7 +2145,7 @@
       "nounSingular": "anger",
       "nounPlural": "angers",
       "adj": "angry",
-      "adv": "angrily",
+      "adv": "angrily"
     },
     {
       "default": "angle",
@@ -2299,7 +2299,7 @@
       "nounSingular": [ "annum", "annuity" ],
       "nounPlural": [ "annums", "annuities" ],
       "adj": "annual",
-      "adv": "annually",
+      "adv": "annually"
     },
     {
       "default": "anonymity",
@@ -2310,7 +2310,7 @@
       "nounSingular": "anonymity",
       "nounPlural": "anonymities",
       "adj": "anonymous",
-      "adv": "anonymously",
+      "adv": "anonymously"
     },
     {
       "default": "another",
@@ -2398,7 +2398,7 @@
       "nounSingular": "anthropology",
       "nounPlural": "anthropologies",
       "adj": "anthropological",
-      "adv": "anthropologically",
+      "adv": "anthropologically"
     },
     {
       "default": "antibody",
@@ -2739,7 +2739,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "appraisal",
-      "adv": "appraisals",
+      "adv": "appraisals"
     },
     {
       "default": "appreciate",
@@ -2761,7 +2761,7 @@
       "nounSingular": "approach",
       "nounPlural": "approaches",
       "adj": "approachable",
-      "adv": "approachably",
+      "adv": "approachably"
     },
     {
       "default": "appropriate",
@@ -2772,7 +2772,7 @@
       "nounSingular": "appropriation",
       "nounPlural": "appropriations",
       "adj": [ "appropriate", "appropo" ],
-      "adv": [ "appropriately", "appropo" ],
+      "adv": [ "appropriately", "appropo" ]
     },
     {
       "default": "approve",
@@ -2816,7 +2816,7 @@
       "nounSingular": "aquarium",
       "nounPlural": "aquariums",
       "adj": "aquatic",
-      "adv": "aquatically",
+      "adv": "aquatically"
     },
     {
       "default": "Arabia",
@@ -2826,7 +2826,7 @@
       "verbPast": null,
       "nounSingular": "Arabia",
       "nounPlural": "Arabias",
-      "adj": "Arabic" 
+      "adj": "Arabic",
       "adv": null
     },
     {
@@ -2871,7 +2871,7 @@
       "nounSingular": [ "architect", "architecture" ],
       "nounPlural": [ "architects", "architectures" ],
       "adj": "architectural",
-      "adv": "architecturally",
+      "adv": "architecturally"
     },
     {
       "default": "archive",
@@ -2893,7 +2893,7 @@
       "nounSingular": "arctic",
       "nounPlural": "arctics",
       "adj": "arctic",
-      "adv": "arctically",
+      "adv": "arctically"
     },
     {
       "default": "ardent",
@@ -2904,7 +2904,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "ardent",
-      "adv": "ardently",
+      "adv": "ardently"
     },
     {
       "default": "area",
@@ -3190,7 +3190,7 @@
       "nounSingular": "artifice",
       "nounPlural": "artifices",
       "adj": "artificial",
-      "adv": "artificially",
+      "adv": "artificially"
     },
     {
       "default": "Aruba",
@@ -3432,7 +3432,7 @@
       "nounSingular": [ "athlete", "athletic", "athleticism" ],
       "nounPlural": [ "athletes", "athletics", "athleticism"  ],
       "adj": "athletic",
-      "adv": "athletically",
+      "adv": "athletically"
     },
     {
       "default": "Atlanta",
@@ -3520,7 +3520,7 @@
       "nounSingular": [ "attendance", "attendee", "attention" ],
       "nounPlural": [ "attendances", "attendees", "attentions" ],
       "adj": [ "attent", "attentive" ],
-      "adv": [ "attently", "attentively" ],
+      "adv": [ "attently", "attentively" ]
     },
     {
       "default": "attitude",
@@ -3773,7 +3773,7 @@
       "nounSingular": "availability",
       "nounPlural": "availabilities",
       "adj": "available",
-      "adv": "availably",
+      "adv": "availably"
     },
     {
       "default": "avatar",
@@ -3861,7 +3861,7 @@
       "nounSingular": "awareness", 
       "nounPlural": "awarenesses",
       "adj": "aware",
-      "adv": "awarely",
+      "adv": "awarely"
     },
     {
       "default": "away",
@@ -3883,7 +3883,7 @@
       "nounSingular": "awesomeness",
       "nounPlural": null,
       "adj": "awesome",
-      "adv": "awesomely",
+      "adv": "awesomely"
     },
     {
       "default": "awful",
@@ -3894,7 +3894,7 @@
       "nounSingular": "awfulness",
       "nounPlural": null,
       "adj": "awful",
-      "adv": "awfully",
+      "adv": "awfully"
     },
     {
       "default": "awry",
@@ -4004,7 +4004,7 @@
       "nounSingular": "bacterium",
       "nounPlural": "bacteria",
       "adj": "bacterial",
-      "adv": "bacterially",
+      "adv": "bacterially"
     },
     {
       "default": "badge",
@@ -4026,7 +4026,7 @@
       "nounSingular": "badger",
       "nounPlural": "badgers",
       "adj": "badger-esque",
-      "adv": null,
+      "adv": null
     },
     {
       "default": "Baghdad",
@@ -4155,8 +4155,8 @@
       "verbPlural": "bakes",
       "verbParticiple": "baking",
       "verbPast": "baked",
-      "nounSingular": [ "bake", "baker" ]
-      "nounPlural": [ "bakes", "bakers" ]
+      "nounSingular": [ "bake", "baker" ],
+      "nounPlural": [ "bakes", "bakers" ],
       "adj": null,
       "adv": null
     },
@@ -4430,8 +4430,8 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": [ "barn", "barnyard" ]
-      "nounPlural": [ "barns", "barnyards" ]
+      "nounSingular": [ "barn", "barnyard" ],
+      "nounPlural": [ "barns", "barnyards" ],
       "adj": null,
       "adv": null
     },
@@ -4752,7 +4752,7 @@
       "nounSingular": "beauty",
       "nounPlural": "beauties",
       "adj": "beautiful",
-      "adv": "beautifully",
+      "adv": "beautifully"
     },
     {
       "default": "beaver",
@@ -4870,8 +4870,8 @@
       "verbPlural": "beeps",
       "verbParticiple": "beeping",
       "verbPast": "beeped",
-      "nounSingular": [ "beep", "Beeple" ]
-      "nounPlural": [ "beeps", "Beeples" ]
+      "nounSingular": [ "beep", "Beeple" ],
+      "nounPlural": [ "beeps", "Beeples" ],
       "adj": "beepy",
       "adv": "beepily"
     },
@@ -5137,7 +5137,7 @@
       "nounSingular": "beneficiary",
       "nounPlural": "beneficiaries",
       "adj": "beneficial",
-      "adv": "beneficially",
+      "adv": "beneficially"
     },
     {
       "default": "Benjamin",
@@ -5522,7 +5522,7 @@
       "nounSingular": "biodiversity",
       "nounPlural": "biodiversities",
       "adj": "biodiverse",
-      "adv": "biodiversely",
+      "adv": "biodiversely"
     },
     {
       "default": "biography",
@@ -5676,7 +5676,7 @@
       "nounSingular": "bizarreness",
       "nounPlural": null,
       "adj": "bizarre",
-      "adv": "bizarrely",
+      "adv": "bizarrely"
     },
     {
       "default": "blab",
@@ -5698,7 +5698,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "black",
-      "adv": "blackly",
+      "adv": "blackly"
     },
     {
       "default": "blackjack",
@@ -5863,7 +5863,7 @@
       "nounSingular": "blinder",
       "nounPlural": "blinders",
       "adj": "blind",
-      "adv": "blindly",
+      "adv": "blindly"
     },
     {
       "default": "blink",
@@ -5929,7 +5929,7 @@
       "nounSingular": "blocker",
       "nounPlural": "blockers",
       "adj": "blocky",
-      "adv": "blockily",
+      "adv": "blockily"
     },
     {
       "default": "blog",
@@ -5984,7 +5984,7 @@
       "nounSingular": "bloomer",
       "nounPlural": "bloomers",
       "adj": "bloomy",
-      "adv": "bloomily",
+      "adv": "bloomily"
     },
     {
       "default": "blot",
@@ -6501,7 +6501,7 @@
       "nounSingular": "bottom",
       "nounPlural": "bottoms",
       "adj": "bottomless",
-      "adv": "bottomlessly",
+      "adv": "bottomlessly"
     },
     {
       "default": "bound",
@@ -6831,7 +6831,7 @@
       "nounSingular": "breath",
       "nounPlural": "breath",
       "adj": "breathy",
-      "adv": "breathily",
+      "adv": "breathily"
     },
     {
       "default": "breed",
@@ -6930,7 +6930,7 @@
       "nounSingular": "brightness",
       "nounPlural": "brightnesses",
       "adj": "bright",
-      "adv": "brightly",
+      "adv": "brightly"
     },
     {
       "default": "Brighton",
@@ -6952,7 +6952,7 @@
       "nounSingular": "brilliance",
       "nounPlural": null,
       "adj": "brilliant",
-      "adv": "brilliantly",
+      "adv": "brilliantly"
     },
     {
       "default": "brim",
@@ -7095,7 +7095,7 @@
       "nounSingular": "brother",
       "nounPlural": "brothers",
       "adj": "brother",
-      "adv": "brotherly",
+      "adv": "brotherly"
     },
     {
       "default": "brow",
@@ -7117,7 +7117,7 @@
       "nounSingular": "brownout",
       "nounPlural": "brownout",
       "adj": "brown",
-      "adv": "brownly",
+      "adv": "brownly"
     },
     {
       "default": "browse",
@@ -7205,7 +7205,7 @@
       "nounSingular": [ "brute", "brutalization", "brutality" ],
       "nounPlural": [ "brutes", "brutalizations", "brutalities" ],
       "adj": "brutal",
-      "adv": "brutally",
+      "adv": "brutally"
     },
     {
       "default": "Bryan",
@@ -8108,7 +8108,7 @@
       "nounSingular": "cancer",
       "nounPlural": "cancers",
       "adj": "cancerous",
-      "adv": "cancerously",
+      "adv": "cancerously"
     },
     {
       "default": "candidate",
@@ -8119,7 +8119,7 @@
       "nounSingular": [ "candidate", "candidacy" ],
       "nounPlural": [ "candidates", "candidacies" ],
       "adj": "candid",
-      "adv": "candidly",
+      "adv": "candidly"
     },
     {
       "default": "candle",
@@ -8204,8 +8204,8 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": [ "cannon", "cannonball" ]
-      "nounPlural": [ "cannons", "cannonballs" ]
+      "nounSingular": [ "cannon", "cannonball" ],
+      "nounPlural": [ "cannons", "cannonballs" ],
       "adj": null,
       "adv": null
     },
@@ -8269,7 +8269,7 @@
       "verbSingular": null,
       "verbPlural": null,
       "verbParticiple": null,
-      "verbPast": nul,
+      "verbPast": null,
       "nounSingular": "capo",
       "nounPlural": "capos",
       "adj": null,
@@ -8348,7 +8348,7 @@
       "verbParticiple": null,
       "verbPast": null,
       "nounSingular": "cardio", 
-      "nounPlural": "cardiovascular"
+      "nounPlural": "cardiovascular",
       "adj": "cardiac",
       "adv": null
     },
@@ -8724,7 +8724,7 @@
       "nounSingular": "casualness",
       "nounPlural": "casualnesses",
       "adj": "casual",
-      "adv": "casually",
+      "adv": "casually"
     },
     {
       "default": "casualty",
@@ -8768,7 +8768,7 @@
       "nounSingular": "catch",
       "nounPlural": "catches",
       "adj": "catchy",
-      "adv": null,
+      "adv": null
     },
     {
       "default": "caught",
@@ -8779,7 +8779,7 @@
       "nounSingular": "catch",
       "nounPlural": "catches",
       "adj": "catchy",
-      "adv": null,
+      "adv": null
     },
     {
       "default": "cater",
@@ -8966,7 +8966,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "cellular",
-      "adv": "cellularly",
+      "adv": "cellularly"
     },
     {
       "default": "Celt",
@@ -9032,7 +9032,7 @@
       "nounSingular": [ "center", "centre" ],
       "nounPlural": [ "centers", "centres" ],
       "adj": "central",
-      "adv": "centrally",
+      "adv": "centrally"
     },
 
     {
@@ -9088,7 +9088,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "certain",
-      "adv": "certainly",
+      "adv": "certainly"
     },
     {
       "default": "certification",
@@ -9253,7 +9253,7 @@
       "nounSingular": "chaos",
       "nounPlural": "chaoses",
       "adj": "chaotic",
-      "adv": "chaotically",
+      "adv": "chaotically"
     },
     {
       "default": "chap",
@@ -9297,7 +9297,7 @@
       "nounSingular": [ "character", "characteristic" ],
       "nounPlural": [ "characters", "characteristics" ],
       "adj": "characteristic",
-      "adv": "characteristically",
+      "adv": "characteristically"
     },
     {
       "default": "charger",
@@ -9462,7 +9462,7 @@
       "nounSingular": "cheese",
       "nounPlural": "cheeses",
       "adj": "cheesy",
-      "adv": "cheesily",
+      "adv": "cheesily"
     },
     {
       "default": "chef",
@@ -9495,7 +9495,7 @@
       "nounSingular": [ "chemical", "chemistry", "chemist" ],
       "nounPlural": [ "chemicals", "chemistries", "chemists" ],
       "adj": "chemical",
-      "adv": "chemically",
+      "adv": "chemically"
     },
     {
       "default": "Cher",
@@ -9638,7 +9638,7 @@
       "nounSingular": [ "chief", "chieftan" ],
       "nounPlural": [ "chiefs", "chieftans" ],
       "adj": "chief",
-      "adv": "chiefly",
+      "adv": "chiefly"
     },
     {
       "default": "child",
@@ -9858,7 +9858,7 @@
       "nounSingular": "chrome",
       "nounPlural": null,
       "adj": "chromy",
-      "adv": "chromhely",
+      "adv": "chromhely"
     },
     {
       "default": "chub",
@@ -9946,7 +9946,7 @@
       "nounSingular": "chronicle",
       "nounPlural": "chronicles",
       "adj": "chronic",
-      "adv": "chronically",
+      "adv": "chronically"
     },
     {
       "default": "Chrysler",
@@ -10034,7 +10034,7 @@
       "nounSingular": [ "cinema", "cinematography" ],
       "nounPlural": [ "cinemas", "cinematographies" ],
       "adj": "cinemathec",
-      "adv": "cinemathecally",
+      "adv": "cinemathecally"
     },
     {
       "default": "Cingular",
@@ -10111,7 +10111,7 @@
       "nounSingular": [ "civility", "civilian", "civilization" ],
       "nounPlural": [ "civilities", "civilians", "civilizations" ],
       "adj": "civil",
-      "adv": "civilly",
+      "adv": "civilly"
     },
     {
       "default": "clad",
@@ -10254,7 +10254,7 @@
       "nounSingular": [ "cleaner", "cleanser", "cleanup" ],
       "nounPlural": [ "cleaners", "cleansers", "cleanups" ],
       "adj": "clean",
-      "adv": "cleanly",
+      "adv": "cleanly"
     },
 
     {
@@ -10332,7 +10332,7 @@
       "nounSingular": "click",
       "nounPlural": "clicks",
       "adj": "clicky",
-      "adv": null,
+      "adv": null
     },
     {
       "default": "client",
@@ -10387,7 +10387,7 @@
       "nounSingular": "clinic",
       "nounPlural": "clinics",
       "adj": "clinical",
-      "adv": "clinically",
+      "adv": "clinically"
     },
     {
       "default": "Clinton",
@@ -10431,7 +10431,7 @@
       "nounSingular": "clock",
       "nounPlural": "clocks",
       "adj": "clock-esque",
-      "adv": null,
+      "adv": null
     },
     {
       "default": "clod",
@@ -10816,7 +10816,7 @@
       "nounSingular": [ "collaboration", "collaborator" ],
       "nounPlural": [ "collaborations", "collaborators" ],
       "adj": "collaborative",
-      "adv": "collaboratively",
+      "adv": "collaboratively"
     },
     {
       "default": "collapse",
@@ -10860,7 +10860,7 @@
       "nounSingular": [ "collector", "collection" ],
       "nounPlural": [ "collectors", "collections" ],
       "adj": "collective",
-      "adv": "collectively",
+      "adv": "collectively"
     },
     {
       "default": "college",
@@ -11058,7 +11058,7 @@
       "nounSingular": "comic",
       "nounPlural": "comics",
       "adj": "comical",
-      "adv": "comically",
+      "adv": "comically"
     },
     {
       "default": "comm",
@@ -11116,12 +11116,12 @@
       "adv": "commercially"
     },
     {
-      "default": "commit"
+      "default": "commit",
       "verbSingular": [ "commit", "commission" ],
       "verbPlural": [ "commits", "commissions" ],
       "verbParticiple": [ "commiting", "commissioning" ],
       "verbPast": [ "commited", "commissioned" ],
-      "nounSingular": [ "commitment" "commission", "commissioner", "committee"  ],
+      "nounSingular": [ "commitment", "commission", "commissioner", "committee"  ],
       "nounPlural": [ "commitments", "commissions", "commissioners", "committees" ],
       "adj": "commited", 
       "adv": "commitedly"
@@ -11318,7 +11318,7 @@
       "verbSingular": "comply",
       "verbPlural": "complies",
       "verbParticiple": "complying",
-      "verbPast": complied,
+      "verbPast": "complied",
       "nounSingular": "compliance",
       "nounPlural": "compliances",
       "adj": "compliant",
@@ -11476,7 +11476,7 @@
       "nounSingular": "concrete",
       "nounPlural": null,
       "adj": "concrete",
-      "adv": "concretely",
+      "adv": "concretely"
     },
     {
       "default": "condition",
@@ -11487,7 +11487,7 @@
       "nounSingular": [ "condition", "conditionality" ],
       "nounPlural": [ "conditions", "conditionalities" ],
       "adj": "conditional",
-      "adv": "conditionally",
+      "adv": "conditionally"
     },
     {
       "default": "condo",
@@ -11619,7 +11619,7 @@
       "nounSingular": "congratulation",
       "nounPlural": "congratulations",
       "adj": "congratulatory",
-      "adv": "congratulatorily",
+      "adv": "congratulatorily"
     },
     {
       "default": "congress",
@@ -11729,7 +11729,7 @@
       "nounSingular": "consistency",
       "nounPlural": "consistencies",
       "adj": "consistent",
-      "adv": "consistently",
+      "adv": "consistently"
     },
     {
       "default": "console",
@@ -11771,7 +11771,7 @@
       "verbParticiple": "conspiring",
       "verbPast": "conspired",
       "nounSingular": "conspiracy", 
-      "nounPlural": "conspiracies" 
+      "nounPlural": "conspiracies",
       "adj": "conspiratorial", 
       "adv": "conspiratorially"
     },
@@ -11795,7 +11795,7 @@
       "nounSingular": "constitution",
       "nounPlural": "constitutions",
       "adj": "constitutional",
-      "adv": "constitutionally",
+      "adv": "constitutionally"
     },
     {
       "default": "constrain",
@@ -11837,7 +11837,7 @@
       "verbParticiple": "consuming",
       "verbPast": "consumed",
       "nounSingular": [ "consumer", "consumption" ],
-      "nounPlural": [ "consumers", consumptions ],
+      "nounPlural": [ "consumers", "consumptions" ],
       "adj": "consumable",
       "adv": "consumably"
     },
@@ -11886,14 +11886,14 @@
       "adv": [ "contemporarily", "contemporaneously" ]
     },
     {
-      "default": "contemplate"
-      "verbSingular": "contemplate"
-      "verbPlural": "contemplates"
-      "verbParticiple": "contemplating"
-      "verbPast": "contemplated"
-      "nounSingular": "contemplation"
-      "nounPlural": "contemplations"
-      "adj": "contemplative"
+      "default": "contemplate",
+      "verbSingular": "contemplate",
+      "verbPlural": "contemplates",
+      "verbParticiple": "contemplating",
+      "verbPast": "contemplated",
+      "nounSingular": "contemplation",
+      "nounPlural": "contemplations",
+      "adj": "contemplative",
       "adv": "contemplatively"
     },
     {
@@ -11908,7 +11908,7 @@
       "adv": "contently"
     },
     {
-      "default": "contest", "context",
+      "default": "contest",
       "verbSingular": "contest",
       "verbPlural": "contests",
       "verbParticiple": "contesting",
@@ -11927,7 +11927,7 @@
       "nounSingular": "context",
       "nounPlural": "contexts",
       "adj": "contextual",
-      "adv": "contextually",
+      "adv": "contextually"
     },
     {
       "default": "continent",
@@ -11963,7 +11963,7 @@
       "adv": "contractibly"
     },
     {
-      "default": "contrary", "contrast",
+      "default": "contrary",
       "verbSingular": null,
       "verbPlural": null,
       "verbParticiple": null,
@@ -11996,7 +11996,7 @@
       "adv": "contributably"
     },
     {
-      "default": "control", "controversy",
+      "default": "control",
       "verbSingular": "control",
       "verbPlural": "controls",
       "verbParticiple": "controlling",
@@ -12037,7 +12037,7 @@
       "nounSingular": "convergence",
       "nounPlural": "convergences",
       "adj": "convergent",
-      "adv": "convergently",
+      "adv": "convergently"
     },
     {
       "default": "converse",
@@ -12081,7 +12081,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "convincing",
-      "adv": "convincingly",
+      "adv": "convincingly"
     },
     {
       "default": "cook",
@@ -12147,7 +12147,7 @@
       "nounSingular": [ "coordinator", "coordination" ],
       "nounPlural": [ "coordinators", "coordinations" ],
       "adj": "coordinated",
-      "adv": "coordinatedly",
+      "adv": "coordinatedly"
     },
     {
       "default": "coot",
@@ -12499,7 +12499,7 @@
       "nounSingular": "courage",
       "nounPlural": null,
       "adj": "courageous",
-      "adv": "courageously",
+      "adv": "courageously"
     },
     {
       "default": "courier",
@@ -12664,7 +12664,7 @@
       "nounSingular": "craft",
       "nounPlural": "crafts",
       "adj": "crafty",
-      "adv": "craftily",
+      "adv": "craftily"
     },
     {
       "default": "crag",
@@ -12763,7 +12763,7 @@
       "nounSingular": [ "craze", "craziness" ],
       "nounPlural": [ "crazes", "craziness" ],
       "adj": "crazy",
-      "adv": "crazily",
+      "adv": "crazily"
     },
     {
       "default": "cream",
@@ -12774,7 +12774,7 @@
       "nounSingular": [ "cream", "creamery" ],
       "nounPlural": [ "creams", "creameries" ],
       "adj": "creamy",
-      "adv": "creamily",
+      "adv": "creamily"
     },
     {
       "default": "create",
@@ -12785,7 +12785,7 @@
       "nounSingular": "creation",
       "nounPlural": "creations",
       "adj": "creative",
-      "adv": "creatively",
+      "adv": "creatively"
     },
     {
       "default": "cred",
@@ -12840,7 +12840,7 @@
       "nounSingular": "crest",
       "nounPlural": "crests",
       "adj": "crestfallen",
-      "adv": "crestfallenly",
+      "adv": "crestfallenly"
     },
     {
       "default": "crew",
@@ -12884,7 +12884,7 @@
       "nounSingular": "crime",
       "nounPlural": "crimes",
       "adj": "criminal",
-      "adv": "criminally",
+      "adv": "criminally"
     },
     {
       "default": "crisis",
@@ -12983,7 +12983,7 @@
       "nounSingular": "crowd",
       "nounPlural": "crowds",
       "adj": "crowded",
-      "adv": "crowdedly",
+      "adv": "crowdedly"
     },
     {
       "default": "crown",
@@ -13005,7 +13005,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "crucial",
-      "adv": "crucially",
+      "adv": "crucially"
     },
     {
       "default": "crud",
@@ -13016,7 +13016,7 @@
       "nounSingular": [ "crudity", "crud" ],
       "nounPlural": [ "crudities", "crud" ],
       "adj": "crude",
-      "adv": "crudely",
+      "adv": "crudely"
     },
     {
       "default": "Crue",
@@ -13060,7 +13060,7 @@
       "nounSingular": [ "crypto", "cryptography", "cryptocurrency" ],
       "nounPlural": [ "cryptos", "cryptographies", "cryptocurrencies" ],
       "adj": "cryptographic",
-      "adv": "cryptographically",
+      "adv": "cryptographically"
     },
     {
       "default": "crystal",
@@ -13159,7 +13159,7 @@
       "nounSingular": "culture",
       "nounPlural": "cultures",
       "adj": "cultural",
-      "adv": "culturally",
+      "adv": "culturally"
     },
     {
       "default": "cumulative",
@@ -13170,7 +13170,7 @@
       "nounSingular": "accumulation",
       "nounPlural": "accumulations",
       "adj": "cumulative",
-      "adv": "cumulatively",
+      "adv": "cumulatively"
     },
     {
       "default": "cunt",
@@ -13236,7 +13236,7 @@
       "nounSingular": "curiosity",
       "nounPlural": "curiosities",
       "adj": "curious",
-      "adv": "curiously",
+      "adv": "curiously"
     },
     {
       "default": "curl",
@@ -13258,7 +13258,7 @@
       "nounSingular": "currency",
       "nounPlural": "currencies",
       "adj": "current",
-      "adv": "currently",
+      "adv": "currently"
     },
     {
       "default": "curriculum",
@@ -13313,7 +13313,7 @@
       "nounSingular": "curve",
       "nounPlural": "curves",
       "adj": "curvy",
-      "adv": "curvily",
+      "adv": "curvily"
     },
     {
       "default": "cush",
@@ -13401,7 +13401,7 @@
       "nounSingular": [ "cycle", "cyclic", "cyclone"],
       "nounPlural": [ "cycles", "cyclics", "cyclones" ],
       "adj": "cyclical",
-      "adv": "cyclically",
+      "adv": "cyclically"
     },
     {
       "default": "cylinder",
@@ -13412,7 +13412,7 @@
       "nounSingular": "cylinder",
       "nounPlural": "cylinders",
       "adj": "cylindrical",
-      "adv": "cylindrically",
+      "adv": "cylindrically"
     },
     {
       "default": "Cyprus",
@@ -13489,7 +13489,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "dainty",
-      "adv": "daintily",
+      "adv": "daintily"
     },
     {
       "default": "daisy",
@@ -13730,7 +13730,7 @@
       "verbPast": null,
       "nounSingular": "datum",
       "nounPlural": "data",
-      "adj": null
+      "adj": null,
       "adv": null
     },
     {
@@ -13741,7 +13741,7 @@
       "verbPast": null,
       "nounSingular": "datum",
       "nounPlural": "data",
-      "adj": null
+      "adj": null,
       "adv": null
     },
     {
@@ -13785,7 +13785,7 @@
       "verbPast": null,
       "nounSingular": "Dawn",
       "nounPlural": "Dawns",
-      "adj": null
+      "adj": null,
       "adv": null
     },
     {
@@ -13840,7 +13840,7 @@
       "verbPast": "dealt",
       "nounSingular": "deal",
       "nounPlural": "deals",
-      "adj": null
+      "adj": null,
       "adv": null
     },
     {
@@ -13851,7 +13851,7 @@
       "verbPast": null,
       "nounSingular": "dear",
       "nounPlural": "dear",
-      "adj": "dear"
+      "adj": "dear",
       "adv": "dearly"
     },
     {
@@ -13951,7 +13951,7 @@
       "nounSingular": "decency",
       "nounPlural": "decencies",
       "adj": "decent",
-      "adv": "decently",
+      "adv": "decently"
     },
     {
       "default": "decide",
@@ -13983,7 +13983,7 @@
       "verbPast": "decked",
       "nounSingular": "deck",
       "nounPlural": "decks",
-      "adj": null
+      "adj": null,
       "adv": null
     },
     {
@@ -13995,7 +13995,7 @@
       "nounSingular": "declaration",
       "nounPlural": "declarations",
       "adj": "declarative",
-      "adv": "declaratively",
+      "adv": "declaratively"
     },
     {
       "default": "decline",
@@ -14017,7 +14017,7 @@
       "nounSingular": [ "decoration", "decor", "decorum" ],
       "nounPlural": [ "decorations", "decor", "decorum" ],
       "adj": "decorative",
-      "adv": "decoratively",
+      "adv": "decoratively"
     },
     {
       "default": "decrease",
@@ -14060,7 +14060,7 @@
       "verbPast": "deemed",
       "nounSingular": null,
       "nounPlural": null,
-      "adj": null
+      "adj": null,
       "adv": null
     },
     {
@@ -14082,7 +14082,7 @@
       "verbPast": null,
       "nounSingular": "deer",
       "nounPlural": "deer",
-      "adj": "deer-esque"
+      "adj": "deer-esque",
       "adv": null
     },
     {
@@ -14116,7 +14116,7 @@
       "nounSingular": [ "defect", "defection", "defector" ],
       "nounPlural": [ "defects", "defections", "defectors" ],
       "adj": "defective",
-      "adv": "defectively",
+      "adv": "defectively"
     },
     {
       "default": "defend",
@@ -14126,8 +14126,8 @@
       "verbPast": "defended",
       "nounSingular": [ "defense", "defendant", "defender" ],
       "nounPlural": [ "defenses", "defendants", "defenders" ],
-      "adj": "defensive", "defensible"
-      "adv": "defensively", "defensibly"
+      "adj": "defensive",
+      "adv": "defensively"
     },
     {
       "default": "defer",
@@ -14138,7 +14138,7 @@
       "nounSingular": [ "deferral", "deference" ],
       "nounPlural": [ "deferrals", "deferences" ],
       "adj": "deferential",
-      "adv": "deferentially",
+      "adv": "deferentially"
     },
     {
       "default": "deficit",
@@ -14160,7 +14160,7 @@
       "nounSingular": "definition",
       "nounPlural": "definitions",
       "adj": "definite",
-      "adv": "definitely",
+      "adv": "definitely"
     },
     {
       "default": "deft",
@@ -14181,7 +14181,7 @@
       "verbPast": "defied",
       "nounSingular": "defiance",
       "nounPlural": "defiances",
-      "adj": "defiant"
+      "adj": "defiant",
       "adv": "defiantly"
     },
     {
@@ -14192,7 +14192,7 @@
       "verbPast": "defied",
       "nounSingular": "defiance",
       "nounPlural": "defiances",
-      "adj": "defiant"
+      "adj": "defiant",
       "adv": "defiantly"
     },
     {
@@ -14204,7 +14204,7 @@
       "nounSingular": "degradation",
       "nounPlural": "degradations",
       "adj": "degraded",
-      "adv": "degradedly",
+      "adv": "degradedly"
     },
     {
       "default": "degree",
@@ -14358,7 +14358,7 @@
       "nounSingular": [ "democracy", "Democrat" ],
       "nounPlural": [ "democracies", "Democrats" ],
       "adj": "democratic",
-      "adv": "democratically",
+      "adv": "democratically"
     },
     {
       "default": "demographic",
@@ -14435,7 +14435,7 @@
       "nounSingular": [ "dentist", "denture", "dentistry", "dentition" ],
       "nounPlural": [ "dentists", "dentures", "dentistries", "dentition" ],
       "adj": "dental",
-      "adv": "dentally",
+      "adv": "dentally"
     },
     {
       "default": "Denver",
@@ -14468,7 +14468,7 @@
       "nounSingular": "department",
       "nounPlural": "departments",
       "adj": "departmental",
-      "adv": "departmentally",
+      "adv": "departmentally"
     },
     {
       "default": "depart",
@@ -14578,7 +14578,7 @@
       "nounSingular": [ "derivation", "derivative" ],
       "nounPlural": [ "derivations", "derivatives" ],
       "adj": "derhevative",
-      "adv": "derhevatively",
+      "adv": "derhevatively"
     },
     {
       "default": "descend",
@@ -14644,7 +14644,7 @@
       "nounSingular": "desire",
       "nounPlural": "desires",
       "adj": "desirable",
-      "adv": "desirably",
+      "adv": "desirably"
     },
     {
       "default": "desk",
@@ -14699,7 +14699,7 @@
       "nounSingular": "destruction",
       "nounPlural": "destructions",
       "adj": "destructional",
-      "adv": "destructionally",
+      "adv": "destructionally"
     },
     {
       "default": "detail",
@@ -14732,7 +14732,7 @@
       "nounSingular": [ "determination", "determinant" ],
       "nounPlural": [ "determinations", "determinants" ],
       "adj": "determinant",
-      "adv": "determinantly",
+      "adv": "determinantly"
     },
     {
       "default": "Detroit",
@@ -14765,7 +14765,7 @@
       "nounSingular": [ "deviation", "deviant" ],
       "nounPlural": [ "deviations", "deviants" ],
       "adj": "deviant",
-      "adv": "deviantly",
+      "adv": "deviantly"
     },
     {
       "default": "device",
@@ -14831,7 +14831,7 @@
       "nounSingular": [ "diabetic", "diabetes" ],
       "nounPlural": [ "diabetics", "diabetes" ],
       "adj": "diabetic",
-      "adv": "diabetically",
+      "adv": "diabetically"
     },
     {
       "default": "diagnose",
@@ -15249,7 +15249,7 @@
       "nounSingular": [ "discipline", "disciplinarian" ],
       "nounPlural": [ "disciplines", "disciplinarians" ],
       "adj": "disciplinary",
-      "adv": "disciplinarily",
+      "adv": "disciplinarily"
     },
     {
       "default": "disclaim",
@@ -15446,8 +15446,8 @@
       "verbPast": "distributed",
       "nounSingular": [ "distribution", "distributor" ],
       "nounPlural": [ "distributions", "distributors" ],
-      "adj": "distributable", "distributional",
-      "adv": "distributably", "distributionally"
+      "adj": "distributable",
+      "adv": "distributably"
     },
     {
       "default": "district",
@@ -15590,7 +15590,7 @@
       "nounSingular": [ "Dodger", "dodger", "dodgeball" ],
       "nounPlural": [ "Dodgers", "dodgers", "dodgeballs" ],
       "adj": "dodgy",
-      "adv": "dodghely",
+      "adv": "dodghely"
     },
     {
       "default": "dodo",
@@ -15689,7 +15689,7 @@
       "nounSingular": "domestication",
       "nounPlural": "domestications",
       "adj": "domestic",
-      "adv": "domestically",
+      "adv": "domestically"
     },
     {
       "default": "dominate",
@@ -15700,7 +15700,7 @@
       "nounSingular": [ "domination", "dominatrix" ],
       "nounPlural": [ "dominations", "dominatrices" ],
       "adj": "dominant",
-      "adv": "dominantly",
+      "adv": "dominantly"
     },
     {
       "default": "Dominican",
@@ -15733,7 +15733,7 @@
       "nounSingular": [ "donation", "donor" ],
       "nounPlural": [ "donations", "donors" ],
       "adj": "donatable",
-      "adv": "donatably",
+      "adv": "donatably"
     },
     {
       "default": "done",
@@ -15934,7 +15934,7 @@
       "adv": null
     },
     {
-      "default": down",
+      "default": "down",
       "verbSingular": null,
       "verbPlural": null,
       "verbParticiple": null,
@@ -16096,7 +16096,7 @@
       "nounSingular": "dream",
       "nounPlural": "dreams",
       "adj": "dreamy",
-      "adv": "dreamily",
+      "adv": "dreamily"
     },
     {
       "default": "dreg",
@@ -16404,7 +16404,7 @@
       "nounSingular": [ "duplicate", "duplication", "duplicity", "duplicability" ],
       "nounPlural": [ "duplicates", "duplications", "duplicities", "duplicabilities" ],
       "adj": "duplicable",
-      "adv": "duplicably",
+      "adv": "duplicably"
     },
     {
       "default": "durable",
@@ -16415,7 +16415,7 @@
       "nounSingular": "duration",
       "nounPlural": "durations",
       "adj": "durable",
-      "adv": "durably",
+      "adv": "durably"
     },
     {
       "default": "Durham",
@@ -16514,7 +16514,7 @@
       "nounSingular": [ "dynamic", "dynamite" ],
       "nounPlural": [ "dynamics", "dynamites" ],
       "adj": "dynamic",
-      "adv": "dynamically",
+      "adv": "dynamically"
     },
     {
       "default": "each",
@@ -16602,7 +16602,7 @@
       "nounSingular": [ "east", "easterner", "Easter", "Eastwood" ],
       "nounPlural": [ "east", "easterners", "Easters", "Eastwoods" ],
       "adj": [ "eastern", "eastbound" ],
-      "adv": "easterly",
+      "adv": "easterly"
     },
     {
       "default": "eave",
@@ -16668,7 +16668,7 @@
       "nounSingular": "ecology",
       "nounPlural": "ecologies",
       "adj": "ecological",
-      "adv": "ecologically",
+      "adv": "ecologically"
     },
     {
       "default": "ecommerce",
@@ -16690,7 +16690,7 @@
       "nounSingular": [ "economy", "economic" ],
       "nounPlural": [ "economies", "economics" ],
       "adj": "economic",
-      "adv": "economically",
+      "adv": "economically"
     },
     {
       "default": "Ecuador",
@@ -16771,7 +16771,7 @@
     },
     {
       "default": "edit",
-      "verbSingular": "edit,
+      "verbSingular": "edit",
       "verbPlural": "edits",
       "verbParticiple": "editing",
       "verbPast": "edited",
@@ -16811,7 +16811,7 @@
       "nounSingular": [ "education", "educator" ],
       "nounPlural": [ "educations", "educators" ],
       "adj": "educational",
-      "adv": "educationally",
+      "adv": "educationally"
     },
     {
       "default": "Edward",
@@ -16833,7 +16833,7 @@
       "nounSingular": [ "effect", "effectiveness" ],
       "nounPlural": [ "effects", "effectiveness" ],
       "adj": "effective",
-      "adv": "effectively",
+      "adv": "effectively"
     },
     {
       "default": "efficient",
@@ -16844,7 +16844,7 @@
       "nounSingular": "efficiency",
       "nounPlural": "efficiencies",
       "adj": "efficient",
-      "adv": "efficiently",
+      "adv": "efficiently"
     },
     {
       "default": "Egypt",
@@ -16888,7 +16888,7 @@
       "nounSingular": "ejaculation",
       "nounPlural": "ejaculations",
       "adj": "ejaculatory",
-      "adv": "ejaculatorily",
+      "adv": "ejaculatorily"
     },
     {
       "default": "elder",
@@ -16910,7 +16910,7 @@
       "nounSingular": [ "election", "elector" ],
       "nounPlural": [ "elections", "electors" ],
       "adj": [ "electoral", "electable" ],
-      "adv": [ "electorally", "electably" ],
+      "adv": [ "electorally", "electably" ]
     },
     {
       "default": "electric",
@@ -16987,7 +16987,7 @@
       "nounSingular": "eligibility",
       "nounPlural": "eligibilities",
       "adj": "eligible",
-      "adv": "eligibly",
+      "adv": "eligibly"
     },
     {
       "default": "eliminate",
@@ -16998,7 +16998,7 @@
       "nounSingular": "elimination",
       "nounPlural": "eliminations",
       "adj": "eliminable",
-      "adv": "eliminably",
+      "adv": "eliminably"
     },
     {
       "default": "elite",
@@ -17009,7 +17009,7 @@
       "nounSingular": [ "elite", "elitist" ],
       "nounPlural": [ "elites", "elitists" ],
       "adj": "elite",
-      "adv": "elitely",
+      "adv": "elitely"
     },
     {
       "default": "Elizabeth",
@@ -17119,7 +17119,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "embeddable",
-      "adv": "embeddably",
+      "adv": "embeddably"
     },
     {
       "default": "emerald",
@@ -17229,7 +17229,7 @@
       "nounSingular": "emotion",
       "nounPlural": "emotions",
       "adj": [ "emotional", "emotive" ],
-      "adv": [ "emotionally", "emotively" ],
+      "adv": [ "emotionally", "emotively" ]
     },
     {
       "default": "emperor",
@@ -17273,7 +17273,7 @@
       "nounSingular": ["employment", "employer", "employee" ],
       "nounPlural": [ "employments", "employers", "employees" ],
       "adj": "employable",
-      "adv": "employably",
+      "adv": "employably"
     },
     {
       "default": "empty",
@@ -17339,7 +17339,7 @@
       "nounSingular": "encouragement",
       "nounPlural": "encouragements",
       "adj": "encouraging",
-      "adv": "encouragingly",
+      "adv": "encouragingly"
     },
     {
       "default": "encrypt",
@@ -17350,7 +17350,7 @@
       "nounSingular": "encryption",
       "nounPlural": "encryptions",
       "adj": "encryptable",
-      "adv": "encryptably",
+      "adv": "encryptably"
     },
     {
       "default": "encyclopedia",
@@ -17361,7 +17361,7 @@
       "nounSingular": "encyclopedia",
       "nounPlural": "encyclopedia",
       "adj": "encyclopedic",
-      "adv": "encyclopedically",
+      "adv": "encyclopedically"
     },
     {
       "default": "endanger",
@@ -17405,7 +17405,7 @@
       "nounSingular": "energy",
       "nounPlural": "energies",
       "adj": "energetic",
-      "adv": "energetically",
+      "adv": "energetically"
     },
     {
       "default": "enforce",
@@ -17493,7 +17493,7 @@
       "nounSingular": "enormity",
       "nounPlural": "enormities",
       "adj": "enormous",
-      "adv": "enormously",
+      "adv": "enormously"
     },
     {
       "default": "enough",
@@ -17515,7 +17515,7 @@
       "nounSingular": "enquiry",
       "nounPlural": "enquiries",
       "adj": "inquisitive",
-      "adv": "inquisitively",
+      "adv": "inquisitively"
     },
     {
       "default": "enroll",
@@ -17526,7 +17526,7 @@
       "nounSingular": "enrollment",
       "nounPlural": "enrollments",
       "adj": "enrollable",
-      "adv": "enrollably",
+      "adv": "enrollably"
     },
     {
       "default": "ensemble",
@@ -17581,7 +17581,7 @@
       "nounSingular": "entertainment",
       "nounPlural": "entertainments",
       "adj": "entertainable",
-      "adv": "entertainably",
+      "adv": "entertainably"
     },
     {
       "default": "entire",
@@ -17592,7 +17592,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "enthere",
-      "adv": "entherely",
+      "adv": "entherely"
     },
     {
       "default": "entity",
@@ -17658,7 +17658,7 @@
       "nounSingular": "enzyme",
       "nounPlural": "enzymes",
       "adj": "enzymatic",
-      "adv": "enzymatically",
+      "adv": "enzymatically"
     },
     {
       "default": "epic",
@@ -17690,7 +17690,7 @@
       "verbPast": [ "equalled", "equated" ],
       "nounSingular": [ "equal", "equity", "equality", "equalibrium", "equation", "equanimity" ],
       "nounPlural": [ "equal", "equities", "equalities", "equalibria", "equations", "equanimities" ],
-      "adj": [ "equal", "equanimous" ]
+      "adj": [ "equal", "equanimous" ],
       "adv": [ "equally", "equanimously" ]
     },
     {
@@ -17702,7 +17702,7 @@
       "nounSingular": "equipment",
       "nounPlural": "equipments",
       "adj": "equippable",
-      "adv": "equippably",
+      "adv": "equippably"
     },
     {
       "default": "Eres",
@@ -17779,7 +17779,7 @@
       "nounSingular": "escape",
       "nounPlural": "escapes",
       "adj": "escapable",
-      "adv": "escapably",
+      "adv": "escapably"
     },
     {
       "default": "escort",
@@ -17878,7 +17878,7 @@
       "nounSingular": "eternity",
       "nounPlural": "eternities",
       "adj": "eternal",
-      "adv": "eternally",
+      "adv": "eternally"
     },
     {
       "default": "ethernet",
@@ -17955,7 +17955,7 @@
       "nounSingular": "evanescence",
       "nounPlural": "evanescences",
       "adj": "evanescent",
-      "adv": "evanescently",
+      "adv": "evanescently"
     },
     {
       "default": "even",
@@ -18043,7 +18043,7 @@
       "nounSingular": "evolution",
       "nounPlural": "evolutions",
       "adj": "evolutionary",
-      "adv": "evolutionarily",
+      "adv": "evolutionarily"
     },
     {
       "default": "exact",
@@ -18054,7 +18054,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "exact",
-      "adv": "exactly",
+      "adv": "exactly"
     },
     {
       "default": "exam",
@@ -18076,7 +18076,7 @@
       "nounSingular": "exceedance",
       "nounPlural": "exceedances",
       "adj": "exceeding",
-      "adv": "exceedingly",
+      "adv": "exceedingly"
     },
     {
       "default": "excel",
@@ -18098,7 +18098,7 @@
       "nounSingular": "exception",
       "nounPlural": "exceptions",
       "adj": "exceptional",
-      "adv": "exceptionally",
+      "adv": "exceptionally"
     },
     {
       "default": "excerpt",
@@ -18131,7 +18131,7 @@
       "nounSingular": "excitement",
       "nounPlural": "excitements",
       "adj": "excitable",
-      "adv": "excitably",
+      "adv": "excitably"
     },
     {
       "default": "exclude",
@@ -18153,7 +18153,7 @@
       "nounSingular": "excuse",
       "nounPlural": "excuses",
       "adj": "excusable",
-      "adv": "excusably",
+      "adv": "excusably"
     },
     {
       "default": "execute",
@@ -18164,7 +18164,7 @@
       "nounSingular": [ "execution", "executive" ],
       "nounPlural": [ "executions", "executive" ],
       "adj": "executable",
-      "adv": "executably",
+      "adv": "executably"
     },
     {
       "default": "exempt",
@@ -18175,7 +18175,7 @@
       "nounSingular": "exemption",
       "nounPlural": "exemptions",
       "adj": "exempt",
-      "adv": "exemptly",
+      "adv": "exemptly"
     },
     {
       "default": "exercise",
@@ -18219,7 +18219,7 @@
       "nounSingular": "existence",
       "nounPlural": "existences",
       "adj": "existent",
-      "adv": "existently",
+      "adv": "existently"
     },
     {
       "default": "exit",
@@ -18329,7 +18329,7 @@
       "nounSingular": "expert",
       "nounPlural": "experts",
       "adj": "expert",
-      "adv": "expertly",
+      "adv": "expertly"
     },
     {
       "default": "expire",
@@ -18351,7 +18351,7 @@
       "nounSingular": "explanation",
       "nounPlural": "explanations",
       "adj": "explanatory",
-      "adv": "explanatorily",
+      "adv": "explanatorily"
     },
     {
       "default": "explicit",
@@ -18373,7 +18373,7 @@
       "nounSingular": [ "exploration", "explorer" ],
       "nounPlural": [ "explorations", "explorers" ],
       "adj": "exploratory",
-      "adv": "exploratorially",
+      "adv": "exploratorially"
     },
     {
       "default": "explode",
@@ -18384,7 +18384,7 @@
       "nounSingular": "explosion",
       "nounPlural": "explosions",
       "adj": "explosive",
-      "adv": "explosively",
+      "adv": "explosively"
     },
     {
       "default": "expo",
@@ -18406,7 +18406,7 @@
       "nounSingular": "export",
       "nounPlural": "exports",
       "adj": "exportable",
-      "adv": "exportably",
+      "adv": "exportably"
     },
     {
       "default": "expose",
@@ -18450,7 +18450,7 @@
       "nounSingular": "exterior",
       "nounPlural": "exteriors",
       "adj": "exterior",
-      "adv": "exteriorally",
+      "adv": "exteriorally"
     },
     {
       "default": "extra",
@@ -18483,7 +18483,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "extraordinary",
-      "adv": "extraordinarily",
+      "adv": "extraordinarily"
     },
     {
       "default": "extricate",
@@ -18516,7 +18516,7 @@
       "nounSingular": [ "fabric", "fabrication" ],
       "nounPlural": [ "fabrics", "fabrications" ],
       "adj": "fabricational",
-      "adv": "fabricationally",
+      "adv": "fabricationally"
     },
     {
       "default": "fabulous",
@@ -18582,7 +18582,7 @@
       "nounSingular": [ "factor", "factory", "factorial" ],
       "nounPlural": [ "factors", "factories", "factorials" ],
       "adj": "factorial",
-      "adv": "factorially",
+      "adv": "factorially"
     },
     {
       "default": "faculty",
@@ -18703,7 +18703,7 @@
       "nounSingular": "familiarity",
       "nounPlural": "familiarities",
       "adj": "familiar",
-      "adv": "familiarly",
+      "adv": "familiarly"
     },
     {
       "default": "family",
@@ -18714,7 +18714,7 @@
       "nounSingular": "family",
       "nounPlural": "families",
       "adj": "familial",
-      "adv": "familially",
+      "adv": "familially"
     },
     {
       "default": "fame",
@@ -18725,7 +18725,7 @@
       "nounSingular": "fame",
       "nounPlural": null,
       "adj": "famous",
-      "adv": "famously",
+      "adv": "famously"
     },
     {
       "default": "fancy",
@@ -18802,7 +18802,7 @@
       "nounSingular": "fascination",
       "nounPlural": "fascination",
       "adj": "fascinating",
-      "adv": "fascinationly",
+      "adv": "fascinationly"
     },
     {
       "default": "fashion",
@@ -18813,7 +18813,7 @@
       "nounSingular": [ "fashion", "fashionista" ],
       "nounPlural": [ "fashions", "fashionistas" ],
       "adj": "fashionable",
-      "adv": "fashionably",
+      "adv": "fashionably"
     },
     {
       "default": "fast",
@@ -18835,7 +18835,7 @@
       "nounSingular": "fastidiousness",
       "nounPlural": null,
       "adj": "fastidious",
-      "adv": "fastidiously",
+      "adv": "fastidiously"
     },
     {
       "default": "fatal",
@@ -18879,7 +18879,7 @@
       "nounSingular": "fault",
       "nounPlural": "faults",
       "adj": "faulty",
-      "adv": "faultily",
+      "adv": "faultily"
     },
     {
       "default": "favor",
@@ -18893,6 +18893,7 @@
       "adv": null
     },
     {
+      "default": "fawn",
       "verbSingular": "fawn",
       "verbPlural": null,
       "verbParticiple": null,
@@ -19109,7 +19110,7 @@
       "nounSingular": "festival",
       "nounPlural": "festivals",
       "adj": "festive",
-      "adv": "festively",
+      "adv": "festively"
     },
     {
       "default": "feta",
@@ -19164,7 +19165,7 @@
       "nounSingular": "fever",
       "nounPlural": "fevers",
       "adj": "feverish",
-      "adv": "feverishly",
+      "adv": "feverishly"
     },
     {
       "default": "fiat",
@@ -19197,7 +19198,7 @@
       "nounSingular": "fiction",
       "nounPlural": "fictions",
       "adj": [ "fictional", "ficthecious" ],
-      "adv": [ "fictionally", "ficticiously" ],
+      "adv": [ "fictionally", "ficticiously" ]
     },
     {
       "default": "fidelity",
@@ -19384,7 +19385,7 @@
       "nounSingular": [ "figure", "figurine" ],
       "nounPlural": [ "figures", "figurines" ],
       "adj": "figurative",
-      "adv": "figuratively",
+      "adv": "figuratively"
     },
     {
       "default": "filter",
@@ -19406,7 +19407,7 @@
       "nounSingular": "finality",
       "nounPlural": "finalities",
       "adj": "final",
-      "adv": "finally",
+      "adv": "finally"
     },
     {
       "default": "finance",
@@ -19417,7 +19418,7 @@
       "nounSingular": "finance",
       "nounPlural": "finances",
       "adj": "financheal",
-      "adv": "financially",
+      "adv": "financially"
     },
     {
       "default": "finger",
@@ -19425,8 +19426,8 @@
       "verbPlural": "fingers",
       "verbParticiple": "fingering",
       "verbPast": "fingered",
-      "nounSingular": "finger", "fingernail",
-      "nounPlural": "fingers", "fingernails",
+      "nounSingular": "finger",
+      "nounPlural": "fingers",
       "adj": "finger-esque",
       "adv": null
     },
@@ -19461,7 +19462,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "finite",
-      "adv": "finitely",
+      "adv": "finitely"
     },
     {
       "default": "Finland",
@@ -19593,7 +19594,7 @@
       "nounSingular": "flake",
       "nounPlural": "flakes",
       "adj": "flaky",
-      "adv": "flakily",
+      "adv": "flakily"
     },
     {
       "default": "flam",
@@ -19615,7 +19616,7 @@
       "nounSingular": [ "flame", "flamebroiler" ],
       "nounPlural": [ "flames", "flamebroilers" ],
       "adj": [ "flamy", "flamebroiled" ],
-      "adv": "flamily",
+      "adv": "flamily"
     },
     {
       "default": "flan",
@@ -19648,7 +19649,7 @@
       "nounSingular": [ "flash", "flasher", "flashflood" ],
       "nounPlural": [ "flashes", "flashers", "flashfloods" ],
       "adj": "flashy",
-      "adv": "flashily",
+      "adv": "flashily"
     },
     {
       "default": "flat",
@@ -19670,7 +19671,7 @@
       "nounSingular": "flavor",
       "nounPlural": "flavors",
       "adj": "flavorful",
-      "adv": "flavorfully",
+      "adv": "flavorfully"
     },
     {
       "default": "flaw",
@@ -19714,7 +19715,7 @@
       "nounSingular": "flea",
       "nounPlural": "fleas",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "flee",
@@ -19725,7 +19726,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "fled",
@@ -19736,7 +19737,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "fleece",
@@ -19758,7 +19759,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "fleeting",
-      "adv": "fleetingly",
+      "adv": "fleetingly"
     },
     {
       "default": "flesh",
@@ -19780,7 +19781,7 @@
       "nounSingular": "flex",
       "nounPlural": "flexes",
       "adj": "flexy",
-      "adv": null,
+      "adv": null
     },
     {
       "default": "flip",
@@ -19791,7 +19792,7 @@
       "nounSingular": "flip",
       "nounPlural": "flips",
       "adj": "flippant",
-      "adv": "flippantly",
+      "adv": "flippantly"
     },
     {
       "default": "flit",
@@ -19802,7 +19803,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "float",
@@ -19813,7 +19814,7 @@
       "nounSingular": "float",
       "nounPlural": "floats",
       "adj": "floaty",
-      "adv": "floatily",
+      "adv": "floatily"
     },
     {
       "default": "flog",
@@ -19824,7 +19825,7 @@
       "nounSingular": "flogging",
       "nounPlural": "floggings",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "flood",
@@ -19857,7 +19858,7 @@
       "nounSingular": "flop",
       "nounPlural": "flops",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "florist",
@@ -19868,7 +19869,7 @@
       "nounSingular": "florist", 
       "nounPlural": "florists",
       "adj": "floral",
-      "adv": "florally",
+      "adv": "florally"
     },
     {
       "default": "Florida",
@@ -19890,7 +19891,7 @@
       "nounSingular": "flow",
       "nounPlural": "flows",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "flower",
@@ -19901,7 +19902,7 @@
       "nounSingular": [ "flower", "florist" ],
       "nounPlural": [ "flowers", "florists" ],
       "adj": "floral",
-      "adv": "florally",
+      "adv": "florally"
     },
     {
       "default": "Floyd",
@@ -19923,7 +19924,7 @@
       "nounSingular": "flub",
       "nounPlural": "flubs",
       "adj": "flubby",
-      "adv": null,
+      "adv": null
     },
     {
       "default": "fluid",
@@ -19934,7 +19935,7 @@
       "nounSingular": "fluid",
       "nounPlural": "fluids",
       "adj": "fluid",
-      "adv": "fluidly",
+      "adv": "fluidly"
     },
     {
       "default": "flush",
@@ -19956,7 +19957,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "foal",
@@ -19967,7 +19968,7 @@
       "nounSingular": "foal",
       "nounPlural": "foals",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "foam",
@@ -19978,7 +19979,7 @@
       "nounSingular": "foam",
       "nounPlural": "foam",
       "adj": "foamy",
-      "adv": "foamily",
+      "adv": "foamily"
     },
     {
       "default": "focus",
@@ -20000,7 +20001,7 @@
       "nounSingular": "foil",
       "nounPlural": "foils",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "fold",
@@ -20011,7 +20012,7 @@
       "nounSingular": "fold",
       "nounPlural": "folds",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "follow",
@@ -20033,7 +20034,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "fond",
-      "adv": "fondly",
+      "adv": "fondly"
     },
     {
       "default": "fool",
@@ -20044,7 +20045,7 @@
       "nounSingular": "fool",
       "nounPlural": "fools",
       "adj": "foolish",
-      "adv": "foolishly",
+      "adv": "foolishly"
     },
     {
       "default": "foot",
@@ -20055,7 +20056,7 @@
       "nounSingular": [ "foot", "football" ],
       "nounPlural": [ "feet", "footballs" ],
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "feet",
@@ -20066,7 +20067,7 @@
       "nounSingular": "foot",
       "nounPlural": "feet",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "Forbes",
@@ -20110,7 +20111,7 @@
       "nounSingular": "Ford",
       "nounPlural": "Fords",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "forecast",
@@ -20187,7 +20188,7 @@
       "nounSingular": "fork",
       "nounPlural": "forks",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "form",
@@ -20220,7 +20221,7 @@
       "nounSingular": "fort",
       "nounPlural": "forts",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "forth",
@@ -20253,7 +20254,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "foul",
-      "adv": "foully",
+      "adv": "foully"
     },
     {
       "default": "four",
@@ -20330,7 +20331,7 @@
       "nounSingular": "foulness",
       "nounPlural": null,
       "adj": "foul",
-      "adv": "foully",
+      "adv": "foully"
     },
     {
       "default": "fowl",
@@ -20341,7 +20342,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "fraction",
@@ -20363,7 +20364,7 @@
       "nounSingular": "frag",
       "nounPlural": "frags",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "fragrance",
@@ -20473,7 +20474,7 @@
       "nounSingular": "frat",
       "nounPlural": "frats",
       "adj": "fratty",
-      "adv": null,
+      "adv": null
     },
     {
       "default": "frau",
@@ -20484,7 +20485,7 @@
       "nounSingular": "frau",
       "nounPlural": "fraus",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "fraud",
@@ -20495,7 +20496,7 @@
       "nounSingular": [ "fraud", "fraudster" ],
       "nounPlural": [ "frauds", "fraudsters" ],
       "adj": "fraudulent", 
-      "adv": "fraudulently",
+      "adv": "fraudulently"
     },
     {
       "default": "fray",
@@ -20506,7 +20507,7 @@
       "nounSingular": "fray",
       "nounPlural": "frays",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "Frederick",
@@ -20528,7 +20529,7 @@
       "nounSingular": "freedom",
       "nounPlural": "freedoms",
       "adj": "free",
-      "adv": "freely",
+      "adv": "freely"
     },
     {
       "default": "freeze",
@@ -20561,7 +20562,7 @@
       "nounSingular": "frequency",
       "nounPlural": "frequencies",
       "adj": "frequent",
-      "adv": "frequently",
+      "adv": "frequently"
     },
     {
       "default": "fresh",
@@ -20583,7 +20584,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "friction",
@@ -20594,7 +20595,7 @@
       "nounSingular": "friction",
       "nounPlural": "frictions",
       "adj": "frictional",
-      "adv": "frictionally",
+      "adv": "frictionally"
     },
     {
       "default": "Friday",
@@ -20638,7 +20639,7 @@
       "nounSingular": "frog",
       "nounPlural": "frogs",
       "adj": "froggy",
-      "adv": null,
+      "adv": null
     },
     {
       "default": "from",
@@ -20649,7 +20650,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "front",
@@ -20659,7 +20660,7 @@
       "verbPast": "fronted",
       "nounSingular": "front",
       "nounPlural": "fronts",
-      "adj": "front", "frontmost",
+      "adj": "front",
       "adv": null
     },
     {
@@ -20704,7 +20705,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "full",
-      "adv": "fully",
+      "adv": "fully"
     },
     {
       "default": "fume",
@@ -20715,7 +20716,7 @@
       "nounSingular": "fume",
       "nounPlural": "fumes",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "fuming",
@@ -20726,7 +20727,7 @@
       "nounSingular": "fume",
       "nounPlural": "fumes",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "function",
@@ -20748,7 +20749,7 @@
       "nounSingular": "fund",
       "nounPlural": "funds",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "fundamental",
@@ -20759,7 +20760,7 @@
       "nounSingular": "fundamental",
       "nounPlural": "fundamentals",
       "adj": "fundamental",
-      "adv": "fundamentally",
+      "adv": "fundamentally"
     },
     {
       "default": "funeral",
@@ -20813,7 +20814,7 @@
       "verbPast": null,
       "nounSingular": "furthermore",
       "nounPlural": null,
-      "adj": "further", "furthest",
+      "adj": "further",
       "adv": null
     },
     {
@@ -21164,7 +21165,7 @@
       "verbParticiple": "gassing",
       "verbPast": "gassed",
       "nounSingular": "gasoline",
-      "nounPlural": "gasses"
+      "nounPlural": "gasses",
       "adj": "gassy",
       "adv": null
     },
@@ -21331,7 +21332,7 @@
       "nounSingular": [ "general", "generation", "generalization", "generator" ],
       "nounPlural": [ "generals", "generations",  "generalizations", "generators" ],
       "adj": [ "generic", "general" ],
-      "adv": [ "generically", "generally" ],
+      "adv": [ "generically", "generally" ]
     },
     {
       "default": "Geneva",
@@ -21397,7 +21398,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "genuine",
-      "adv": "genuinely",
+      "adv": "genuinely"
     },
     {
       "default": "geography",
@@ -21804,7 +21805,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "global",
-      "adv": "globally",
+      "adv": "globally"
     },
     {
       "default": "glom",
@@ -22233,7 +22234,7 @@
       "nounSingular": "grace",
       "nounPlural": "graces",
       "adj": "graceful",
-      "adv": "gracefully",
+      "adv": "gracefully"
     },
     {
       "default": "grad",
@@ -22376,7 +22377,7 @@
       "nounSingular": [ "grave", "gravity", "gravestone" ],
       "nounPlural": [ "graves", "gravities", "gravestones" ],
       "adj": "grave",
-      "adv": "gravely",
+      "adv": "gravely"
     },
     {
       "default": "gray",
@@ -22409,7 +22410,7 @@
       "nounSingular": "Greece",
       "nounPlural": "Greeces",
       "adj": "Greek",
-      "adv": "Greeks",
+      "adv": "Greeks"
     },
     {
       "default": "green",
@@ -22497,7 +22498,7 @@
       "nounSingular": "groove",
       "nounPlural": "grooves",
       "adj": "groovy",
-      "adv": "groovily",
+      "adv": "groovily"
     },
     {
       "default": "gross",
@@ -22508,7 +22509,7 @@
       "nounSingular": "gross",
       "nounPlural": "grosses",
       "adj": "gross",
-      "adv": "grossly",
+      "adv": "grossly"
     },
     {
       "default": "ground",
@@ -22527,8 +22528,8 @@
       "verbPlural": "groups",
       "verbParticiple": "grouping",
       "verbPast": "grouped",
-      "nounSingular": "group", "grouphee",
-      "nounPlural": "groups", "groupies",
+      "nounSingular": "group",
+      "nounPlural": "groups",
       "adj": null,
       "adv": null
     },
@@ -22871,7 +22872,7 @@
       "nounSingular": [ "gutter", "gutterball" ],
       "nounPlural": [ "gutters", "gutterballs" ],
       "adj": "gutteral",
-      "adv": "gutterally",
+      "adv": "gutterally"
     },
     {
       "default": "Guyana",
@@ -23022,8 +23023,8 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "hamburger", "Hamburg",
-      "nounPlural": "hamburgers", "Hamburgs",
+      "nounSingular": "hamburger",
+      "nounPlural": "hamburgers",
       "adj": null,
       "adv": null
     },
@@ -23058,7 +23059,7 @@
       "nounSingular": [ "hand", "handle", "handbook", "handbag" ],
       "nounPlural": [ "hands", "handles", "handbooks", "handbags" ],
       "adj": "handy",
-      "adv": "handily",
+      "adv": "handily"
     },
     {
       "default": "Hank",
@@ -23102,7 +23103,7 @@
       "nounSingular": "happiness",
       "nounPlural": "happinesses",
       "adj": "happy",
-      "adv": "happily",
+      "adv": "happily"
     },
     {
       "default": "harass",
@@ -23377,7 +23378,7 @@
       "nounSingular": "hazard",
       "nounPlural": "hazards",
       "adj": "hazardous",
-      "adv": "hazardously",
+      "adv": "hazardously"
     },
     {
       "default": "haze",
@@ -23476,7 +23477,7 @@
       "nounSingular": "heaver",
       "nounPlural": "heavers",
       "adj": "heavy",
-      "adv": "heavily",
+      "adv": "heavily"
     },
     {
       "default": "Hebrew",
@@ -23652,7 +23653,7 @@
       "nounSingular": [ "heritage", "inheritance" ],
       "nounPlural": [ "heritages", "inheritances" ],
       "adj": "heritable",
-      "adv": "heritably",
+      "adv": "heritably"
     },
     {
       "default": "herself",
@@ -23685,7 +23686,7 @@
       "nounSingular": "hierarchy",
       "nounPlural": "hierarchies",
       "adj": "hierarchical",
-      "adv": "hierarchically",
+      "adv": "hierarchically"
     },
     {
       "default": "Hilton",
@@ -24057,7 +24058,7 @@
       "verbParticiple": null,
       "verbPast": null,
       "nounSingular": "holiness",
-      "nounPlural": null
+      "nounPlural": null,
       "adj": "holy",
       "adv": null
     },
@@ -24092,7 +24093,7 @@
       "nounSingular": "hollow",
       "nounPlural": "hollows",
       "adj": "hollow",
-      "adv": "hollowly",
+      "adv": "hollowly"
     },
     {
       "default": "holly",
@@ -24191,7 +24192,7 @@
       "nounSingular": "honesty",
       "nounPlural": "honesties",
       "adj": "honest",
-      "adv": "honestly",
+      "adv": "honestly"
     },
     {
       "default": "honey",
@@ -24235,7 +24236,7 @@
       "nounSingular": "honor",
       "nounPlural": "honors",
       "adj": "honorable",
-      "adv": "honorably",
+      "adv": "honorably"
     },
     {
       "default": "Hopkins",
@@ -24276,7 +24277,7 @@
       "verbPlural": "horns",
       "verbParticiple": "horning",
       "verbPast": "horned",
-      "nounSingular": "horn", "horniness",
+      "nounSingular": "horn",
       "nounPlural": "horns",
       "adj": "horny",
       "adv": "hornily"
@@ -24334,7 +24335,7 @@
       "nounSingular": [ "hospital", "hospitalization", "hospice" ],
       "nounPlural": [ "hospitals", "hospitalizations" ],
       "adj": "hospitable",
-      "adv": "hospitably",
+      "adv": "hospitably"
     },
     {
       "default": "host",
@@ -24554,7 +24555,7 @@
       "nounSingular": "humidity",
       "nounPlural": null,
       "adj": "humid",
-      "adv": "humidly",
+      "adv": "humidly"
     },
     {
       "default": "humor",
@@ -24631,7 +24632,7 @@
       "nounSingular": "hunger",
       "nounPlural": "hungers",
       "adj": "hungry",
-      "adv": "hungrily",
+      "adv": "hungrily"
     },
     {
       "default": "hunk",
@@ -24752,7 +24753,7 @@
       "nounSingular": "hydraulic",
       "nounPlural": "hydraulics",
       "adj": "hydraulic",
-      "adv": "hydraulically",
+      "adv": "hydraulically"
     },
     {
       "default": "hydrogen",
@@ -24859,8 +24860,8 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "Idaho"
-      "nounPlural": "Idahos"
+      "nounSingular": "Idaho",
+      "nounPlural": "Idahos",
       "adj": null,
       "adv": null
     },
@@ -24939,14 +24940,14 @@
       "nounSingular": "ignorance",
       "nounPlural": null,
       "adj": "ignorant",
-      "adv": "ignorantly",
+      "adv": "ignorantly"
     },
     {
       "default": "illness",
       "verbSingular": "ill-equipped",
       "verbPlural": "ill-prepared",
       "verbParticiple": "ill-suited",
-      "verbPast": "ill-themed"
+      "verbPast": "ill-themed",
       "nounSingular": "illness",
       "nounPlural": "illnesses",
       "adj": [ "ill", "iller", "illest", "ill-equipped", "ill-prepared", "ill-suheted", "ill-themed" ],
@@ -24972,7 +24973,7 @@
       "nounSingular": [ "image", "imagination", "imagery" ],
       "nounPlural": [ "images",  "imaginations", "imagery" ],
       "adj": "imaginary",
-      "adv": "imaginarily",
+      "adv": "imaginarily"
     },
     {
       "default": "immune",
@@ -25005,7 +25006,7 @@
       "nounSingular": "impairment",
       "nounPlural": "impairments",
       "adj": "impaired",
-      "adv": "impairedly",
+      "adv": "impairedly"
     },
     {
       "default": "implement",
@@ -25013,8 +25014,8 @@
       "verbPlural": "implements",
       "verbParticiple": "implementing",
       "verbPast": "implemented",
-      "nounSingular": "implement", "implementation",
-      "nounPlural": "implements", "implementations",
+      "nounSingular": "implement",
+      "nounPlural": "implements",
       "adj": "implemented",
       "adv": null
     },
@@ -25048,7 +25049,7 @@
       "verbPast": "imported",
       "nounSingular": ["import", "importance" ],
       "nounPlural": [ "imports", "importances" ],
-      "adj": "important", "imported",
+      "adj": "important",
       "adv": "importantly"
     },
     {
@@ -25115,7 +25116,7 @@
       "nounSingular": "improvization",
       "nounPlural": "improvizations",
       "adj": [ "improv", "improvizational" ],
-      "adv": [ "improvizationally", "improvizationally" ],
+      "adv": [ "improvizationally", "improvizationally" ]
     },
     {
       "default": "inch",
@@ -25151,14 +25152,14 @@
       "adv": null
     },
     {
-      "default": "incendiary"
+      "default": "incendiary",
       "verbSingular": null,
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "incendiary"
-      "nounPlural": "incendiaries"
-      "adj": "incendiary"
+      "nounSingular": "incendiary",
+      "nounPlural": "incendiaries",
+      "adj": "incendiary",
       "adv": null
     },
     {
@@ -25181,7 +25182,7 @@
       "nounSingular": "incest",
       "nounPlural": null,
       "adj": "incestuous",
-      "adv": "incestuously",
+      "adv": "incestuously"
     },
     {
       "default": "incident",
@@ -25192,7 +25193,7 @@
       "nounSingular": [ "incident", "incidence" ],
       "nounPlural": [ "incidents", "incidences" ],
       "adj": "incident",
-      "adv": "incidently",
+      "adv": "incidently"
     },
     {
       "default": "include",
@@ -25203,7 +25204,7 @@
       "nounSingular": "inclusion",
       "nounPlural": "inclusions",
       "adj": "inclusive",
-      "adv": "inclusively",
+      "adv": "inclusively"
     },
     {
       "default": "income",
@@ -25225,7 +25226,7 @@
       "nounSingular": "incompetence",
       "nounPlural": "incompetences",
       "adj": "incompetent",
-      "adv": "incompetently",
+      "adv": "incompetently"
     },
     {
       "default": "incomplete",
@@ -25269,7 +25270,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "incorrect",
-      "adv": "incorrectly",
+      "adv": "incorrectly"
     },
     {
       "default": "increase",
@@ -25280,7 +25281,7 @@
       "nounSingular": "increase",
       "nounPlural": "increases",
       "adj": "increasing",
-      "adv": "increasingly",
+      "adv": "increasingly"
     },
     {
       "default": "incur",
@@ -25335,7 +25336,7 @@
       "nounSingular": "indeterminant",
       "nounPlural": "indeterminants",
       "adj": "indeterminate",
-      "adv": "indeterminately",
+      "adv": "indeterminately"
     },
     {
       "default": "index",
@@ -25401,7 +25402,7 @@
       "nounSingular": [ "indirection", "indirectness" ],
       "nounPlural": [ "indirections", "indirectnesses" ],
       "adj": "indirect",
-      "adv": "indirectly",
+      "adv": "indirectly"
     },
     {
       "default": "individual",
@@ -25433,7 +25434,7 @@
       "verbPast": null,
       "nounSingular": "indoors",
       "nounPlural": null,
-      "adj": "indoor", "indoorsy",
+      "adj": "indoor",
       "adv": null
     },
     {
@@ -25445,7 +25446,7 @@
       "nounSingular": [ "induction", "industry" ],
       "nounPlural": [ "inductions", "industries" ],
       "adj": [ "inductive", "industrial" ],
-      "adv": [ "inductively", "industrially" ],
+      "adv": [ "inductively", "industrially" ]
     },
     {
       "default": "inexpensive",
@@ -25456,7 +25457,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "inexpensive",
-      "adv": "inexpensively",
+      "adv": "inexpensively"
     },
     {
       "default": "infant",
@@ -25489,7 +25490,7 @@
       "nounSingular": "infinite",
       "nounPlural": null,
       "adj": "infinite",
-      "adv": "infinitely",
+      "adv": "infinitely"
     },
     {
       "default": "inflate",
@@ -25500,7 +25501,7 @@
       "nounSingular": "inflate",
       "nounPlural": "inflates",
       "adj": "inflatable",
-      "adv": "inflatably",
+      "adv": "inflatably"
     },
     {
       "default": "influence",
@@ -25544,7 +25545,7 @@
       "nounSingular": "infrastructure",
       "nounPlural": null,
       "adj": "infrastructural",
-      "adv": "infrastructurally",
+      "adv": "infrastructurally"
     },
     {
       "default": "infuriate",
@@ -25643,7 +25644,7 @@
       "nounSingular": "innovation",
       "nounPlural": "innovations",
       "adj": "innovative",
-      "adv": "innovatively",
+      "adv": "innovatively"
     },
     {
       "default": "input",
@@ -25676,7 +25677,7 @@
       "nounSingular": "insanity",
       "nounPlural": "insanities",
       "adj": "insane",
-      "adv": "insanely",
+      "adv": "insanely"
     },
     {
       "default": "insect",
@@ -25786,7 +25787,7 @@
       "nounSingular": [ "institute", "institution" ],
       "nounPlural": [ "institutes", "institutions" ],
       "adj": "institutional",
-      "adv": "institutionally",
+      "adv": "institutionally"
     },
     {
       "default": "instruct",
@@ -25797,7 +25798,7 @@
       "nounSingular": "instruction",
       "nounPlural": "instructions",
       "adj": "instructional",
-      "adv": "instructionally",
+      "adv": "instructionally"
     },
     {
       "default": "instrument",
@@ -25808,7 +25809,7 @@
       "nounSingular": "instrument",
       "nounPlural": "instruments",
       "adj": "instrumental",
-      "adv": "instrumentally",
+      "adv": "instrumentally"
     },
     {
       "default": "Insulin",
@@ -25830,7 +25831,7 @@
       "nounSingular": "insurance",
       "nounPlural": "insurances",
       "adj": "insurable",
-      "adv": "insurably",
+      "adv": "insurably"
     },
     {
       "default": "into",
@@ -25877,7 +25878,7 @@
       "adv": [ "intellectually", "intelligent" ]
     },
     {
-      "default": [ "intend",  ] 
+      "default": "intend",
       "verbSingular": "intend",
       "verbPlural": "intends",
       "verbParticiple": "intending",
@@ -25896,7 +25897,7 @@
       "nounSingular": "intensity",
       "nounPlural": "intensities",
       "adj": "intense",
-      "adv": "intensely",
+      "adv": "intensely"
     },
     {
       "default": "interact", 
@@ -25907,7 +25908,7 @@
       "nounSingular": "interaction",
       "nounPlural": "interactions",
       "adj": "interactive",
-      "adv": "interactively",
+      "adv": "interactively"
     },
     {
       "default": "interest", 
@@ -25921,7 +25922,7 @@
       "adv": "interestingly"
     },
     {
-      "default": "interface",  /* bottom right back */
+      "default": "interface",  
       "verbSingular": "interface",
       "verbPlural": "interfaces",
       "verbParticiple": "interfacing",
@@ -25943,7 +25944,7 @@
       "adv": null
     },
     {
-      "default": "interim",  /* top left front */
+      "default": "interim",  
       "verbSingular": null,
       "verbPlural": null,
       "verbParticiple": null,
@@ -25965,7 +25966,7 @@
       "adv": "interiorly"
     },
     {
-      "default": "intermediate",	/* bottom left back */
+      "default": "intermediate",	
       "verbSingular": "intermediate",
       "verbPlural": "intermediates",
       "verbParticiple": "intermediating",
@@ -25984,7 +25985,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "internal",
-      "adv": "internally",
+      "adv": "internally"
     },
     {
       "default": "international",
@@ -26039,7 +26040,7 @@
       "nounSingular": "interpretation",
       "nounPlural": "interpretations",
       "adj": "interpretational",
-      "adv": "interpretationally",
+      "adv": "interpretationally"
     },
     {
       "default": "interracial",
@@ -26050,7 +26051,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "interracial",
-      "adv": "interracially",
+      "adv": "interracially"
     },
     {
       "default": "intersect",
@@ -26061,7 +26062,7 @@
       "nounSingular": "intersection",
       "nounPlural": "intersections",
       "adj": "intersectional",
-      "adv": "intersectionally",
+      "adv": "intersectionally"
     },
     {
       "default": "interstate",
@@ -26116,7 +26117,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "intimate",
-      "adv": "intimately",
+      "adv": "intimately"
     },
     {
       "default": "intranet",
@@ -26138,7 +26139,7 @@
       "nounSingular": "introduction",
       "nounPlural": "introductions",
       "adj": "introductional",
-      "adv": "introductionally",
+      "adv": "introductionally"
     },
     {
       "default": "intuit",
@@ -26149,7 +26150,7 @@
       "nounSingular": "intuition",
       "nounPlural": "intuitions",
       "adj": "intuitive",
-      "adv": "intuitively",
+      "adv": "intuitively"
     },
     {
       "default": "invalid",
@@ -26204,7 +26205,7 @@
       "nounSingular": [ "investigation", "investigator" ],
       "nounPlural": [ "investigations", "investigators" ],
       "adj": "investigatory",
-      "adv": "investigatorhely",
+      "adv": "investigatorhely"
     },
     {
       "default": "invisible",
@@ -26226,7 +26227,7 @@
       "nounSingular": [ "invite", "invitation" ],
       "nounPlural": [ "invites", "invitations" ],
       "adj": [ "inviting", "invitational" ],
-      "adv": [ "invitingly", "invitationally" ],
+      "adv": [ "invitingly", "invitationally" ]
     },
     {
       "default": "involve",
@@ -26324,7 +26325,7 @@
       "verbPast": null,
       "nounSingular": "Islam",
       "nounPlural": null,
-      "adj": "Islamic"
+      "adj": "Islamic",
       "adv": null
     },
     {
@@ -26996,7 +26997,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "judicial",
-      "adv": "judicially",
+      "adv": "judicially"
     },
     {
       "default": "juice",
@@ -27084,11 +27085,11 @@
       "nounSingular": "jurisdiction",
       "nounPlural": "jurisdictions",
       "adj": "jurisdictional",
-      "adv": "jurisdictionally",
+      "adv": "jurisdictionally"
     },
     {
       "default": "junk",
-      "verbSingular": junk,
+      "verbSingular": "junk",
       "verbPlural": "junks",
       "verbParticiple": "junking",
       "verbPast": "junked",
@@ -27205,7 +27206,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "karmic",
-      "adv": "karmically",
+      "adv": "karmically"
     },
     {
       "default": "Kathy",
@@ -28525,7 +28526,7 @@
       "nounSingular": "legitimacy",
       "nounPlural": null,
       "adj": "legitimate",
-      "adv": "legitimately",
+      "adv": "legitimately"
     },
     {
       "default": "leisure",
@@ -28561,13 +28562,13 @@
       "adv": null
     },
     {
-      "default": "Leonard"
+      "default": "Leonard",
       "verbSingular": null,
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "Leonard"
-      "nounPlural": "Leonards"
+      "nounSingular": "Leonard",
+      "nounPlural": "Leonards",
       "adj": null,
       "adv": null
     },
@@ -28577,7 +28578,7 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "lesbian", "lesbianism",
+      "nounSingular": "lesbian",
       "nounPlural": "lesbians",
       "adj": null,
       "adv": null
@@ -28932,7 +28933,7 @@
       "nounSingular": [ "limit", "limitation" ],
       "nounPlural": [ "limits", "limitations" ],
       "adj": "limitless",
-      "adv": "limitlessly",
+      "adv": "limitlessly"
     },
     {
       "default": "limousine",
@@ -29097,7 +29098,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "literal",
-      "adv": "literally",
+      "adv": "literally"
     },
     {
       "default": "literary",
@@ -29278,7 +29279,7 @@
     {
       "default": "lode",
       "verbSingular": null,
-      "verbPlural": nnull,
+      "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
       "nounSingular": "lode",
@@ -29661,7 +29662,7 @@
       "adv": null
     },
     {
-      "default": "Lucia"
+      "default": "Lucia",
       "verbSingular": null,
       "verbPlural": null,
       "verbParticiple": null,
@@ -30362,7 +30363,7 @@
       "nounSingular": "mandate",
       "nounPlural": "mandates",
       "adj": "mandatory",
-      "adv": "mandatorily",
+      "adv": "mandatorily"
     },
     {
       "default": "mane",
@@ -30406,7 +30407,7 @@
       "nounSingular": "manipulation",
       "nounPlural": "manipulations",
       "adj": "manipulative",
-      "adv": "manipulatively",
+      "adv": "manipulatively"
     },
     {
       "default": "Manitoba",
@@ -30493,7 +30494,7 @@
       "verbPast": "marbled",
       "nounSingular": "marble",
       "nounPlural": "marbles",
-      "adj": "marbly", "marble-esque",
+      "adj": "marbly",
       "adv": null
     },
     {
@@ -30579,8 +30580,8 @@
       "verbPlural": "marines",
       "verbParticiple": "marhening",
       "verbPast": "marined",
-      "nounSingular": "marine", "mariner",
-      "nounPlural": "marines", "mariners",
+      "nounSingular": "marine",
+      "nounPlural": "marines",
       "adj": "marine",
       "adv": null
     },
@@ -30626,7 +30627,7 @@
       "nounSingular": "marriage",
       "nounPlural": "marriages",
       "adj": [ "marriable", "married", "marital" ],
-      "adv": [ "marriably" "married", "maritally" ],
+      "adv": [ "marriably", "married", "maritally" ]
     },
     {
       "default": "marital",
@@ -30637,7 +30638,7 @@
       "nounSingular": "marriage",
       "nounPlural": "marriages",
       "adj": [ "marriable", "married", "marital" ],
-      "adv": [ "marriably" "married", "maritally" ],
+      "adv": [ "marriably", "married", "maritally" ]
     },
     {
       "default": "Marriott",
@@ -30909,8 +30910,8 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "Matt", "Matthew",
-      "nounPlural": "Matts", "Matthews",
+      "nounSingular": "Matt",
+      "nounPlural": "Matts",
       "adj": null,
       "adv": null
     },
@@ -30934,7 +30935,7 @@
       "nounSingular": "maturity",
       "nounPlural": "maturities",
       "adj": "mature",
-      "adv": "maturely",
+      "adv": "maturely"
     },
     {
       "default": "maximize",
@@ -31121,7 +31122,7 @@
       "nounSingular": [ "medic", "medicine", "medication" ],
       "nounPlural": [ "medics", "medicines", "medications" ],
       "adj": [ "medical", "medicinal" ],
-      "adv": [ "medically", "medicinally" ],
+      "adv": [ "medically", "medicinally" ]
     },
     {
       "default": "medieval",
@@ -31132,7 +31133,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "medieval",
-      "adv": "medievally",
+      "adv": "medievally"
     },
     {
       "default": "mediate",
@@ -31154,7 +31155,7 @@
       "nounSingular": "meditate",
       "nounPlural": "meditates",
       "adj": "meditational",
-      "adv": "meditationally",
+      "adv": "meditationally"
     },
     {
       "default": "Mediterranean",
@@ -31319,7 +31320,7 @@
       "nounSingular": [ "memory", "memorization", "memorial", "memorabilium" ],
       "nounPlural": [ "memories", "memorizations", "memorials", "memorabilia" ],
       "adj": "memorial",
-      "adv": "memorially",
+      "adv": "memorially"
     },
     {
       "default": "Memphis",
@@ -31363,7 +31364,7 @@
       "nounSingular": [ "mentality", "mentalist" ],
       "nounPlural": [ "mentalities", "mentalists" ],
       "adj": "mental",
-      "adv": "mentally",
+      "adv": "mentally"
     },
     {
       "default": "menu",
@@ -31462,7 +31463,7 @@
       "nounSingular": "merriment",
       "nounPlural": "merriments",
       "adj": "merry",
-      "adv": "merrily",
+      "adv": "merrily"
     },
     {
       "default": "mesa",
@@ -31517,7 +31518,7 @@
       "nounSingular": [ "meter", "metric" ],
       "nounPlural": [ "meters", "metrics" ],
       "adj": "metric",
-      "adv": "metrically",
+      "adv": "metrically"
     },
     {
       "default": "meth",
@@ -31539,7 +31540,7 @@
       "nounSingular": "method",
       "nounPlural": "methods",
       "adj": "methodical",
-      "adv": "methodically",
+      "adv": "methodically"
     },
     {
       "default": "meticulous",
@@ -31550,7 +31551,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "meticulous",
-      "adv": "meticulously",
+      "adv": "meticulously"
     },
     {
       "default": "metro",
@@ -31649,7 +31650,7 @@
       "nounSingular": "microphone",
       "nounPlural": "microphones",
       "adj": "microphonic",
-      "adv": "microphonically",
+      "adv": "microphonically"
     },
     {
       "default": "microsoft",
@@ -31726,7 +31727,7 @@
       "nounSingular": "might",
       "nounPlural": null,
       "adj": "mighty",
-      "adv": "mightily",
+      "adv": "mightily"
     },
     {
       "default": "migrate",
@@ -31773,7 +31774,7 @@
       "adv": null
     },
     {
-      "default": mild,
+      "default": "mild",
       "verbSingular": null,
       "verbPlural": null,
       "verbParticiple": null,
@@ -31836,7 +31837,7 @@
       "nounSingular": [ "millenium", "millenial" ],
       "nounPlural": [ "millenia", "millenials" ],
       "adj": "millenial",
-      "adv": "millenially",
+      "adv": "millenially"
     },
     {
       "default": "Milton",
@@ -31891,7 +31892,7 @@
       "nounSingular": [ "minimum", "minimization", "minimalist" ],
       "nounPlural": [ "minimums", "minimizations", "minimalists" ],
       "adj": [ "minimal", "minimalistic" ],
-      "adv": [ "minimally", "minimalistically" ],
+      "adv": [ "minimally", "minimalistically" ]
     },
     {
       "default": "miniature",
@@ -32056,7 +32057,7 @@
       "nounSingular": "miscellaneity",
       "nounPlural": "miscellaneheties",
       "adj": "miscellaneous",
-      "adv": "miscellaneously",
+      "adv": "miscellaneously"
     },
     {
       "default": "miso",
@@ -32155,7 +32156,7 @@
       "nounSingular": "mistake",
       "nounPlural": "mistakes",
       "adj": "mistaken",
-      "adv": "mistakenly",
+      "adv": "mistakenly"
     },
     {
       "default": "mistress",
@@ -32221,7 +32222,7 @@
       "nounSingular": "mobility",
       "nounPlural": "mobilities",
       "adj": "mobile",
-      "adv": null,
+      "adv": null
     },
     {
       "default": "mode",
@@ -32265,7 +32266,7 @@
       "nounSingular": [ "moderate", "moderation", "moderator" ],
       "nounPlural": [ "moderates", "moderattions", "moderators" ],
       "adj": "moderate",
-      "adv": "moderately",
+      "adv": "moderately"
     },
     {
       "default": "modify",
@@ -32298,7 +32299,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "moist",
-      "adv": "moistly",
+      "adv": "moistly"
     },
     {
       "default": "mojo",
@@ -32375,7 +32376,7 @@
       "nounSingular": [ "moment", "momentum" ],
       "nounPlural": ["moments", "momentum" ],
       "adj": [ "momentous", "momentary" ],
-      "adv": [ "momentously", "momentarily" ],
+      "adv": [ "momentously", "momentarily" ]
     },
     {
       "default": "Monaco",
@@ -32584,7 +32585,7 @@
       "nounSingular": "morality",
       "nounPlural": "moralities",
       "adj": "moral",
-      "adv": "morally",
+      "adv": "morally"
     },
     {
       "default": "more",
@@ -33329,9 +33330,9 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "nappiness"
+      "nounSingular": "nappiness",
       "nounPlural": null,
-      "adj": "nappy"
+      "adj": "nappy",
       "adv": "napphely"
     },
     {
@@ -33354,7 +33355,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": [ "narrow", "narrower", "narrowest" ],
-      "adv": [ "narrowly", "narrower", "narrowest" ],
+      "adv": [ "narrowly", "narrower", "narrowest" ]
     },
     {
       "default": "Nascar",
@@ -33497,7 +33498,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": [ "neat", "neater", "neatest" ],
-      "adv": ["neatly", "neater", "neatest" ];
+      "adv": ["neatly", "neater", "neatest" ]
     },
     {
       "default": "Nebraska",
@@ -33519,7 +33520,7 @@
       "nounSingular": "necessity",
       "nounPlural": "necessities",
       "adj": "necessary",
-      "adv": "necessarily",
+      "adv": "necessarily"
     },
     {
       "default": "neck",
@@ -33574,7 +33575,7 @@
       "nounSingular": "negative",
       "nounPlural": "negatives",
       "adj": "negative",
-      "adv": "negatively",
+      "adv": "negatively"
     },
     {
       "default": "negotiate",
@@ -33731,7 +33732,7 @@
       "adv": null
     },
     {
-      "default": [ "never"],
+      "default": "never",
       "verbSingular": null,
       "verbPlural": null,
       "verbParticiple": null,
@@ -34003,7 +34004,7 @@
       "nounSingular": [ "ninth", "nineteenth", "ninetieth" ],
       "nounPlural": [ "nines", "nineteens", "nineties" ],
       "adj": [ "ninth", "nineteenth", "ninetieth" ],
-      "adv": [ "ninth", "nineteenth", "ninetieth" ],
+      "adv": [ "ninth", "nineteenth", "ninetieth" ]
     },
     {
       "default": "Nintendo",
@@ -34058,7 +34059,7 @@
       "nounSingular": "nitrogen",
       "nounPlural": "nitrogens",
       "adj": ["nitrogenic", "nitrogenous" ],
-      "adv": [ "nitrogenically", "nitrogenously" ],
+      "adv": [ "nitrogenically", "nitrogenously" ]
     },
     {
       "default": "noble",
@@ -34069,7 +34070,7 @@
       "nounSingular": "nobility",
       "nounPlural": "nobilities",
       "adj": "noble",
-      "adv": "nobly",
+      "adv": "nobly"
     },
     {
       "default": "nobody",
@@ -34135,7 +34136,7 @@
       "nounSingular": "noise",
       "nounPlural": "noises",
       "adj": "noisy",
-      "adv": "noisily",
+      "adv": "noisily"
     },
     {
       "default": "Nokia",
@@ -34256,7 +34257,7 @@
       "nounSingular": [ "norm", "normality", "Norm", "Norma", "Norman" ],
       "nounPlural": [ "norms", "normalities", "Norms", "Normas", "Normans" ],
       "adj": "normal",
-      "adv": "normally",
+      "adv": "normally"
     },
     {
       "default": "north",
@@ -34476,7 +34477,7 @@
       "nounSingular": [ "number", "numerousness" ],
       "nounPlural": "numbers",
       "adj":  ["numerous", "numerical" ],
-      "adv": [ "numerously", "numerically" ],
+      "adv": [ "numerously", "numerically" ]
     },
     {
       "default": "nurse",
@@ -34498,7 +34499,7 @@
       "nounSingular": [ "nutrition", "nutritient" ],
       "nounPlural": [ "nutritions", "nutritients" ],
       "adj": [ "nutritious", "nutritional" ],
-      "adv": [ "nutritiously", "nutritionally" ],
+      "adv": [ "nutritiously", "nutritionally" ]
     },
     {
       "default": "Nvidia",
@@ -34630,7 +34631,7 @@
       "nounSingular": "obligation",
       "nounPlural": "obligations",
       "adj": "obligatory",
-      "adv": "obligatorily",
+      "adv": "obligatorily"
     },
     {
       "default": "odor",
@@ -34729,7 +34730,7 @@
       "nounSingular": "ocean",
       "nounPlural": "oceans",
       "adj": "oceanic",
-      "adv": "oceanically",
+      "adv": "oceanically"
     },
     {
       "default": "October",
@@ -35070,7 +35071,7 @@
       "nounSingular": [ "operation", "operator" ],
       "nounPlural": [ "operations", "operators" ],
       "adj": "operational",
-      "adv": "operationally",
+      "adv": "operationally"
     },
     {
       "default": "opinion",
@@ -35081,7 +35082,7 @@
       "nounSingular": "opinion",
       "nounPlural": "opinions",
       "adj": "opinionated",
-      "adv": "opinionatedly",
+      "adv": "opinionatedly"
     },
     {
       "default": "oppose",
@@ -35092,7 +35093,7 @@
       "nounSingular": [ "opposition", "opponent", "opposite" ],
       "nounPlural": [ "oppositions", "opponents", "opposites" ],
       "adj":  ["opposite", "oppositional", "opposed" ],
-      "adv": [ "oppositely", "oppositionally", "opposed"],
+      "adv": [ "oppositely", "oppositionally", "opposed"]
     },
     {
       "default": "opportunity",
@@ -35103,7 +35104,7 @@
       "nounSingular": [ "opportunity", "opportunist" ],
       "nounPlural": [ "opportunities", "opportunists" ],
       "adj": "opportunistic",
-      "adv": "opportunistically",
+      "adv": "opportunistically"
     },
     {
       "default": "optic",
@@ -35113,8 +35114,8 @@
       "verbPast": null,
       "nounSingular": "optic",
       "nounPlural": "optics",
-      "adj": "optic", "optical",
-      "adv": "optically",
+      "adj": "optic",
+      "adv": "optically"
     },
     {
       "default": "optimum",
@@ -35125,7 +35126,7 @@
       "nounSingular": [ "optimum", "optimism", "optimist" ],
       "nounPlural": [ "optima", "optimism", "optimists" ],
       "adj": [ "optimal", "optimistic" ],
-      "adv": [ "optimally", "optimistically" ],
+      "adv": [ "optimally", "optimistically" ]
     },
     {
       "default": "option",
@@ -35235,7 +35236,7 @@
       "nounSingular": "orbit",
       "nounPlural": "orbits",
       "adj": "orbital",
-      "adv": "orbitally",
+      "adv": "orbitally"
     },
     {
       "default": "orca",
@@ -35290,7 +35291,7 @@
       "nounSingular": [ "organ", "organization", "organism", "organizer" ],
       "nounPlural": [ "organs", "organizations", "organisms", "organizers" ],
       "adj": [ "organic", "organizational" ],
-      "adv": [ "organically", "organizationally" ],
+      "adv": [ "organically", "organizationally" ]
     },
     {
       "default": "orgasm",
@@ -35301,7 +35302,7 @@
       "nounSingular": "orgasm",
       "nounPlural": "orgasms",
       "adj": "orgasmic",
-      "adv": "orgasmically",
+      "adv": "orgasmically"
     },
     {
       "default": "orgy",
@@ -35370,14 +35371,14 @@
       "adv": null
     },
     {
-      "default": "other"
-      "verbSingular": "other than"
-      "verbPlural": "otherwise"
-      "verbParticiple": "other day"
-      "verbPast": "other night"
+      "default": "other",
+      "verbSingular": "other than",
+      "verbPlural": "otherwise",
+      "verbParticiple": "other day",
+      "verbPast": "other night",
       "nounSingular":  "other",
       "nounPlural": "others",
-      "adj": "other one"
+      "adj": "other one",
       "adv": "other ones"
     },
     {
@@ -35464,7 +35465,7 @@
       "verbParticiple": null,
       "verbPast": null,
       "nounSingular": "outer",
-      "nounPlural": "outermost"
+      "nounPlural": "outermost",
       "adj": null,
       "adv": null
     },
@@ -35650,8 +35651,8 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "Pacific", "Pacific Ocean",
-      "nounPlural": "Pacifics", "Pacific Oceans",
+      "nounSingular": "Pacific",
+      "nounPlural": "Pacifics",
       "adj": null,
       "adv": null
     },
@@ -35752,7 +35753,7 @@
       "nounSingular": "pain",
       "nounPlural": "pains",
       "adj": [ "painful", "painstaking" ],
-      "adv": [ "painfully", "painstakingly" ],
+      "adv": [ "painfully", "painstakingly" ]
     },
     {
       "default": "paint",
@@ -35925,8 +35926,8 @@
       "verbPlural": "pants",
       "verbParticiple": "panting",
       "verbPast": "panted",
-      "nounSingular": "pant", "panty"
-      "nounPlural": "pants", "panties"
+      "nounSingular": "pant",
+      "nounPlural": "pants",
       "adj": null,
       "adv": null
     },
@@ -35980,8 +35981,8 @@
       "verbPlural": "parades",
       "verbParticiple": "parading",
       "verbPast": "paraded",
-      "nounSingular": "parade", "paradise",
-      "nounPlural": "parades", "paradises",
+      "nounSingular": "parade",
+      "nounPlural": "parades",
       "adj": null,
       "adv": null
     },
@@ -36035,7 +36036,7 @@
       "verbPlural": "parcels",
       "verbParticiple": "parceling",
       "verbPast": "parceled",
-      "nounSingular": "parcel",,
+      "nounSingular": "parcel",
       "nounPlural": "parcels",
       "adj": null,
       "adv": null
@@ -36214,7 +36215,7 @@
       "nounSingular": [ "paste", "pasthee", "pastry" ],
       "nounPlural": [ "pastes", "pasties", "pastries" ],
       "adj": "pasty",
-      "adv": "pastily",
+      "adv": "pastily"
     },
     {
       "default": "pastor",
@@ -36428,7 +36429,7 @@
     {
       "default": "pear",
       "verbSingular": null,
-      "verbPlural": null`,
+      "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
       "nounSingular": "pear",
@@ -36478,7 +36479,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "pedantic",
-      "adv": "pedantically",
+      "adv": "pedantically"
     },
     {
       "default": "pediatric",
@@ -36566,7 +36567,7 @@
       "nounSingular": "penalty",
       "nounPlural": "penalties",
       "adj": "penal",
-      "adv": "penally",
+      "adv": "penally"
     },
     {
       "default": "pencil",
@@ -36610,7 +36611,7 @@
       "nounSingular": "penetration",
       "nounPlural": "penetrations",
       "adj": "penetratable",
-      "adv": "penetratably",
+      "adv": "penetratably"
     },
     {
       "default": "penguin",
@@ -36632,7 +36633,7 @@
       "nounSingular": "peninsula",
       "nounPlural": "peninsulas",
       "adj": "peninsular",
-      "adv": "peninsularly",
+      "adv": "peninsularly"
     },
     {
       "default": "penis",
@@ -36709,7 +36710,7 @@
       "nounSingular": "perception",
       "nounPlural": "perceptions",
       "adj": "perceptible",
-      "adv": "perceptibly",
+      "adv": "perceptibly"
     },
     {
       "default": "percent",
@@ -36731,7 +36732,7 @@
       "nounSingular": [ "perfection", "perfectionist" ],
       "nounPlural": [ "perfections", "perfectionists" ],
       "adj": "perfect",
-      "adv": "perfectly",
+      "adv": "perfectly"
     },
     {
       "default": "perform",
@@ -36739,8 +36740,8 @@
       "verbPlural": "performs",
       "verbParticiple": "performing",
       "verbPast": "performed",
-      "nounSingular": "performance", "performer",
-      "nounPlural": "performances", "performers",
+      "nounSingular": "performance",
+      "nounPlural": "performances",
       "adj": null,
       "adv": null
     },
@@ -36797,7 +36798,7 @@
       "nounSingular": "perishable",
       "nounPlural": "perishables",
       "adj": "perishable",
-      "adv": "perishably",
+      "adv": "perishably"
     },
     {
       "default": "perk",
@@ -36945,7 +36946,7 @@
     {
       "default": "pest",
       "verbSingular": null,
-      "verbPlural": null`,
+      "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
       "nounSingular": "pest",
@@ -37149,7 +37150,7 @@
       "nounSingular": [ "physics", "physician", "physiology" ],
       "nounPlural": [ "physhecs", "physicians", "physiology" ],
       "adj": [ "physical", "physiological" ],
-      "adv": [ "physically", "physiologically" ],
+      "adv": [ "physically", "physiologically" ]
     },
     {
       "default": "piano",
@@ -37157,10 +37158,10 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "piano", "pianist",
-      "nounPlural": "pianos", "pianists",
+      "nounSingular": "piano",
+      "nounPlural": "pianos",
       "adj": "pianistic",
-      "adv": "pianistically",
+      "adv": "pianistically"
     },
     {
       "default": "pica",
@@ -37219,12 +37220,12 @@
     },
     {
       "default": "piece",
-      "verbSingular": "piece"
-      "verbPlural": "pieces"
-      "verbParticiple": "piecing"
-      "verbPast": "pieced"
-      "nounSingular": "piece"
-      "nounPlural": "pieces"
+      "verbSingular": "piece",
+      "verbPlural": "pieces",
+      "verbParticiple": "piecing",
+      "verbPast": "pieced",
+      "nounSingular": "piece",
+      "nounPlural": "pieces",
       "adj": null,
       "adv": null
     },
@@ -37421,8 +37422,8 @@
       "verbPlural": "pirates",
       "verbParticiple": "pirating",
       "verbPast": "pirated",
-      "nounSingular": "pirate", "piracy",
-      "nounPlural": "pirates", "piracies",
+      "nounSingular": "pirate",
+      "nounPlural": "pirates",
       "adj": null,
       "adv": null
     },
@@ -37597,8 +37598,8 @@
       "verbPlural": "plants",
       "verbParticiple": "planting",
       "verbPast": "planted",
-      "nounSingular": "plant", "planter",
-      "nounPlural": "plants", "planters",
+      "nounSingular": "plant",
+      "nounPlural": "plants",
       "adj": "plantlike",
       "adv": null
     },
@@ -37677,7 +37678,7 @@
       "nounSingular": "plea",
       "nounPlural": "pleas",
       "adj": "pleading",
-      "adv": "pleadingly",
+      "adv": "pleadingly"
     },
     {
       "default": "please",
@@ -37710,7 +37711,7 @@
       "nounSingular": "plenty",
       "nounPlural": null,
       "adj": "plentiful",
-      "adv": "plentifully",
+      "adv": "plentifully"
     },
     {
       "default": "plod",
@@ -37941,7 +37942,7 @@
       "nounSingular": [ "pole", "polarity" ],
       "nounPlural": [ "poles", "polarities" ],
       "adj": "polar",
-      "adv": "polarly",
+      "adv": "polarly"
     },
     {
       "default": "polar",
@@ -37952,7 +37953,7 @@
       "nounSingular": [ "pole", "polarity" ],
       "nounPlural": [ "poles", "polarities" ],
       "adj": "polar",
-      "adv": "polarly",
+      "adv": "polarly"
     },
     {
       "default": "police",
@@ -37985,7 +37986,7 @@
       "nounSingular": [ "politics", "politician", "policy" ],
       "nounPlural": [ "politics", "politicians", "policies" ],
       "adj": "political",
-      "adv": "politically",
+      "adv": "politically"
     },
     {
       "default": "poll",
@@ -37996,7 +37997,7 @@
       "nounSingular": "poll",
       "nounPlural": "polls",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "pollute",
@@ -38018,7 +38019,7 @@
       "nounSingular": "polo",
       "nounPlural": "polos",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "poly",
@@ -38029,7 +38030,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "polar",
-      "adv": "polarly",
+      "adv": "polarly"
     },
     {
       "default": "polyester",
@@ -38070,10 +38071,10 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "pomp", "pompousness"
+      "nounSingular": "pomp",
       "nounPlural": null,
       "adj": "pompous",
-      "adv": "pompously",
+      "adv": "pompously"
     },
     {
       "default": "pond",
@@ -38106,7 +38107,7 @@
       "nounSingular": [ "poop", "poopy" ],
       "nounPlural": [ "poops", "poopies" ],
       "adj": "poopy",
-      "adv": "poopily",
+      "adv": "poopily"
     },
     {
       "default": "poor",
@@ -38117,7 +38118,7 @@
       "nounSingular": "poor",
       "nounPlural": null,
       "adj": "poor",
-      "adv": "poorly",
+      "adv": "poorly"
     },
     {
       "default": "pope",
@@ -38128,7 +38129,7 @@
       "nounSingular": "pope",
       "nounPlural": "popes",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "popular",
@@ -38161,7 +38162,7 @@
       "nounSingular": "pork",
       "nounPlural": "porks",
       "adj": "porky",
-      "adv": "porkily",
+      "adv": "porkily"
     },
     {
       "default": "porn",
@@ -38172,7 +38173,7 @@
       "nounSingular": [ "porn", "porno" ],
       "nounPlural": [ "porns", "pornos" ],
       "adj": "pornographic",
-      "adv": "pornographically",
+      "adv": "pornographically"
     },
     {
       "default": "Porsche",
@@ -38326,7 +38327,7 @@
       "nounSingular": "position",
       "nounPlural": "positions",
       "adj": "positive",
-      "adv": "positively",
+      "adv": "positively"
     },
     {
       "default": "possess",
@@ -38403,7 +38404,7 @@
       "nounSingular": "potential",
       "nounPlural": null,
       "adj": "potential",
-      "adv": "potentially",
+      "adv": "potentially"
     },
     {
       "default": "pot",
@@ -38524,7 +38525,7 @@
       "nounSingular": [ "practice", "practitioner", "practicality" ],
       "nounPlural": [ "practices", "practitioners", "practicalities" ],
       "adj": "practical",
-      "adv": "practically",
+      "adv": "practically"
     },
     {
       "default": "Prague",
@@ -38577,7 +38578,7 @@
       "verbParticiple": "praying",
       "verbPast": "prayed",
       "nounSingular": "prayer",
-      "nounPlural": "prayers,"
+      "nounPlural": "prayers,",
       "adj": null,
       "adv": null
     },
@@ -38678,7 +38679,7 @@
       "nounSingular": "preliminary",
       "nounPlural": "preliminaries",
       "adj": "preliminary",
-      "adv": "preliminarily",
+      "adv": "preliminarily"
     },
     {
       "default": "premier",
@@ -38744,7 +38745,7 @@
       "nounSingular": "preparation",
       "nounPlural": "preparations",
       "adj": "preparatory",
-      "adv": "preparatorily",
+      "adv": "preparatorily"
     },
     {
       "default": "preposterous",
@@ -38755,7 +38756,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "preposterous",
-      "adv": "preposterously",
+      "adv": "preposterously"
     },
     {
       "default": "prerequisite",
@@ -38865,7 +38866,7 @@
       "nounSingular": "prettiness",
       "nounPlural": null,
       "adj": "pretty",
-      "adv": "prettily",
+      "adv": "prettily"
     },
     {
       "default": "prevent",
@@ -38931,7 +38932,7 @@
       "nounSingular": "pride",
       "nounPlural": null,
       "adj": [ "proud", "prideful" ],
-      "adv": [ "proudly", "pridefully" ],
+      "adv": [ "proudly", "pridefully" ]
     },
     {
       "default": "priest",
@@ -38953,7 +38954,7 @@
       "nounSingular": "primness",
       "nounPlural": null,
       "adj": "prim",
-      "adv": "primly",
+      "adv": "primly"
     },
     {
       "default": "prime",
@@ -38997,7 +38998,7 @@
       "nounSingular": [ "principal", "principality" ],
       "nounPlural": [ "principals", "principalities" ],
       "adj": "principal",
-      "adv": "principally",
+      "adv": "principally"
     },
     {
       "default": "principle",
@@ -39030,7 +39031,7 @@
       "nounSingular": [ "prior", "priorhety" ],
       "nounPlural": [ "priors", "priorities" ],
       "adj": "prior",
-      "adv": "priorly",
+      "adv": "priorly"
     },
     {
       "default": "prison",
@@ -39052,7 +39053,7 @@
       "nounSingular": "private",
       "nounPlural": "privates",
       "adj": "private",
-      "adv": "privately",
+      "adv": "privately"
     },
     {
       "default": "prod",
@@ -39063,7 +39064,7 @@
       "nounSingular": "prod",
       "nounPlural": "prods",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "profile",
@@ -39107,7 +39108,7 @@
       "nounSingular": "probe",
       "nounPlural": "probes",
       "adj": "probing",
-      "adv": "probingly",
+      "adv": "probingly"
     },
     {
       "default": "problem",
@@ -39162,7 +39163,7 @@
       "nounSingular": [ "product", "producer", "production" ],
       "nounPlural": [ "products", "producers", "productions" ],
       "adj": "productive",
-      "adv": "productively",
+      "adv": "productively"
     },
     {
       "default": "profession",
@@ -39173,7 +39174,7 @@
       "nounSingular": "profession",
       "nounPlural": "professions",
       "adj": "professional",
-      "adv": "professionally",
+      "adv": "professionally"
     },
     {
       "default": "professor",
@@ -39206,7 +39207,7 @@
       "nounSingular": "profit",
       "nounPlural": "profits",
       "adj": "profitable",
-      "adv": "profitably",
+      "adv": "profitably"
     },
     {
       "default": "program",
@@ -39217,7 +39218,7 @@
       "nounSingular": [ "program", "programmer" ],
       "nounPlural": [ "programs", "programmers" ],
       "adj": [ "programmable", "programmatic" ],
-      "adv": [ "programmably", "programmathecally" ],
+      "adv": [ "programmably", "programmathecally" ]
     },
     {
       "default": "progress",
@@ -39272,7 +39273,7 @@
       "nounSingular": "prominence",
       "nounPlural": null,
       "adj": "prominent",
-      "adv": "prominently",
+      "adv": "prominently"
     },
     {
       "default": "promise",
@@ -39294,7 +39295,7 @@
       "nounSingular": "promiscuity",
       "nounPlural": "promiscuities",
       "adj": "promiscuous",
-      "adv": "promiscously",
+      "adv": "promiscously"
     },
     {
       "default": "promote",
@@ -39305,7 +39306,7 @@
       "nounSingular": [ "promo", "promotion", "promoter" ],
       "nounPlural": [ "promos", "promotions", "promoters" ],
       "adj": "promotional",
-      "adv": "promotionally",
+      "adv": "promotionally"
     },
     {
       "default": "prompt",
@@ -39316,7 +39317,7 @@
       "nounSingular": "prompt",
       "nounPlural": "prompts",
       "adj": "prompt",
-      "adv": "promptly",
+      "adv": "promptly"
     },
     {
       "default": "proof",
@@ -39349,7 +39350,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "proper",
-      "adv": "properly",
+      "adv": "properly"
     },
     {
       "default": "property",
@@ -39382,7 +39383,7 @@
       "nounSingular": "proportion",
       "nounPlural": "proportions",
       "adj": "proportional",
-      "adv": "proportionally",
+      "adv": "proportionally"
     },
     {
       "default": "propose",
@@ -39404,7 +39405,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "proprietary",
-      "adv": "proprietarily",
+      "adv": "proprietarily"
     },
     {
       "default": "prospect",
@@ -39492,7 +39493,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "proud",
-      "adv": "proudly",
+      "adv": "proudly"
     },
     {
       "default": "prove",
@@ -39602,7 +39603,7 @@
       "nounSingular": [ "publication", "publisher" ],
       "nounPlural": [ "publications", "publishers" ],
       "adj": "public",
-      "adv": "publicly",
+      "adv": "publicly"
     },
     {
       "default": "puck",
@@ -39745,7 +39746,7 @@
       "nounSingular": "punctuation",
       "nounPlural": "punctuations",
       "adj": "punctual",
-      "adv": "punctually",
+      "adv": "punctually"
     },
     {
       "default": "punctilious",
@@ -39910,7 +39911,7 @@
       "nounSingular": "pursuit",
       "nounPlural": "pursuits",
       "adj": "pursuant",
-      "adv": "pursuantly",
+      "adv": "pursuantly"
     },
     {
       "default": "push",
@@ -40097,7 +40098,7 @@
       "nounSingular": "query",
       "nounPlural": "queries",
       "adj": "queryable",
-      "adv": "queryably",
+      "adv": "queryably"
     },
     {
       "default": "quest",
@@ -40141,7 +40142,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "quick",
-      "adv": "quickly",
+      "adv": "quickly"
     },
     {
       "default": "quid",
@@ -40295,7 +40296,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "radical",
-      "adv": "radically",
+      "adv": "radically"
     },
     {
       "default": "radio",
@@ -40578,10 +40579,10 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "rarity"
-      "nounPlural": "rarities"
+      "nounSingular": "rarity",
+      "nounPlural": "rarities",
       "adj": [ "rare", "rarer", "rarest" ],
-      "adv": "rarely",
+      "adv": "rarely"
     },
     {
       "default": "rash",
@@ -41131,7 +41132,7 @@
       "nounSingular": "refreshment",
       "nounPlural": "refreshments",
       "adj": "refreshing",
-      "adv": "refreshingly",
+      "adv": "refreshingly"
     },
     {
       "default": "refridgerator",
@@ -41219,7 +41220,7 @@
       "nounSingular": "region",
       "nounPlural": "regions",
       "adj": "regional",
-      "adv": "regionally",
+      "adv": "regionally"
     },
     {
       "default": "register",
@@ -41241,7 +41242,7 @@
       "nounSingular": "regression",
       "nounPlural": "regressions",
       "adj": "regressing",
-      "adv": "regressingly",
+      "adv": "regressingly"
     },
     {
       "default": "regular",
@@ -41626,7 +41627,7 @@
       "nounSingular": [ "replacement", "replication", "replica" ],
       "nounPlural": [ "replacements", "replications", "replicas" ],
       "adj": [ "replaceable", "replicable" ],
-      "adv": [ "replaceably", "replicably" ],
+      "adv": [ "replaceably", "replicably" ]
     },
     {
       "default": "reply",
@@ -41681,7 +41682,7 @@
       "nounSingular": [ "representation", "representative" ],
       "nounPlural": [ "representations", "representatives" ],
       "adj": "representive",
-      "adv": "representively",
+      "adv": "representively"
     },
     {
       "default": "reprint",
@@ -41725,7 +41726,7 @@
       "nounSingular": "reputation",
       "nounPlural": "reputations",
       "adj": "reputatable",
-      "adv": "reputatably",
+      "adv": "reputatably"
     },
     {
       "default": "request",
@@ -41832,7 +41833,7 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "resident", "residence",
+      "nounSingular": "resident",
       "nounPlural": "residents",
       "adj": "residential",
       "adv": "residentially"
@@ -41846,7 +41847,7 @@
       "nounSingular": "resistance",
       "nounPlural": null,
       "adj": "resistive",
-      "adv": "resistively",
+      "adv": "resistively"
     },
     {
       "default": "resolve",
@@ -41934,7 +41935,7 @@
       "nounSingular": "restoration",
       "nounPlural": "restorations",
       "adj": "restorative",
-      "adv": "restoratively",
+      "adv": "restoratively"
     },
     {
       "default": "restrict",
@@ -42000,7 +42001,7 @@
       "nounSingular": [ "retention", "retainer" ],
       "nounPlural": [ "retentions", "retainers" ],
       "adj": "retainable",
-      "adv": "retainably",
+      "adv": "retainably"
     },
     {
       "default": "retention",
@@ -42011,7 +42012,7 @@
       "nounSingular": [ "retention", "retainer" ],
       "nounPlural": [ "retentions", "retainers" ],
       "adj": "retainable",
-      "adv": "retainably",
+      "adv": "retainably"
     },
     {
       "default": "retire",
@@ -42066,7 +42067,7 @@
       "nounSingular": "return",
       "nounPlural": "returns",
       "adj": "returnable",
-      "adv": "returnably",
+      "adv": "returnably"
     },
     {
       "default": "reunite",
@@ -42132,7 +42133,7 @@
       "nounSingular": "revenge",
       "nounPlural": null,
       "adj": "vengeful",
-      "adv": "vengefully",
+      "adv": "vengefully"
     },
     {
       "default": "revenue",
@@ -42154,7 +42155,7 @@
       "nounSingular": "reversal",
       "nounPlural": "reversals",
       "adj": "reversible",
-      "adv": "reversibly",
+      "adv": "reversibly"
     },
     {
       "default": "review",
@@ -42198,7 +42199,7 @@
       "nounSingular": "reward",
       "nounPlural": "rewards",
       "adj": "rewarding",
-      "adv": "rewardingly",
+      "adv": "rewardingly"
     },
     {
       "default": "Reynolds",
@@ -42272,7 +42273,7 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": [ "Richard", "Richards", "Richardson", "Richmond", ],
+      "nounSingular": [ "Richard", "Richards", "Richardson", "Richmond" ],
       "nounPlural": [ "Richards", "Richardses", "Richardsons", "Richmonds" ],
       "adj": null,
       "adv": null
@@ -42375,7 +42376,7 @@
       "nounSingular": "right",
       "nounPlural": "rights",
       "adj": "rightful",
-      "adv": "rightfully",
+      "adv": "rightfully"
     },
     {
       "default": "rind",
@@ -42526,7 +42527,7 @@
       "verbPlural": "roams",
       "verbParticiple": "roaming",
       "verbPast": "roamed",
-      "nounSingular": null`,
+      "nounSingular": null,
       "nounPlural": null,
       "adj": null,
       "adv": null
@@ -42583,8 +42584,8 @@
       "verbPast": null,
       "nounSingular": "robot",
       "nounPlural": "robots",
-      "adj": "robo-", "robotic",
-      "adv": "robotically",
+      "adj": "robo-",
+      "adv": "robotically"
     },
     {
       "default": "robust",
@@ -42705,7 +42706,7 @@
       "nounSingular": "romance",
       "nounPlural": "romances",
       "adj": "romantic",
-      "adv": "romantically",
+      "adv": "romantically"
     },
     {
       "default": "Romania",
@@ -42826,7 +42827,7 @@
       "nounSingular": [ "rotation", "rotary" ],
       "nounPlural": [ "rotation", "rotaries" ],
       "adj": "rotational",
-      "adv": "rotationally",
+      "adv": "rotationally"
     },
     {
       "default": "rote",
@@ -42859,7 +42860,7 @@
       "nounSingular": "rough",
       "nounPlural": null,
       "adj": [ "rough", "rougher", "roughest" ], 
-      "adv": [ "roughly", "rougher", "roughest" ], 
+      "adv": [ "roughly", "rougher", "roughest" ] 
     },
     {
       "default": "roulette",
@@ -42903,7 +42904,7 @@
       "nounSingular": "routine",
       "nounPlural": "routines",
       "adj": "routine",
-      "adv": "routinely",
+      "adv": "routinely"
     },
     {
       "default": "rove",
@@ -43068,7 +43069,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "rural",
-      "adv": "rurally",
+      "adv": "rurally"
     },
     {
       "default": "rush",
@@ -43178,7 +43179,7 @@
       "nounSingular": "sacrifice",
       "nounPlural": "sacrifices",
       "adj": "sacrificial",
-      "adv": "sacrificially",
+      "adv": "sacrificially"
     },
     {
       "default": "Saddam",
@@ -43365,7 +43366,7 @@
       "nounSingular": "salvation",
       "nounPlural": null,
       "adj": "salvational",
-      "adv": "salvationally",
+      "adv": "salvationally"
     },
     {
       "default": "samba",
@@ -43607,7 +43608,7 @@
       "nounSingular": "satisfaction",
       "nounPlural": "satisfactions",
       "adj": ["satisfying", "satisfactional" ],
-      "adv": [ "satisfyingly", "satisfactionally" ],
+      "adv": [ "satisfyingly", "satisfactionally" ]
     },
     {
       "default": "Saturn",
@@ -43739,7 +43740,7 @@
       "nounSingular": "scale",
       "nounPlural": "scales",
       "adj": "scalable",
-      "adv": "scalably",
+      "adv": "scalably"
     },
     {
       "default": "scam",
@@ -43805,7 +43806,7 @@
       "nounSingular": [ "scene", "scenery", "scenario" ],
       "nounPlural": [ "scenes", "sceneries", "scenarios" ],
       "adj": "scenic",
-      "adv": "scenically",
+      "adv": "scenically"
     },
     {
       "default": "schedule",
@@ -43827,7 +43828,7 @@
       "nounSingular": [ "school", "scholar", "scholarship" ],
       "nounPlural": [ "schools", "scholars", "scholarships" ],
       "adj": [ "scholastic", "scholarly" ],
-      "adv": [ "scholastically", "scholarly" ],
+      "adv": [ "scholastically", "scholarly" ]
     },
     {
       "default": "science",
@@ -43838,7 +43839,7 @@
       "nounSingular": [ "science", "scienctist" ],
       "nounPlural": [ "sciences", "scientists" ],
       "adj": "scientific",
-      "adv": "scientifically",
+      "adv": "scientifically"
     },
     {
       "default": "scoop",
@@ -43904,7 +43905,7 @@
       "nounSingular": "scratch",
       "nounPlural": "scratches",
       "adj": "scratchy",
-      "adv": "scratchily",
+      "adv": "scratchily"
     },
     {
       "default": "screen",
@@ -44047,7 +44048,7 @@
       "nounSingular": "season",
       "nounPlural": "seasons",
       "adj": "seasonal",
-      "adv": "seasonally",
+      "adv": "seasonally"
     },
     {
       "default": "seat",
@@ -44080,7 +44081,7 @@
       "nounSingular": "second",
       "nounPlural": "seconds",
       "adj": "secondary",
-      "adv": "secondarily",
+      "adv": "secondarily"
     },
     {
       "default": "secret",
@@ -44275,8 +44276,8 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "Senegal"
-      "nounPlural": "Senegals"
+      "nounSingular": "Senegal",
+      "nounPlural": "Senegals",
       "adj": null,
       "adv": null
     },
@@ -44495,8 +44496,8 @@
       "verbPlural": "settles",
       "verbParticiple": "settling",
       "verbPast": "settled",
-      "nounSingular": "settlement", "settler",
-      "nounPlural": "settlements", "settlers",
+      "nounSingular": "settlement",
+      "nounPlural": "settlements",
       "adj": "settled",
       "adv": null
     },
@@ -44564,7 +44565,7 @@
       "nounSingular": "shaft",
       "nounPlural": "shafts",
       "adj": "shafty",
-      "adv": "shaftily",
+      "adv": "shaftily"
     },
     {
       "default": "shag",
@@ -44575,7 +44576,7 @@
       "nounSingular": "shag",
       "nounPlural": "shags",
       "adj": "shaggy",
-      "adv": "shaggily",
+      "adv": "shaggily"
     },
     {
       "default": "shake",
@@ -44641,7 +44642,7 @@
       "nounSingular": "sham",
       "nounPlural": "shams",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "shame",
@@ -44773,7 +44774,7 @@
       "nounSingular": "sheep",
       "nounPlural": "sheep",
       "adj": "sheephesh",
-      "adv": "sheepheshly",
+      "adv": "sheepheshly"
     },
     {
       "default": "sheer",
@@ -44905,7 +44906,7 @@
       "nounSingular": "shin",
       "nounPlural": "shins",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "shine",
@@ -44949,7 +44950,7 @@
       "nounSingular": "shit",
       "nounPlural": "shaits",
       "adj": "shitty",
-      "adv": "shittily",
+      "adv": "shittily"
     },
     {
       "default": "shiv",
@@ -44971,7 +44972,7 @@
       "nounSingular": "shock",
       "nounPlural": "shocks",
       "adj": "shocking",
-      "adv": "shockingly",
+      "adv": "shockingly"
     },
     {
       "default": "shoe",
@@ -45059,7 +45060,7 @@
       "nounSingular": "should",
       "nounPlural": "should've",
       "adj": "should have",
-      "adv": "shouldn't have",
+      "adv": "shouldn't have"
     },
     {
       "default": "shoulder",
@@ -45147,7 +45148,7 @@
       "nounSingular": "sickness",
       "nounPlural": "sicknesses",
       "adj": "sick",
-      "adv": "sickly",
+      "adv": "sickly"
     },
     {
       "default": "side",
@@ -45268,7 +45269,7 @@
       "nounSingular": "significance",
       "nounPlural": null,
       "adj": "significant",
-      "adv": "significantly",
+      "adv": "significantly"
     },
     {
       "default": "signup",
@@ -45356,7 +45357,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "shelly",
@@ -45631,7 +45632,7 @@
       "nounSingular": "skill",
       "nounPlural": "skills",
       "adj": "skillful",
-      "adv": "skillfully",
+      "adv": "skillfully"
     },
     {
       "default": "skip",
@@ -45961,7 +45962,7 @@
       "nounSingular": "smaller",
       "nounPlural": "smallest",
       "adj": [ "small", "smaller", "smallest" ],
-      "adv": [ "small", , "smaller", "smallest" ]
+      "adv": [ "small", "smaller", "smallest" ]
     },
     {
       "default": "smash",
@@ -46016,7 +46017,7 @@
       "nounSingular": "smoke",
       "nounPlural": "smokes",
       "adj": "smoky",
-      "adv": "smokily",
+      "adv": "smokily"
     },
     {
       "default": "smog",
@@ -46038,7 +46039,7 @@
       "nounSingular": "smooth",
       "nounPlural": "smooths",
       "adj": "smooth",
-      "adv": "smoothly",
+      "adv": "smoothly"
     },
     {
       "default": "smug",
@@ -46434,7 +46435,7 @@
       "nounSingular": "sophistocation",
       "nounPlural": "sophistocations",
       "adj": "sophistocated",
-      "adv": "sophistocatedly",
+      "adv": "sophistocatedly"
     },
     {
       "default": "sore",
@@ -46643,7 +46644,7 @@
       "nounSingular": "spare",
       "nounPlural": "spares",
       "adj": "sparing",
-      "adv": "sparingly",
+      "adv": "sparingly"
     },
     {
       "default": "spatial",
@@ -46654,7 +46655,7 @@
       "nounSingular": "spatiate",
       "nounPlural": "spatiates",
       "adj": "spatial",
-      "adv": "spatially",
+      "adv": "spatially"
     },
     {
       "default": "speak",
@@ -46940,7 +46941,7 @@
       "nounSingular": "spirit",
       "nounPlural": "spirits",
       "adj": [ "spiritual", "spirited" ],
-      "adv": "spiritually",
+      "adv": "spiritually"
     },
     {
       "default": "split",
@@ -47203,7 +47204,7 @@
       "verbPast": "stained",
       "nounSingular": "stain",
       "nounPlural": "stains",
-      "adj": "stainable"
+      "adj": "stainable",
       "adv": null
     },
     {
@@ -47435,7 +47436,7 @@
       "nounSingular": [ "state", "status", "statement", "station", "statistic", "statistician", "statute", "stationery" ],
       "nounPlural": [ "states", "statuses", "statements", "stations", "statistics", "statisticians", "statutes", "stationeries" ],
       "adj": [ "static", "stationary", "stateful", "stately", "statewide" ],
-      "adv": [ "statically", "stationarily", "statefully" ],
+      "adv": [ "statically", "stationarily", "statefully" ]
     },
     {
       "default": "steady",
@@ -47578,7 +47579,7 @@
       "nounSingular": [ "stick", "sticker" ],
       "nounPlural": [ "sticks", "stickers" ],
       "adj": "sticky",
-      "adv": "stickily",
+      "adv": "stickily"
     },
     {
       "default": "stimulus",
@@ -47589,7 +47590,7 @@
       "nounSingular": [ "stimiulus", "stimulation", "stimulant" ],
       "nounPlural": [ "stimuli", "stimulations", "stimulants" ],
       "adj": "stimulative",
-      "adv": "stimulatively",
+      "adv": "stimulatively"
     },
     {
       "default": "stop",
@@ -47633,7 +47634,7 @@
       "nounSingular": [ "stick", "sticker" ],
       "nounPlural": [ "sticks", "stickers" ],
       "adj": "sticky",
-      "adv": "stickily",
+      "adv": "stickily"
     },
     {
       "default": "stud",
@@ -47721,7 +47722,7 @@
       "nounSingular": "storm",
       "nounPlural": "storms",
       "adj": "stormy",
-      "adv": "stormily",
+      "adv": "stormily"
     },
     {
       "default": "strait",
@@ -47743,7 +47744,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": [ "straight", "straighter", "straightest" ],
-      "adv": [ "straightly", "straighter", "straightest" ],
+      "adv": [ "straightly", "straighter", "straightest" ]
     },
     {
       "default": "strain",
@@ -47754,7 +47755,7 @@
       "nounSingular": "strain",
       "nounPlural": "strains",
       "adj": "strainable",
-      "adv": "strainably",
+      "adv": "strainably"
     },
     {
       "default": "strand",
@@ -47864,7 +47865,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "strict",
-      "adv": "strictly",
+      "adv": "strictly"
     },
     {
       "default": "strike",
@@ -48018,7 +48019,7 @@
       "nounSingular": "stuff",
       "nounPlural": "stuffs",
       "adj": [ "stuffy", "stuffed" ],
-      "adv": [ "stuffily", "stuffed" ],
+      "adv": [ "stuffily", "stuffed" ]
     },
     {
       "default": "stun",
@@ -48040,7 +48041,7 @@
       "nounSingular": "stupidity",
       "nounPlural": "stupidities",
       "adj": "stupid",
-      "adv": "stupidly",
+      "adv": "stupidly"
     },
     {
       "default": "style",
@@ -48219,13 +48220,13 @@
       "adv": null
     },
     {
-      "default": "Sudan"
-      "verbSingular": "Sudanese"
-      "verbPlural": "Sudanese"
+      "default": "Sudan",
+      "verbSingular": "Sudanese",
+      "verbPlural": "Sudanese",
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "Sudan"
-      "nounPlural": "Sudans"
+      "nounSingular": "Sudan",
+      "nounPlural": "Sudans",
       "adj": null,
       "adv": null
     },
@@ -48249,7 +48250,7 @@
       "nounSingular": "sufficiency",
       "nounPlural": "sufficiencies",
       "adj": "sufficient",
-      "adv": "sufficiently",
+      "adv": "sufficiently"
     },
     {
       "default": "sugar",
@@ -48271,7 +48272,7 @@
       "nounSingular": "suggestion",
       "nounPlural": "suggestions",
       "adj": "suggestive",
-      "adv": "suggestively",
+      "adv": "suggestively"
     },
     {
       "default": "suicide",
@@ -48282,7 +48283,7 @@
       "nounSingular": "suicide",
       "nounPlural": "suicides",
       "adj": "suicidal",
-      "adv": "suicidally",
+      "adv": "suicidally"
     },
     {
       "default": "suit",
@@ -48337,7 +48338,7 @@
       "nounSingular": "summary",
       "nounPlural": "summaries",
       "adj": "summary",
-      "adv": "summarily",
+      "adv": "summarily"
     },
     {
       "default": "summer",
@@ -48414,7 +48415,7 @@
       "nounSingular": [ "supervision", "supervisor" ],
       "nounPlural": [ "supervisions", "supervisors" ],
       "adj": "supervisional",
-      "adv": "supervisionally",
+      "adv": "supervisionally"
     },
     {
       "default": "supply",
@@ -48425,7 +48426,7 @@
       "nounSingular": [ "supply", "supplier", "supplement" ],
       "nounPlural": [ "supplies", "suppliers", "supplementing" ],
       "adj": "supplemental",
-      "adv": "supplementally",
+      "adv": "supplementally"
     },
     {
       "default": "support",
@@ -48436,7 +48437,7 @@
       "nounSingular": "support",
       "nounPlural": "supports",
       "adj": "supportive",
-      "adv": "supportively",
+      "adv": "supportively"
     },
     {
       "default": "suppose",
@@ -48447,7 +48448,7 @@
       "nounSingular": "supposition",
       "nounPlural": "suppositions",
       "adj": [ "supposed", "suppositional" ],
-      "adv": [ "supposedly", "suppositionally" ],
+      "adv": [ "supposedly", "suppositionally" ]
     },
     {
       "default": "supreme",
@@ -48458,7 +48459,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "supreme",
-      "adv": "supremely",
+      "adv": "supremely"
     },
     {
       "default": "sure",
@@ -48546,7 +48547,7 @@
       "nounSingular": "surprise",
       "nounPlural": "surprises",
       "adj": "surprising",
-      "adv": "surprisingly",
+      "adv": "surprisingly"
     },
     {
       "default": "surrender",
@@ -48645,7 +48646,7 @@
       "nounSingular": "suspect",
       "nounPlural": "suspects",
       "adj": "suspect",
-      "adv": "suspectly",
+      "adv": "suspectly"
     },
     {
       "default": "suspend",
@@ -48697,7 +48698,7 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": [ "swag", "swagger" ]
+      "nounSingular": [ "swag", "swagger" ],
       "nounPlural": null,
       "adj": null,
       "adv": null
@@ -48931,7 +48932,7 @@
       "nounSingular": "symphony",
       "nounPlural": "symphonies",
       "adj": "symphonic",
-      "adv": "symphonically",
+      "adv": "symphonically"
     },
     {
       "default": "symposium",
@@ -48953,7 +48954,7 @@
       "nounSingular": [ "syndicate", "syndication" ],
       "nounPlural": [ "syndicates", "syndications" ],
       "adj": "syndicational",
-      "adv": "syndicationally",
+      "adv": "syndicationally"
     },
     {
       "default": "syndrome",
@@ -48986,7 +48987,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "syntactical",
-      "adv": "syntactically",
+      "adv": "syntactically"
     },
     {
       "default": "synthesize",
@@ -49030,7 +49031,7 @@
       "nounSingular": "system",
       "nounPlural": "systems",
       "adj": [ "systemic", "systematic" ],
-      "adv": [ "systemically", "systematically" ],
+      "adv": [ "systemically", "systematically" ]
     },
     {
       "default": "table",
@@ -49249,6 +49250,17 @@
       "verbPast": "tanked",
       "nounSingular": "tank",
       "nounPlural": "tanks",
+      "adj": null,
+      "adv": null
+    },
+    {
+      "default": "tantalize",
+      "verbSingular": "tantalize",
+      "verbPlural": "tantalizes",
+      "verbParticiple": "tantalizing",
+      "verbPast": "tantalized",
+      "nounSingular": null,
+      "nounPlural": null,
       "adj": null,
       "adv": null
     },
@@ -49723,7 +49735,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "tenuous",
-      "adv": "tenuously",
+      "adv": "tenuously"
     },
     {
       "default": "tense",
@@ -49778,7 +49790,7 @@
       "nounSingular": [ "termination", "terminology" ],
       "nounPlural": [ "terminations", "terminologies" ],
       "adj": "terminal",
-      "adv": "terminally",
+      "adv": "terminally"
     },
     {
       "default": "terrace",
@@ -49863,8 +49875,8 @@
       "verbPlural": "texts",
       "verbParticiple": "texting",
       "verbPast": "texted",
-      "nounSingular": "text", "textbook",
-      "nounPlural": "texts", "textbooks",
+      "nounSingular": "text",
+      "nounPlural": "texts",
       "adj": null,
       "adv": null
     },
@@ -49998,7 +50010,7 @@
       "nounSingular": "theme",
       "nounPlural": "themes",
       "adj": "thematic",
-      "adv": "themathecally",
+      "adv": "themathecally"
     },
     {
       "default": "then",
@@ -50028,10 +50040,10 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "theorem", "theory",
-      "nounPlural": "theorems", "theories",
+      "nounSingular": "theorem",
+      "nounPlural": "theorems",
       "adj": "theoretical",
-      "adv": "theoretically",
+      "adv": "theoretically"
     },
     {
       "default": "therapy",
@@ -50053,7 +50065,7 @@
       "nounSingular": "there",
       "nounPlural": "therefore",
       "adj": "thereafter",
-      "adv": "thereof",
+      "adv": "thereof"
     },
     {
       "default": "these",
@@ -50064,7 +50076,7 @@
       "nounSingular": "these",
       "nounPlural": "those",
       "adj": "these",
-      "adv": "those",
+      "adv": "those"
     },
     {
       "default": "they",
@@ -50086,7 +50098,7 @@
       "nounSingular": "thinness",
       "nounPlural": null,
       "adj": [ "thin", "thinner", "thinnest" ],
-      "adv": [ "thinly", "thinner", "thinnest" ],
+      "adv": [ "thinly", "thinner", "thinnest" ]
     },
     {
       "default": "this",
@@ -50108,7 +50120,7 @@
       "nounSingular": "these",
       "nounPlural": "those",
       "adj": "these",
-      "adv": "those",
+      "adv": "those"
     },
     {
       "default": "thermal",
@@ -50152,7 +50164,7 @@
       "nounSingular": "thickness",
       "nounPlural": "thicknesses",
       "adj": [ "thick", "thicker", "thickest" ],
-      "adv": [ "thickly", "thicker", "thickest" ],
+      "adv": [ "thickly", "thicker", "thickest" ]
     },
     {
       "default": "thing",
@@ -50295,7 +50307,7 @@
       "nounSingular": "threat",
       "nounPlural": "threats",
       "adj": "threatening",
-      "adv": "threateningly",
+      "adv": "threateningly"
     },
     {
       "default": "threshold",
@@ -50339,7 +50351,7 @@
       "nounSingular": [ "thrill", "thriller" ],
       "nounPlural": [ "thrills", "thrillers" ],
       "adj": "thrilling",
-      "adv": "thrillingly",
+      "adv": "thrillingly"
     },
     {
       "default": "throat",
@@ -50358,8 +50370,8 @@
       "verbPlural": null,
       "verbParticiple": null,
       "verbPast": null,
-      "nounSingular": "throughput"
-      "nounPlural": "throughputs"
+      "nounSingular": "throughput",
+      "nounPlural": "throughputs",
       "adj": [ "through", "throughout" ],
       "adv": null
     },
@@ -50647,7 +50659,7 @@
       "nounSingular": [ "titan", "titanium" ],
       "nounPlural": [ "titans", "titanium" ],
       "adj": "titanic",
-      "adv": "titanically",
+      "adv": "titanically"
     },
     {
       "default": "title",
@@ -50678,8 +50690,8 @@
       "verbPlural": "toasts",
       "verbParticiple": "toasting",
       "verbPast": "toasted",
-      "nounSingular": "toast", "toaster",
-      "nounPlural": "toasts", "toasters",
+      "nounSingular": "toast",
+      "nounPlural": "toasts",
       "adj": "toasty",
       "adv": "toastily"
     },
@@ -50824,7 +50836,7 @@
       "nounSingular": "toleration",
       "nounPlural": "tolerations",
       "adj": "tolerable",
-      "adv": "tolerably",
+      "adv": "tolerably"
     },
     {
       "default": "tomato",
@@ -51044,7 +51056,7 @@
       "nounSingular": "tough",
       "nounPlural": "tougher",
       "adj": [ "tough", "tougher", "toughest" ],
-      "adv": "toughly",
+      "adv": "toughly"
     },
     {
       "default": "tour",
@@ -51297,7 +51309,7 @@
       "nounSingular": "transexual",
       "nounPlural": "transexuals",
       "adj": "transexual",
-      "adv": "transexually",
+      "adv": "transexually"
     },
     {
       "default": "transfer",
@@ -51407,7 +51419,7 @@
       "nounSingular": "trauma",
       "nounPlural": "traumas",
       "adj": "traumatic",
-      "adv": "traumatically",
+      "adv": "traumatically"
     },
     {
       "default": "travel",
@@ -51649,7 +51661,7 @@
       "nounSingular": "triumph",
       "nounPlural": "triumphs",
       "adj": "triumphant",
-      "adv": "triumphantly",
+      "adv": "triumphantly"
     },
     {
       "default": "trivia",
@@ -51711,11 +51723,11 @@
       "verbSingular": [ "trouble", "troubleshoot" ],
       "verbPlural": [ "troubles", "troubleshoots" ],
       "verbParticiple": [ "troubling", "troubleshooting" ],
-      "verbPast": [ "troubled", "troubleshot" ,
+      "verbPast": [ "troubled", "troubleshot" ],
       "nounSingular": "trouble", 
       "nounPlural": "troubles",
       "adj": [ "troubling", "troublesome", "troubled" ],
-      "adv":[  "troublingly", "troublesome", "troubled" ],
+      "adv":[  "troublingly", "troublesome", "troubled" ]
     },
     {
       "default": "trout",
@@ -52166,7 +52178,7 @@
       "nounSingular": [ "tutor", "tutorial" ],
       "nounPlural": [ "tutors", "tutorials" ],
       "adj": "tutorial",
-      "adv": "tutorially",
+      "adv": "tutorially"
     },
     {
       "default": "twinkle",
@@ -52188,7 +52200,7 @@
       "nounSingular": "twist",
       "nounPlural": "twists",
       "adj": "twisty",
-      "adv": "twistily",
+      "adv": "twistily"
     },
     {
       "default": "Tyler",
@@ -52298,7 +52310,7 @@
       "nounSingular": "ultimatum",
       "nounPlural": "ultimata",
       "adj": "ultimate",
-      "adv": "ultimately",
+      "adv": "ultimately"
     },
     {
       "default": "ultra",
@@ -52320,7 +52332,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "unable",
-      "adv": "unablly",
+      "adv": "unablly"
     },
     {
       "default": "unauthorize",
@@ -52353,7 +52365,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "uncertain",
-      "adv": "uncertainly",
+      "adv": "uncertainly"
     },
     {
       "default": "uncharted",
@@ -52496,7 +52508,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "unfortunate",
-      "adv": "unfortunately",
+      "adv": "unfortunately"
     },
     {
       "default": "unify",
@@ -52506,7 +52518,7 @@
       "verbPast": "unified",
       "nounSingular": "unification",
       "nounPlural": "unifications",
-      "adj": "unified"
+      "adj": "unified",
       "adv": null
     },
     {
@@ -52595,7 +52607,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "unieke",
-      "adv": "unlikely",
+      "adv": "unlikely"
     },
     {
       "default": "unnecessary",
@@ -52606,7 +52618,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": "unnecessary",
-      "adv": "unnecessarily",
+      "adv": "unnecessarily"
     },
     {
       "default": "unsign",
@@ -52705,7 +52717,7 @@
       "nounSingular": "upgrade",
       "nounPlural": "upgrades",
       "adj": "upgradable",
-      "adv": "upgradably",
+      "adv": "upgradably"
     },
     {
       "default": "upload",
@@ -52716,7 +52728,7 @@
       "nounSingular": "upload",
       "nounPlural": "uploads",
       "adj": "uploadable",
-      "adv": "uploadably",
+      "adv": "uploadably"
     },
     {
       "default": "upon",
@@ -52727,7 +52739,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "upper",
@@ -52819,8 +52831,8 @@
     },
     {
       "default": "Uzbekistan",
-      "verbSingular": "Uzbek", "Uzbekistani",
-      "verbPlural": "Uzbeks", "Uzbekhestanis",
+      "verbSingular": "Uzbek",
+      "verbPlural": "Uzbeks",
       "verbParticiple": null,
       "verbPast": null,
       "nounSingular": "Uzbekistan",
@@ -52837,7 +52849,7 @@
       "nounSingular": [ "vacancy", "vacation", "vacationer" ],
       "nounPlural": [ "vacancies", "vacations", "vacationers" ],
       "adj": "vacant",
-      "adv": "vacantly",
+      "adv": "vacantly"
     },
     {
       "default": "vaccine",
@@ -52870,7 +52882,7 @@
       "nounSingular": "vagina",
       "nounPlural": "vaginas",
       "adj": "vaginal",
-      "adv": "vaginally",
+      "adv": "vaginally"
     },
     {
       "default": "vanity",
@@ -53004,7 +53016,7 @@
       "nounSingular": [ "variable", "variance" ],
       "nounPlural": [ "variables", "variance" ],
       "adj": "variable",
-      "adv": "variably",
+      "adv": "variably"
     },
     {
       "default": "variable",
@@ -53015,7 +53027,7 @@
       "nounSingular": [ "variable", "variance", "variety" ],
       "nounPlural": [ "variables", "variance", "varieties" ],
       "adj": "variable",
-      "adv": "variably",
+      "adv": "variably"
     },
     {
       "default": "vase",
@@ -53037,7 +53049,7 @@
       "nounSingular": "vastness",
       "nounPlural": null,
       "adj": "vast",
-      "adv": "vastly",
+      "adv": "vastly"
     },
     {
       "default": "Vatican",
@@ -53147,7 +53159,7 @@
       "nounSingular": "vein",
       "nounPlural": "veins",
       "adj": "veiny",
-      "adv": null,
+      "adv": null
     },
     {
       "default": "velvet",
@@ -53246,7 +53258,7 @@
       "nounSingular": "verification",
       "nounPlural": "verifications",
       "adj": "verifiable",
-      "adv": "verifiably",
+      "adv": "verifiably"
     },
     {
       "default": "verile",
@@ -53257,7 +53269,7 @@
       "nounSingular": "verility",
       "nounPlural": "verilities",
       "adj": "verile",
-      "adv": "verily",
+      "adv": "verily"
     },
     {
       "default": "Verizon",
@@ -53367,7 +53379,7 @@
       "nounSingular": "veto",
       "nounPlural": "vetos",
       "adj": null,
-      "adv": null,
+      "adv": null
     },
     {
       "default": "vial",
@@ -53411,7 +53423,7 @@
       "nounSingular": [ "vibration", "vibrator" ],
       "nounPlural": [ "vibrations", "vibrators" ],
       "adj": "vibrational",
-      "adv": "vibrationally",
+      "adv": "vibrationally"
     },
     {
       "default": "vice",
@@ -53587,7 +53599,7 @@
       "nounSingular": [ "violation", "violence" ],
       "nounPlural": ["violations", "violences" ],
       "adj": "violent",
-      "adv": "violently",
+      "adv": "violently"
     },
     {
       "default": "virus",
@@ -53598,7 +53610,7 @@
       "nounSingular": [ "virus", "virality" ],
       "nounPlural": [ "viruses", "viralities" ],
       "adj": "viral",
-      "adv": "virally",
+      "adv": "virally"
     },
     {
       "default": "virgin",
@@ -53631,7 +53643,7 @@
       "nounSingular": [ "virtue", "virtuosity", "virtuoso", "virtuality" ],
       "nounPlural": [ "virtues", "virtuosities",  "virtuosos", "virtualities" ],
       "adj": [ "virtuous", "virtual" ],
-      "adv": [ "virtuously", "virtually" ],
+      "adv": [ "virtuously", "virtually" ]
     },
     {
       "default": "VISA",
@@ -53664,7 +53676,7 @@
       "nounSingular": [ "vision", "visitation", "visitor", "visibility" ], 
       "nounPlural": [ "visions", "visitations", "visitors", "visibilities" ],
       "adj": "visible",
-      "adv": "visibly",
+      "adv": "visibly"
     },
     {
       "default": "visual",
@@ -53675,7 +53687,7 @@
       "nounSingular": [ "visual", "visualization" ],
       "nounPlural": [ "visuals", "visualizations" ],
       "adj": "visual",
-      "adv": "visually",
+      "adv": "visually"
     },
     {
       "default": "vista",
@@ -53697,7 +53709,7 @@
       "nounSingular": [ "vitality", "vitamhen" ],
       "nounPlural": [ "vitalities", "vitamins" ],
       "adj": "vital",
-      "adv": "vitally",
+      "adv": "vitally"
     },
     {
       "default": "vlog",
@@ -53730,7 +53742,7 @@
       "nounSingular": "vocal",
       "nounPlural": "vocals",
       "adj": "vocal",
-      "adv": "vocally",
+      "adv": "vocally"
     },
     {
       "default": "vocation",
@@ -53741,7 +53753,7 @@
       "nounSingular": "vocation",
       "nounPlural": "vocations",
       "adj": "vocational",
-      "adv": "vocationally",
+      "adv": "vocationally"
     },
     {
       "default": "voice",
@@ -53777,12 +53789,12 @@
       "adv": null
     },
     {
-      "default": "Volkwagen"
+      "default": "Volkwagen",
       "verbSingular": null,
       "verbPlural": null,
       "verbParticiple": null,
-      "verbPast": "Volkwagen"
-      "nounSingular": "Volkwagens"
+      "verbPast": "Volkwagen",
+      "nounSingular": "Volkwagens",
       "nounPlural": null,
       "adj": null,
       "adv": null
@@ -53818,7 +53830,7 @@
       "nounSingular": "volume",
       "nounPlural": "volumes",
       "adj": [ "voluminous", "volumetric" ],
-      "adv": [ "voluminously", "volumetrically" ],
+      "adv": [ "voluminously", "volumetrically" ]
     },
     {
       "default": "volunteer",
@@ -53829,7 +53841,7 @@
       "nounSingular": "volunteer",
       "nounPlural": "volunteers",
       "adj": "voluntary",
-      "adv": "voluntarily",
+      "adv": "voluntarily"
     },
     {
       "default": "vote",
@@ -53862,7 +53874,7 @@
       "nounSingular": "vulnerability",
       "nounPlural": "vulnerabilities",
       "adj": "vulnerable",
-      "adv": "vulnerably",
+      "adv": "vulnerably"
     },
     {
       "default": "wade",
@@ -54544,7 +54556,7 @@
       "nounSingular": "weirdness",
       "nounPlural": "weirdnesses",
       "adj": "weird",
-      "adv": "weirdly",
+      "adv": "weirdly"
     },
     {
       "default": "welcome",
@@ -54698,7 +54710,7 @@
       "nounSingular": "whack",
       "nounPlural": "whacks",
       "adj": "whacky",
-      "adv": "whackily",
+      "adv": "whackily"
     },
     {
       "default": "whale",
@@ -54731,7 +54743,7 @@
       "nounSingular": "what",
       "nounPlural": "whatever",
       "adj": "what",
-      "adv": "whatever",
+      "adv": "whatever"
     },
     {
       "default": "wheat",
@@ -54764,7 +54776,7 @@
       "nounSingular": "when",
       "nounPlural": "whenever",
       "adj": "when",
-      "adv": "whenever",
+      "adv": "whenever"
     },
     {
       "default": "where",
@@ -54775,7 +54787,7 @@
       "nounSingular": "where",
       "nounPlural": "wherever",
       "adj": "where",
-      "adv": "wherever",
+      "adv": "wherever"
     },
     {
       "default": "whet",
@@ -54830,7 +54842,7 @@
       "nounSingular": "while",
       "nounPlural": "whilst",
       "adj": "while",
-      "adv": "whilst",
+      "adv": "whilst"
     },
     {
       "default": "whim",
@@ -54874,7 +54886,7 @@
       "nounSingular": "white",
       "nounPlural": "whites",
       "adj": "white",
-      "adv": "whitely",
+      "adv": "whitely"
     },
     {
       "default": "whoa",
@@ -54896,7 +54908,7 @@
       "nounSingular": null,
       "nounPlural": null,
       "adj": [ "whole", "wholesale" ],
-      "adv": [ "wholely", "wholesale" ],
+      "adv": [ "wholely", "wholesale" ]
     },
     {
       "default": "whore",
@@ -54962,7 +54974,7 @@
       "nounSingular": "width",
       "nounPlural": "widths",
       "adj": [ "wide", "wider", "widest" ], 
-      "adv": [ "widely", "wider", "widest" ], 
+      "adv": [ "widely", "wider", "widest" ] 
     },
     {
       "default": "wide",
@@ -54973,7 +54985,7 @@
       "nounSingular": "width",
       "nounPlural": "widths",
       "adj": [ "wide", "wider", "widest" ], 
-      "adv": [ "widely", "wider", "widest" ], 
+      "adv": [ "widely", "wider", "widest" ] 
     },
     {
       "default": "wife",
@@ -55411,7 +55423,7 @@
       "verbParticiple": "wording",
       "verbPast": "worded",
       "nounSingular": [ "word", "Wordpress" ],
-      "nounPlural": [ "words" "Wordpresses" ],
+      "nounPlural": [ "words", "Wordpresses" ],
       "adj": "wordy",
       "adv": null
     },
@@ -55501,7 +55513,7 @@
       "nounSingular": "would",
       "nounPlural": "would've",
       "adj": "would",
-      "adv": "would've",
+      "adv": "would've"
     },
     {
       "default": "wound",
@@ -55754,7 +55766,7 @@
       "nounSingular": "yellow",
       "nounPlural": "yellows",
       "adj": [ "yellow", "yellow-bellied" ],
-      "adv": [ "yellowly", "yellow-bellied" ],
+      "adv": [ "yellowly", "yellow-bellied" ]
     },
     {
       "default": "yelp",
@@ -55875,7 +55887,7 @@
       "nounSingular": [ "your", "yourself" ],
       "nounPlural": [ "yourself", "yourselves" ],
       "adj": "your",
-      "adv": "yourself",
+      "adv": "yourself"
     },
     {
       "default": "youth",
@@ -56107,7 +56119,7 @@
       "nounPlural": null,
       "adj": null,
       "adv": null
-    }
+    },
     {
       "default": "zoot",
       "verbSingular": null,
@@ -56129,6 +56141,6 @@
       "nounPlural": "Zulus",
       "adj": null,
       "adv": null
-    },
+    }
   ]
 }

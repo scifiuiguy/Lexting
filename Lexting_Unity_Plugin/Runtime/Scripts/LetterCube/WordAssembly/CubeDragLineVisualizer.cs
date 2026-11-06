@@ -141,10 +141,13 @@ namespace SpatialGestureText.LetterCube
         public void ResetStateToIdle(bool refreshExternalState)
         {
             isLineTracingActive = false;
-            if (!_otherHand.isLineTracingActive)
+            if (_otherHand == null || !_otherHand.isLineTracingActive)
                 isEitherHandTracing = false;
-            _lineRenderer.SetPositions(new Vector3[] { Vector3.zero, Vector3.zero });
-            _lineRenderer.enabled = false;
+            if (_lineRenderer != null)
+            {
+                _lineRenderer.SetPositions(new Vector3[] { Vector3.zero, Vector3.zero });
+                _lineRenderer.enabled = false;
+            }
 
             // update state for single-char entry only -> bypass this during two-handed word assembly
             if (refreshExternalState && !Lexting.assembler.isWordAssemblyActive &&

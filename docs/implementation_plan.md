@@ -6,7 +6,7 @@ This document is the **living roadmap** for reviving the Unity prototype, stabil
 **Reference scene (today):** [`main_01_twozone.unity`](../Lexting_Unity/Assets/Lexting/_Scenes/main_01_twozone.unity) — dual-volume typing widget, dictionary, hotkeys, tutorial hooks. After **Milestone 2**, the same scene ships **inside** the single UPM package (reference scenes/prefabs folder — not a separate download or optional Samples import).
 
 **Sprint window:** **2026-11-01** → **2026-11-19** (Meta Start deadline).  
-**Polish cutoff:** **2026-11-15** — from this date forward, scope is demo/tutorial/presentation only unless a **P0** Quest blocker appears.
+**Polish cutoff:** **2026-11-15** — from this date forward, scope is **tutorial / submission presentation** only unless a **P0** Quest blocker appears.
 
 ---
 
@@ -18,7 +18,7 @@ This document is the **living roadmap** for reviving the Unity prototype, stabil
 | **0.1.0** | **Milestone 1** — **Unity 6** upgrade on the legacy `Lexting_Unity/` tree + Quest 2 build; typing behavior matches the last known-good prototype (“as I left it”). Enables **`com.unity.pipeline`** (Cursor Unity MCP) on the monolith. |
 | **0.2.0** | **Milestone 2** — Lexting ships as **one Unity package** (runtime, embedded SimpleJSON/Surge/UniRx, default dictionary, reference scenes/prefabs). **One-way extract** from monolith; Quest QA uses a **greenfield host** (new project, not in open repo)—never reintegrate the package into `Lexting_Unity/`. Delete monolith when stable. |
 | **0.3.0** | **Milestone 3** — Refreshed XR UPM stack; **OpenXR-first** Quest path documented and implemented; legacy Oculus Integration retired or quarantined (engine already on **Unity 6** from M1). |
-| **0.4.0** | **Milestone 4** — Meta Start submission quality (**beta**): stable demo, improved tutorial, 3-minute video ready, known limitations documented. |
+| **0.4.0** | **Milestone 4** — Meta Start submission quality (**beta**): in-app **`TutorialManager`** onboarding operational, stable **`tutorial_demo.apk`**, known limitations documented; **3-minute submission video** = **product demo** (widget / core typing), separate from in-app tutorial UI. |
 | **0.5.0** | **Milestone 5 — Lexting Setup Wizard** — Editor **Lexting** menu command that configures the active scene for third-party integrators (auto rig bind + Lexting bootstrap where possible; validation errors/warnings when not). **Final milestone** in this roadmap. |
 
 **Version policy:** Each milestone bumps **`Lexting_Unity_Plugin/package.json`** to its target **0.x** line. **`1.0.0` is not a milestone target**—Meta Start and this roadmap stay **beta** until a later **stable / GA** release (post-roadmap). Patch releases (`0.1.x` … `0.5.x`) are expected during each milestone for Quest-side iteration.
@@ -275,31 +275,100 @@ Refresh and document versions together (plugin `package.json` **dependencies** +
 
 ## Milestone 4 — Meta Start delivery (polish mode)
 
+**Doc note:** Keep **`implementation_plan.md` changes local** until **M4 exit** (commit with **`0.4.0`** release), unless you explicitly ask for an interim docs commit.
+
 **Target version:** `0.4.0` (**beta** — Meta Start submission; not `1.0.0`)  
-**Goal:** Competition-ready experience: **stable demo**, **clear onboarding**, **3-minute video**, optional **training/gamification** if schedule allows.
+**Goal:** Competition-ready **`tutorial_demo.apk`**: **`TutorialManager`** reliably onboards new users on Quest. **Primary engineering focus is the in-app tutorial coroutine/UI** — **not** re-recording the Meta Start **3-minute product demo video** (see below). **Authoritative design (17 steps, copy, validation):** [`in_app_tutorial.md`](in_app_tutorial.md).
+
+**Two different “tutorials”:**
+
+| Artifact | Purpose |
+|----------|---------|
+| **In-app `TutorialManager`** | Short onboarding per [`in_app_tutorial.md`](in_app_tutorial.md) (grab demos, typing + word mode, checkmarks, skip → menu / typing). **M4 P0.** |
+| **~3-minute Meta Start video** | **Marketing / judges demo** of **core widget behavior** (dual-volume typing, word mode, etc.) — **not** a capture of the in-app onboarding slides. Existing **~2021 footage** may be **re-submitted or lightly re-edited** for 2026 rules; **not** tied to fixing `TutorialManager`. |
 
 **Polish mode starts:** **2026-11-15**  
 **Submission deadline:** **2026-11-19**
 
-**Suggested window:** **2026-11-12 → 2026-11-19** (content prep can begin earlier; **feature freeze** for polish on 11/15).
+**Suggested window:** **2026-11-04 → 2026-11-19** (tutorial repair + smoke can start immediately after M3; **feature freeze** for polish on 11/15).
+
+### M4 go-ahead decisions (2026-11-04)
+
+| # | Decision |
+|---|----------|
+| 1 | **`TutorialManager` is P0** — **walk the full in-app flow on device as built today** (including timer auto-pages and any dev **`UnitTest_Trigger_*`** pop-guns); fix state-machine / stuck bugs found there. **Unmapped gestures stay unmapped for now**; making steps fully manual-only is **follow-up** after the walkthrough. |
+| 2 | **Meta Start video** — **product demo** (~2021 capture); submit/re-edit for 2026 rules if needed. **Not** the in-app onboarding sequence. |
+| 3 | **Exit path** — in-app tutorial smoke → UX (skip, don’t-show-again) → **full Quest smoke** → ship **`0.4.0`**. Real-hand pop-gun wiring vs unit tests decided **after** walkthrough. |
+| 4 | **Skip** — **skip only** (no restart): **stop pending tutorial coroutines**, **dismiss overlay**, fire same completion path as finish so **typing / post-tutorial menu** can proceed. |
+| 5 | **Don’t show again** — **`PlayerPrefs`** (or equivalent) OK for `0.4.0`; may revisit persistence later. |
+| 6 | **Speed test** — **hide or disable** middle menu option for M4 (implementation was never finished; see below). |
+| 7 | **Tutorial demo hands** — **`0.3.0` / build 005:** animated **non-tracked** **`TutorialHand_Left` / `TutorialHand_Right`** (gesture pose hints) **missing on device** — prefab hierarchy may still be intact; investigate **canvas motion / scale** (below) and monolith diff. **Restore / fix visibility** before tutorial walkthrough sign-off. |
+| 8 | **Output UI distance (M3)** — Scene override placed **`[EXAMPLE_OUTPUT_UI]`** **`~12–13.5 m`** on Z, but **`ZoneTextingDemoCanvas`** still **lerps `_motionRoot`** (holds **`TutorialGroup` + demo hands**) toward **`head + flatForward × _cameraDepthDistance`** when the user is **not** looking at the UI; may read as **snapping closer** at start. **M4:** reconcile editor placement vs runtime follow for **tutorial phase**. |
 
 ### Definition of done
 
-- [ ] **Demo script** — timed flow (~3 min) covering: problem → dual-volume typing → word finalize/conjugate → one hotkey → output destination; rehearsed on Quest 2.
-- [ ] **Capture** — 3-minute video recorded (resolution/aspect per Meta Start rules); B-roll and fallback clips if live hand tracking fails.
-- [ ] **Tutorial** — `TutorialManager` flow improved for first-time judges/users (copy, pacing, skip/restart, failure recovery); aligned with demo script beats.
-- [ ] **Build label** — **`0.4.0`** Quest APK (beta) as **`Lexting_Unity_Plugin/Releases/tutorial_demo.apk`** (greenfield host + package); matches video; **`Releases/README.md`** updated; GitHub Release attachment; changelog blurb for submission (label as beta in store/metadata as required).
-- [ ] **Known issues** — one-page list (environment lighting, dictionary size, PC keyboard mode out of scope, etc.).
+- [ ] **Tutorial — demo hands restored** — Reconcile scene/prefab vs monolith; confirm **`TutorialHand_*`** under **`TutorialGroup`** (not deleted from **`TextOutputCanvas.prefab`**). Fix **visibility** (layer, scale, materials) and **parent motion** so **`FadeHands` / `MoveThumb`** read on Quest.
+- [ ] **Tutorial — output canvas distance** — **`ZoneTextingDemoCanvas`** on **`TextOutputCanvas`**: **`_cameraDepthDistance`** (**12** in prefab), **`_rootMotionDampeningFactor`** (**0.1**), **`_motionRoot`** = rect that owns **`TutorialManager`**. M3 scene sets **`m_LocalPosition.z ≈ 13.56`** on that root, but **`Update`** still **lerps position** when **`_lookConfidence < 0`** and **always lerps rotation** toward the user. **M4:** decide whether tutorial should **disable follow**, use a **fixed world pose**, or tune distance so demo hands stay in view (likely related to “missing hands”).
+- [ ] **Tutorial — walkthrough smoke (as built)** — Quest 2 pass the **designed** coroutine flow end-to-end; document what triggers each page today (pop-gun events, timers, unit-test injection). Fix P0 stuck states / dead-ends in local [`bugs/`](../bugs/) QA. **Defer** “all manual, no timers” and **new gesture mapping** until after this pass unless a step is already broken without it.
+- [ ] **Tutorial — skip** — user **skip** **stops active tutorial coroutines**, **dismisses** UI, invokes **`OnTutorialCompleted`** (or equivalent) so **`HighlightableZoneController` / typing** path matches normal completion.
+- [ ] **Tutorial — don’t show again** — **`PlayerPrefs`** (or equivalent) suppresses in-app tutorial on later launches when enabled.
+- [ ] **Tutorial — state machine & bugs** — no double-fires or stuck `currentPage` after walkthrough fixes; handlers (`TutorialHandHandler`, checkmarks, bullseye) consistent with whatever trigger source is active during M4 testing.
+- [ ] **Tutorial — UX pass** — copy, pacing, legibility after walkthrough; **no full restart** flow in `0.4.0`.
+- [ ] **Tutorial — triggers (follow-up)** — after walkthrough: decide on **OpenXR pop-gun** vs **`SpatialGestureInput` unit tests**, timer auto-pages, and stream-receiver fast-dismiss for submission builds.
+- [ ] **Speed test — hide for M4** — remove or disable **`HighlightableZoneController`** menu index **1** (`OnActivateSpeedTest`); no live subscribers today (see **Speed test inventory** below).
+- [ ] **Full build smoke** — after tutorial fixes: dual-volume typing, word mode, hotkeys, output receivers, load **`main_01_twozone`** on greenfield host; no P0 regressions vs M3 **`0.3.0`** baseline.
+- [ ] **Build label** — **`0.4.0`** Quest APK → repo-root **`Releases/tutorial_demo.apk`** (greenfield host + package); **`Releases/README.md`** + GitHub Release **`v0.4.0`**; submission metadata (beta labeling as required).
+- [ ] **Known issues** — one-page list (lighting, dictionary, PC keyboard / passthrough out of scope, tutorial edge cases deferred, etc.).
+- [ ] **3-minute product demo video (submission)** — **~2021 widget demo** re-submitted or lightly edited for 2026 Meta Start rules; update README / submission link when final URL is set (**independent** of in-app tutorial work).
 
 ### Skeletal workstreams (priority order)
 
-1. **Demo & video** (P0) — script, scene state, lighting, UI legibility on capture.
-2. **Tutorial pass** (P0) — fewer dead-ends; pop-gun / gesture hints match current input mode from Milestone 3.
-3. **Submission packaging** (P0) — store/metadata assets, attribution (SimpleJSON, Surge, Unity, Meta), license pointers.
-4. **Gamification / training** (P1, time-boxed) — e.g. speed-test hooks, streaks, or bullseye-style drills via existing `TutorialManager` / `SpeedTestManager`; **drop if not fun by 11/17**.
-5. **Nice-to-have** (P2) — short “how to build Quest APK from sample” in `docs/`.
+1. **Tutorial demo hands + canvas pose** (P0) — monolith diff; **`ZoneTextingDemoCanvas`** vs M3 **~12 m** scene placement; restore/fix **`TutorialHand_*`** visibility on device (**blocks** gesture-hint UX).
+2. **Tutorial walkthrough QA** (P0) — device pass **as built**; fix state machine bugs; inventory triggers vs timers vs unit tests.
+3. **Tutorial UX** (P0) — **skip** (coroutine cancel + dismiss + complete), **don’t-show-again** (`PlayerPrefs`), copy/pacing tweaks.
+4. **Speed test menu** (P0) — hide/disable unfinished **`SpeedTestManager`** entry from floater menu.
+5. **Reference build smoke** (P0) — end-to-end Quest pass (tutorial + typing stack); same greenfield path as M3 releases.
+6. **Submission packaging** (P0) — store/metadata, attribution (SimpleJSON, Surge, Unity, Meta), license pointers, release notes.
+7. **Product demo video** (P1) — Meta Start **~3 min widget demo** (2021 asset); not in-app tutorial capture.
+8. **Nice-to-have** (P2) — short “how to build Quest APK from sample” in `docs/`; finish **`SpeedTestManager`** post-M4.
 
-**Exit criterion:** You can submit on **11/19** without touching core typing logic unless a P0 crash appears.
+**Exit criterion:** First-time user can **complete or skip** the in-app tutorial on Quest 2, then use dual-volume typing in **`main_01_twozone`**; speed-test menu hidden; **`0.4.0`** published; Meta Start submission assets ready by **11/19** without core typing refactors unless a P0 crash appears.
+
+### Tutorial smoke checklist (device — fill in during M4)
+
+| Step | Trigger / expectation | Pass |
+|------|------------------------|------|
+| Launch | Tutorial overlay visible (`Introduce`); **demo `TutorialHand_*` meshes** visible (not user tracked hands) | |
+| Page 0 | Right **single pop-gun** → right checkmark | |
+| Page 0 | Left **single pop-gun** → left checkmark → success audio / bullseye | |
+| Page 0→1 | Page turn (+ note if **timer** auto-advances) | |
+| Mid tutorial | Thumb / hand hint animations if applicable | |
+| Page 2 | **Dual pop-gun** → both checkmarks → advance | |
+| Final pages | Last transitions → **`tutorialCompleted`** | |
+| Dismiss | Overlay fades; typing widget usable | |
+| Regression | Typing + word mode after tutorial | |
+| Skip | Pending coroutines stopped; overlay dismissed; same post-tutorial path as finish | |
+
+### Output UI motion (M3 note — tutorial hands)
+
+**Components:** **`TextOutputCanvas`** root → **`ZoneTextingDemoCanvas`** (`Runtime/Scripts/Zones/ZoneTextingDemoCanvas.cs`); **`_motionRoot`** → **`TutorialGroup`** / **`TutorialManager`** / **`TutorialHand_*`** nested prefabs.
+
+**M3 editor change:** **`main_01_twozone`** prefab instance **`[EXAMPLE_OUTPUT_UI]`** overrides **`m_LocalPosition.z`** to **~13.56** (intent: ~**12 m** from rig at start).
+
+**Runtime behavior (still active):** **`ZoneTextingDemoCanvas`** only **lerps to the true 12 m world target** while **`_isMoving`** — set when **`_lookConfidence < 0`** (user **not** looking at the UI). If the user **faces the tutorial at launch**, **`_isMoving` stays false** and the canvas **never** gets the **`head + horizontalForward × 12`** snap on that frame.
+
+**Observed on Quest (build 005):** **Start distance ~3–5 m**, not 12 m. **Turn ~90°** (look away → **`_isMoving`**) → canvas **repositions to ~12 m**; turn back → **another ~12 m** reset, **noticeably farther** than the initial pose. So **editor `m_LocalPosition.z ≈ 13.56`** on the world-space **`RectTransform`** does **not** match the script’s **12 m world** formula (scale / rect / anchor vs **`transform.position`** lerp).
+
+**Likely link to “missing” demo hands:** Tutorial + **`TutorialHand_*`** ride **`_motionRoot`**; wrong **startup** distance/scale vs post-reposition **12 m** can hide skinned hint meshes until after a gaze-triggered reset.
+
+**M4 fix (code):** On first frame with **`hasHead`**, **snap `_motionRoot`** with the **same** world formula as reposition (or call **`OnRefreshPosition`** once); optional **freeze follow during `TutorialManager`**; stop relying on scene **local Z** for distance.
+
+### Speed test inventory (plugin — M4: hide menu item)
+
+- **`SpeedTestManager`** (`Runtime/Scripts/SpeedTests/`) — WPM timed test UI: scrollable prompt text, `Compare()` vs `InputField`, **`RunTest()` / `StopTest()`**; **`Awake` does not auto-start** (init coroutines commented out).
+- **`HighlightableZoneController`** — post-tutorial floater menu: index **0** typing tutorial, **1** **`OnActivateSpeedTest`**, **2** freestyle. **`OnActivateSpeedTest` has no active subscribers** (only commented hook in deprecated **`CubeController`**).
+- **`TextOutputCanvas.prefab`** — **`SpeedTestPanel`** / **`SpeedTestDisplay`** UI exists but is not wired into a complete M4 flow.
+- **M4 intent:** **Hide/disable menu option 1** so judges only see working paths.
 
 ---
 
@@ -445,8 +514,8 @@ Assuming **OpenXR** as the runtime, it should be feasible for Lexting to **poll 
 | **11/01 – 11/08** | Milestone 1 — **Unity 6** upgrade + Quest 2 baseline parity (`Lexting_Unity/`) |
 | **11/08 – 11/12** | Milestone 2 — single Unity package; retire monolith |
 | **11/10 – 11/14** | Milestone 3 — UPM XR refresh, OpenXR Quest path (plugin + local host) |
-| **11/12 – 11/14** | Milestone 4 prep — demo outline, tutorial notes, capture dry runs |
-| **11/15 – 11/19** | **Polish mode** — video, tutorial lock, submission build **`0.4.0` beta** |
+| **11/04 – 11/14** | Milestone 4 — **`TutorialManager`** manual mode, trigger smoke, UX pass |
+| **11/15 – 11/19** | **Polish mode** — full build smoke, submission packaging, **`0.4.0` beta** release; video confirm/reuse |
 | **Post–11/19** | **Milestone 5** — Lexting Setup Wizard (`0.5.0`); integrator menu + validation |
 
 *Calendar is aggressive:* if Milestone 2 slips, compress XR work (Milestone 3) to what is required for the demo path only, or ship Meta Start from a **thin** sample while finishing plugin extraction on a branch. **Milestone 5 is explicitly last** and does not block Meta Start submission.
@@ -486,6 +555,11 @@ Work below is **out of scope** for Milestones 1–5 (`0.1.0`–`0.5.0` beta). **
 | 2026-11-04 | Milestone version map | **Sequential 0.x beta:** M3 **`0.3.0`**, M4 Meta Start **`0.4.0`**, M5 wizard **`0.5.0`**. **`1.0.0`** reserved for post-roadmap stable/GA—not Meta Start. (Earlier plan used M3=`0.5.0`, M4=`1.0.0` to mirror “launch” semver.) |
 | 2026-11-04 | M3 Leap scope | **Deprecate, do not delete** in-package Leap adapter/marker code; keep as **reference template** for future hand-tracking SDKs; Quest shipping excludes Leap via defines. |
 | 2026-11-04 | M3 go-ahead | **`OPEN_XR`** + **`OpenXRHandInput`**; single Transform trio; **`QUEST_*` until M5**; smoke exit + **`v0.3.0`** release; README badge only; Leap/OVR **deprecated not deleted**; Leap off APK via **`#if`** + comment-out classes if needed. |
+| 2026-11-04 | M4 go-ahead | **Tutorial-first** Meta Start path: fix **`TutorialManager`** (manual progression, trigger/state bugs), structured tutorial smoke, UX pass, full build smoke, **`0.4.0`**; **legacy ~2021 demo video may suffice**; no new demo script / capture unless required. |
+| 2026-11-04 | M4 UX / video | **Skip only** (no restart); optional **don’t-show-again** on load; video = **reuse + re-upload/edit** for 2026 rules. **Baseline review:** tutorial pop-guns today come from **`SpatialGestureInput` unit-test coroutines**; **`OpenXRHandInput` pop-gun detection is commented out** — M4 must wire real gestures before manual smoke sign-off. |
+| 2026-11-04 | M4 scope clarify | **Meta Start video ≠ in-app tutorial** (product/widget demo). Walk through **`TutorialManager` as built** before manual-only/timer changes; **skip** cancels coroutines + dismisses; **`PlayerPrefs`** for don’t-show-again; **speed test** menu hide (unfinished **`SpeedTestManager`**). **Don’t commit** this plan until M4 done. |
+| 2026-11-04 | M4 tutorial hands | Build **005** / **`0.3.0`**: animated **`TutorialHand_Left`/`Right`** hint hands **missing** (likely M3 scene cleanup). M4 P0: diff monolith **`main_01_twozone`** + **`TextOutputCanvas`** and restore prefab instances. |
+| 2026-11-04 | M4 canvas vs hands | M3 scene **local Z ≈ 13.56** does **not** yield **12 m** at runtime; **~3–5 m** at start until **`_isMoving`** (look away) runs **`ZoneTextingDemoCanvas`** world snap — explains **farther reset** vs start and possibly **missing demo hands**. |
 | 2026-11-03 | M5 widget & output lifecycle | Hidden/disabled widget bootstrap (scene load vs first receiver **`OnEnable`**) toggle on **`LextingInputModuleManager`**; show/hide API; integrators **manually enable/disable** output receivers per focus—no **`InputField`** auto-focus in SDK. README Getting Started updated when M5 ships. |
 | 2026-11-03 | M5 passthrough / Netcode | Replace MLAPI **`LextingNetworkManager`** stack with **Unity Netcode for GameObjects** for **`QUEST_*_PASSTHROUGH`** PC typing; **migrate archived PC server** into delivery; keep **`Lexting_Unity`** monolith until NGO port references old **`Streaming/MLAPI/`**; removing scene **`LextingNetworkManager`** is safe (no active code refs). |
 | | | |

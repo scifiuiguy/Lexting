@@ -1,124 +1,220 @@
 ﻿using Pixelplacement;
-using SpatialGestureText.LetterCube;
+using Pixelplacement.TweenSystem;
 using SpatialGestureText.Utilities;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace SpatialGestureText.Tutorial
 {
+    /// <summary>
+    /// Draws a 3-point check stroke. Place <see cref="waypointStart"/>, <see cref="waypointKnuckle"/>,
+    /// and <see cref="waypointEnd"/> empties in the editor; runtime anim anchors lerp between them.
+    /// </summary>
     public class TutorialCheckMarkHandler : MonoBehaviour
     {
-        #region vars
-        private LineRenderer lineRenderer;
-        private Transform knuckle;
-        private Transform end;
-        private GameObject knuckleAnchor;
-        private GameObject endAnchor;
-        private bool _isMoving = false;
-        public bool checkOn;
-        #endregion vars
+        [SerializeField] private Transform waypointStart;
+        [SerializeField] private Transform waypointKnuckle;
+        [SerializeField] private Transform waypointEnd;
 
-        #region init
+        private LineRenderer _lineRenderer;
+        private Transform _animKnuckle;
+        private Transform _animEnd;
+        private bool _isMoving;
+        private TweenBase _knuckleTween;
+        private TweenBase _endTween;
+        public bool checkOn;
+
         private void Awake()
         {
+            EnsureRuntimeReady();
+        }
+
+        /// <summary>Idempotent init (Awake order-safe; safe to call from tutorial before Unity runs Awake).</summary>
+        public void EnsureRuntimeReady()
+        {
+            ResolveWaypoints();
+            CreateAnimAnchors();
             InitLineRenderer();
-            knuckle = transform.GetChild(0);
-            end = transform.GetChild(1);
-            InitAnchor(ref knuckleAnchor, "KnuckleAnchor", knuckle);
-            InitAnchor(ref endAnchor, "EndAnchor", end);
+        }
+
+        private void ResolveWaypoints()
+        {
+            waypointStart = waypointStart
+                            ?? transform.Find("CheckmarkWaypoints/Waypoint_Start")
+                            ?? transform.Find("Waypoint_Start");
+            waypointKnuckle = waypointKnuckle
+                              ?? transform.Find("CheckmarkWaypoints/Waypoint_Knuckle")
+                              ?? transform.Find("Waypoint_Knuckle")
+                              ?? transform.Find("knuckle");
+            waypointEnd = waypointEnd
+                          ?? transform.Find("CheckmarkWaypoints/Waypoint_End")
+                          ?? transform.Find("Waypoint_End")
+                          ?? transform.Find("end");
+
+            if (waypointStart == null)
+            {
+                var go = new GameObject("Waypoint_Start");
+                go.transform.SetParent(transform, false);
+                waypointStart = go.transform;
+            }
+
+            if (waypointKnuckle == null || waypointEnd == null)
+                Debug.LogWarning($"{nameof(TutorialCheckMarkHandler)} on {name}: assign knuckle/end waypoints in the editor.", this);
         }
 
         private void InitLineRenderer()
         {
-            lineRenderer = GetComponent<LineRenderer>();
-            lineRenderer.SetPositions(
-                    new Vector3[] {
-                        Vector3.zero,
-                        Vector3.zero,
-                        Vector3.zero
-                    }
-                );
+            _lineRenderer = GetComponent<LineRenderer>();
+            PrepareLineRenderer();
+            if (_lineRenderer == null)
+                return;
+            _lineRenderer.positionCount = 3;
+            CollapseLineToStart();
         }
 
-        private void InitAnchor(ref GameObject go, string name, Transform parent)
+        private void CreateAnimAnchors()
         {
-            go = new GameObject(name);
-            go.transform.SetParent(parent);
-            go.transform.localPosition = Vector3.zero;
+            if (_animKnuckle == null)
+                _animKnuckle = CreateAnimAnchor("Anim_Knuckle");
+            if (_animEnd == null)
+                _animEnd = CreateAnimAnchor("Anim_End");
         }
-        #endregion init
 
-        #region loops
+        private Transform CreateAnimAnchor(string anchorName)
+        {
+            var existing = transform.Find(anchorName);
+            if (existing != null)
+                return existing;
+
+            var go = new GameObject(anchorName);
+            go.transform.SetParent(transform, false);
+            go.hideFlags = HideFlags.HideInHierarchy;
+            return go.transform;
+        }
+
+        private void PrepareLineRenderer()
+        {
+            if (_lineRenderer == null)
+                _lineRenderer = GetComponent<LineRenderer>();
+            if (_lineRenderer == null)
+                return;
+
+            _lineRenderer.useWorldSpace = true;
+            _lineRenderer.widthMultiplier = 1f;
+            _lineRenderer.startWidth = 0.012f;
+            _lineRenderer.endWidth = 0.012f;
+            _lineRenderer.alignment = LineAlignment.View;
+            _lineRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            _lineRenderer.receiveShadows = false;
+        }
+
         private void Update()
         {
-            if (_isMoving)
-            {
-                lineRenderer.SetPositions(
-                    new Vector3[] {
-                        transform.position,
-                        knuckleAnchor.transform.position,
-                        endAnchor.transform.position
-                    }
-                );
-            }
-        }
-        #endregion loops
+            if (!_isMoving || _lineRenderer == null || waypointStart == null)
+                return;
 
-        #region helper methods
+            _lineRenderer.SetPositions(new[]
+            {
+                waypointStart.position,
+                _animKnuckle.position,
+                _animEnd.position
+            });
+        }
+
         public void DrawCheckmark(bool on)
         {
             checkOn = on;
-            if (_isMoving) return;
+            EnsureRuntimeReady();
+            if (waypointStart == null || waypointKnuckle == null || waypointEnd == null)
+                return;
+            if (_animKnuckle == null || _animEnd == null)
+                return;
+
+            StopActiveTweens();
             _isMoving = true;
+            if (_lineRenderer != null)
+                _lineRenderer.enabled = true;
+
             if (on)
-                DrawKnuckle(on, () => DrawEnd(on, () => {
+            {
+                SnapAnimAnchorsToStart();
+                DrawKnucklePhase(on, () => DrawEndPhase(on, () => _isMoving = false));
+            }
+            else
+            {
+                DrawEndPhase(on, () => DrawKnucklePhase(on, () =>
+                {
                     _isMoving = false;
-                    
+                    CollapseLineToStart();
                 }));
-            else DrawEnd(on, () => DrawKnuckle(on, () => {
-                _isMoving = false;
-            }));
+            }
         }
 
-        private void DrawKnuckle(bool on, UnityAction callback)
+        private void DrawKnucklePhase(bool on, UnityAction callback)
         {
+            Lexting.audio?.Play(on ? "Whoosh_1" : "Whoosh_2");
+
             if (on)
             {
-                Lexting.audio.Play("Whoosh_1");
-                knuckleAnchor.transform.position = endAnchor.transform.position = transform.position;
+                _animKnuckle.position = waypointStart.position;
+                _animEnd.position = waypointStart.position;
+                _knuckleTween = Tween.Position(_animKnuckle, waypointKnuckle.position, 0.15f, 0, Tween.EaseIn, Tween.LoopType.None, null,
+                    () => callback.I());
             }
             else
             {
-                Lexting.audio.Play("Whoosh_2");
-                knuckleAnchor.transform.position = endAnchor.transform.position = knuckle.position;
+                _animKnuckle.position = waypointKnuckle.position;
+                _animEnd.position = waypointEnd.position;
+                _knuckleTween = Tween.Position(_animKnuckle, waypointStart.position, 0.15f, 0, Tween.EaseOut, Tween.LoopType.None, null,
+                    () => callback.I());
             }
-            
-            Tween.Position(knuckleAnchor.transform, (on)?knuckle.position:transform.position, 0.15f, 0, (on)?Tween.EaseIn:Tween.EaseOut, 
-                Tween.LoopType.None, null, () => { callback.I(); });
-            Tween.Position(endAnchor.transform, (on) ? knuckle.position : transform.position, 0.15f, 0, (on) ? Tween.EaseIn : Tween.EaseOut);
         }
 
-        private void DrawEnd(bool on, UnityAction callback)
+        private void DrawEndPhase(bool on, UnityAction callback)
         {
+            Lexting.audio?.Play(on ? "Whoosh_2" : "Whoosh_1");
+
             if (on)
             {
-                Lexting.audio.Play("Whoosh_2");
-                endAnchor.transform.position = knuckle.position;
+                _animEnd.position = waypointStart.position;
+                _endTween = Tween.Position(_animEnd, waypointEnd.position, 0.15f, 0, Tween.EaseOut, Tween.LoopType.None, null,
+                    () => callback.I());
             }
             else
             {
-
-                Lexting.audio.Play("Whoosh_1");
-                endAnchor.transform.position = end.position;
+                _animEnd.position = waypointEnd.position;
+                _endTween = Tween.Position(_animEnd, waypointKnuckle.position, 0.15f, 0, Tween.EaseIn, Tween.LoopType.None, null,
+                    () => callback.I());
             }
-            Tween.Position(endAnchor.transform, (on)?end.position:knuckle.position, 0.15f, 0, (on)?Tween.EaseOut:Tween.EaseIn, 
-                Tween.LoopType.None, null, () => { callback.I(); });
         }
-        #endregion helper methods
 
-        #region Unit Tests
+        private void StopActiveTweens()
+        {
+            _knuckleTween?.Stop();
+            _endTween?.Stop();
+            _knuckleTween = null;
+            _endTween = null;
+        }
+
+        private void SnapAnimAnchorsToStart()
+        {
+            if (waypointStart == null || _animKnuckle == null || _animEnd == null)
+                return;
+            _animKnuckle.position = waypointStart.position;
+            _animEnd.position = waypointStart.position;
+        }
+
+        private void CollapseLineToStart()
+        {
+            SnapAnimAnchorsToStart();
+            if (_lineRenderer == null || waypointStart == null)
+                return;
+
+            var p = waypointStart.position;
+            _lineRenderer.SetPositions(new[] { p, p, p });
+        }
+
         public IEnumerator UnitTest_DrawCheckmarkOn()
         {
             DrawCheckmark(true);
@@ -130,6 +226,5 @@ namespace SpatialGestureText.Tutorial
             DrawCheckmark(false);
             yield break;
         }
-        #endregion Unit Tests
     }
 }
