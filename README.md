@@ -3,14 +3,15 @@
 
 [![OpenXR](https://img.shields.io/badge/OpenXR-00897B.svg)](https://www.khronos.org/openxr/)
 [![Unity](https://img.shields.io/badge/Unity-6000.0.60f1-black.svg)](Lexting_Unity/ProjectSettings/ProjectVersion.txt)
-[![Version](https://img.shields.io/badge/version-0.3.0-blue.svg)](docs/implementation_plan.md)
+[![Version](https://img.shields.io/badge/version-0.4.0-blue.svg)](docs/implementation_plan.md)
 
 ![Lexting matrix palm control — dual-hand typing volumes](images/header.png)
 
 <img src="images/youtube-icon.webp" alt="Alt text" width="50" style="vertical-align: middle;"> 3-Minute Tutorial Coming Soon
 
+**Lexting** is an **OpenXR** spatial text-entry interface controlled with either hand or both hands. 
 
-**Lexting** is an **OpenXR** spatial text-entry interface controlled with either hand or both hands. Each hand gets a **2×2×2 typing volume** (eight letter **nodes** each) floating in front of the wrist. To type faster than any other mid-air XR text entry method, you **grab**, **drag**, and **turn your wrists** in a single group gesture that maps to a whole word in English in under 0.5 seconds, yielding theoretical average speed limit above 120WPM for power users. Each gesture includes instant conjugation and punctuation capability. Hotkeys, numbers, special characters, and other ASCII features are available, and streamed keystrokes are currently able to provide remote input to Windows PCs in addition to game engine integration via SDKs. The **Unity SDK** is avaialble in 1.0. **Unreal SDK** and **OpenXR Direct SDK** will be avaialble in 2.0.
+To type at **speeds that rival physical QWERTY** in mid-air with no tabletop, you **grab**, **drag**, and **turn your wrists** in a group gesture that maps to a dynamically conjugated, punctuated English word in under 0.5 seconds, yielding theoretical average limits above 120WPM for power users.
 
 <hr style="border: 1px solid gray;">
 
@@ -347,19 +348,49 @@ JSON word lists under `Scripts/EnglishDictionaries/Resources/` feed `LextingDict
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">BETA Limitations</span></summary>
 
-Lexting is in Beta. A few primary features have yet to be implemented in full:
+The **Unity SDK** is avaialble in 1.0. **Unreal SDK** and **OpenXR Direct SDK** will be avaialble in 2.0. Lexting is currently in Beta (pre-1.0). A few primary features have yet to be implemented in full:
 
-**Long-Word Drill-Down** A small number of words have more than eight potential results once the first four characters are selected, but they don't have more than eight different options for the 5th letter, so if there is only one option for a given 5th letter, then that full word will display in the UI during Finalization. If there is more than one remaining option for that 5th letter, then the first five letters plus "..." will be displayed. If the user hovers on that node and releases Finalization, the first of that group will print, but if the user wants to drill down to other options, they can grab-hold that node to display all the options and move to a different option. The current 1.0 Beta build has no drill-down support yet, so only the first eight options will appear, which means a small number of English words may be impossible to type using Word Mode until Lexting is out of Beta.
+<details>
+<summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Long-Word Drill-Down</span></summary>
 
-**2D Cursor/Caret Control** Control of the 2D caret in a future version of Lexting will turn Lexting into a full-blown word-processing tool rather than just a rapid text input tool. The Caret Control is accessed via Hotkey, and while some of the other Hotkeys e.g. COPY are quite easy to implement, they will not be very useful without a Caret Control to highlight text to copy first. Therefore, most of the Hotkey systems are considered Pending in Beta as they await Caret Control.
+A small number of words have more than eight potential results once the first four characters are selected, but they don't have more than eight different options for the 5th letter, so if there is only one option for a given 5th letter, then that full word will display in the UI during Finalization. If there is more than one remaining option for that 5th letter, then the first five letters plus "..." will be displayed. If the user hovers on that node and releases Finalization, the first of that group will print, but if the user wants to drill down to other options, they can grab-hold that node to display all the options and move to a different option. The current 1.0 Beta build has no drill-down support yet, so only the first eight options will appear, which means a small number of English words may be impossible to type using Word Mode until Lexting is out of Beta.
 
-**PC Streaming** There is an operational PC streaming service in the Beta, but the Streaming Service itself is brand new in Alpha. It will be throughly tested before Lexting comes out of Beta. 
+</details>
 
-**Dictionary Mods** The intent is to eventually provide users of Lexting the abilty to modify the dynamic dictionary, since it currently consists of only the 10K most popular English words on the internet. There are millions of English words, but frankly, most of them are esoteric jargon that would gum up the functionality of Lexting. However, some professionals in certain fields may find that lots of specific key terms in their field are missing from the default dictionary. The JSON format of the dictionary is open-source and anyone can modify it manually, but the goal is to include an interface that facilitates easy bulk dictionary mods when Lexting comes out of Beta.
+<details>
+<summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">2D Cursor/Caret Control</span></summary>
 
-**Finalization Shortcuts** The primary Finalization Shortcut (**Auto-Space**) is already in place in Beta. Because most typed words will end with a SPACE, Finalization Mode always begins assuming you want SPACE even if you happen to be hovering something else. This makes rapid Word Mode typing easier and faster for a vast majority of words. However, it can become annoying a few scenarios. For instance, if the last word of a sentence is "dog" and you want to place a period after the 'g'... the UI will assume you want a SPACE by default because it doesn't know you want to complete the sentence, yet g is in the same location as the period in the UI, so you're already hovering the period when Finalization begins, but the period doesn't print unless you exit that node and reenter it. This is true for any word that ends in 'k' or 'i' as well because 'k', 'i', and 'g' all share the same node as PERIOD. The same is true for words ending in 's', 'm', or 'w' when followed by a COMMA. Because this annoying exit+reenter action is necessary for these edge cases in Beta, the final version of Lexting will include a power-user gesture to solve this upfront. If the UI is in Pinch Mode, then the user can opt to use a grab in the right hand to turn off **Auto-Space** for just that word, which will allow them to access the punctuation directly. Vice-versa, if the UI is in Grab Mode, then the user can opt to use a pinch in the right hand to turn off **Auto-Space**. This will enable power users to dodge the exit-reenter edge case and type faster.
+Control of the 2D caret in a future version of Lexting will turn Lexting into a full-blown word-processing tool rather than just a rapid text input tool. The Caret Control is accessed via Hotkey, and while some of the other Hotkeys e.g. COPY are quite easy to implement, they will not be very useful without a Caret Control to highlight text to copy first. Therefore, most of the Hotkey systems are considered Pending in Beta as they await Caret Control.
 
-**Capitalization Shortcuts** When Lexting graduates out of Beta, it will have a toggleable option to use Secondary (Middle Finger) Pinch Tap to capitalize a single letter without needing to toggle the CAPS-1 key first.
+</details>
+
+<details>
+<summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">PC Streaming</span></summary>
+
+There is an operational PC streaming service in the Beta, but the Streaming Service itself is brand new in Alpha. It will be throughly tested before Lexting comes out of Beta.
+
+</details>
+
+<details>
+<summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Dictionary Mods</span></summary>
+
+The intent is to eventually provide users of Lexting the abilty to modify the dynamic dictionary, since it currently consists of only the 10K most popular English words on the internet. There are millions of English words, but frankly, most of them are esoteric jargon that would gum up the functionality of Lexting. However, some professionals in certain fields may find that lots of specific key terms in their field are missing from the default dictionary. The JSON format of the dictionary is open-source and anyone can modify it manually, but the goal is to include an interface that facilitates easy bulk dictionary mods when Lexting comes out of Beta.
+
+</details>
+
+<details>
+<summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Finalization Shortcuts</span></summary>
+
+The primary Finalization Shortcut (**Auto-Space**) is already in place in Beta. Because most typed words will end with a SPACE, Finalization Mode always begins assuming you want SPACE even if you happen to be hovering something else. This makes rapid Word Mode typing easier and faster for a vast majority of words. However, it can become annoying a few scenarios. For instance, if the last word of a sentence is "dog" and you want to place a period after the 'g'... the UI will assume you want a SPACE by default because it doesn't know you want to complete the sentence, yet g is in the same location as the period in the UI, so you're already hovering the period when Finalization begins, but the period doesn't print unless you exit that node and reenter it. This is true for any word that ends in 'k' or 'i' as well because 'k', 'i', and 'g' all share the same node as PERIOD. The same is true for words ending in 's', 'm', or 'w' when followed by a COMMA. Because this annoying exit+reenter action is necessary for these edge cases in Beta, the final version of Lexting will include a power-user gesture to solve this upfront. If the UI is in Pinch Mode, then the user can opt to use a grab in the right hand to turn off **Auto-Space** for just that word, which will allow them to access the punctuation directly. Vice-versa, if the UI is in Grab Mode, then the user can opt to use a pinch in the right hand to turn off **Auto-Space**. This will enable power users to dodge the exit-reenter edge case and type faster.
+
+</details>
+
+<details>
+<summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Capitalization Shortcuts</span></summary>
+
+When Lexting graduates out of Beta, it will have a toggleable option to use Secondary (Middle Finger) Pinch Tap to capitalize a single letter without needing to toggle the CAPS-1 key first.
+
+</details>
 
 </details> 
 </blockquote>

@@ -50,9 +50,10 @@ namespace SpatialGestureText.TwoZoneCube
 			Lexting.finalizer.ObserveEveryValueChanged(x => x.isSpatialListActive)
 				.Subscribe(active => _group.alpha = active ? 0 : 1);
 
+			// Trigger ref updates before deferred TwoZoneTrigger.HandleTriggerEnter sets current*HighlightedLetter.
 			Lexting.controllers
 				.ObserveEveryValueChanged(x => _right ? x.currentRightTrigger : x.currentLeftTrigger)
-				.Subscribe(index => _text.text = _displayLetter);
+				.Subscribe(_ => this.WaitF(1, RefreshDisplayedLetter));
 
             //Lexting.controllers.lastCurrentTrigger(_right)
             //	.ObserveEveryValueChanged(x => x.matrixDisplayState).Subscribe(state=>_text.text=state);
@@ -67,9 +68,16 @@ namespace SpatialGestureText.TwoZoneCube
 
             this.GetGestures((right, current, previous) => { }, (right, current, previous) => {
 				if (right != _right) return;
-				this.WaitF(1, () => _text.text = _displayLetter);
+				this.WaitF(1, RefreshDisplayedLetter);
 			});
 		}
 		#endregion init
+
+		private void RefreshDisplayedLetter()
+		{
+			if (_text == null)
+				return;
+			_text.text = _displayLetter;
+		}
 	}
 }

@@ -78,7 +78,11 @@ namespace SpatialGestureText.Tutorial
         private string _outputSnapshotStep19 = "";
         private bool _widgetRevealed;
         private bool _handsHidden;
+        private Coroutine _postRightGrabFadeCoroutine;
         private int _tantalizeBlockStartStep = 15;
+        private const float ReadyPosePalmHoldSeconds = 1f;
+        /// <summary>Step 16 (index 15): keep WM autofill output visible before clearing for tantalize.</summary>
+        private const float WordModeCarryOverDisplaySeconds = 2f;
         private bool _outputWatchActive;
         private string _lastSeenOutput = "";
         private bool _step6TheValidated;
@@ -209,20 +213,15 @@ namespace SpatialGestureText.Tutorial
             StopStepCoroutine();
             if (step == 7)
                 _step6TheValidated = false;
-            if (step == 13 || step == 14)
-                CaptureStepStartOutput(Lexting.printer.CurrentOutputValue ?? "");
-            if (step == 15)
+            if (step == 13)
             {
-                // Fresh tantalize block: clear prior word output and grab state (from "the" WM) so stem builds from empty.
-                TwoZoneGrabState.Clear();
-                if (Lexting.assembler.isWordAssemblyActive)
-                    Lexting.assembler.DeactivateWordAssembler();
-                Lexting.lhLine?.ResetStateToIdle(false);
-                Lexting.rhLine?.ResetStateToIdle(false);
-                Lexting.printer.UpdateOutputs("");
-                CaptureStepStartOutput("");
-                _lastSeenOutput = "";
+                // Word Mode intro (step index 12) allows typing with no gating; start hold-T+H on an empty field.
+                ClearWordModeLessonOutputAndGrabState();
             }
+            else if (step == 14)
+                CaptureStepStartOutput(Lexting.printer.CurrentOutputValue ?? "");
+            else if (step == 15)
+                CaptureStepStartOutput(Lexting.printer.CurrentOutputValue ?? "");
             else if (step == 16)
                 CaptureStepStartOutput(Lexting.printer.CurrentOutputValue ?? "");
             else if (step == 19)
@@ -406,7 +405,6 @@ namespace SpatialGestureText.Tutorial
         private IEnumerator RunPalmGateStep()
         {
             float held = 0f;
-            const float required = 2f;
             const float palmDotThreshold = -0.7f;
 
             while (true)
@@ -419,7 +417,7 @@ namespace SpatialGestureText.Tutorial
                 }
 
                 held += Time.deltaTime;
-                if (held >= required)
+                if (held >= ReadyPosePalmHoldSeconds)
                     yield break;
                 yield return null;
             }
@@ -490,8 +488,17 @@ namespace SpatialGestureText.Tutorial
             Lexting.audio.Play("Success", TutorialSuccessSfxVolume);
             _rightCheckmark?.DrawCheckmark(true);
             RevealWidgetAndOutput();
-            FadeHandsAndCheckmarks();
+            if (_postRightGrabFadeCoroutine != null)
+                StopCoroutine(_postRightGrabFadeCoroutine);
+            _postRightGrabFadeCoroutine = StartCoroutine(FadeHandsAndCheckmarksAfterRightCheckmark());
             AdvanceStep();
+        }
+
+        private IEnumerator FadeHandsAndCheckmarksAfterRightCheckmark()
+        {
+            yield return new WaitForSeconds(TutorialCheckMarkHandler.FullOnStrokeSeconds + 0.15f);
+            _postRightGrabFadeCoroutine = null;
+            FadeHandsAndCheckmarks();
         }
 
         private IEnumerator RunStep6ScriptedSequence()
@@ -569,6 +576,15 @@ namespace SpatialGestureText.Tutorial
 
         private IEnumerator RunTantalizeAssemblyStep(int step)
         {
+            if (step == 15)
+            {
+                // Carry committed output from WM autofill (doc step 15 / index 14); show ~2 s, then wipe before hold-T+A.
+                yield return new WaitForSeconds(WordModeCarryOverDisplaySeconds);
+                if (currentStep != 15)
+                    yield break;
+                ClearWordModeLessonOutputAndGrabState();
+            }
+
             var release = new WordModeDualReleaseTracker();
             while (currentStep == step)
             {
@@ -978,6 +994,17 @@ namespace SpatialGestureText.Tutorial
             _lastSeenOutput = value;
         }
 
+        private void ClearWordModeLessonOutputAndGrabState()
+        {
+            TwoZoneGrabState.Clear();
+            if (Lexting.assembler.isWordAssemblyActive)
+                Lexting.assembler.DeactivateWordAssembler();
+            Lexting.lhLine?.ResetStateToIdle(false);
+            Lexting.rhLine?.ResetStateToIdle(false);
+            Lexting.printer.UpdateOutputs("");
+            CaptureStepStartOutput("");
+        }
+
         private void FlashOutputErrorAndRevert(string revertTo)
         {
             if (_flashOutputCoroutine != null)
@@ -1198,11 +1225,10 @@ namespace SpatialGestureText.Tutorial
         {
             _leftCheckmark?.DrawCheckmark(true);
             _rightCheckmark?.DrawCheckmark(true);
-            // Full on stroke ≈ 0.6s (strokes slowed 50%); hold before off so lerp-off does not cut lerp-on.
-            yield return new WaitForSeconds(1.1f);
+            yield return new WaitForSeconds(TutorialCheckMarkHandler.FullOnStrokeSeconds + 0.35f);
             _leftCheckmark?.DrawCheckmark(false);
             _rightCheckmark?.DrawCheckmark(false);
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(TutorialCheckMarkHandler.FullOnStrokeSeconds + 0.35f);
         }
 
         /// <summary>Whether this typing step still accepts one cube insert (see <see cref="ConfirmTutorialTypingInsertCommitted"/>).</summary>

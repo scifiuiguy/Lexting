@@ -1,9 +1,6 @@
-﻿using Pixelplacement;
-using Pixelplacement.TweenSystem;
+﻿using System.Collections;
 using SpatialGestureText.Utilities;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -18,7 +15,13 @@ namespace SpatialGestureText.Tutorial
     /// </summary>
     public class TutorialCheckMarkHandler : MonoBehaviour
     {
-        private const float CheckmarkStrokeDuration = 0.3f;
+        public const float StrokeDurationSeconds = 0.3f;
+
+        private const float StrokeDebugSlowdown = 1f;
+
+        private static float EffectiveStrokeDurationSeconds => StrokeDurationSeconds * StrokeDebugSlowdown;
+        public static float FullOnStrokeSeconds => EffectiveStrokeDurationSeconds * 2f;
+
         private const float CheckmarkWhooshVolume = 0.5f;
 
         [SerializeField] private Transform waypointStart;
@@ -28,9 +31,11 @@ namespace SpatialGestureText.Tutorial
         private LineRenderer _lineRenderer;
         private Transform _animKnuckle;
         private Transform _animEnd;
-        private bool _isMoving;
-        private TweenBase _knuckleTween;
-        private TweenBase _endTween;
+        private Coroutine _drawCoroutine;
+        private int _drawGeneration;
+        private AnimationCurve _taperWidthCurve;
+        private AnimationCurve _knuckleDrawWidthCurve;
+        private AnimationCurve _knuckleEraseWidthCurve;
         public bool checkOn;
 
         private void Awake()
@@ -77,7 +82,6 @@ namespace SpatialGestureText.Tutorial
             PrepareLineRenderer();
             if (_lineRenderer == null)
                 return;
-            _lineRenderer.positionCount = 3;
             CollapseLineToStart();
         }
 
@@ -112,6 +116,7 @@ namespace SpatialGestureText.Tutorial
             _lineRenderer.widthMultiplier = 1f;
             _lineRenderer.startWidth = 0.004f;
             _lineRenderer.endWidth = 0.004f;
+            // Keep prefab taper (thin tips, thick mid-stroke); only fill in if missing.
             if (_lineRenderer.widthCurve == null || _lineRenderer.widthCurve.length == 0)
             {
                 var curve = new AnimationCurve();
@@ -120,22 +125,11 @@ namespace SpatialGestureText.Tutorial
                 curve.AddKey(1f, 0f);
                 _lineRenderer.widthCurve = curve;
             }
+
+            CacheTaperWidthCurveFromRenderer();
             _lineRenderer.alignment = LineAlignment.View;
             _lineRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             _lineRenderer.receiveShadows = false;
-        }
-
-        private void Update()
-        {
-            if (!_isMoving || _lineRenderer == null || waypointStart == null)
-                return;
-
-            _lineRenderer.SetPositions(new[]
-            {
-                waypointStart.position,
-                _animKnuckle.position,
-                _animEnd.position
-            });
         }
 
         public void DrawCheckmark(bool on)
@@ -155,43 +149,246 @@ namespace SpatialGestureText.Tutorial
             }
 #endif
 
-            StopActiveTweens();
-            _isMoving = true;
+            if (_drawCoroutine != null)
+            {
+                StopCoroutine(_drawCoroutine);
+                _drawCoroutine = null;
+            }
+
+            _drawGeneration++;
+            _drawCoroutine = StartCoroutine(DrawCheckmarkRoutine(on, _drawGeneration));
+        }
+
+        private IEnumerator DrawCheckmarkRoutine(bool on, int generation)
+        {
             if (_lineRenderer != null)
                 _lineRenderer.enabled = true;
 
             if (on)
             {
                 SnapAnimAnchorsToStart();
-                DrawKnucklePhase(on, () => DrawEndPhase(on, () => _isMoving = false));
+                yield return StrokeKnuckleOn(generation);
+                if (generation != _drawGeneration)
+                    yield break;
+                yield return StrokeEndOn(generation);
             }
             else
             {
-                DrawEndPhase(on, () => DrawKnucklePhase(on, () =>
-                {
-                    _isMoving = false;
-                    CollapseLineToStart();
-                }));
+                yield return StrokeEndOff(generation);
+                if (generation != _drawGeneration)
+                    yield break;
+                yield return StrokeKnuckleOff(generation);
+                if (generation != _drawGeneration)
+                    yield break;
+                CollapseLineToStart();
+            }
+
+            if (generation == _drawGeneration)
+                _drawCoroutine = null;
+        }
+
+        private IEnumerator StrokeKnuckleOn(int generation)
+        {
+            Lexting.audio?.Play("Whoosh_1", CheckmarkWhooshVolume);
+            _animEnd.position = waypointStart.position;
+            yield return LerpAlongWaypoints(generation, true, (start, knuckle, t) =>
+            {
+                _animKnuckle.position = Vector3.Lerp(start, knuckle, t);
+                if (t >= 1f)
+                    ApplyKnuckleOnEndHandoff(start);
+                else
+                    ApplyKnuckleLegStroke(start, _animKnuckle.position, drawingOn: true);
+            });
+        }
+
+        private IEnumerator StrokeEndOn(int generation)
+        {
+            Lexting.audio?.Play("Whoosh_2", CheckmarkWhooshVolume);
+            var elapsed = 0f;
+            while (elapsed < EffectiveStrokeDurationSeconds && generation == _drawGeneration)
+            {
+                elapsed += Time.deltaTime;
+                var t = Mathf.Clamp01(elapsed / EffectiveStrokeDurationSeconds);
+                t = 1f - (1f - t) * (1f - t);
+                var start = waypointStart.position;
+                var knuckle = waypointKnuckle.position;
+                var end = waypointEnd.position;
+                _animKnuckle.position = knuckle;
+                _animEnd.position = Vector3.Lerp(start, end, t);
+                SetLineThreePoint(start, knuckle, _animEnd.position);
+                yield return null;
+            }
+
+            if (generation == _drawGeneration)
+            {
+                var start = waypointStart.position;
+                var knuckle = waypointKnuckle.position;
+                _animKnuckle.position = knuckle;
+                _animEnd.position = waypointEnd.position;
+                SetLineThreePoint(start, knuckle, _animEnd.position);
             }
         }
 
-#if UNITY_EDITOR
+        private IEnumerator StrokeEndOff(int generation)
+        {
+            Lexting.audio?.Play("Whoosh_1", CheckmarkWhooshVolume);
+            var elapsed = 0f;
+            while (elapsed < EffectiveStrokeDurationSeconds && generation == _drawGeneration)
+            {
+                elapsed += Time.deltaTime;
+                var t = Mathf.Clamp01(elapsed / EffectiveStrokeDurationSeconds);
+                t = t * t;
+                var start = waypointStart.position;
+                var knuckle = waypointKnuckle.position;
+                var end = waypointEnd.position;
+                _animKnuckle.position = knuckle;
+                _animEnd.position = Vector3.Lerp(end, knuckle, t);
+                SetLineThreePoint(start, knuckle, _animEnd.position);
+                yield return null;
+            }
+
+            if (generation == _drawGeneration)
+            {
+                var start = waypointStart.position;
+                var knuckle = waypointKnuckle.position;
+                _animKnuckle.position = knuckle;
+                _animEnd.position = knuckle;
+                SetLineThreePoint(start, knuckle, knuckle);
+            }
+        }
+
+        private IEnumerator StrokeKnuckleOff(int generation)
+        {
+            Lexting.audio?.Play("Whoosh_2", CheckmarkWhooshVolume);
+            _animEnd.position = waypointKnuckle.position;
+            yield return LerpAlongWaypoints(generation, false, (start, knuckle, t) =>
+            {
+                _animKnuckle.position = Vector3.Lerp(knuckle, start, t);
+                if (t >= 1f)
+                {
+                    ApplyTaperWidthCurve();
+                    CollapseLineToStart();
+                }
+                else
+                    ApplyKnuckleLegStroke(start, _animKnuckle.position, drawingOn: false);
+            });
+        }
+
+        /// <summary>Re-samples start/knuckle waypoints each frame (hand may move).</summary>
+        private IEnumerator LerpAlongWaypoints(int generation, bool easeIn, System.Action<Vector3, Vector3, float> apply)
+        {
+            var elapsed = 0f;
+            while (elapsed < EffectiveStrokeDurationSeconds && generation == _drawGeneration)
+            {
+                elapsed += Time.deltaTime;
+                var t = Mathf.Clamp01(elapsed / EffectiveStrokeDurationSeconds);
+                t = easeIn ? t * t : 1f - (1f - t) * (1f - t);
+                apply(waypointStart.position, waypointKnuckle.position, t);
+                yield return null;
+            }
+
+            if (generation == _drawGeneration)
+                apply(waypointStart.position, waypointKnuckle.position, 1f);
+        }
+
+        private void CacheTaperWidthCurveFromRenderer()
+        {
+            if (_lineRenderer == null || _taperWidthCurve != null)
+                return;
+
+            var src = _lineRenderer.widthCurve;
+            if (src == null || src.length == 0)
+                return;
+
+            _taperWidthCurve = new AnimationCurve();
+            foreach (var key in src.keys)
+                _taperWidthCurve.AddKey(key);
+            RebuildKnuckleLegWidthCurves();
+        }
+
         /// <summary>
-        /// Edit Mode / paused inspector preview: sets anim anchors to final on or off pose and updates the LineRenderer
-        /// (Pixelplacement tweens and <see cref="MonoBehaviour.StartCoroutine"/> do not run outside Play Mode).
+        /// Maps the prefab taper onto a 2-point leg: draw uses taper 0→0.5 (same as folded knuckle at mid-path),
+        /// erase uses taper 0.5→1 so the knuckle end stays thick while shrinking.
         /// </summary>
+        private void RebuildKnuckleLegWidthCurves()
+        {
+            if (_taperWidthCurve == null)
+                return;
+
+            _knuckleDrawWidthCurve = BuildLegWidthCurve(s => _taperWidthCurve.Evaluate(s * 0.5f));
+            _knuckleEraseWidthCurve = BuildLegWidthCurve(s => _taperWidthCurve.Evaluate(1f - s * 0.5f));
+        }
+
+        private static AnimationCurve BuildLegWidthCurve(System.Func<float, float> widthAtLineT)
+        {
+            const int samples = 12;
+            var curve = new AnimationCurve();
+            for (var i = 0; i <= samples; i++)
+            {
+                var t = i / (float)samples;
+                curve.AddKey(t, Mathf.Clamp01(widthAtLineT(t)));
+            }
+
+            for (var i = 0; i < curve.length; i++)
+                curve.SmoothTangents(i, 0f);
+            return curve;
+        }
+
+        private void EnsureKnuckleLegWidthCurves()
+        {
+            if (_knuckleDrawWidthCurve != null && _knuckleEraseWidthCurve != null)
+                return;
+            if (_taperWidthCurve == null)
+                CacheTaperWidthCurveFromRenderer();
+            RebuildKnuckleLegWidthCurves();
+        }
+
+        private void ApplyTaperWidthCurve()
+        {
+            if (_lineRenderer == null)
+                return;
+            if (_taperWidthCurve != null)
+                _lineRenderer.widthCurve = _taperWidthCurve;
+        }
+
+        /// <summary>Stable 2-point leg; width follows first half of prefab taper (not full 0→1 linear).</summary>
+        private void ApplyKnuckleLegStroke(Vector3 start, Vector3 knuckleHead, bool drawingOn)
+        {
+            if (_lineRenderer == null)
+                return;
+            EnsureKnuckleLegWidthCurves();
+            _lineRenderer.widthCurve = drawingOn ? _knuckleDrawWidthCurve : _knuckleEraseWidthCurve;
+            _lineRenderer.positionCount = 2;
+            _lineRenderer.SetPositions(new[] { start, knuckleHead });
+        }
+
+        /// <summary>Match end-leg start pose (knuckle held, end at start) with prefab taper before phase 2.</summary>
+        private void ApplyKnuckleOnEndHandoff(Vector3 start)
+        {
+            if (_lineRenderer == null)
+                return;
+            ApplyTaperWidthCurve();
+            _animEnd.position = start;
+            SetLineThreePoint(start, waypointKnuckle.position, start);
+        }
+
+        private void SetLineThreePoint(Vector3 start, Vector3 knuckle, Vector3 end)
+        {
+            if (_lineRenderer == null)
+                return;
+            _lineRenderer.positionCount = 3;
+            _lineRenderer.SetPositions(new[] { start, knuckle, end });
+        }
+
+#if UNITY_EDITOR
         private void ApplyCheckmarkImmediateForEditor(bool on)
         {
-            StopActiveTweens();
-            _isMoving = false;
             if (_lineRenderer != null)
                 _lineRenderer.enabled = true;
 
             if (on)
             {
-                _animKnuckle.position = waypointKnuckle.position;
-                _animEnd.position = waypointEnd.position;
-                FlushLineRendererPositions();
+                SetLineThreePoint(waypointStart.position, waypointKnuckle.position, waypointEnd.position);
             }
             else
                 CollapseLineToStart();
@@ -200,68 +397,7 @@ namespace SpatialGestureText.Tutorial
             if (gameObject.scene.IsValid())
                 EditorSceneManager.MarkSceneDirty(gameObject.scene);
         }
-
-        private void FlushLineRendererPositions()
-        {
-            if (_lineRenderer == null || waypointStart == null || _animKnuckle == null || _animEnd == null)
-                return;
-            _lineRenderer.SetPositions(new[]
-            {
-                waypointStart.position,
-                _animKnuckle.position,
-                _animEnd.position
-            });
-        }
 #endif
-
-        private void DrawKnucklePhase(bool on, UnityAction callback)
-        {
-            Lexting.audio?.Play(on ? "Whoosh_1" : "Whoosh_2", CheckmarkWhooshVolume);
-
-            if (on)
-            {
-                _animKnuckle.position = waypointStart.position;
-                _animEnd.position = waypointStart.position;
-                _knuckleTween = Tween.Position(_animKnuckle, waypointKnuckle.position, CheckmarkStrokeDuration, 0, Tween.EaseIn, Tween.LoopType.None, null,
-                    () => callback.I());
-            }
-            else
-            {
-                // Lerp-OFF phase 2: knuckle → start. End was already merged into knuckle in phase 1; do not snap back to waypointEnd.
-                _animKnuckle.position = waypointKnuckle.position;
-                if (_animEnd != null)
-                    _animEnd.position = waypointKnuckle.position;
-                _knuckleTween = Tween.Position(_animKnuckle, waypointStart.position, CheckmarkStrokeDuration, 0, Tween.EaseOut, Tween.LoopType.None, null,
-                    () => callback.I());
-            }
-        }
-
-        private void DrawEndPhase(bool on, UnityAction callback)
-        {
-            Lexting.audio?.Play(on ? "Whoosh_2" : "Whoosh_1", CheckmarkWhooshVolume);
-
-            if (on)
-            {
-                _animEnd.position = waypointStart.position;
-                _endTween = Tween.Position(_animEnd, waypointEnd.position, CheckmarkStrokeDuration, 0, Tween.EaseOut, Tween.LoopType.None, null,
-                    () => callback.I());
-            }
-            else
-            {
-                _animKnuckle.position = waypointKnuckle.position;
-                _animEnd.position = waypointEnd.position;
-                _endTween = Tween.Position(_animEnd, waypointKnuckle.position, CheckmarkStrokeDuration, 0, Tween.EaseIn, Tween.LoopType.None, null,
-                    () => callback.I());
-            }
-        }
-
-        private void StopActiveTweens()
-        {
-            _knuckleTween?.Stop();
-            _endTween?.Stop();
-            _knuckleTween = null;
-            _endTween = null;
-        }
 
         private void SnapAnimAnchorsToStart()
         {
@@ -278,7 +414,8 @@ namespace SpatialGestureText.Tutorial
                 return;
 
             var p = waypointStart.position;
-            _lineRenderer.SetPositions(new[] { p, p, p });
+            _lineRenderer.positionCount = 2;
+            _lineRenderer.SetPositions(new[] { p, p });
         }
 
         public IEnumerator UnitTest_DrawCheckmarkOn()

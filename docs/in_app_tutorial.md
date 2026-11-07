@@ -12,7 +12,7 @@ Replaces pop-gun flow on `TextOutputCanvas`. **One label** per step: copy **alph
 
 | Step | Title (short) | Advance when | Wrong input / revert | Demo hands & chrome |
 |------|-----------------|--------------|----------------------|---------------------|
-| **1** | Ready position | Both palms facing each other: `dot(n_L, n_R) ≤ -0.7` held **2 s**; **reset timer** if tracking/pose lost | — | Both **open** |
+| **1** | Ready position | Both palms facing each other: `dot(n_L, n_R) ≤ -0.7` held **1 s**; **reset timer** if tracking/pose lost | — | Both **open** |
 | **2** | Left hand grab | After **2 s** from step start, play **left closed** demo; advance when user **matches left grab** (live `Insert`/grab) | — | Left **closed** anim; **left checkmark** on success |
 | **3** | Right hand grab | **2 s** after step start, play **right closed** demo; advance on **right grab**; **summon widget + output**; show **Skip** below widget (scene nodes or runtime **SKIP** zone) | — | Right **closed**; **right checkmark** only; then **fade hands + checkmarks to 0** |
 | **4** | Type `t` | `CurrentOutputValue == "t"` | Else **red ~0.25 s**, restore **step-start output** (`""`) | Hands/checkmarks **hidden** |
@@ -25,9 +25,9 @@ Replaces pop-gun flow on `TextOutputCanvas`. **One label** per step: copy **alph
 | **11** | Type `x` (after `fo`) | User completes **`"fox"`** from **`"fo"`** | Wrong char while output should be **`"fo"`**: red + restore **`"fo"`**. If **`"fox"`** is already present (e.g. skilled user), no penalty — advance when output matches | — |
 | **12** | Back-Word | **`"fox"`** present at step entry; after step, output **empty** via Back-Word (gesture = existing **right middle → left wrist** mapping; **output-only** validation) | Any change other than clearing **fox** → reset to **`"fox"`** | — |
 | **13** | Word Mode intro | **7 s** auto-advance | — | — |
-| **14** | WM: start `the` | **L** holding **t**, **R** holding **h** (word-mode hold detection) | On release before valid: reset step; wrong pairing: **red + revert on release only** | — |
+| **14** | WM: start `the` | **L** holding **t**, **R** holding **h** (word-mode hold detection); **output cleared** when this step begins (typing during step **13** intro is discarded) | On release before valid: reset step; wrong pairing: **red + revert on release only** | — |
 | **15** | WM: autofill `the` | Both release → word completes as **`the`** | Wrong on release: red + revert to step 14 start state | — |
-| **16** | WM: start `tantalize` | **L** **t**, **R** **a** held | Wrong on release: red + revert; if **`ta`** correct, **may advance while still holding** | — |
+| **16** | WM: start `tantalize` | **L** **t**, **R** **a** held; **output carries `the` from step 15** for **~2 s** after this step begins, then **clears whatever is in the field** (including mistaken early input during that window) before tantalize validation | Wrong on release: red + revert; if **`ta`** correct, **may advance while still holding** | — |
 | **17** | WM: `tantalize` + N | **L** dragged to **N** while word-mode hold continues (assembly toward **`tantalize`**) | Early **release** during await → reset to **step 16**; wrong letter **while still holding**: no flash (drag-through); wrong on **release**: red + revert | — |
 | **18** | WM: `tantalize` + T | **R** dragged to **T** while hold continues | Same hold/release rules as 17 | — |
 | **19** | WM: finalization entry | **R** still holding, **L** opens → **finalization mode** for current word stem | After **dual release**, if output already has a **conjugated** tantalize commit (not bare lemma `tantalize`) since step 19 began → **21**; early release without valid stem → reset tantalize block | — |

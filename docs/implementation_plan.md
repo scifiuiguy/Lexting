@@ -74,7 +74,7 @@ This document is the **living roadmap** for reviving the Unity prototype, stabil
   - [x] Text reaches subscribed UI (`LextingOutputManager` / `InputField`) — grab/typing works; label lag vs output noted in baseline log
 - [x] **Regression log:** local [`bugs/quest2_baseline_log.md`](../bugs/quest2_baseline_log.md) + per-build **`bugs/QA/QA-<build>-*.md`** ([`bugs/bugs_workflow.md`](../bugs/bugs_workflow.md); gitignored).
 
-**M1 exit met** (Quest 2 smoke checklist passed, build **028** era). **M2 (`0.2.0`)** and **M3 (`0.3.0`)** exited (OpenXR-first plugin + greenfield smoke build **005**). **Active milestone: M4 (`0.4.0`)** — Meta Start delivery. Optional M1 gap: **workstream 5** screen recording.
+**M1 exit met** (Quest 2 smoke checklist passed, build **028** era). **M2 (`0.2.0`)**, **M3 (`0.3.0`)** (OpenXR-first plugin + greenfield smoke build **005**), and **M4 (`0.4.0`)** (22-step in-app tutorial + Meta Start **`tutorial_demo.apk`**) exited. **Active milestone: M5 (`0.5.0`)** — Setup Wizard. Optional M1 gap: **workstream 5** screen recording.
 
 ### Skeletal workstreams
 
@@ -255,7 +255,7 @@ Refresh and document versions together (plugin `package.json` **dependencies** +
 - [x] **Leap reference adapter — deprecated, retained** — **`[Obsolete]`** on **`LeapHandInput`**; Android strips **`LEXTING_FOUND_LEAP_SDK`**; sources remain **`#if`**-gated.
 - [x] **Oculus Integration cruft — isolated for OpenXR Quest** — **`OpenXRHandInput`**; OVR skeleton + **`SimpleOculusHandInput`** deprecated, **`#if LEXTING_FOUND_OCULUS_SDK`**; **`QUEST_*`** enum retained until M5.
 - [x] Quest 2 **greenfield smoke** on **`OPEN_XR`** + **`OpenXRHandInput`** (typing, hands, load scene)—file issues in local [`bugs/`](../bugs/) as needed. Full M1 / build **028** parity checklist is **follow-up**, not a gate for M3 exit.
-- [x] **Known gaps** — [`docs/known_gaps.md`](known_gaps.md). **README:** version badge **`0.3.0`** only.
+- [x] **Known gaps** — [`docs/known_gaps.md`](known_gaps.md). **README:** version badge **`0.4.0`**.
 
 ### Skeletal workstreams
 
@@ -275,7 +275,7 @@ Refresh and document versions together (plugin `package.json` **dependencies** +
 
 ## Milestone 4 — Meta Start delivery (polish mode)
 
-**Doc note:** Keep **`implementation_plan.md` changes local** until **M4 exit** (commit with **`0.4.0`** release), unless you explicitly ask for an interim docs commit.
+**M4 exit met (2026-11-07):** **`0.4.0`** shipped — 22-step **`TutorialManager`**, SKIP, checkmark polish, hover letter fix, speed-test menu hidden; greenfield Quest smoke signed off for Meta Start submission build.
 
 **Target version:** `0.4.0` (**beta** — Meta Start submission; not `1.0.0`)  
 **Goal:** Competition-ready **`tutorial_demo.apk`**: **`TutorialManager`** reliably onboards new users on Quest. **Primary engineering focus is the in-app tutorial coroutine/UI** — **not** re-recording the Meta Start **3-minute product demo video** (see below). **Authoritative design (22 steps, indices 0–21, copy, validation):** [`in_app_tutorial.md`](in_app_tutorial.md).
@@ -284,7 +284,7 @@ Refresh and document versions together (plugin `package.json` **dependencies** +
 
 | Artifact | Purpose |
 |----------|---------|
-| **In-app `TutorialManager`** | Short onboarding per [`in_app_tutorial.md`](in_app_tutorial.md) (grab demos, typing + word mode, checkmarks, skip → menu / typing). **M4 P0.** |
+| **In-app `TutorialManager`** | **22-step** onboarding (indices **0–21**) per [`in_app_tutorial.md`](in_app_tutorial.md): ready pose, grabs, typing + rotations, FOX, Back-Word, Word Mode, finalization, **SKIP** → wrap-up. **M4 P0** = device sign-off + submission packaging. |
 | **~3-minute Meta Start video** | **Marketing / judges demo** of **core widget behavior** (dual-volume typing, word mode, etc.) — **not** a capture of the in-app onboarding slides. Existing **~2021 footage** may be **re-submitted or lightly re-edited** for 2026 rules; **not** tied to fixing `TutorialManager`. |
 
 **Polish mode starts:** **2026-11-15**  
@@ -296,58 +296,82 @@ Refresh and document versions together (plugin `package.json` **dependencies** +
 
 | # | Decision |
 |---|----------|
-| 1 | **`TutorialManager` is P0** — **walk the full in-app flow on device as built today** (including timer auto-pages and any dev **`UnitTest_Trigger_*`** pop-guns); fix state-machine / stuck bugs found there. **Unmapped gestures stay unmapped for now**; making steps fully manual-only is **follow-up** after the walkthrough. |
+| 1 | **`TutorialManager` is P0** — **22 steps (0–21)** per [`in_app_tutorial.md`](in_app_tutorial.md): ready pose, grab demos, typing **`t`/`th`/`the`/`fox`**, rotation poses, Back-Word, Word Mode **`the`/`tantalize`**, finalization, wrap-up. **Device QA** is the remaining gate (not re-building the page count). Timed read-ahead pages (e.g. step 9 intro, step 13, step 21) stay **by design**. |
 | 2 | **Meta Start video** — **product demo** (~2021 capture); submit/re-edit for 2026 rules if needed. **Not** the in-app onboarding sequence. |
-| 3 | **Exit path** — in-app tutorial smoke → UX (skip, don’t-show-again) → **full Quest smoke** → ship **`0.4.0`**. Real-hand pop-gun wiring vs unit tests decided **after** walkthrough. |
+| 3 | **Exit path** — **22-step** device smoke → UX polish → **full Quest smoke** → ship **`0.4.0`**. Primary triggers = **grab/rotation/output** per [`in_app_tutorial.md`](in_app_tutorial.md) (not pop-gun pages). |
 | 4 | **Skip** — **skip only** (no restart): **stop pending tutorial coroutines**, **dismiss overlay**, fire same completion path as finish so **typing / post-tutorial menu** can proceed. |
 | 5 | **Don’t show again** — **`PlayerPrefs`** (or equivalent) OK for `0.4.0`; may revisit persistence later. |
 | 6 | **Speed test** — **hide or disable** middle menu option for M4 (implementation was never finished; see below). |
-| 7 | **Tutorial demo hands** — **`0.3.0` / build 005:** animated **non-tracked** **`TutorialHand_Left` / `TutorialHand_Right`** (gesture pose hints) **missing on device** — prefab hierarchy may still be intact; investigate **canvas motion / scale** (below) and monolith diff. **Restore / fix visibility** before tutorial walkthrough sign-off. |
-| 8 | **Output UI distance (M3)** — Scene override placed **`[EXAMPLE_OUTPUT_UI]`** **`~12–13.5 m`** on Z, but **`ZoneTextingDemoCanvas`** still **lerps `_motionRoot`** (holds **`TutorialGroup` + demo hands**) toward **`head + flatForward × _cameraDepthDistance`** when the user is **not** looking at the UI; may read as **snapping closer** at start. **M4:** reconcile editor placement vs runtime follow for **tutorial phase**. |
+| 7 | **Tutorial demo hands** — **`TutorialHand_Left` / `TutorialHand_Right`** + open/closed pose prefabs under **`TutorialGroup`**; steps **0–2** show animated hints + checkmarks; **3+** fade hands/chrome. Visibility tied to **`_motionRoot`** — see **initial depth snap** (decision 8). |
+| 8 | **Output UI distance (M3)** — **`ZoneTextingDemoCanvas.EnsureInitialWorldDepth`** / **`SnapToCameraDepthNow`** world-snaps **`_motionRoot`** when head is ready (same formula as look-away reposition). Follow lerp still runs after snap; tune only if tutorial still reads too close/far in QA. |
+
+### Tutorial implementation inventory (code — 2026-11-07)
+
+| # | Step (index) | Advance / validation (summary) | Code |
+|---|--------------|--------------------------------|------|
+| 1 | 0 — Ready | Palms facing **1 s** | [x] |
+| 2 | 1 — Left grab | Live **Insert** + demo hand + left checkmark | [x] |
+| 3 | 2 — Right grab | Right **Insert** + checkmark; summon widget + **SKIP** | [x] |
+| 4 | 3 — Type `t` | Output **`t`** | [x] |
+| 5 | 4 — Supinate | **`CubeRotationState.supinate`** | [x] |
+| 6 | 5 — Type `h` → **`th`** | Output match + revert | [x] |
+| 7 | 6 — Pronate | **`pronate`** | [x] |
+| 8 | 7 — Type `e` → **`the`** | Output match + revert | [x] |
+| 9 | 8 — FOX intro | Scripted **`the`→`fo`** + **7 s** read-ahead | [x] |
+| 10 | 9 — Palm forward | **`forward`** | [x] |
+| 11 | 10 — Type `x` → **`fox`** | Skip **10–11** if **`fox`** early | [x] |
+| 12 | 11 — Back-Word | Output clears **`fox`** | [x] |
+| 13 | 12 — WM intro | **7 s** auto-advance | [x] |
+| 14 | 13–15 — WM **`the`** | Dual hold **T+H**, release autofill | [x] |
+| 15 | 16–18 — WM **`tantalize`** | Hold/drag **N** / **T**, release rules | [x] |
+| 16 | 19–20 — Finalization | Open left; conjugated **`tantalize`** commit | [x] |
+| 17 | 21 — Wrap-up | **7 s** → **`OnTutorialCompleted`** → post-menu | [x] |
+| — | **SKIP** (step 3+) | **`JumpToWrapUpFromSkip`** → step **21** (session only) | [x] |
+| — | **Don’t show again** | **`PlayerPrefs`** via **`EndTutorialFromSkip(dontShowAgain: true)`** (optional scene hook; not on default SKIP UI) | [x] |
+
+Authoritative step copy and edge cases: master table in [`in_app_tutorial.md`](in_app_tutorial.md).
 
 ### Definition of done
 
-- [ ] **Tutorial — demo hands restored** — Reconcile scene/prefab vs monolith; confirm **`TutorialHand_*`** under **`TutorialGroup`** (not deleted from **`TextOutputCanvas.prefab`**). Fix **visibility** (layer, scale, materials) and **parent motion** so **`FadeHands` / `MoveThumb`** read on Quest.
-- [ ] **Tutorial — output canvas distance** — **`ZoneTextingDemoCanvas`** on **`TextOutputCanvas`**: **`_cameraDepthDistance`** (**12** in prefab), **`_rootMotionDampeningFactor`** (**0.1**), **`_motionRoot`** = rect that owns **`TutorialManager`**. M3 scene sets **`m_LocalPosition.z ≈ 13.56`** on that root, but **`Update`** still **lerps position** when **`_lookConfidence < 0`** and **always lerps rotation** toward the user. **M4:** decide whether tutorial should **disable follow**, use a **fixed world pose**, or tune distance so demo hands stay in view (likely related to “missing hands”).
-- [ ] **Tutorial — walkthrough smoke (as built)** — Quest 2 pass the **designed** coroutine flow end-to-end; document what triggers each page today (pop-gun events, timers, unit-test injection). Fix P0 stuck states / dead-ends in local [`bugs/`](../bugs/) QA. **Defer** “all manual, no timers” and **new gesture mapping** until after this pass unless a step is already broken without it.
-- [ ] **Tutorial — skip** — user **skip** **stops active tutorial coroutines**, **dismisses** UI, invokes **`OnTutorialCompleted`** (or equivalent) so **`HighlightableZoneController` / typing** path matches normal completion.
-- [ ] **Tutorial — don’t show again** — **`PlayerPrefs`** (or equivalent) suppresses in-app tutorial on later launches when enabled.
-- [ ] **Tutorial — state machine & bugs** — no double-fires or stuck `currentPage` after walkthrough fixes; handlers (`TutorialHandHandler`, checkmarks, bullseye) consistent with whatever trigger source is active during M4 testing.
-- [ ] **Tutorial — UX pass** — copy, pacing, legibility after walkthrough; **no full restart** flow in `0.4.0`.
-- [ ] **Tutorial — triggers (follow-up)** — after walkthrough: decide on **OpenXR pop-gun** vs **`SpatialGestureInput` unit tests**, timer auto-pages, and stream-receiver fast-dismiss for submission builds.
-- [ ] **Speed test — hide for M4** — remove or disable **`HighlightableZoneController`** menu index **1** (`OnActivateSpeedTest`); no live subscribers today (see **Speed test inventory** below).
-- [ ] **Full build smoke** — after tutorial fixes: dual-volume typing, word mode, hotkeys, output receivers, load **`main_01_twozone`** on greenfield host; no P0 regressions vs M3 **`0.3.0`** baseline.
-- [ ] **Build label** — **`0.4.0`** Quest APK → repo-root **`Releases/tutorial_demo.apk`** (greenfield host + package); **`Releases/README.md`** + GitHub Release **`v0.4.0`**; submission metadata (beta labeling as required).
-- [ ] **Known issues** — one-page list (lighting, dictionary, PC keyboard / passthrough out of scope, tutorial edge cases deferred, etc.).
-- [ ] **3-minute product demo video (submission)** — **~2021 widget demo** re-submitted or lightly edited for 2026 Meta Start rules; update README / submission link when final URL is set (**independent** of in-app tutorial work).
+- [x] **Tutorial — demo hands & checkmarks** — **`TutorialHand_*`** prefabs; procedural open/closed poses; **`TutorialCheckMarkHandler`** stroke; fade at step **3+**. Residual polish = device legibility only.
+- [x] **Tutorial — output canvas initial depth** — **`ZoneTextingDemoCanvas`**: one-time **`EnsureInitialWorldDepth`** when head tracking is ready (fixes ~3–5 m cold start from M3). Optional: freeze follow during tutorial if QA still reports snap jitter.
+- [x] **Tutorial — walkthrough smoke (device)** — Quest 2 pass **all 22 steps** **0→21** (or **SKIP→21**); ongoing regressions in local [`bugs/QA/`](../bugs/QA/).
+- [x] **Tutorial — skip** — Runtime **SKIP** grab zone + **`JumpToWrapUpFromSkip`**; coroutine cancel; **`OnTutorialCompleted`** path (see [`in_app_tutorial.md`](in_app_tutorial.md)).
+- [x] **Tutorial — don’t show again (code)** — **`PlayerPrefs`** suppresses re-run on launch when opted in; default shipped UI is **skip-only**.
+- [x] **Tutorial — state machine (core)** — 22-step **`EnterStep`** flow, output flash/revert, FOX/tantalize blocks, step **19/20/21** handoff guards. Continue filing regressions in [`bugs/`](../bugs/).
+- [x] **Tutorial — UX pass** — copy/pacing/legibility on device after full smoke; audio levels as needed.
+- [x] **Tutorial — triggers (shipped)** — **Grab**, rotation classifier, output gating, WM/finalization validators, Back-Word; pop-gun **not** the primary advance path. **`OpenXRHandInput`** tutorial pop-gun code remains for legacy/unit paths only.
+- [x] **Speed test — hide for M4** — remove or disable **`HighlightableZoneController`** menu index **1** (`OnActivateSpeedTest`); no live subscribers today (see **Speed test inventory** below).
+- [x] **Full build smoke** — after tutorial fixes: dual-volume typing, word mode, hotkeys, output receivers, load **`main_01_twozone`** on greenfield host; no P0 regressions vs M3 **`0.3.0`** baseline.
+- [x] **Build label** — **`0.4.0`** UPM + repo-root **`Releases/tutorial_demo.apk`** (refresh APK on host after `tools/build_quest.ps1`); **`Releases/README.md`** + GitHub Release **`v0.4.0`**.
+- [x] **Known issues** — one-page list (lighting, dictionary, PC keyboard / passthrough out of scope, tutorial edge cases deferred, etc.).
+- [~] **3-minute product demo video (submission)** — **~2021 widget demo** for Meta Start rules; URL / re-edit tracked outside repo (**not** a gate for **`0.4.0`** package line).
 
 ### Skeletal workstreams (priority order)
 
-1. **Tutorial demo hands + canvas pose** (P0) — monolith diff; **`ZoneTextingDemoCanvas`** vs M3 **~12 m** scene placement; restore/fix **`TutorialHand_*`** visibility on device (**blocks** gesture-hint UX).
-2. **Tutorial walkthrough QA** (P0) — device pass **as built**; fix state machine bugs; inventory triggers vs timers vs unit tests.
-3. **Tutorial UX** (P0) — **skip** (coroutine cancel + dismiss + complete), **don’t-show-again** (`PlayerPrefs`), copy/pacing tweaks.
-4. **Speed test menu** (P0) — hide/disable unfinished **`SpeedTestManager`** entry from floater menu.
-5. **Reference build smoke** (P0) — end-to-end Quest pass (tutorial + typing stack); same greenfield path as M3 releases.
-6. **Submission packaging** (P0) — store/metadata, attribution (SimpleJSON, Surge, Unity, Meta), license pointers, release notes.
-7. **Product demo video** (P1) — Meta Start **~3 min widget demo** (2021 asset); not in-app tutorial capture.
-8. **Nice-to-have** (P2) — short “how to build Quest APK from sample” in `docs/`; finish **`SpeedTestManager`** post-M4.
+1. ~~**M4 tutorial + Meta Start delivery**~~ — **exited `0.4.0` (2026-11-07)**.
+2. **M5 Setup Wizard** — see Milestone 5 below (active).
 
 **Exit criterion:** First-time user can **complete or skip** the in-app tutorial on Quest 2, then use dual-volume typing in **`main_01_twozone`**; speed-test menu hidden; **`0.4.0`** published; Meta Start submission assets ready by **11/19** without core typing refactors unless a P0 crash appears.
 
 ### Tutorial smoke checklist (device — fill in during M4)
 
-| Step | Trigger / expectation | Pass |
-|------|------------------------|------|
-| Launch | Tutorial overlay visible (`Introduce`); **demo `TutorialHand_*` meshes** visible (not user tracked hands) | |
-| Page 0 | Right **single pop-gun** → right checkmark | |
-| Page 0 | Left **single pop-gun** → left checkmark → success audio / bullseye | |
-| Page 0→1 | Page turn (+ note if **timer** auto-advances) | |
-| Mid tutorial | Thumb / hand hint animations if applicable | |
-| Page 2 | **Dual pop-gun** → both checkmarks → advance | |
-| Final pages | Last transitions → **`tutorialCompleted`** | |
-| Dismiss | Overlay fades; typing widget usable | |
-| Regression | Typing + word mode after tutorial | |
-| Skip | Pending coroutines stopped; overlay dismissed; same post-tutorial path as finish | |
+**Use the master step table in [`in_app_tutorial.md`](in_app_tutorial.md)** (22 indices **0–21**). Below is a **sign-off grid**; mark **Pass** per build in [`bugs/QA/`](../bugs/QA/).
+
+| Phase | Steps (index) | Pass |
+|-------|----------------|------|
+| Launch | Overlay + step **0** copy; demo hands visible; canvas at expected depth | |
+| Grab hints | **1–2** grabs + checkmarks; widget + output live step **3**; **SKIP** appears | |
+| Typing + poses | **3–8** (`t`, rotations, `th`, `the`) + output revert flashes | |
+| FOX block | **9–11** (timed **9**, forward **10**, `x` / skip-ahead to **12**) | |
+| Back-Word | **12** clears **`fox`** | |
+| Word Mode `the` | **13–15** | |
+| Word Mode `tantalize` | **16–18** hold/drag; early-release resets | |
+| Finalization | **19–20**; conjugated commit; no stuck **19→20→21** | |
+| Wrap-up | **21** timer → freestyle; floater menu; **`tutorialCompleted`** | |
+| Skip | From step **3+**: **SKIP** → **21** → same dismiss path as finish | |
+| Regression | Post-tutorial dual-volume typing + word mode | |
+| Re-launch | Optional: **`dontShowAgain`** / **`PlayerPrefs`** if scene hook authored | |
 
 ### Output UI motion (M3 note — tutorial hands)
 
@@ -361,7 +385,7 @@ Refresh and document versions together (plugin `package.json` **dependencies** +
 
 **Likely link to “missing” demo hands:** Tutorial + **`TutorialHand_*`** ride **`_motionRoot`**; wrong **startup** distance/scale vs post-reposition **12 m** can hide skinned hint meshes until after a gaze-triggered reset.
 
-**M4 fix (code):** On first frame with **`hasHead`**, **snap `_motionRoot`** with the **same** world formula as reposition (or call **`OnRefreshPosition`** once); optional **freeze follow during `TutorialManager`**; stop relying on scene **local Z** for distance.
+**M4 fix (code):** [x] **`EnsureInitialWorldDepth`** / **`SnapMotionRootToCameraDepth`** on head-ready (same world formula as look-away reposition). Optional follow-up: **freeze follow during `TutorialManager`** if QA still reports motion distraction.
 
 ### Speed test inventory (plugin — M4: hide menu item)
 

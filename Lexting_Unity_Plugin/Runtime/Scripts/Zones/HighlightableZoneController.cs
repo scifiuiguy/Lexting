@@ -72,6 +72,7 @@ namespace SpatialGestureText.Zones
         #region event handlers
         public override void OnZoneEnter(bool right, int index)
         {
+            if (index == 1) return; // M4: unfinished speed test — hidden from floater menu
             if (_isTransitioning) return;
             base.OnZoneEnter(right, index);
             Lexting.audio.Play("Hoverclick_Soft");
@@ -109,7 +110,7 @@ namespace SpatialGestureText.Zones
             switch (hoverIndex)
             {
                 case 0: OnActivateTypingTutorial.I();   break;
-                case 1: OnActivateSpeedTest.I();        break;
+                case 1: break; // speed test hidden for 0.4.0 (see implementation_plan M4)
                 case 2: OnActivateFreestyle.I();        break;
             }
         }
@@ -120,15 +121,17 @@ namespace SpatialGestureText.Zones
         {
             if (LextingController.Instance.isInputStreamReceiver)
             {
-                hoverIndex = 1;
+                hoverIndex = 2;
                 HandleSelection();
             }
             else {
                 UpdateUISpawnPosition();
                 Tween.LocalPosition(transform, Vector3.zero, 0.2f, 0, zoneEaseBounce, Tween.LoopType.None, null, () => { });
                 Tween.LocalScale(transform, Vector3.one, 0.2f, 0, zoneEaseBounce, Tween.LoopType.None, null, () => {
+                    ToggleText(1, false);
                     _motionHandlers[0].Introduce(() => {/*callback*/});
-                    _motionHandlers[1].Introduce(() => {/*callback*/});
+                    if (_motionHandlers.Length > 2)
+                        _motionHandlers[2].Introduce(() => {/*callback*/});
                 });
             }
         }
