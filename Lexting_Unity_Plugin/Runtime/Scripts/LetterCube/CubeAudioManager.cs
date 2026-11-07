@@ -6,6 +6,9 @@ namespace SpatialGestureText.LetterCube
 {
     public class CubeAudioManager : Singleton<CubeAudioManager>
     {
+        /// <summary>Global scale for hover one-shots (ducked 70% from clip/nominal).</summary>
+        private const float HoverClickVolumeScale = 0.1f;
+
         /// <summary>
         /// In order to account for one shot instance limits, we need to be able to scale the number of audio sources per sound effect.
         /// </summary>
@@ -46,6 +49,9 @@ namespace SpatialGestureText.LetterCube
 
         public void Play(string key, float volumeScale = 1f)
         {
+            if (IsHoverClickKey(key))
+                volumeScale *= HoverClickVolumeScale;
+
             if (sources.ContainsKey(key))
             {
                 if (sources[key].tally >= 32)
@@ -60,6 +66,9 @@ namespace SpatialGestureText.LetterCube
             }
             else Debug.LogError("Attempted to play audio source named " + key + " but no source of that name was found.");
         }
+
+        private static bool IsHoverClickKey(string key) =>
+            key == "Hoverclick_Soft" || key == "Hoverclick_Hard";
 
         public string GetSourceNameByIndex(int index)
         {
