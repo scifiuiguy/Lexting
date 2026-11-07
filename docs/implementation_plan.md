@@ -278,7 +278,7 @@ Refresh and document versions together (plugin `package.json` **dependencies** +
 **Doc note:** Keep **`implementation_plan.md` changes local** until **M4 exit** (commit with **`0.4.0`** release), unless you explicitly ask for an interim docs commit.
 
 **Target version:** `0.4.0` (**beta** — Meta Start submission; not `1.0.0`)  
-**Goal:** Competition-ready **`tutorial_demo.apk`**: **`TutorialManager`** reliably onboards new users on Quest. **Primary engineering focus is the in-app tutorial coroutine/UI** — **not** re-recording the Meta Start **3-minute product demo video** (see below). **Authoritative design (17 steps, copy, validation):** [`in_app_tutorial.md`](in_app_tutorial.md).
+**Goal:** Competition-ready **`tutorial_demo.apk`**: **`TutorialManager`** reliably onboards new users on Quest. **Primary engineering focus is the in-app tutorial coroutine/UI** — **not** re-recording the Meta Start **3-minute product demo video** (see below). **Authoritative design (22 steps, indices 0–21, copy, validation):** [`in_app_tutorial.md`](in_app_tutorial.md).
 
 **Two different “tutorials”:**
 

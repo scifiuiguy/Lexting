@@ -25,8 +25,8 @@ namespace SpatialGestureText
         {
             buttons = new List<DebugButton>();
             TutorialCheckMarkHandler component = (TutorialCheckMarkHandler)target;
-            buttons.Add(new DebugButton("Check off", true, () => { component.StartCoroutine(component.UnitTest_DrawCheckmarkOff()); }));
-            buttons.Add(new DebugButton("Check on", true, () => { component.StartCoroutine(component.UnitTest_DrawCheckmarkOn()); }));
+            buttons.Add(new DebugButton("Check off", true, () => { component.DrawCheckmark(false); }));
+            buttons.Add(new DebugButton("Check on", true, () => { component.DrawCheckmark(true); }));
         }
 
         public override void OnInspectorGUI()

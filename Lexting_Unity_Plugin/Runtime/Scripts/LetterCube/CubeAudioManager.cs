@@ -44,7 +44,7 @@ namespace SpatialGestureText.LetterCube
                 sources.Add(child.name, new AudioProperties(child.GetSiblingIndex(), 0, 0, child.GetChild(0).GetComponent<AudioSource>()));
         }
 
-        public void Play(string key)
+        public void Play(string key, float volumeScale = 1f)
         {
             if (sources.ContainsKey(key))
             {
@@ -56,7 +56,7 @@ namespace SpatialGestureText.LetterCube
                     sources[key] = new AudioProperties(sources[key].childIndex, 0, newInstanceIndex, playSource);
                 }
                 else sources[key] = new AudioProperties(sources[key].childIndex, sources[key].tally + 1, sources[key].instanceIndex, sources[key].source);
-                sources[key].source.PlayOneShot(sources[key].source.clip);
+                sources[key].source.PlayOneShot(sources[key].source.clip, volumeScale);
             }
             else Debug.LogError("Attempted to play audio source named " + key + " but no source of that name was found.");
         }

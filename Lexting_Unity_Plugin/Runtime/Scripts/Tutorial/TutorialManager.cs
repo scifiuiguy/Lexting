@@ -21,6 +21,8 @@ namespace SpatialGestureText.Tutorial
 {
     public class TutorialManager : Singleton<TutorialManager>
     {
+        private const float TutorialSuccessSfxVolume = 0.5f;
+
         public const string PlayerPrefNeverShowKey = "Lexting_InAppTutorial_NeverShow";
 
         [Range(0, 1)]
@@ -36,12 +38,24 @@ namespace SpatialGestureText.Tutorial
         [FormerlySerializedAs("currentPage")]
         public int currentStep;
 
-        /// <summary>Steps 3–7 (0-based): single-letter typing on the live widget; word assembly must stay off.</summary>
-        public bool IsSingleLetterTutorialTypingStep =>
-            !tutorialCompleted && currentStep >= 3 && currentStep <= 7;
+        private bool _playedSuccessSfxForSkipJump;
 
-        [Tooltip("World-space gap below the two-zone widget bottom edge for Skip / Don't-show controls.")]
-        [SerializeField] private float skipControlsMarginBelowWidget = 0.1f;
+        /// <summary>
+        /// Typing steps on the live widget (indices 3,5,7,10): single-letter inserts; word assembly must stay off.
+        /// Excludes posture/timed indices 4,6,8,9 and Back-Word (11).
+        /// </summary>
+        public bool IsSingleLetterTutorialTypingStep =>
+            !tutorialCompleted
+            && (currentStep == 3 || currentStep == 5 || currentStep == 7 || currentStep == 10);
+
+        [Tooltip("World-space meters below the TwoZoneCube origin for Skip (~0.12 m ≈ 4.7 in).")]
+        [SerializeField] private float skipControlsMarginBelowWidget = 0.12f;
+
+        [Tooltip("If scene-authored Don't-show-again nodes exist, keep them hidden when false (Skip only).")]
+        [SerializeField] private bool includeDontShowAgainControl;
+
+        [Tooltip("When no TutorialDismissControls exist under this hierarchy, spawn a default SKIP zone below the widget.")]
+        [SerializeField] private bool provisionRuntimeSkipWhenMissing = true;
 
         [FormerlySerializedAs("skipControlsRoot")]
         [SerializeField] [HideInInspector] private GameObject legacySkipControlsRoot;
@@ -62,12 +76,15 @@ namespace SpatialGestureText.Tutorial
         private string _stepStartOutput = "";
         private bool _widgetRevealed;
         private bool _handsHidden;
-        private int _tantalizeBlockStartStep = 11;
+        private int _tantalizeBlockStartStep = 15;
         private bool _outputWatchActive;
         private string _lastSeenOutput = "";
         private bool _step6TheValidated;
+        private bool _step6ScriptRunning;
         private bool _typingInsertLocked;
         private Coroutine _flashOutputCoroutine;
+        private List<Text> _flashOutputTexts;
+        private List<Color> _flashOutputOriginalColors;
 
         private TutorialPageHandler pageHandler;
         private TweenBase _masterFadeTween;
@@ -185,22 +202,54 @@ namespace SpatialGestureText.Tutorial
 
         private void EnterStep(int step)
         {
+            CancelOutputFlash();
             currentStep = step;
             StopStepCoroutine();
-            if (step == 5)
+            if (step == 7)
                 _step6TheValidated = false;
-            if (step == 10 || step == 11)
+            if (step == 13 || step == 14)
                 CaptureStepStartOutput(Lexting.printer.CurrentOutputValue ?? "");
-            if (step == 15 && Lexting.finalizer.isSpatialListActive)
-                Lexting.assembler.RebuildWordListFromGrabComp();
-            _outputWatchActive = step >= 3 && step <= 7;
-
-            if (step >= 3 && step <= 7)
+            if (step == 15)
             {
-                string revert = RevertOutputForStep(step);
-                Lexting.printer.UpdateOutputs(revert);
-                CaptureStepStartOutput(revert);
-                _typingInsertLocked = false;
+                // Fresh tantalize block: clear prior word output and grab state (from "the" WM) so stem builds from empty.
+                TwoZoneGrabState.Clear();
+                if (Lexting.assembler.isWordAssemblyActive)
+                    Lexting.assembler.DeactivateWordAssembler();
+                Lexting.lhLine?.ResetStateToIdle(false);
+                Lexting.rhLine?.ResetStateToIdle(false);
+                Lexting.printer.UpdateOutputs("");
+                CaptureStepStartOutput("");
+                _lastSeenOutput = "";
+            }
+            else if (step == 16)
+                CaptureStepStartOutput(Lexting.printer.CurrentOutputValue ?? "");
+            if (step == 20 && Lexting.finalizer.isSpatialListActive)
+                Lexting.assembler.RebuildWordListFromGrabComp();
+            // Typing / posture / FOX block: flash + revert on unexpected output (incl. 4,6,8,9 — whitelist in HandleOutputChanged).
+            _outputWatchActive = step >= 3 && step <= 11;
+
+            if (step >= 3 && step <= 11)
+            {
+                // Posture / no-forced-revert (4, 6, 8, 9): keep printer as-is at step entry (8 runs scripted the→fo in routine).
+                if (step == 4 || step == 6 || step == 8 || step == 9)
+                {
+                    _lastSeenOutput = Lexting.printer.CurrentOutputValue ?? "";
+                    CaptureStepStartOutput(_lastSeenOutput);
+                }
+                else if (step == 10)
+                {
+                    _lastSeenOutput = Lexting.printer.CurrentOutputValue ?? "";
+                    CaptureStepStartOutput(_lastSeenOutput);
+                    _typingInsertLocked = false;
+                }
+                else
+                {
+                    string revert = RevertOutputForStep(step);
+                    Lexting.printer.UpdateOutputs(revert);
+                    CaptureStepStartOutput(revert);
+                    _typingInsertLocked = false;
+                }
+
                 if (Lexting.assembler.isWordAssemblyActive)
                     Lexting.assembler.DeactivateWordAssembler();
             }
@@ -267,42 +316,76 @@ namespace SpatialGestureText.Tutorial
                     yield return WaitForRightGrab();
                     break;
                 case 3:
-                case 4:
-                case 6:
-                case 7:
                     while (currentStep == step)
                         yield return null;
                     break;
+                case 4:
+                    yield return WaitUntilEitherPalmRotation(CubeRotationState.supinate);
+                    if (currentStep == 4)
+                        AdvanceStep();
+                    break;
                 case 5:
-                    while (currentStep == 5 && !_step6TheValidated)
+                    while (currentStep == step)
                         yield return null;
-                    if (currentStep == 5)
-                        yield return RunStep6ScriptedSequence();
-                    if (currentStep == 5)
+                    break;
+                case 6:
+                    yield return WaitUntilEitherPalmRotation(CubeRotationState.pronate);
+                    if (currentStep == 6)
+                        AdvanceStep();
+                    break;
+                case 7:
+                    while (currentStep == 7 && !_step6TheValidated)
+                        yield return null;
+                    if (currentStep == 7)
                         AdvanceStep();
                     break;
                 case 8:
+                    if (currentStep == 8)
+                    {
+                        yield return RunStep6ScriptedSequence();
+                        _lastSeenOutput = Lexting.printer.CurrentOutputValue ?? "";
+                    }
+
+                    yield return new WaitForSeconds(7f);
+                    if (currentStep == 8)
+                        AdvanceStep();
+                    break;
+                case 9:
+                    yield return WaitUntilEitherPalmRotation(CubeRotationState.forward);
+                    if (currentStep == 9)
+                        AdvanceStep();
+                    break;
+                case 10:
+                    while (currentStep == step)
+                        yield return null;
+                    break;
+                case 11:
+                    while (currentStep == step)
+                        yield return null;
+                    break;
+                case 12:
                     yield return new WaitForSeconds(7f);
                     AdvanceStep();
                     break;
-                case 9:
+                case 13:
                     yield return RunWordModeTheStart();
                     break;
-                case 10:
+                case 14:
                     yield return RunWordModeTheAutofill();
                     break;
-                case 11:
-                case 12:
-                case 13:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
                     yield return RunTantalizeAssemblyStep(step);
                     break;
-                case 14:
+                case 19:
                     yield return RunFinalizationEntryStep();
                     break;
-                case 15:
+                case 20:
                     yield return RunFinalizationCommitStep();
                     break;
-                case 16:
+                case 21:
                     yield return new WaitForSeconds(7f);
                     CompleteTutorial();
                     break;
@@ -344,6 +427,23 @@ namespace SpatialGestureText.Tutorial
             return Vector3.Dot(nL.normalized, nR.normalized) <= dotThreshold;
         }
 
+        /// <summary>
+        /// Advance when either hand matches the live rotation classifier (same mapping as the two-zone cube).
+        /// </summary>
+        private static IEnumerator WaitUntilEitherPalmRotation(CubeRotationState required)
+        {
+            while (true)
+            {
+                if (Lexting.input != null)
+                {
+                    if (Lexting.input.currentLeftRotationState == required || Lexting.input.currentRightRotationState == required)
+                        yield break;
+                }
+
+                yield return null;
+            }
+        }
+
         private IEnumerator WaitForLeftGrab()
         {
             var previousLeft = Lexting.lhState;
@@ -367,7 +467,7 @@ namespace SpatialGestureText.Tutorial
         {
             if (currentStep != 1)
                 return;
-            Lexting.audio?.Play("Success");
+            Lexting.audio?.Play("Success", TutorialSuccessSfxVolume);
             _leftCheckmark?.DrawCheckmark(true);
             AdvanceStep();
         }
@@ -376,7 +476,7 @@ namespace SpatialGestureText.Tutorial
         {
             if (currentStep != 2)
                 return;
-            Lexting.audio.Play("Success");
+            Lexting.audio.Play("Success", TutorialSuccessSfxVolume);
             _rightCheckmark?.DrawCheckmark(true);
             RevealWidgetAndOutput();
             FadeHandsAndCheckmarks();
@@ -385,20 +485,44 @@ namespace SpatialGestureText.Tutorial
 
         private IEnumerator RunStep6ScriptedSequence()
         {
-            yield return new WaitForSeconds(2f);
-            Lexting.printer.UpdateOutputs("");
-            yield return new WaitForSeconds(1f);
-            Lexting.printer.UpdateOutputs("fo");
-            _stepStartOutput = "fo";
-            _lastSeenOutput = "fo";
+            _step6ScriptRunning = true;
+            try
+            {
+                yield return new WaitForSeconds(2f);
+                Lexting.printer.UpdateOutputs("");
+                yield return new WaitForSeconds(1f);
+                Lexting.printer.UpdateOutputs("fo");
+                if (currentStep == 8)
+                {
+                    _stepStartOutput = "fo";
+                    _lastSeenOutput = "fo";
+                }
+            }
+            finally
+            {
+                _step6ScriptRunning = false;
+            }
         }
 
         private IEnumerator RunWordModeTheStart()
         {
-            while (currentStep == 9)
+            var release = new WordModeDualReleaseTracker();
+            while (currentStep == 13)
             {
+                var leftInsert = Lexting.lhState == HandGestureState.Insert;
+                var rightInsert = Lexting.rhState == HandGestureState.Insert;
+                release.NoteBothHeld(leftInsert, rightInsert);
+
                 if (WordModeHoldMatches("th"))
                     AdvanceStep();
+                else if (release.TryConsumeBothReleased(leftInsert, rightInsert)
+                         && Lexting.assembler.isWordAssemblyActive)
+                {
+                    FlashOutputErrorAndRevert(_stepStartOutput);
+                    EnterStep(13);
+                    yield break;
+                }
+
                 yield return null;
             }
         }
@@ -406,7 +530,7 @@ namespace SpatialGestureText.Tutorial
         private IEnumerator RunWordModeTheAutofill()
         {
             var release = new WordModeDualReleaseTracker();
-            while (currentStep == 10)
+            while (currentStep == 14)
             {
                 var leftInsert = Lexting.lhState == HandGestureState.Insert;
                 var rightInsert = Lexting.rhState == HandGestureState.Insert;
@@ -424,6 +548,7 @@ namespace SpatialGestureText.Tutorial
                             $"[Tutorial] WM autofill step failed validation output='{output}' " +
                             $"asmActive={Lexting.assembler.isWordAssemblyActive} listActive={Lexting.finalizer.isSpatialListActive}");
                         FlashOutputErrorAndRevert(_stepStartOutput);
+                        EnterStep(13);
                     }
                 }
 
@@ -440,12 +565,15 @@ namespace SpatialGestureText.Tutorial
                 var rightInsert = Lexting.rhState == HandGestureState.Insert;
                 release.NoteBothHeld(leftInsert, rightInsert);
 
-                if (release.TryConsumeBothReleased(leftInsert, rightInsert,
-                        () => !Lexting.assembler.isWordAssemblyActive))
+                if (release.TryConsumeBothReleased(leftInsert, rightInsert))
                 {
-                    FlashOutputErrorAndRevert(_stepStartOutput);
-                    EnterStep(_tantalizeBlockStartStep);
-                    yield break;
+                    if (!Lexting.assembler.isWordAssemblyActive
+                        || !TantalizeGrabStateValidForStep(step))
+                    {
+                        FlashOutputErrorAndRevert(_stepStartOutput);
+                        EnterStep(_tantalizeBlockStartStep);
+                        yield break;
+                    }
                 }
 
                 if (TantalizeAssemblyStepComplete(step))
@@ -455,22 +583,42 @@ namespace SpatialGestureText.Tutorial
             }
         }
 
+        /// <summary>After both hands release, grab comp must match this step's expected tantalize stem.</summary>
+        private static bool TantalizeGrabStateValidForStep(int step)
+        {
+            if (step == 18)
+                return TantalizeCompHasFinalizationStem() && TantalizeRightHandSecondIsT();
+            var target = TantalizeCompTarget(step);
+            return !string.IsNullOrEmpty(target)
+                   && (TwoZoneGrabState.comp ?? "").StartsWith(target, System.StringComparison.OrdinalIgnoreCase);
+        }
+
         private IEnumerator RunFinalizationEntryStep()
         {
             var release = new WordModeDualReleaseTracker();
             var listRefreshedForStem = false;
-            while (currentStep == 14)
+            while (currentStep == 19)
             {
                 var leftInsert = Lexting.lhState == HandGestureState.Insert;
                 var rightInsert = Lexting.rhState == HandGestureState.Insert;
                 release.NoteBothHeld(leftInsert, rightInsert);
 
-                if (release.TryConsumeBothReleased(leftInsert, rightInsert,
-                        () => !Lexting.assembler.isWordAssemblyActive))
+                if (release.TryConsumeBothReleased(leftInsert, rightInsert))
                 {
-                    FlashOutputErrorAndRevert(_stepStartOutput);
-                    EnterStep(_tantalizeBlockStartStep);
-                    yield break;
+                    var output = Lexting.printer.CurrentOutputValue ?? "";
+                    if (IsAcceptedTantalizeCommit(output))
+                    {
+                        // Commit landed during entry (e.g. L open then R release before step 20 listens) — skip finalization page.
+                        EnterStep(21);
+                        yield break;
+                    }
+
+                    if (!Lexting.assembler.isWordAssemblyActive)
+                    {
+                        FlashOutputErrorAndRevert(_stepStartOutput);
+                        EnterStep(_tantalizeBlockStartStep);
+                        yield break;
+                    }
                 }
 
                 if (!listRefreshedForStem && Lexting.finalizer.isSpatialListActive &&
@@ -491,8 +639,15 @@ namespace SpatialGestureText.Tutorial
         private IEnumerator RunFinalizationCommitStep()
         {
             CaptureStepStartOutput(Lexting.printer.CurrentOutputValue ?? "");
+            var outputAtEntry = Lexting.printer.CurrentOutputValue ?? "";
+            if (IsAcceptedTantalizeCommit(outputAtEntry))
+            {
+                EnterStep(21);
+                yield break;
+            }
+
             var release = new WordModeDualReleaseTracker();
-            while (currentStep == 15)
+            while (currentStep == 20)
             {
                 var leftInsert = Lexting.lhState == HandGestureState.Insert;
                 var rightInsert = Lexting.rhState == HandGestureState.Insert;
@@ -502,7 +657,12 @@ namespace SpatialGestureText.Tutorial
                 {
                     var output = Lexting.printer.CurrentOutputValue ?? "";
                     if (IsAcceptedTantalizeCommit(output))
+                    {
+                        // Commit is valid — advance once to wrap-up (index 21). Do not fall through to
+                        // FinalizationCommitOutputReady below on the same frame or we AdvanceStep twice and skip the final page.
                         AdvanceStep();
+                        yield break;
+                    }
                     else if (!string.IsNullOrEmpty(output))
                     {
                         FlashOutputErrorAndRevert(_stepStartOutput);
@@ -592,9 +752,9 @@ namespace SpatialGestureText.Tutorial
         {
             switch (step)
             {
-                case 11: return "ta";
-                case 12: return "tan";
-                case 13: return "tant";
+                case 15: return "ta";
+                case 16: return "tan";
+                case 17: return "tant";
                 default: return "";
             }
         }
@@ -617,7 +777,7 @@ namespace SpatialGestureText.Tutorial
 
         private static bool TantalizeAssemblyStepComplete(int step)
         {
-            if (step == 14)
+            if (step == 18)
                 return TantalizeCompHasFinalizationStem() && TantalizeRightHandSecondIsT();
 
             var target = TantalizeCompTarget(step);
@@ -636,6 +796,14 @@ namespace SpatialGestureText.Tutorial
 
         private void HandleOutputChanged(string output)
         {
+            if (_step6ScriptRunning)
+                return;
+
+            // If the learner already completes "fox" during the FOX block (steps 8–10, indices 8–10),
+            // skip palm-forward / type-x pages and land on Back-Word (11). No red flash for that path.
+            if (TryEnterBackWordWhenFoxComplete(output))
+                return;
+
             switch (currentStep)
             {
                 case 3:
@@ -645,25 +813,43 @@ namespace SpatialGestureText.Tutorial
                         AdvanceStep();
                     break;
                 case 4:
+                    if (output != "t")
+                        OnTypingError("t");
+                    break;
+                case 5:
                     if (output != "th")
                         OnTypingErrorForCurrentStep();
                     else
                         AdvanceStep();
                     break;
-                case 5:
-                    if (output == "the")
-                        _step6TheValidated = true;
-                    else if (output != "th" && output.Length > 2)
-                        OnTypingErrorForCurrentStep();
-                    break;
                 case 6:
-                    if (output == "fox")
-                        AdvanceStep();
-                    else if (output != "fo")
-                        OnTypingErrorForCurrentStep();
+                    if (output != "th")
+                        OnTypingError("th");
                     break;
                 case 7:
-                    if (output == "fox")
+                    if (string.Equals(output, "the", System.StringComparison.OrdinalIgnoreCase))
+                        _step6TheValidated = true;
+                    else if (!string.Equals(output, "th", System.StringComparison.OrdinalIgnoreCase))
+                        OnTypingError("th");
+                    break;
+                case 8:
+                    // Scripted sequence: "the" (hold) → "" → "fo". Only enforce once script finished.
+                    if (_step6ScriptRunning) return;
+                    if (!string.Equals(output, "fo", System.StringComparison.OrdinalIgnoreCase))
+                        OnTypingError("fo");
+                    break;
+                case 9:
+                    if (!string.Equals(output, "fo", System.StringComparison.OrdinalIgnoreCase))
+                        OnTypingError("fo");
+                    break;
+                case 10:
+                    if (string.Equals(output, "fox", System.StringComparison.OrdinalIgnoreCase))
+                        AdvanceStep();
+                    else if (!string.Equals(output, "fo", System.StringComparison.OrdinalIgnoreCase))
+                        OnTypingErrorForCurrentStep();
+                    break;
+                case 11:
+                    if (string.Equals(output, "fox", System.StringComparison.OrdinalIgnoreCase))
                         return;
                     if (string.IsNullOrEmpty(output))
                         AdvanceStep();
@@ -671,6 +857,20 @@ namespace SpatialGestureText.Tutorial
                         OnTypingErrorForCurrentStep();
                     break;
             }
+        }
+
+        /// <summary>
+        /// Completing <c>fox</c> during the FOX tutorial block (timed intro, palm-forward, or type-x)
+        /// jumps straight to Back-Word; avoids treating the result as a validation error on earlier pages.
+        /// </summary>
+        private bool TryEnterBackWordWhenFoxComplete(string output)
+        {
+            if (!string.Equals(output, "fox", System.StringComparison.OrdinalIgnoreCase))
+                return false;
+            if (currentStep != 8 && currentStep != 9 && currentStep != 10)
+                return false;
+            EnterStep(11);
+            return true;
         }
 
         private void OnTypingError(string revertTo)
@@ -719,8 +919,8 @@ namespace SpatialGestureText.Tutorial
                 Lexting.controllers.gameObject.SetActive(true);
                 if (Lexting.controllers is TwoZoneCubeControllers twoZone && twoZone.positionController != null)
                     twoZone.positionController.Calibrate();
-                ShowSkipControls();
                 Lexting.controllers.ControllerActivated?.I(true);
+                ShowSkipControls();
             }
             else
                 ShowSkipControls();
@@ -746,10 +946,11 @@ namespace SpatialGestureText.Tutorial
             switch (step)
             {
                 case 3: return "";
-                case 4: return "t";
-                case 5: return "th";
-                case 6: return "fo";
-                case 7: return "fox";
+                case 5: return "t";
+                case 7: return "th";
+                case 8: return "the";
+                case 10: return "fo";
+                case 11: return "fox";
                 default: return "";
             }
         }
@@ -767,11 +968,34 @@ namespace SpatialGestureText.Tutorial
             _flashOutputCoroutine = StartCoroutine(FlashOutputErrorRoutine(revertTo));
         }
 
+        /// <summary>
+        /// Stops an in-flight red flash so a delayed <see cref="FlashOutputErrorRoutine"/> cannot overwrite
+        /// outputs cleared by a later step transition (QA-M3-053: stale "ta" after tantalize reset).
+        /// </summary>
+        private void CancelOutputFlash()
+        {
+            if (_flashOutputCoroutine == null)
+                return;
+            StopCoroutine(_flashOutputCoroutine);
+            _flashOutputCoroutine = null;
+            if (_flashOutputTexts != null && _flashOutputOriginalColors != null)
+            {
+                for (int i = 0; i < _flashOutputTexts.Count && i < _flashOutputOriginalColors.Count; i++)
+                {
+                    if (_flashOutputTexts[i] != null)
+                        _flashOutputTexts[i].color = _flashOutputOriginalColors[i];
+                }
+            }
+            _flashOutputTexts = null;
+            _flashOutputOriginalColors = null;
+        }
+
         private IEnumerator FlashOutputErrorRoutine(string revertTo)
         {
             Lexting.audio.Play("SelectionClick");
             var texts = GetOutputTexts();
-            var originals = texts.Select(t => t.color).ToList();
+            _flashOutputTexts = texts;
+            _flashOutputOriginalColors = texts.Select(t => t.color).ToList();
             var flash = new Color(0.85f, 0.2f, 0.2f, 1f);
             foreach (var t in texts)
                 t.color = flash;
@@ -781,7 +1005,9 @@ namespace SpatialGestureText.Tutorial
             if (IsSingleLetterTutorialTypingStep)
                 _typingInsertLocked = false;
             for (int i = 0; i < texts.Count; i++)
-                texts[i].color = originals[i];
+                texts[i].color = _flashOutputOriginalColors[i];
+            _flashOutputTexts = null;
+            _flashOutputOriginalColors = null;
             _flashOutputCoroutine = null;
         }
 
@@ -849,6 +1075,27 @@ namespace SpatialGestureText.Tutorial
             CompleteTutorial();
         }
 
+        /// <summary>Skip control: wrap-up page (step 21), celebration now, full dismiss after its timer.</summary>
+        public void JumpToWrapUpFromSkip()
+        {
+            if (tutorialCompleted)
+                return;
+
+            TwoZoneGrabState.Clear();
+            if (Lexting.assembler.isWordAssemblyActive)
+                Lexting.assembler.DeactivateWordAssembler();
+            if (Lexting.finalizer.isSpatialListActive)
+                Lexting.finalizer.ShowList(false);
+            Lexting.lhLine?.ResetStateToIdle(false);
+            Lexting.rhLine?.ResetStateToIdle(false);
+
+            HideSkipControls();
+            _outputWatchActive = false;
+            Lexting.audio?.Play("Success_Mid", TutorialSuccessSfxVolume);
+            _playedSuccessSfxForSkipJump = true;
+            EnterStep(21);
+        }
+
         public void CompleteTutorial()
         {
             if (tutorialCompleted)
@@ -857,6 +1104,9 @@ namespace SpatialGestureText.Tutorial
             tutorialCompleted = true;
             StopStepCoroutine();
             _outputWatchActive = false;
+            if (!_playedSuccessSfxForSkipJump)
+                Lexting.audio?.Play("Success_Mid", TutorialSuccessSfxVolume);
+            _playedSuccessSfxForSkipJump = false;
             OnTutorialCompleted.I();
             Dismiss(() => { });
             HideSkipControls();
@@ -905,11 +1155,11 @@ namespace SpatialGestureText.Tutorial
         {
             _leftCheckmark?.DrawCheckmark(true);
             _rightCheckmark?.DrawCheckmark(true);
-            // Full on stroke ≈ 0.3s; hold before off so lerp-off does not cut lerp-on.
-            yield return new WaitForSeconds(0.55f);
+            // Full on stroke ≈ 0.6s (strokes slowed 50%); hold before off so lerp-off does not cut lerp-on.
+            yield return new WaitForSeconds(1.1f);
             _leftCheckmark?.DrawCheckmark(false);
             _rightCheckmark?.DrawCheckmark(false);
-            yield return new WaitForSeconds(0.35f);
+            yield return new WaitForSeconds(0.7f);
         }
 
         /// <summary>Whether this typing step still accepts one cube insert (see <see cref="ConfirmTutorialTypingInsertCommitted"/>).</summary>
@@ -946,17 +1196,59 @@ namespace SpatialGestureText.Tutorial
             }
 
             var allMarks = GetComponentsInChildren<TutorialCheckMarkHandler>(true);
+            var eligible = System.Array.FindAll(allMarks,
+                m => m != null && !TutorialHandSide.IsUnderPoseReferenceHierarchy(m.transform));
+
             _leftCheckmark = PickCheckmarkForHand(_leftHand, allMarks);
             _rightCheckmark = PickCheckmarkForHand(_rightHand, allMarks);
 
-            if (_leftCheckmark == null || _rightCheckmark == null)
+            if ((_leftCheckmark == null || _rightCheckmark == null || _leftCheckmark == _rightCheckmark)
+                && eligible.Length >= 1)
             {
-                var eligible = System.Array.FindAll(allMarks, m => !TutorialHandSide.IsUnderPoseReferenceHierarchy(m.transform));
-                System.Array.Sort(eligible, (a, b) => a.transform.localPosition.x.CompareTo(b.transform.localPosition.x));
-                if (_leftCheckmark == null && eligible.Length >= 1)
-                    _leftCheckmark = eligible[0];
-                if (_rightCheckmark == null && eligible.Length >= 2)
-                    _rightCheckmark = eligible[eligible.Length - 1];
+                if (_leftCheckmark == null)
+                {
+                    foreach (var m in eligible)
+                    {
+                        if (m != null && TutorialHandSide.HasAncestorNameContaining(m.transform, "_Left"))
+                        {
+                            _leftCheckmark = m;
+                            break;
+                        }
+                    }
+                }
+                if (_rightCheckmark == null)
+                {
+                    foreach (var m in eligible)
+                    {
+                        if (m != null && TutorialHandSide.HasAncestorNameContaining(m.transform, "_Right"))
+                        {
+                            _rightCheckmark = m;
+                            break;
+                        }
+                    }
+                }
+                if (_leftCheckmark == null && _leftHand != null)
+                {
+                    foreach (var m in eligible)
+                    {
+                        if (m != null && m.transform.IsChildOf(_leftHand.transform))
+                        {
+                            _leftCheckmark = m;
+                            break;
+                        }
+                    }
+                }
+                if (_rightCheckmark == null && _rightHand != null)
+                {
+                    foreach (var m in eligible)
+                    {
+                        if (m != null && m.transform.IsChildOf(_rightHand.transform))
+                        {
+                            _rightCheckmark = m;
+                            break;
+                        }
+                    }
+                }
             }
 
             AttachCheckmarkToDisplayHand(_leftCheckmark, _leftHand);
@@ -977,11 +1269,32 @@ namespace SpatialGestureText.Tutorial
             if (hand == null || marks == null || marks.Length == 0)
                 return null;
 
-            int wantSide = TutorialHandSide.IsRightSideName(hand.name) ? 1 : -1;
+            bool wantRight = TutorialHandSide.IsRightSideName(hand.name);
+            var sideTag = wantRight ? "_Right" : "_Left";
+
+            foreach (var mark in marks)
+            {
+                if (mark == null || TutorialHandSide.IsUnderPoseReferenceHierarchy(mark.transform))
+                    continue;
+                if (TutorialHandSide.HasAncestorNameContaining(mark.transform, sideTag))
+                    return mark;
+            }
+
+            foreach (var mark in marks)
+            {
+                if (mark == null || TutorialHandSide.IsUnderPoseReferenceHierarchy(mark.transform))
+                    continue;
+                if (mark.transform.IsChildOf(hand.transform))
+                    return mark;
+            }
+
+            int wantSide = wantRight ? 1 : -1;
             TutorialCheckMarkHandler onPoseRefFallback = null;
 
             foreach (var mark in marks)
             {
+                if (mark == null)
+                    continue;
                 if (TutorialHandSide.SideFromTransform(mark.transform) != wantSide)
                     continue;
 
@@ -994,14 +1307,21 @@ namespace SpatialGestureText.Tutorial
             return onPoseRefFallback;
         }
 
+        private static Transform GetHandAttachPointForCheckmark(TutorialHandHandler hand)
+        {
+            if (hand == null)
+                return null;
+            var pose = hand.GetComponent<TutorialProceduralHandPose>();
+            return pose != null ? pose.PoseRoot : hand.transform;
+        }
+
         private static void AttachCheckmarkToDisplayHand(TutorialCheckMarkHandler mark, TutorialHandHandler hand)
         {
             if (mark == null || hand == null)
                 return;
 
-            var pose = hand.GetComponent<TutorialProceduralHandPose>();
-            Transform attach = pose != null ? pose.PoseRoot : hand.transform;
-            if (mark.transform.parent == attach)
+            Transform attach = GetHandAttachPointForCheckmark(hand);
+            if (attach == null || mark.transform.parent == attach)
                 return;
 
             mark.transform.SetParent(attach, worldPositionStays: true);
@@ -1029,9 +1349,13 @@ namespace SpatialGestureText.Tutorial
                 return;
 
             _skipControlsRoot = new GameObject("TutorialSkipControls");
-            _skipControlsRoot.transform.SetParent(Lexting.controllers.transform, false);
+            var cube = Lexting.controllers.transform;
+            var layoutParent = cube.parent != null ? cube.parent : cube;
+            _skipControlsRoot.transform.SetParent(layoutParent, false);
             _skipControlsLayout = _skipControlsRoot.AddComponent<TutorialSkipControlsLayout>();
             _skipControlsLayout.MarginBelowWidget = skipControlsMarginBelowWidget;
+            if (_skipControlsRoot.GetComponent<TutorialSkipCursorRange>() == null)
+                _skipControlsRoot.AddComponent<TutorialSkipCursorRange>();
 
             AdoptSkipControlNodes(_skipControlsRoot.transform);
 
@@ -1042,6 +1366,8 @@ namespace SpatialGestureText.Tutorial
                     Destroy(legacySkipControlsRoot);
                 legacySkipControlsRoot = null;
             }
+
+            PruneDontShowAgainNodes(_skipControlsRoot.transform);
 
             _skipControlsRoot.SetActive(false);
         }
@@ -1063,21 +1389,133 @@ namespace SpatialGestureText.Tutorial
             }
         }
 
+        private void PruneDontShowAgainNodes(Transform root)
+        {
+            if (includeDontShowAgainControl || root == null)
+                return;
+
+            for (var i = root.childCount - 1; i >= 0; i--)
+            {
+                var child = root.GetChild(i);
+                if (IsDontShowAgainNodeName(child.name))
+                {
+                    if (Application.isPlaying)
+                        Destroy(child.gameObject);
+                    else
+                        DestroyImmediate(child.gameObject);
+                }
+            }
+        }
+
+        private static bool IsDontShowAgainNodeName(string nodeName)
+        {
+            if (string.IsNullOrEmpty(nodeName))
+                return false;
+            return (nodeName.IndexOf("dont", System.StringComparison.OrdinalIgnoreCase) >= 0
+                    && nodeName.IndexOf("show", System.StringComparison.OrdinalIgnoreCase) >= 0)
+                   || (nodeName.IndexOf("never", System.StringComparison.OrdinalIgnoreCase) >= 0
+                       && nodeName.IndexOf("show", System.StringComparison.OrdinalIgnoreCase) >= 0)
+                   || nodeName.IndexOf("dontask", System.StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        private void EnsureRuntimeSkipProvisioned()
+        {
+            if (!provisionRuntimeSkipWhenMissing || _skipControlsRoot == null)
+                return;
+
+            if (Lexting.controllers == null || !Lexting.controllers.gameObject.activeInHierarchy)
+                return;
+
+            if (_skipControlsRoot.transform.childCount > 0 && !ShouldRebuildRuntimeSkip())
+                return;
+
+            if (_skipControlsRoot.transform.childCount > 0)
+                DestroyRuntimeSkipChildren();
+
+            CreateRuntimeSkipControl(_skipControlsRoot.transform);
+        }
+
+        private void DestroyRuntimeSkipChildren()
+        {
+            for (var i = _skipControlsRoot.transform.childCount - 1; i >= 0; i--)
+            {
+                var child = _skipControlsRoot.transform.GetChild(i);
+                if (Application.isPlaying)
+                    Destroy(child.gameObject);
+                else
+                    DestroyImmediate(child.gameObject);
+            }
+        }
+
+        private bool ShouldRebuildRuntimeSkip()
+        {
+            if (_skipControlsRoot.transform.childCount == 0)
+                return false;
+
+            foreach (var scaler in _skipControlsRoot.GetComponentsInChildren<TwoZoneTriggerScaler>(true))
+            {
+                if (scaler.transform.localScale.sqrMagnitude < 1e-8f)
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static void CreateRuntimeSkipControl(Transform parent)
+        {
+            if (TutorialSkipZoneFactory.TryCreateFromCenterTemplate(parent) != null)
+                return;
+
+            Debug.LogWarning(
+                $"{nameof(TutorialManager)}: could not clone widget CenterZone for Skip; ensure the two-zone widget is active.");
+        }
+
         private void ShowSkipControls()
         {
+            TutorialSkipGrabZone.ReleaseAllWidgetBlocks();
             EnsureSkipControlsRoot();
-            if (_skipControlsRoot == null || _skipControlsRoot.transform.childCount == 0)
+
+            if (_skipControlsRoot == null)
                 return;
 
             if (_skipControlsLayout != null)
                 _skipControlsLayout.MarginBelowWidget = skipControlsMarginBelowWidget;
 
             _skipControlsRoot.SetActive(true);
+            EnsureRuntimeSkipProvisioned();
+            _skipControlsLayout?.SyncToWidget();
+            if (_skipControlsRoot.transform.childCount == 0)
+                this.Wait(() => CanProvisionRuntimeSkip(), RetrySkipProvisionAndLayout);
+        }
+
+        private bool CanProvisionRuntimeSkip()
+        {
+            if (_skipControlsRoot == null || !_skipControlsRoot.activeInHierarchy)
+                return false;
+            if (Lexting.controllers == null || !Lexting.controllers.gameObject.activeInHierarchy)
+                return false;
+            if (TwoZoneCubeControllers.Instance == null)
+                return false;
+            return TutorialSkipZoneFactory.FindWidgetCenterZoneTransform() != null;
+        }
+
+        private void RetrySkipProvisionAndLayout()
+        {
+            if (_skipControlsRoot == null || !_skipControlsRoot.activeInHierarchy)
+                return;
+            if (!CanProvisionRuntimeSkip())
+            {
+                this.Wait(CanProvisionRuntimeSkip, RetrySkipProvisionAndLayout);
+                return;
+            }
+
+            EnsureRuntimeSkipProvisioned();
             _skipControlsLayout?.SyncToWidget();
         }
 
         private void HideSkipControls()
         {
+            TutorialSkipGrabZone.ReleaseAllWidgetBlocks();
             if (_skipControlsRoot != null)
                 _skipControlsRoot.SetActive(false);
         }

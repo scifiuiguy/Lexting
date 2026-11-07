@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
+using SpatialGestureText.Tutorial;
 using SpatialGestureText.Utilities;
 
 namespace SpatialGestureText.TwoZoneCube
@@ -154,13 +155,22 @@ namespace SpatialGestureText.TwoZoneCube
             //});
 
             this.Wait(() => Lexting.input.Ready(), () =>
-                this.Subscribe(Lexting.input.OnIndexPointing, (right)=>ResetAllTriggers()));
+                this.Subscribe(Lexting.input.OnIndexPointing, OnIndexPointing));
 
             this.Subscribe(SpatialGestureInput.Instance.OnIndexFingersAtEachOther, () => ControllerActivated?.I(true));
         }
         #endregion event handlers
 
         #region helpers
+
+        private void OnIndexPointing(bool right)
+        {
+            var tutorial = TutorialManager.Instance;
+            if (tutorial != null && !tutorial.tutorialCompleted)
+                return;
+
+            ResetAllTriggers();
+        }
 
         public void ToggleCharDisplay(bool on)
         {

@@ -122,6 +122,22 @@ namespace SpatialGestureText.Tutorial
             return 0;
         }
 
+        /// <summary>
+        /// True if any ancestor name contains <c>_Left</c> / <c>_Right</c> (tutorial hand prefabs, e.g. <c>TutorialHand_Left_Open</c>).
+        /// </summary>
+        public static bool HasAncestorNameContaining(Transform t, string substring)
+        {
+            if (t == null || string.IsNullOrEmpty(substring))
+                return false;
+            for (var p = t; p != null; p = p.parent)
+            {
+                if (p.name.IndexOf(substring, System.StringComparison.OrdinalIgnoreCase) >= 0)
+                    return true;
+            }
+
+            return false;
+        }
+
         /// <summary>Open/closed duplicate rigs used only for pose sampling — not the faded-in tutorial hand.</summary>
         public static bool IsUnderPoseReferenceHierarchy(Transform t)
         {

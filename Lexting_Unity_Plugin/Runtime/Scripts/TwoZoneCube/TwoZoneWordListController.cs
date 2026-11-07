@@ -125,6 +125,8 @@ namespace SpatialGestureText.TwoZoneCube
 
         private bool _hasConjugationChangedDuringThisFinalization;
         private bool _hasPunctuationChangedDuringThisFinalization;
+        /// <summary>First punctuation zone index seen after Finalization opens; default SPACE until hover leaves this zone (QA-M3-051).</summary>
+        private int _punctuationHoverBaselineIndex = -1;
         private IDisposable conjugationStateMonitorLoop;
 
         private float timeSinceLastCycleTap;
@@ -229,6 +231,7 @@ namespace SpatialGestureText.TwoZoneCube
                     currentWordObject = wordList[0];
                     currentWord = currentWordObject.label;
                     currentPunctuation = " ";
+                    _punctuationHoverBaselineIndex = -1;
                     var defaultWord = GetDefaultFirstWord();
                     Lexting.printer.SubtractWord(false);
                     Lexting.printer.AppendOutputs(defaultWord, true);
@@ -279,8 +282,19 @@ namespace SpatialGestureText.TwoZoneCube
         /// <param name="index">the 1D index of the freshly hovered zone in the right-hand matrix</param>
         public void SelectPunctuation(int index)
         {
+            // Default SPACE from GetPunctuation() until the user moves off the zone they happened to
+            // be over when Finalization opened (avoids same-frame / carry-over hover replacing default).
             if (!_hasPunctuationChangedDuringThisFinalization)
+            {
+                if (_punctuationHoverBaselineIndex < 0)
+                {
+                    _punctuationHoverBaselineIndex = index;
+                    return;
+                }
+                if (index == _punctuationHoverBaselineIndex)
+                    return;
                 _hasPunctuationChangedDuringThisFinalization = true;
+            }
 
             currentPunctuation = _punctuation[index];
             if (currentWordObject.wordNode != null)
@@ -520,6 +534,7 @@ namespace SpatialGestureText.TwoZoneCube
         {
             _hasConjugationChangedDuringThisFinalization = false;
             _hasPunctuationChangedDuringThisFinalization = false;
+            _punctuationHoverBaselineIndex = -1;
             verbCycleIndex = 0;
             nounCycleIndex = 0;
             adjCycleIndex = 0;

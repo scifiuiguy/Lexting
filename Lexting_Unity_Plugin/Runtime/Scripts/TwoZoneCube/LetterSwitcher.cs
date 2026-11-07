@@ -39,6 +39,9 @@ namespace SpatialGestureText.TwoZoneCube
         // Keep serialized field order stable for prefabs (materials first); hover uses Text.color only.
         [SerializeField] private Material neutralMat;
         [SerializeField] private Material highlightedMat;
+
+        public Material NeutralLabelMaterial => neutralMat;
+        public Material HighlightedLabelMaterial => highlightedMat;
         private Color _neutralColor = Color.white;
         private Color _highlightedColor = Color.black;
         private bool _isHighlighted;

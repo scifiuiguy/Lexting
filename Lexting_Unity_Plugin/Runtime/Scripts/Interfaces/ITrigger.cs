@@ -25,5 +25,7 @@ namespace SpatialGestureText.Interfaces
         void HandleExit(bool right);
         void Bump(UnityAction callback);
         void ResetTrigger();
+        /// <summary>Clears highlight/hover visuals; pass true after drag ends so cells under the cursor still clear (QA-M3-048).</summary>
+        void ResetTrigger(bool forceClearVisuals);
     }
 }

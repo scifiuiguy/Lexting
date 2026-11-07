@@ -190,6 +190,8 @@ namespace SpatialGestureText.TwoZoneCube
             this.Subscribe(HandCursor.OnHoverUpdate, (right, inCenter) =>
             {
                 if (right != _right || (inCenter && TwoZoneGrabState.firstReady(right))) return;
+                if (TutorialSkipGrabZone.SuppressesCubeHover(right))
+                    return;
                 hoverUpdateTally++;
                 //LogOutputReceiver.Instance.Log(
                 //  $"OnHoverUpdate: tally: {hoverUpdateTally}\ninCenter? {inCenter}\nfirst ready? {TwoZoneGrabState.firstReady(right)}");
@@ -272,11 +274,16 @@ namespace SpatialGestureText.TwoZoneCube
 
         private void SelectTriggerByIndex(bool right, int index)
         {
-            FindTriggerByIndex(right, index).HandleTriggerEnter(right);
+            var t = FindTriggerByIndex(right, index);
+            if (t != null)
+                t.HandleTriggerEnter(right);
         }
 
         private ITrigger FindTriggerByIndex(bool right, int index)
         {
+            if (_triggers == null || _triggers.Length == 0)
+                return null;
+
             if (right) currentRightTrigger?.HandleExit(right);
             else currentLeftTrigger?.HandleExit(right);
 
@@ -390,6 +397,21 @@ namespace SpatialGestureText.TwoZoneCube
         {
             foreach (var trigger in _triggers)
                 trigger.ResetTrigger();
+        }
+
+        /// <summary>
+        /// After single-hand drag ends, stale highlights can remain on cells that never received a matching exit.
+        /// Clears non-current zones for this hand, then re-applies hover for the zone under the cursor.
+        /// </summary>
+        public void RefreshHoverAfterDragEnded()
+        {
+            if (!isActiveAndEnabled || _triggers == null || _triggers.Length == 0)
+                return;
+            // forceClearVisuals: cells still under the cursor never got HandleExit — must clear anyway (QA-M3-048).
+            foreach (var trigger in _triggers)
+                trigger.ResetTrigger(true);
+            int idx = _right ? currentRightTriggerIndex : currentLeftTriggerIndex;
+            SelectTriggerByIndex(_right, idx);
         }
         #endregion helpers
     }

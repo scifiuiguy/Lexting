@@ -8,7 +8,7 @@ namespace SpatialGestureText.Tutorial
         public void SkipThisSession()
         {
             if (TutorialManager.Instance != null)
-                TutorialManager.Instance.EndTutorialFromSkip(dontShowAgain: false);
+                TutorialManager.Instance.JumpToWrapUpFromSkip();
         }
 
         public void DontShowAgain()

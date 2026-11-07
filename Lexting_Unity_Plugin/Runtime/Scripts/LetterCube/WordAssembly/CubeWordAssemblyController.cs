@@ -133,7 +133,8 @@ namespace SpatialGestureText.LetterCube
 
             if (on)
             {
-                LextingController.Instance.currentRightTrigger.SetStartingIndex(false);
+                // Must set on the tracing hand's trigger; was wrongly using currentRightTrigger (QA-M3-050).
+                LextingController.Instance.currentLeftTrigger.SetStartingIndex(false);
                 if (_rightDragHandler.isLineTracingActive && !isWordAssemblyActive && !IsSingleLetterTutorialTyping())
                     isWordAssemblyActive = true;
             }

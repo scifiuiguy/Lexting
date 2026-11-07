@@ -567,6 +567,20 @@ namespace SpatialGestureText.LetterCube
             shift = !shift;
             ToggleKeyHandler.Instance.ToggleVisibility(ToggleKeyHandler.ToggleKeyType.shift, shift);
             OnShift?.I(shift);
+            // Shift-only layer: sticky caps until shift is toggled off (CapsAll path in AppendOutputs / RefreshCapsState).
+            if (!alt && !ctrl)
+            {
+                if (shift)
+                {
+                    capsState = CapsState.CapsAll;
+                    OnCaps?.I(true);
+                }
+                else if (capsState == CapsState.CapsAll)
+                {
+                    capsState = CapsState.lower;
+                    OnCaps?.I(false);
+                }
+            }
         }
 
         public void ToggleCtrl()

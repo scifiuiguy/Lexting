@@ -86,7 +86,11 @@ namespace SpatialGestureText.TwoZoneCube
         #endregion public vars
         #region private vars
 
-        private bool _right => subcontroller.IsRight;
+        /// <summary>
+        /// True when this trigger belongs to the right-hand subcontroller.
+        /// Assigned only by <see cref="TwoZoneCubeController"/> before <see cref="Init"/>; false when <see cref="subcontroller"/> is unset.
+        /// </summary>
+        private bool _right => subcontroller != null && subcontroller.IsRight;
 
         /// <summary>
         /// controls bump-scale when trigger activates
@@ -137,16 +141,6 @@ namespace SpatialGestureText.TwoZoneCube
         private static int _currentLeftStartingIndex;
 
         /// <summary>
-        /// Cached value of current hand's starting index during drag 
-        /// </summary>
-        private int _currentStartingIndex;
-
-        /// <summary>
-        /// Cached value of non-current hand's starting index during drag
-        /// </summary>
-        private int _otherStartingIndex;
-
-        /// <summary>
         /// if right hand just activated this trigger, this is currentRightHighlightedLetter, otherwise currentLeftHighlightedLetter
         /// </summary>
         private string _currentHighlightedLetter {
@@ -172,6 +166,9 @@ namespace SpatialGestureText.TwoZoneCube
         /// </summary>
         private int _matrixStateIndexOffset = 0;
 
+        /// <summary>Two-zone index where single-hand drag began (word assembly); used to keep start cell highlighted for the whole drag.</summary>
+        private static int _dragStartTwoZoneIndexRight = -1, _dragStartTwoZoneIndexLeft = -1;
+
         #endregion private vars
         #endregion vars
 
@@ -185,9 +182,22 @@ namespace SpatialGestureText.TwoZoneCube
             controller = LextingController.Instance;
         }
 
+        /// <summary>
+        /// Called by <see cref="TwoZoneCubeController"/> after assigning <see cref="subcontroller"/>.
+        /// Waits until that ref is non-null (same-frame or next) before subscribing, per parent/child contract (QA-M3-047).
+        /// </summary>
         public void Init()
         {
-            RegisterAllEventsAndActions();
+            this.Wait(() => subcontroller != null, RegisterAllEventsAndActions);
+        }
+
+        /// <summary>
+        /// Re-resolve view components if <see cref="Awake"/> did not find them (e.g. hierarchy timing).
+        /// </summary>
+        private void EnsureViewComponents()
+        {
+            if (_letterSwitcher == null || _highlight == null)
+                this.Ch(ref _letterSwitcher, ref _highlight);
         }
         #endregion init
 
@@ -198,13 +208,14 @@ namespace SpatialGestureText.TwoZoneCube
                 (right, current, previous) => {/*trigger state*/},
                 (right, current, previous) =>
                 {// rotation state
-
                     if (right != _right || !_isHovered) return;
 
                     if (current == CubeRotationState.forward && !_hasOverflow)
                         return;
                     else
                     {
+                        EnsureViewComponents();
+                        if (_letterSwitcher == null) return;
                         if (current == CubeRotationState.forward && _hasOverflow)
                             _currentHighlightedLetter = _letterSwitcher.letters[(_matrixStateIndexOffset==0)?9:10];
                         else
@@ -256,15 +267,18 @@ namespace SpatialGestureText.TwoZoneCube
             //    return; // skip center zone if dragging into it from elsewhere
             //}
 
-
-            if (right != subcontroller.IsRight) return;
-            _highlight.Toggle(true);
-            _letterSwitcher.ToggleMaterial(true);
-            UpdateHoverEntryState();
-            UpdateWordAssembler();
-            UpdateFinalizer();
-            _audioSourceName = IsCenter ? "Hoverclick_Hard" : "Hoverclick_Soft";
-            Lexting.audio.Play(_audioSourceName);
+            this.Wait(() => subcontroller != null, () =>
+            {
+                if (right != subcontroller.IsRight) return;
+                EnsureViewComponents();
+                _highlight?.Toggle(true);
+                _letterSwitcher?.ToggleMaterial(true);
+                UpdateHoverEntryState();
+                UpdateWordAssembler();
+                UpdateFinalizer();
+                _audioSourceName = IsCenter ? "Hoverclick_Hard" : "Hoverclick_Soft";
+                Lexting.audio.Play(_audioSourceName);
+            });
         }
 
         /// <summary>
@@ -273,29 +287,34 @@ namespace SpatialGestureText.TwoZoneCube
         /// <param name="right">if true, right hand just exited this zone, otherwise left did</param>
         public void HandleExit(bool right)
         {
-            if (right != subcontroller.IsRight) return;
-            if (!_isHovered || !_isHighlighted) return;
-
-            _currentStartingIndex = (right) ? _currentRightStartingIndex : _currentLeftStartingIndex;
-            _otherStartingIndex = (right) ? _currentLeftStartingIndex : _currentRightStartingIndex;
-
-            if (_dragLine.isLineTracingActive)
+            this.Wait(() => subcontroller != null, () =>
             {
-                if (_dragLine.currentTwoZoneIndex == index && _dragLine.currentTwoZoneIndex != _currentStartingIndex &&
-                    _dragLine.currentTwoZoneIndex != _otherStartingIndex)
-                    ResetTrigger(true);
-            }
-            else ResetTrigger(true);
+                if (right != subcontroller.IsRight) return;
+                if (!_isHovered || !_isHighlighted) return;
 
-            UpdateHoverExitState();
-            _currentHighlightedLetter = "";
+                // Line trace: leaving drag-start for another cell — keep start highlight (destinations clear on exit).
+                // Applies to single- and two-hand drags; do not require the other hand idle (that broke two-hand).
+                int startIdx = _right ? _dragStartTwoZoneIndexRight : _dragStartTwoZoneIndexLeft;
+                int destIdx = _right ? TwoZoneCubeController.currentRightTriggerIndex : TwoZoneCubeController.currentLeftTriggerIndex;
+                if (_dragLine.isLineTracingActive && startIdx >= 0 && index == startIdx && destIdx != startIdx)
+                {
+                    UpdateHoverExitState();
+                    return;
+                }
+
+                ResetProperties();
+                UpdateHoverExitState();
+                _currentHighlightedLetter = "";
+            });
         }
         #endregion event handlers
 
         #region helper methods
         private void UpdateHoverEntryState()
         {
-           
+            EnsureViewComponents();
+            if (_letterSwitcher == null) return;
+
             if (_right)
             {
                 isHighlightedByRight = true;
@@ -333,22 +352,38 @@ namespace SpatialGestureText.TwoZoneCube
 
         public void ResetTrigger()
         {
-            var controllers = LextingController.Instance as TwoZoneCubeControllers;
-            if (controllers == null || !controllers.isActiveAndEnabled)
-            {
-                ResetProperties();
-                return;
-            }
-
-            var activeTrigger = _right ? controllers.currentRightTrigger : controllers.currentLeftTrigger;
-            if (activeTrigger != null && activeTrigger.Index == index)
-                return;
-            ResetProperties();
+            ResetTrigger(false);
         }
 
-        private void ResetTrigger(bool didExit)
+        public void ResetTrigger(bool forceClearVisuals)
         {
-            ResetProperties();
+            this.Wait(() => subcontroller != null, () =>
+            {
+                var controllers = LextingController.Instance as TwoZoneCubeControllers;
+                if (controllers == null || !controllers.isActiveAndEnabled)
+                {
+                    ResetProperties();
+                    if (forceClearVisuals)
+                        ClearDragStartIndexForHand();
+                    return;
+                }
+
+                var activeTrigger = _right ? controllers.currentRightTrigger : controllers.currentLeftTrigger;
+                if (!forceClearVisuals && activeTrigger != null && activeTrigger.Index == index)
+                    return;
+                ResetProperties();
+                if (forceClearVisuals)
+                    ClearDragStartIndexForHand();
+            });
+        }
+
+        private void ClearDragStartIndexForHand()
+        {
+            if (subcontroller == null) return;
+            if (_right)
+                _dragStartTwoZoneIndexRight = -1;
+            else
+                _dragStartTwoZoneIndexLeft = -1;
         }
 
         private void ResetProperties()
@@ -403,14 +438,25 @@ namespace SpatialGestureText.TwoZoneCube
         public void SetStartingIndex(bool right)
         {
             if (right)
+            {
                 _currentRightStartingIndex = TwoZoneCubeController.currentRightTriggerIndex;
-            else _currentLeftStartingIndex = TwoZoneCubeController.currentLeftTriggerIndex;
+                _dragStartTwoZoneIndexRight = _currentRightStartingIndex;
+            }
+            else
+            {
+                _currentLeftStartingIndex = TwoZoneCubeController.currentLeftTriggerIndex;
+                _dragStartTwoZoneIndexLeft = _currentLeftStartingIndex;
+            }
         }
 
         public void ToggleHighlightOn(bool right)
         {
-            if (right == (controller as TwoZoneCubeController).IsRight)
-                _highlight.Toggle(true);
+            this.Wait(() => subcontroller != null, () =>
+            {
+                if (right != subcontroller.IsRight) return;
+                EnsureViewComponents();
+                _highlight?.Toggle(true);
+            });
         }
 
         public void Bump(UnityAction callback)

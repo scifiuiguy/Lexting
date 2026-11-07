@@ -44,6 +44,7 @@ namespace SpatialGestureText.LetterCube
             RegisterAllEvents();
 
             _lineRenderer = GetComponent<LineRenderer>();
+            ConfigureDragLineRendererWidth();
             _lineRenderer.enabled = false;
 
             //this.WaitS(2, () => ToggleLineTracing(HandGestureState.Insert, HandGestureState.Neutral));
@@ -80,6 +81,20 @@ namespace SpatialGestureText.LetterCube
         #endregion event handlers
 
         #region helper methods
+
+        /// <summary>
+        /// Line is drawn from letter (index 0) to hand (index 1); taper index 0 to a fine point so the drag reads as starting from a tip.
+        /// Only the width curve is customized — keep prefab <see cref="LineRenderer.widthMultiplier"/> and start/end widths so Unity does not
+        /// double-scale thickness (that made the line vanish when both curve and simple widths were folded into the multiplier).
+        /// </summary>
+        private void ConfigureDragLineRendererWidth()
+        {
+            if (_lineRenderer == null)
+                return;
+
+            _lineRenderer.widthCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+        }
+
         private void ToggleLineTracing(HandGestureState current, HandGestureState previous)
         {
             try {
@@ -163,6 +178,12 @@ namespace SpatialGestureText.LetterCube
             }
             
             LineTracingActivated.I(false);
+
+            if (LextingController.Instance is TwoZoneCubeControllers roots)
+            {
+                var subCtrl = _right ? roots.right : roots.left;
+                subCtrl?.RefreshHoverAfterDragEnded();
+            }
         }
         #endregion helper methods
     }

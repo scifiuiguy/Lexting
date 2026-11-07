@@ -146,7 +146,9 @@ Before trying to type, release all finger tension. The fingers will curl slightl
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">Grab - Like Catching Butterflies</span></summary>
 
-The grab gesture may seem like more work that an index-to-thumb pinch, but actually grab is the first gesture we learn in the womb. Babies grab the umbillical cord long before developing single-finger dexterity, which is why, even now, if you try your hardest to move just one of your inline fingers, the other fingerss want to move also. Moving just one finger requires muscle memory training, whereas grab is the absolute root gesture in your motor cortex. Take it from a former drum teacher... you can repeat a good grab all day long rapidly with no fatigue if you do it correctly. You just need to remember it's like catching a butterfly. Close the four inline fingers against your palm as fast as you can, but don't crush the butterfly. You may hear the cushions of each finger slap against the palm. Do the gesture over and over quickly. Try to make it fast yet silent. The only way to achieve speed and silence is to do it so softly that a buttefly would be safe inside that grip.
+The grab gesture may seem like more work that an index-to-thumb pinch, but actually grab is cognitively perhaps the easiest thing you can do with your entire body. It's the very first gesture we learn in the womb. As early 12 weeks old, we deveop the palmar grasp reflex where our hands train to close all fingers around anything that touches them. The umbillical cord teaches us to grab. In contrast, we don't learn the dexterity for single-finger pinch until 9-12 months of infancy, which is why, even now, if you try your hardest to move just one of your inline fingers, the other fingerss want to move also. Moving just one finger requires muscle memory training, whereas a whole-hand grab is the absolute root gesture built into your motor cortex. 
+
+Take it from a former drum teacher... you can repeat a good grab all day long rapidly with no fatigue if you do it correctly. You just need to remember to make it like catching a butterfly. Close the four inline fingers against your palm as fast as you can, but don't crush the butterfly. You may hear the cushions of each finger slap against the palm. Do the gesture over and over quickly. Try to make it fast yet silent. The only way to achieve speed and silence is to do it so softly that a buttefly would be safe inside that grip.
 
 </details>
 
@@ -190,7 +192,12 @@ When eight or fewer roots match, matching words fill the **left volume** as **no
 <summary><b>⌨️ Why not QWERTY?</b></summary>
 <hr style="border: 1px solid gray;">
 
-The real sole competitor is not physical QWERTY nor projected virtual QWERTY nor stenography, although Lexting draws deep influence from them all. The sole competitor is floating virtual QWERTY, since floating QWERTY is the only option other than Lexting that works in mid-air.
+<details>
+<summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">QWERTY versus Stenography</span></summary>
+
+The target competitor is not physical QWERTY nor projected virtual QWERTY nor stenography, although Lexting draws influence from them all, and it **COULD** theoretically act as an alternative to any of them except stenography since steno is the speed king. Although Lexting can rival all the others on speed, the nemesis Lexting aims to replace entirely is floating virtual QWERTY. Floating QWERTY is the only option other than Lexting that works in mid-air, and Lexting has an order of magnitude higher throughput.
+
+</details>
 
 
 <details>
@@ -340,7 +347,7 @@ JSON word lists under `Scripts/EnglishDictionaries/Resources/` feed `LextingDict
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">BETA Limitations</span></summary>
 
-Lexting is in Beta. A few primary features have yet to be implemented:
+Lexting is in Beta. A few primary features have yet to be implemented in full:
 
 **Long-Word Drill-Down** A small number of words have more than eight potential results once the first four characters are selected, but they don't have more than eight different options for the 5th letter, so if there is only one option for a given 5th letter, then that full word will display in the UI during Finalization. If there is more than one remaining option for that 5th letter, then the first five letters plus "..." will be displayed. If the user hovers on that node and releases Finalization, the first of that group will print, but if the user wants to drill down to other options, they can grab-hold that node to display all the options and move to a different option. The current 1.0 Beta build has no drill-down support yet, so only the first eight options will appear, which means a small number of English words may be impossible to type using Word Mode until Lexting is out of Beta.
 
@@ -350,7 +357,11 @@ Lexting is in Beta. A few primary features have yet to be implemented:
 
 **Dictionary Mods** The intent is to eventually provide users of Lexting the abilty to modify the dynamic dictionary, since it currently consists of only the 10K most popular English words on the internet. There are millions of English words, but frankly, most of them are esoteric jargon that would gum up the functionality of Lexting. However, some professionals in certain fields may find that lots of specific key terms in their field are missing from the default dictionary. The JSON format of the dictionary is open-source and anyone can modify it manually, but the goal is to include an interface that facilitates easy bulk dictionary mods when Lexting comes out of Beta.
 
-</details>
+**Finalization Shortcuts** The primary Finalization Shortcut (**Auto-Space**) is already in place in Beta. Because most typed words will end with a SPACE, Finalization Mode always begins assuming you want SPACE even if you happen to be hovering something else. This makes rapid Word Mode typing easier and faster for a vast majority of words. However, it can become annoying a few scenarios. For instance, if the last word of a sentence is "dog" and you want to place a period after the 'g'... the UI will assume you want a SPACE by default because it doesn't know you want to complete the sentence, yet g is in the same location as the period in the UI, so you're already hovering the period when Finalization begins, but the period doesn't print unless you exit that node and reenter it. This is true for any word that ends in 'k' or 'i' as well because 'k', 'i', and 'g' all share the same node as PERIOD. The same is true for words ending in 's', 'm', or 'w' when followed by a COMMA. Because this annoying exit+reenter action is necessary for these edge cases in Beta, the final version of Lexting will include a power-user gesture to solve this upfront. If the UI is in Pinch Mode, then the user can opt to use a grab in the right hand to turn off **Auto-Space** for just that word, which will allow them to access the punctuation directly. Vice-versa, if the UI is in Grab Mode, then the user can opt to use a pinch in the right hand to turn off **Auto-Space**. This will enable power users to dodge the exit-reenter edge case and type faster.
+
+**Capitalization Shortcuts** When Lexting graduates out of Beta, it will have a toggleable option to use Secondary (Middle Finger) Pinch Tap to capitalize a single letter without needing to toggle the CAPS-1 key first.
+
+</details> 
 </blockquote>
 
 </details>
@@ -593,12 +604,10 @@ Lexting exposes common word processing commands (copy, paste, backspace, etc.) b
 
 1. **Grab + Hold** the Hotkey zone in the center of the UI.
 2. **Drag** into any other zone. Blue text will show which Hotkey is available for that zone.
-3. **Rotate** the wrist palm down or palm up during drag to access other Hotkeys.
+3. **Rotate** the wrist palm down or palm up during drag to access 3X as many Hotkeys.
 4. **Release** to activate the chosen hotkey.
 
 **Alt**, **Shift**, and **Ctrl** are toggleable, latching on and off.
-
-
 
 | Matrix Position | pronate | relax | supinate |
 |-----|---------|-------|----------|
@@ -613,6 +622,23 @@ Lexting exposes common word processing commands (copy, paste, backspace, etc.) b
 | Center | ENTER | NUMBERS | ESCAPE |
 
 * Any Hotkey above with a * is **Non-operational in Beta**.
+
+</details>
+</blockquote>
+
+---
+
+<blockquote>
+<a id="hotkeys"></a>
+<details>
+<summary><b>🔢 Numbers and Special Characters</b></summary>
+<hr style="border: 1px solid gray;">
+
+You can hover in the center node with palm-up cycle the UI from Alpha-to-Numbers-to-Spechal-Characters and back again.
+
+When in **Numbers Mode**, the eight numbers from 0-7 appear in the primary eight-cell matrix, and you can palm-forward to unlock 8 and 9 in the overflow area just like X and Z in Alpha Mode. Palm down and up switch to the most common special characters (especially arithmetic symbols) while still in Numbers Mode.
+
+When in **Special Characters Mode**, special characters fill the UI for all wrist positions.
 
 </details>
 </blockquote>

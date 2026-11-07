@@ -4,15 +4,23 @@ using SpatialGestureText.Utilities;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.SceneManagement;
+#endif
 
 namespace SpatialGestureText.Tutorial
 {
     /// <summary>
     /// Draws a 3-point check stroke. Place <see cref="waypointStart"/>, <see cref="waypointKnuckle"/>,
     /// and <see cref="waypointEnd"/> empties in the editor; runtime anim anchors lerp between them.
+    /// Inspector <b>Check on / Check off</b> preview the stroke in Edit Mode (instant pose, no tweens).
     /// </summary>
     public class TutorialCheckMarkHandler : MonoBehaviour
     {
+        private const float CheckmarkStrokeDuration = 0.3f;
+        private const float CheckmarkWhooshVolume = 0.5f;
+
         [SerializeField] private Transform waypointStart;
         [SerializeField] private Transform waypointKnuckle;
         [SerializeField] private Transform waypointEnd;
@@ -102,8 +110,16 @@ namespace SpatialGestureText.Tutorial
 
             _lineRenderer.useWorldSpace = true;
             _lineRenderer.widthMultiplier = 1f;
-            _lineRenderer.startWidth = 0.012f;
-            _lineRenderer.endWidth = 0.012f;
+            _lineRenderer.startWidth = 0.004f;
+            _lineRenderer.endWidth = 0.004f;
+            if (_lineRenderer.widthCurve == null || _lineRenderer.widthCurve.length == 0)
+            {
+                var curve = new AnimationCurve();
+                curve.AddKey(0f, 0f);
+                curve.AddKey(0.5f, 1f);
+                curve.AddKey(1f, 0f);
+                _lineRenderer.widthCurve = curve;
+            }
             _lineRenderer.alignment = LineAlignment.View;
             _lineRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             _lineRenderer.receiveShadows = false;
@@ -131,6 +147,14 @@ namespace SpatialGestureText.Tutorial
             if (_animKnuckle == null || _animEnd == null)
                 return;
 
+#if UNITY_EDITOR
+            if (!Application.isPlaying)
+            {
+                ApplyCheckmarkImmediateForEditor(on);
+                return;
+            }
+#endif
+
             StopActiveTweens();
             _isMoving = true;
             if (_lineRenderer != null)
@@ -151,40 +175,82 @@ namespace SpatialGestureText.Tutorial
             }
         }
 
+#if UNITY_EDITOR
+        /// <summary>
+        /// Edit Mode / paused inspector preview: sets anim anchors to final on or off pose and updates the LineRenderer
+        /// (Pixelplacement tweens and <see cref="MonoBehaviour.StartCoroutine"/> do not run outside Play Mode).
+        /// </summary>
+        private void ApplyCheckmarkImmediateForEditor(bool on)
+        {
+            StopActiveTweens();
+            _isMoving = false;
+            if (_lineRenderer != null)
+                _lineRenderer.enabled = true;
+
+            if (on)
+            {
+                _animKnuckle.position = waypointKnuckle.position;
+                _animEnd.position = waypointEnd.position;
+                FlushLineRendererPositions();
+            }
+            else
+                CollapseLineToStart();
+
+            SceneView.RepaintAll();
+            if (gameObject.scene.IsValid())
+                EditorSceneManager.MarkSceneDirty(gameObject.scene);
+        }
+
+        private void FlushLineRendererPositions()
+        {
+            if (_lineRenderer == null || waypointStart == null || _animKnuckle == null || _animEnd == null)
+                return;
+            _lineRenderer.SetPositions(new[]
+            {
+                waypointStart.position,
+                _animKnuckle.position,
+                _animEnd.position
+            });
+        }
+#endif
+
         private void DrawKnucklePhase(bool on, UnityAction callback)
         {
-            Lexting.audio?.Play(on ? "Whoosh_1" : "Whoosh_2");
+            Lexting.audio?.Play(on ? "Whoosh_1" : "Whoosh_2", CheckmarkWhooshVolume);
 
             if (on)
             {
                 _animKnuckle.position = waypointStart.position;
                 _animEnd.position = waypointStart.position;
-                _knuckleTween = Tween.Position(_animKnuckle, waypointKnuckle.position, 0.15f, 0, Tween.EaseIn, Tween.LoopType.None, null,
+                _knuckleTween = Tween.Position(_animKnuckle, waypointKnuckle.position, CheckmarkStrokeDuration, 0, Tween.EaseIn, Tween.LoopType.None, null,
                     () => callback.I());
             }
             else
             {
+                // Lerp-OFF phase 2: knuckle → start. End was already merged into knuckle in phase 1; do not snap back to waypointEnd.
                 _animKnuckle.position = waypointKnuckle.position;
-                _animEnd.position = waypointEnd.position;
-                _knuckleTween = Tween.Position(_animKnuckle, waypointStart.position, 0.15f, 0, Tween.EaseOut, Tween.LoopType.None, null,
+                if (_animEnd != null)
+                    _animEnd.position = waypointKnuckle.position;
+                _knuckleTween = Tween.Position(_animKnuckle, waypointStart.position, CheckmarkStrokeDuration, 0, Tween.EaseOut, Tween.LoopType.None, null,
                     () => callback.I());
             }
         }
 
         private void DrawEndPhase(bool on, UnityAction callback)
         {
-            Lexting.audio?.Play(on ? "Whoosh_2" : "Whoosh_1");
+            Lexting.audio?.Play(on ? "Whoosh_2" : "Whoosh_1", CheckmarkWhooshVolume);
 
             if (on)
             {
                 _animEnd.position = waypointStart.position;
-                _endTween = Tween.Position(_animEnd, waypointEnd.position, 0.15f, 0, Tween.EaseOut, Tween.LoopType.None, null,
+                _endTween = Tween.Position(_animEnd, waypointEnd.position, CheckmarkStrokeDuration, 0, Tween.EaseOut, Tween.LoopType.None, null,
                     () => callback.I());
             }
             else
             {
+                _animKnuckle.position = waypointKnuckle.position;
                 _animEnd.position = waypointEnd.position;
-                _endTween = Tween.Position(_animEnd, waypointKnuckle.position, 0.15f, 0, Tween.EaseIn, Tween.LoopType.None, null,
+                _endTween = Tween.Position(_animEnd, waypointKnuckle.position, CheckmarkStrokeDuration, 0, Tween.EaseIn, Tween.LoopType.None, null,
                     () => callback.I());
             }
         }
