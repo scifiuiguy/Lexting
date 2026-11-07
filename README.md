@@ -367,7 +367,7 @@ Control of the 2D caret in a future version of Lexting will turn Lexting into a 
 <details>
 <summary style="font-size: 1.15em; display: list-item;"><span style="font-weight: 600;">PC Streaming</span></summary>
 
-There is an operational PC streaming service in the Beta, but the Streaming Service itself is brand new in Alpha. It will be throughly tested before Lexting comes out of Beta.
+There is an operational PC streaming service but it hasn't been debugged in several years so it is not yet published in the open-source project. The Streaming Service itself is in Alpha regardless. It will be thoroughly tested before Lexting comes out of Beta.
 
 </details>
 
