@@ -1,0 +1,25 @@
+---
+description: User runs builds; agent must not invoke build/install pipelines
+alwaysApply: true
+---
+
+# Builds — user only
+
+Do **not** run project build, install, or release pipelines yourself. The user builds on their machine.
+
+## Do not run
+
+- `tools/build_quest.ps1`, `build_quest`, or similar Quest/APK scripts
+- Unity CLI build commands (`unity … build run`, Pipeline build queue, etc.)
+- `adb install`, sideload flows tied to a fresh APK, or “verify by building” steps
+- Other long-running compile/package steps whose purpose is to produce or deploy a player artifact
+
+## Instead
+
+- Say clearly that a build is needed and **ask the user to run it** (name the script/path and any prep: Unity open, save scenes, recompile).
+- After they report results (success, log, QA file), continue from that output.
+
+## Allowed
+
+- Edits, static analysis, greps, unit tests that are **not** full player builds
+- Reading existing build logs, APK paths, or terminal output the user already produced

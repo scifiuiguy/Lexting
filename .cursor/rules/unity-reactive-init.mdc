@@ -1,0 +1,19 @@
+---
+description: Unity runtime init — prefer reactive wait-for-deps over Script Execution Order
+alwaysApply: true
+---
+
+# Unity runtime: avoid Script Execution Order
+
+At **runtime**, do **not** rely on Unity’s **Script Execution Order** (`Edit > Project Settings > Script Execution Order`, `[DefaultExecutionOrder]`, etc.) to fix initialization races. It is brittle, hard to discover, and does not compose when multiple systems need ordering.
+
+## Prefer reactive / wait-until patterns
+
+- In **Awake**, **OnEnable**, or **Start**, subscribe or schedule work only after **dependencies are confirmed** (parent refs assigned, singletons ready, subsystems enabled).
+- Use **UniRx**-style streams, **coroutines with `WaitUntil`**, or project helpers such as **`this.Wait(Func<bool>, UnityAction)`** in `AsyncUtils` so init runs **once** when `condition` is true instead of dropping work with `if (dep == null) return`.
+- **Parent → child** wiring stays explicit (e.g. parent assigns refs then calls `Init()` on children); the **child** may **wait** until its ref is set before subscribing or handling hover, rather than crawling the hierarchy or using execution order.
+
+## When suggesting fixes
+
+- Do **not** recommend adding or tweaking **execution order** as the default solution for “Awake order” or null refs.
+- Do recommend **deferring** initialization or **one-shot waits** until dependencies exist, matching existing project patterns.

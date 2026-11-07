@@ -1,0 +1,52 @@
+---
+description: Public README is delivery narrative, not milestone docs; edit surgically only
+globs: README.md
+alwaysApply: true
+---
+
+# README.md (repo root)
+
+The root **README** is for **current product state** for a broad audience (not only programmers). **`docs/implementation_plan.md`** and **`docs/migration_plan.md`** hold versioned roadmap and migration detail.
+
+## No milestone language
+
+- Do **not** add or retain milestone framing in the README: no "Milestone 1/2/…", "M1/M2", "Phase N", roadmap checklists, or "current milestone:" narrative blocks.
+- Do **not** use the README to explain internal packaging history or agent/maintainer workflows unless the user explicitly asks to add that for a specific section.
+
+## No monolith or greenfield (reader = one product)
+
+From the README reader’s perspective, **the project is the UPM package + how to install and run it**. There is no second “legacy” or “maintainer-only” Unity app in the story.
+
+- Do **not** mention **monolith**, **greenfield**, **donor project**, **Lexting_Unity/** (as a parallel product tree), **Lexting_Unity_Sample/**, **sample host**, or “legacy vs new” packaging narratives.
+- Do **not** contrast “monolith builds” vs “greenfield builds,” or tell readers to open a private maintainer project unless the user explicitly orders that wording for a specific section.
+- **Do** describe the shipped path: **`Lexting_Unity_Plugin/`**, install via Package Manager / `manifest.json`, reference scene **`main_01_twozone`**, Quest demo **`tutorial_demo.apk`** / GitHub Releases, and integrator steps in **their** Unity project.
+
+Maintainer-only trees and migration detail belong in **`docs/migration_plan.md`** (gitignored locally) or **`docs/implementation_plan.md`**, not the public README.
+
+**Exception:** The **version badge** at the top (e.g. `version-0.2.0`) may stay. Keep its version **accurate** to the shipped package / release line documented in `Lexting_Unity_Plugin/package.json` (or the user's stated current version). The badge may link to `docs/implementation_plan.md`; do not expand the README body to restate milestone plans.
+
+## Collapsible layout and titles (formatting)
+
+Root README sections use nested **`<details>`** / **`<summary>`** expanders. Match existing structure when adding or retitling blocks.
+
+**Top-level sections** (e.g. Introduction, Architecture, Repository Layout):  
+`<details><summary><b>EMOJI Pascal Case Title</b></summary>` then `<hr style="border: 1px solid gray;">`.
+
+**First-order subsections** (direct children inside a top-level section, usually wrapped in `<blockquote>`):  
+`<blockquote><details><summary><b>EMOJI Pascal Case Title</b></summary>` then the same `<hr>` when sibling subsections use it.
+
+- **Pascal Case / title case by default:** capitalize principal words (`Package Folder Tree`, `Core Components`, `Hand Gesture States`). Do **not** downgrade to sentence case (`Hand cursors`, `Install the unity package`) unless the user explicitly requests it.
+- **Emoji:** every top-level section and every **first-order** subsection summary should lead with one emoji, consistent with neighboring blocks (e.g. 📁 Repository Layout → 📂 Package Folder Tree).
+- **Deeper nesting** (second-order `<details>` inside a subsection, e.g. Background essay bullets): keep the existing inner style unless the user asks to change it.
+- Prefer **`---`** between first-order `<blockquote>` subsections in the same top-level section.
+
+## Surgical edits only
+
+- Do **not** rewrite, reorganize, or "refresh" **whole sections** (Repository Layout, Getting Started, Architecture, scene tables, etc.) unless the user **explicitly** orders that scope (e.g. "rewrite Getting Started", "update Repository Layout for the plugin").
+- Prefer **minimal diffs**: typo fixes, one sentence, a single link, or a narrowly scoped paragraph the user requested.
+- If a task would require large README changes to stay "consistent," **stop and ask** instead of broad edits.
+
+## Related files
+
+- Plugin README under `Lexting_Unity_Plugin/README.md`: integrator-facing; same **no milestone**, **no monolith/greenfield** rules unless the user targets that file.
+- Release notes belong in **`Releases/README.md`**, not the root README milestone table.
