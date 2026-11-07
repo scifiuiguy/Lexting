@@ -74,6 +74,8 @@ namespace SpatialGestureText.Tutorial
 
         private Coroutine _stepCoroutine;
         private string _stepStartOutput = "";
+        /// <summary>Printer output at step 19 entry — baseline for conjugation fast-path vs bare lemma on screen.</summary>
+        private string _outputSnapshotStep19 = "";
         private bool _widgetRevealed;
         private bool _handsHidden;
         private int _tantalizeBlockStartStep = 15;
@@ -223,6 +225,15 @@ namespace SpatialGestureText.Tutorial
             }
             else if (step == 16)
                 CaptureStepStartOutput(Lexting.printer.CurrentOutputValue ?? "");
+            else if (step == 19)
+            {
+                _outputSnapshotStep19 = Lexting.printer.CurrentOutputValue ?? "";
+                CaptureStepStartOutput(_outputSnapshotStep19);
+            }
+            else if (step == 20)
+                CaptureStepStartOutput(Lexting.printer.CurrentOutputValue ?? "");
+            if (step == 21)
+                HideSkipControls();
             if (step == 20 && Lexting.finalizer.isSpatialListActive)
                 Lexting.assembler.RebuildWordListFromGrabComp();
             // Typing / posture / FOX block: flash + revert on unexpected output (incl. 4,6,8,9 — whitelist in HandleOutputChanged).
@@ -606,9 +617,8 @@ namespace SpatialGestureText.Tutorial
                 if (release.TryConsumeBothReleased(leftInsert, rightInsert))
                 {
                     var output = Lexting.printer.CurrentOutputValue ?? "";
-                    if (IsAcceptedTantalizeCommit(output))
+                    if (ShouldFastPathPastFinalizationCoaching(output))
                     {
-                        // Commit landed during entry (e.g. L open then R release before step 20 listens) — skip finalization page.
                         EnterStep(21);
                         yield break;
                     }
@@ -638,9 +648,8 @@ namespace SpatialGestureText.Tutorial
 
         private IEnumerator RunFinalizationCommitStep()
         {
-            CaptureStepStartOutput(Lexting.printer.CurrentOutputValue ?? "");
             var outputAtEntry = Lexting.printer.CurrentOutputValue ?? "";
-            if (IsAcceptedTantalizeCommit(outputAtEntry))
+            if (ShouldFastPathPastFinalizationCoaching(outputAtEntry))
             {
                 EnterStep(21);
                 yield break;
@@ -656,10 +665,9 @@ namespace SpatialGestureText.Tutorial
                 if (release.TryConsumeBothReleased(leftInsert, rightInsert))
                 {
                     var output = Lexting.printer.CurrentOutputValue ?? "";
-                    if (IsAcceptedTantalizeCommit(output))
+                    if (HasCompletedTantalizeFinalization(output))
                     {
-                        // Commit is valid — advance once to wrap-up (index 21). Do not fall through to
-                        // FinalizationCommitOutputReady below on the same frame or we AdvanceStep twice and skip the final page.
+                        // Conjugated commit — advance once; do not fall through to idle check same frame.
                         AdvanceStep();
                         yield break;
                     }
@@ -675,11 +683,20 @@ namespace SpatialGestureText.Tutorial
 
                 // Finalization commits via HandleFullWordSubmission (often single-hand release); dual-hold is not required.
                 var committedOutput = Lexting.printer.CurrentOutputValue ?? "";
-                if (!leftInsert && !rightInsert
-                    && FinalizationCommitOutputReady(committedOutput, _stepStartOutput))
+                if (!leftInsert && !rightInsert)
                 {
-                    AdvanceStep();
-                    yield break;
+                    if (FinalizationCommitOutputReady(committedOutput, _stepStartOutput))
+                    {
+                        AdvanceStep();
+                        yield break;
+                    }
+
+                    // Handoff stuck fix: conjugated commit already on printer but equals step-20 stepStart (no output delta).
+                    if (HasCompletedTantalizeFinalization(committedOutput))
+                    {
+                        AdvanceStep();
+                        yield break;
+                    }
                 }
 
                 yield return null;
@@ -1033,6 +1050,32 @@ namespace SpatialGestureText.Tutorial
                 return false;
             return !string.Equals((output ?? "").Trim(), (stepStartOutput ?? "").Trim(),
                 System.StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>Skip step 20 coaching only when a conjugated commit landed after step 19 began (not bare assembled lemma).</summary>
+        private bool ShouldFastPathPastFinalizationCoaching(string output)
+        {
+            if (!HasCompletedTantalizeFinalization(output))
+                return false;
+            return !string.Equals((output ?? "").Trim(), (_outputSnapshotStep19 ?? "").Trim(),
+                System.StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>Accepted commit that is not the naked stem <c>tantalize</c> (finalization suffix pick).</summary>
+        private static bool HasCompletedTantalizeFinalization(string output)
+        {
+            return IsAcceptedTantalizeCommit(output) && !IsBareTantalizeLemma(output);
+        }
+
+        private static bool IsBareTantalizeLemma(string output)
+        {
+            if (string.IsNullOrWhiteSpace(output))
+                return false;
+
+            var trimmed = Regex.Replace(output.Trim(), @"[\s\p{P}]+$", "");
+            trimmed = Regex.Replace(trimmed, @"^[\s\p{P}]+", "");
+            var token = Regex.Replace(trimmed, @"[^\w]", "").ToLowerInvariant();
+            return token == "tantalize";
         }
 
         private static bool IsAcceptedTantalizeCommit(string output)

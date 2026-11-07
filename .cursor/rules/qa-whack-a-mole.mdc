@@ -1,0 +1,33 @@
+---
+description: Avoid reverting recent bug fixes when fixing QA issues; resolve coupled bugs together
+alwaysApply: true
+---
+
+# QA — Whack-a-mole prevention
+
+During Quest / tutorial QA, fixing one bug often **re-breaks a fix from the last few days** in the same code path. Do not pass bugs back and forth.
+
+## Before landing a fix
+
+When you have a candidate fix for a **current** bug:
+
+1. **Identify the touched blocks** — functions, branches, or predicates you add, remove, or weaken.
+2. **Diff against recent history** — for those same regions, read **git history from the past ~7 days** (commit messages, `git log -L`, `git show`, QA notes under `bugs/QA/`, and recent agent transcript if the user cites a regression).
+3. **Ask what each recent change was fixing** — especially “fast path,” “shortcut,” guard clauses, and `EnterStep` / skip / handoff logic.
+4. If your fix **reverts or bypasses** a recent fix, stop. **Do not** ship the one-sided change.
+
+## Required outcome
+
+- **Resolve both bugs in one design** — e.g. narrower predicates that preserve the old fix’s intent without reintroducing the new failure.
+- **Document intent in code** when the tradeoff is non-obvious (one short comment: what regressed, what guard prevents it).
+- **Say it in the PR/chat** — name the two issues and how one change satisfies both.
+
+## Example (this repo)
+
+Tutorial step 19/20/21: a broad `IsAcceptedTantalizeCommit` shortcut fixed **stuck on step 20** but caused **permanent skip of step 20**. Replacing it required `HasCompletedTantalizeFinalization` + step-19 output snapshot so **handoff unblock** and **show step 20 for bare `tantalize`** both hold. **`JumpToWrapUpFromSkip`** stays a separate path.
+
+## Do not
+
+- Remove a “suspicious” guard without tracing **why** it was added.
+- Claim two paths are “unrelated” without checking **git + QA** for the same session or commit.
+- Ask the user to retest **only** the reported bug when you know you touched a recent fix site.

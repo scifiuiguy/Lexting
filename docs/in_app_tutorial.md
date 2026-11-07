@@ -30,7 +30,7 @@ Replaces pop-gun flow on `TextOutputCanvas`. **One label** per step: copy **alph
 | **16** | WM: start `tantalize` | **L** **t**, **R** **a** held | Wrong on release: red + revert; if **`ta`** correct, **may advance while still holding** | — |
 | **17** | WM: `tantalize` + N | **L** dragged to **N** while word-mode hold continues (assembly toward **`tantalize`**) | Early **release** during await → reset to **step 16**; wrong letter **while still holding**: no flash (drag-through); wrong on **release**: red + revert | — |
 | **18** | WM: `tantalize` + T | **R** dragged to **T** while hold continues | Same hold/release rules as 17 | — |
-| **19** | WM: finalization entry | **R** still holding, **L** opens → **finalization mode** for current word stem | After a full **dual release**, if output already has an **accepted `tantalize` commit**, skip **20** → **21**; else early release without valid stem → reset tantalize block | — |
+| **19** | WM: finalization entry | **R** still holding, **L** opens → **finalization mode** for current word stem | After **dual release**, if output already has a **conjugated** tantalize commit (not bare lemma `tantalize`) since step 19 began → **21**; early release without valid stem → reset tantalize block | — |
 | **20** | Finalization | User **commits** any **accepted conjugated form of `tantalize`** (dictionary); **punctuation optional** | Wrong word on commit: red + **reset to step 16** (tantalize block) | — |
 | **21** | Wrap-up | **7 s** on copy, then **freestyle**: dismiss tutorial UI; fire **`OnTutorialCompleted`**; hide Skip control; show **floating menu** if desired for mode pick | — | — |
 
